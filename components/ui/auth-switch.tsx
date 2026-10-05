@@ -778,27 +778,6 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
         {/* PANEL IZQUIERDO: "New here?" (Visible cuando mode === 'login') */}
         <div className="panel-box left-panel">
           <div className="panel-text flex flex-col items-center justify-center max-w-xs mx-auto">
-            {/* Insignias de Guarnición Flotante 🌿 y 🍊 */}
-            <div className="mb-4 flex items-center gap-2 select-none">
-              <div
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10"
-                title="100% Cilantro Criollo Fresco"
-              >
-                <span className="text-sm select-none" role="img" aria-label="Cilantro">
-                  🌿
-                </span>
-              </div>
-              <div className="h-0.5 w-3 bg-cream-bg/40" />
-              <div
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10"
-                title="Naranja Agria de Sevilla — Mojo Signature"
-              >
-                <span className="text-sm select-none" role="img" aria-label="Sour Orange">
-                  🍊
-                </span>
-              </div>
-            </div>
-
             <h3 className="font-display text-4xl lg:text-5xl font-black uppercase tracking-tight text-cream-bg mb-3">
               New here?
             </h3>
@@ -827,27 +806,6 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
         {/* PANEL DERECHO: "One of us?" (Visible cuando mode === 'signup') */}
         <div className="panel-box right-panel">
           <div className="panel-text flex flex-col items-center justify-center max-w-xs mx-auto">
-            {/* Insignias de Guarnición Flotante 🌿 y 🍊 */}
-            <div className="mb-4 flex items-center gap-2 select-none">
-              <div
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10"
-                title="100% Cilantro Criollo Fresco"
-              >
-                <span className="text-sm select-none" role="img" aria-label="Cilantro">
-                  🌿
-                </span>
-              </div>
-              <div className="h-0.5 w-3 bg-cream-bg/40" />
-              <div
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10"
-                title="Naranja Agria de Sevilla — Mojo Signature"
-              >
-                <span className="text-sm select-none" role="img" aria-label="Sour Orange">
-                  🍊
-                </span>
-              </div>
-            </div>
-
             <h3 className="font-display text-4xl lg:text-5xl font-black uppercase tracking-tight text-cream-bg mb-3">
               One of us?
             </h3>

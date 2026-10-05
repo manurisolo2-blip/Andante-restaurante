@@ -178,65 +178,6 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
           />
         </svg>
       </motion.div>
-
-      {/* Stickers de Guarnición Flotante con rebote en scroll (Inspiración Crav Burgers en la curva de la ola) */}
-      {showGarnish && (
-        <motion.div
-          style={reducedMotion ? {} : { y: stickerY, rotate: stickerRotate }}
-          className="absolute top-1/2 -translate-y-1/2 left-6 sm:left-14 md:left-24 z-30 pointer-events-auto flex items-center gap-2 sm:gap-3 will-change-transform"
-        >
-          {/* Sticker 1: Cilantro fresco criollo */}
-          <motion.div
-            {...(reducedMotion
-              ? {}
-              : {
-                  animate: { y: [0, -7, 0], rotate: [-3, 5, -3] },
-                  transition: {
-                    duration: 4.2,
-                    repeat: Infinity,
-                    ease: "easeInOut" as const,
-                  },
-                })}
-            whileHover={{ scale: 1.15, rotate: 10 }}
-            className="group relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-cream-bg cursor-pointer"
-            title="100% Cilantro Criollo Fresco"
-          >
-            <span className="text-base sm:text-lg select-none" role="img" aria-label="Cilantro Leaf">
-              🌿
-            </span>
-            <span className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-charcoal-ink text-cream-bg text-[9px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 opacity-0 transition-opacity group-hover:opacity-100 rounded-none">
-              Cilantro
-            </span>
-          </motion.div>
-
-          {/* Conector sutil entre stickers */}
-          <div className="h-0.5 w-3 sm:w-5 bg-charcoal-ink/20" />
-
-          {/* Sticker 2: Naranja agria de Sevilla / Mojo */}
-          <motion.div
-            {...(reducedMotion
-              ? {}
-              : {
-                  animate: { y: [0, 7, 0], rotate: [3, -5, 3] },
-                  transition: {
-                    duration: 4.8,
-                    repeat: Infinity,
-                    ease: "easeInOut" as const,
-                  },
-                })}
-            whileHover={{ scale: 1.15, rotate: -10 }}
-            className="group relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-cream-bg cursor-pointer"
-            title="Naranja Agria de Sevilla — Mojo Signature"
-          >
-            <span className="text-base sm:text-lg select-none" role="img" aria-label="Sour Orange">
-              🍊
-            </span>
-            <span className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-charcoal-ink text-cream-bg text-[9px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 opacity-0 transition-opacity group-hover:opacity-100 rounded-none">
-              Mojo Citrus
-            </span>
-          </motion.div>
-        </motion.div>
-      )}
     </div>
   );
 };

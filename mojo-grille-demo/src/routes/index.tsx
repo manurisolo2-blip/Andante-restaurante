@@ -156,7 +156,6 @@ function IndexContent() {
               topColor="#0E1726"
               bottomColor="#162238"
               direction="down"
-              showGarnish
             />
 
             {/* Selección de Estación · Al Fuego (Sección Superficie) */}
