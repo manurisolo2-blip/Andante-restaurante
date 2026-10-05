@@ -23,8 +23,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Mojo Grille Miami-Latin Modernism design system.
- * Warm Criollo Cream base, Mojo Scarlet fire, Pressed Dark ink, Yuca Sand surfaces.
+ * Andante Restaurante Bar — Minimalismo Nocturno de Lujo (Dark Luxury)
+ * Canvas Índigo Medianoche #0E1726, Superficie Marina #162238, Latón Cálido #C9A86A,
+ * Ámbar Destilado #D98236, Lino Cálido #F4EFE6, Niebla #9CA3AF.
  */
 
 @theme inline {
@@ -36,66 +37,43 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* Miami-Latin Modernism Typographic Trio + Monospace Engine */
-  --font-display: "Spot", "Spot-Normal", "Clarkson", "Bebas Neue", "Playfair Display", Georgia, sans-serif;
+  /* Andante Typographic Hierarchy: Cooper Hewitt / Playfair Display / Cormorant Garamond + Plus Jakarta Sans */
+  --font-display: "Cooper Hewitt", "Cormorant Garamond", "Playfair Display", "Spot", "Spot-Normal", "Clarkson", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-accent: "Instrument Serif", "Playfair Display", Georgia, serif;
-  --font-serif: "Instrument Serif", "Playfair Display", Georgia, serif;
+  --font-accent: "Cormorant Garamond", "Playfair Display", "Instrument Serif", Georgia, serif;
+  --font-serif: "Cormorant Garamond", "Playfair Display", "Instrument Serif", Georgia, serif;
   --font-mono: "Space Mono", monospace;
 
-/*
- * Paleta: verde #14402A, lima #8DBE3D, rojo #E8413C, amarillo #F2C230,
- * sobre la crema y la tinta de siempre. Los nombres de los tokens se
- * conservan (leaf-green es el verde, leaf-green-soft la lima, mojo-citrus el
- * amarillo, brand-fire el rojo) para no renombrar cientos de clases.
- *
- * Ratios WCAG 2.1 medidos (texto normal 4.5:1, texto grande 3:1):
- *
- *   charcoal-ink sobre cream-bg ........... 15.89:1
- *   cream-bg sobre leaf-green ............... 9.94:1
- *   leaf-green sobre cream-bg ............... 9.94:1
- *   mojo-citrus sobre leaf-green ............ 6.98:1
- *   leaf-green-soft sobre leaf-green ........ 5.32:1
- *   charcoal-ink sobre brand-fire ........... 4.67:1
- *   charcoal-ink sobre mojo-citrus ......... 11.15:1
- *   leaf-green sobre mojo-citrus ............ 6.98:1
- *   mojo-citrus sobre charcoal-ink ......... 11.15:1
- *   leaf-green-soft sobre charcoal-ink ...... 8.51:1
- *   brand-fire sobre cream-bg ............... 3.40:1  <- SOLO texto grande
- *   cream-bg sobre brand-fire ............... 3.40:1  <- SOLO texto grande
- *   brand-fire sobre leaf-green ............. 2.92:1  <- nunca texto
- *
- * Una regla sale de esa tabla: sobre superficies oscuras (verde, tinta) va
- * texto crema, amarillo o lima; sobre superficies claras (crema, rojo,
- * amarillo, lima) va texto tinta o verde.
- *
- * El rojo es claro y no aguanta texto crema: por eso los botones rojos llevan
- * la etiqueta en tinta, el texto pequeño de acento pasa a verde y los grandes
- * bloques de color (Selección de la Plancha, footer, preloader) son verdes.
- * Rojo como texto, sólo en display de 24px o más sobre crema.
- */
-  --color-cream-bg: #F2ECE1;
-  --color-brand-fire: #E8413C;
-  --color-charcoal-ink: #141210;
-  --color-surface-sand: #ECE4D5;
-  --color-mojo-citrus: #F2C230;
-  --color-leaf-green: #14402A;
-  --color-leaf-green-soft: #8DBE3D;
+  /* Tokens Cromáticos Oficiales Andante Restaurante Bar (Dark Luxury) */
+  --color-canvas: #0E1726;
+  --color-surface: #162238;
+  --color-brass: #C9A86A;
+  --color-amber: #D98236;
+  --color-linen: #F4EFE6;
+  --color-mist: #9CA3AF;
 
-  /* Backward Compatibility Aliases */
-  --color-cream: #F2ECE1;
-  --color-surface-white: #FFFFFF;
-  --color-mojo-terracotta: #E8413C;
-  --color-mojo-terracotta-dark: #E8413C;
-  --color-charcoal: #141210;
-  --color-text-charcoal: #141210;
-  --color-text-muted: #78716C;
-  --color-mojo-lime: #14402A;
-  --color-mojo-gold: #F2C230;
-  --color-mojo-red: #E8413C;
-  --color-sand: #ECE4D5;
-  --color-subtle: #ECE4D5;
-  --color-border-subtle: #ECE4D5;
+  /* Aliases de compatibilidad semántica con contraste WCAG 2.1 AA riguroso */
+  --color-cream-bg: #0E1726;
+  --color-brand-fire: #C9A86A;
+  --color-charcoal-ink: #F4EFE6;
+  --color-surface-sand: #162238;
+  --color-mojo-citrus: #D98236;
+  --color-leaf-green: #162238;
+  --color-leaf-green-soft: #C9A86A;
+
+  --color-cream: #0E1726;
+  --color-surface-white: #162238;
+  --color-mojo-terracotta: #C9A86A;
+  --color-mojo-terracotta-dark: #b89354;
+  --color-charcoal: #F4EFE6;
+  --color-text-charcoal: #F4EFE6;
+  --color-text-muted: #9CA3AF;
+  --color-mojo-lime: #162238;
+  --color-mojo-gold: #C9A86A;
+  --color-mojo-red: #D98236;
+  --color-sand: #162238;
+  --color-subtle: #162238;
+  --color-border-subtle: rgba(201, 168, 106, 0.2);
 
   /* Tailwind Core Semantic Tokens */
   --color-background: var(--background);
@@ -129,51 +107,44 @@
 
 :root {
   --radius: 0.875rem;
-
-  /*
-   * Alto real de la cabecera fija. TopBar lo mide con ResizeObserver y lo
-   * escribe aquí en cuanto hidrata; estos valores sólo cubren el primer
-   * pintado. Lo consumen la barra de pestañas pegajosa del menú, el
-   * scroll-margin de las anclas y el aviso de "añadido al pedido".
-   * Medidos: 73px hasta 767px, 77px hasta 1023px, 89px desde 1024px.
-   */
   --header-h: 73px;
 
-  /* Lienzo Primario (#FAF8F5) */
-  --background: #FAF8F5;
-  /* Texto Maestro (#1C1917) */
-  --foreground: #1C1917;
-  /* Superficie de Tarjetas (#FFFFFF) */
-  --card: #FFFFFF;
-  --card-foreground: #1C1917;
-  --popover: #FFFFFF;
-  --popover-foreground: #1C1917;
+  /* Lienzo Primario Andante Medianoche (#0E1726) */
+  --background: #0E1726;
+  /* Texto Maestro Linen (#F4EFE6) */
+  --foreground: #F4EFE6;
+  /* Superficie de Tarjetas Navy (#162238) */
+  --card: #162238;
+  --card-foreground: #F4EFE6;
+  --popover: #162238;
+  --popover-foreground: #F4EFE6;
 
-  /* Acción Principal / CTA (#D95327 / #B83E16) */
-  --primary: #D95327;
-  --primary-hover: #B83E16;
-  --primary-foreground: #FFFFFF;
+  /* Acción Principal / Latón Cálido (#C9A86A) */
+  --primary: #C9A86A;
+  --primary-hover: #b89354;
+  --primary-foreground: #0E1726;
 
-  --secondary: #F4EFEA;
-  --secondary-foreground: #1C1917;
-  --muted: #F4EFEA;
-  /* Texto Descriptivo (#78716C) */
-  --muted-foreground: #78716C;
-  --accent: #F4EFEA;
-  --accent-foreground: #1C1917;
+  --secondary: #162238;
+  --secondary-foreground: #F4EFE6;
+  --muted: #162238;
+  /* Texto Descriptivo Mist (#9CA3AF) */
+  --muted-foreground: #9CA3AF;
+  /* Acento Ámbar Destilado (#D98236) */
+  --accent: #D98236;
+  --accent-foreground: #0E1726;
 
-  /* Acento Orgánico (#4D7C0F) */
-  --citrus: #4D7C0F;
-  --citrus-foreground: #FFFFFF;
-  --citrus-soft: #F0F6E8;
+  /* Acento Latón (#C9A86A) */
+  --citrus: #C9A86A;
+  --citrus-foreground: #0E1726;
+  --citrus-soft: #1c2b46;
 
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
 
-  /* Bordes y Separadores (#EAE5DC) */
-  --border: #EAE5DC;
-  --input: #EAE5DC;
-  --ring: #D95327;
+  /* Bordes y Separadores Finos de Latón con opacidad */
+  --border: rgba(201, 168, 106, 0.2);
+  --input: rgba(201, 168, 106, 0.25);
+  --ring: #C9A86A;
 }
 
 @layer base {
@@ -182,14 +153,14 @@
   }
 
   body {
-    background-color: #F2ECE1;
+    background-color: #0E1726;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
   .grain {
-    background-color: #F2ECE1;
+    background-color: #0E1726;
   }
 
   /* All Titles & Headings Hierarchy */

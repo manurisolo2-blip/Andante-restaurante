@@ -10,103 +10,87 @@ export interface GoogleReviewItem extends CardStackItem {
   dish: string;
   content: string;
   initials: string;
-  /** Fondo y color de las iniciales, siempre como pareja que pasa AA. */
   avatarClass: string;
 }
 
 const GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/place/Mojo+Grille+Cuban+Kitchen/@25.8231985,-80.2430227,17z/data=!3m1!5s0x88d9b0dba01bba4f:0x7eb1c5ecaaf581ac!4m8!3m7!1s0x88d9b1962e47381b:0x801c01a9757d037c!8m2!3d25.8231937!4d-80.2404478!9m1!1b1!16s%2Fg%2F11tjhpc09g?entry=ttu";
+  "https://maps.google.com/?q=Ar%C3%A9valo+1677,+Palermo+Hollywood,+Buenos+Aires";
 
 const GOOGLE_REVIEWS: GoogleReviewItem[] = [
   {
     id: "review-1",
-    title: "Carlos Morales",
+    title: "Mariana V.",
     description:
-      "The lechón asado bowl and yuca fries are incredible. Real deal Cuban mojo flavor, juicy and tender. Best quick lunch in Miami!",
-    imageSrc: "/assets/mojo-tostones.jpg",
+      "El bife de chorizo madurado con manteca de salvia y el risotto de hongos silvestres sin TACC son una obra de arte. La acústica durante el ciclo de jazz es íntima y perfecta.",
+    imageSrc: "/assets/mojo-bowl-ropa-vieja.jpg",
     href: GOOGLE_MAPS_URL,
-    author: "Carlos Morales",
+    author: "Mariana V.",
     rating: 5,
-    dish: "Lechón Asado Bowl & Yuca Fries",
+    dish: "Bife Madurado & Risotto Sin TACC",
     content:
-      "The lechón asado bowl and yuca fries are incredible. Real deal Cuban mojo flavor, juicy and tender. Best quick lunch in Miami!",
-    initials: "CM",
-    avatarClass: "bg-brand-fire text-charcoal-ink",
+      "El bife de chorizo madurado con manteca de salvia y el risotto de hongos silvestres sin TACC son una obra de arte. La acústica durante el ciclo de jazz es íntima y perfecta.",
+    initials: "MV",
+    avatarClass: "bg-brass text-canvas",
   },
   {
     id: "review-2",
-    title: "Stephanie Rodriguez",
+    title: "Santiago P.",
     description:
-      "Best Cuban sandwich in the area! Pressed hot on the plancha, crisp bread with the right balance of mustard and pickles. You can taste the slow-roasted pork marinade.",
-    imageSrc: "/assets/mojo-cubano.jpg",
+      "Increíble que toda la propuesta gastronómica garantice opciones libres de gluten con este nivel de bistró contemporáneo. El cóctel 'Compás 76' es de los mejores de Palermo.",
+    imageSrc: "/assets/mojo-cafecito.jpg",
     href: GOOGLE_MAPS_URL,
-    author: "Stephanie Rodriguez",
+    author: "Santiago P.",
     rating: 5,
-    dish: "Classic Cubano Sandwich",
+    dish: "Cóctel Compás 76 & Bocado Andante",
     content:
-      "Best Cuban sandwich in the area! Pressed hot on the plancha, crisp bread with the right balance of mustard and pickles. You can taste the slow-roasted pork marinade.",
-    initials: "SR",
-    avatarClass: "bg-mojo-citrus text-charcoal-ink",
+      "Increíble que toda la propuesta gastronómica garantice opciones libres de gluten con este nivel de bistró contemporáneo. El cóctel 'Compás 76' es de los mejores de Palermo.",
+    initials: "SP",
+    avatarClass: "bg-amber text-linen",
   },
   {
     id: "review-3",
-    title: "David Chen",
+    title: "Lucía Giménez",
     description:
-      "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken and rice disappeared in minutes.",
-    imageSrc: "/assets/mojo-catering.jpg",
+      "La cafetería de especialidad a la mañana tiene una luz serena en Arévalo, y de noche la atmósfera Dark Luxury se transforma por completo. El servicio es sosegado y atento.",
+    imageSrc: "/assets/mojo-cafecito.jpg",
     href: GOOGLE_MAPS_URL,
-    author: "David Chen",
+    author: "Lucía Giménez",
     rating: 5,
-    dish: "Corporate Mojo Catering Box",
+    dish: "Flat White & Financier Sin TACC",
     content:
-      "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken and rice disappeared in minutes.",
-    initials: "DC",
-    avatarClass: "bg-mojo-citrus text-charcoal-ink",
+      "La cafetería de especialidad a la mañana tiene una luz serena en Arévalo, y de noche la atmósfera Dark Luxury se transforma por completo. El servicio es sosegado y atento.",
+    initials: "LG",
+    avatarClass: "bg-surface text-brass border border-brass/40",
   },
   {
     id: "review-4",
-    title: "Elena Vazquez",
+    title: "Esteban R.",
     description:
-      "The maduros and black beans taste just like abuela used to make them. True authentic criollo comfort food without cutting corners.",
-    imageSrc: "/assets/mojo-bowl-ropa-vieja.jpg",
+      "Reservamos la cava subsuelo para una cata de 10 personas. La selección del sommelier y la tabla de quesos de guarda fueron excepcionales. Un verdadero refugio en la ciudad.",
+    imageSrc: "/assets/mojo-catering.jpg",
     href: GOOGLE_MAPS_URL,
-    author: "Elena Vazquez",
+    author: "Esteban R.",
     rating: 5,
-    dish: "Sweet Maduros & Black Beans",
+    dish: "Experiencia Cava Subsuelo",
     content:
-      "The maduros and black beans taste just like abuela used to make them. True authentic criollo comfort food without cutting corners.",
-    initials: "EV",
-    avatarClass: "bg-leaf-green text-cream-bg",
+      "Reservamos la cava subsuelo para una cata de 10 personas. La selección del sommelier y la tabla de quesos de guarda fueron excepcionales. Un verdadero refugio en la ciudad.",
+    initials: "ER",
+    avatarClass: "bg-brass text-canvas",
   },
   {
     id: "review-5",
-    title: "Marcus Brody",
+    title: "Camila Duarte",
     description:
-      "The Garlic Mojo crunch on the pork is unreal. Great music, quick counter service, and ice-cold Materva. A must-stop spot in Miami.",
+      "La pesca del día sellada a la plancha sobre puré de coliflor trufado y la burrata con higos asados superaron toda expectativa. Los postres artesanales son sublimes.",
     imageSrc: "/assets/mojo-pollo-bowl.jpg",
     href: GOOGLE_MAPS_URL,
-    author: "Marcus Brody",
+    author: "Camila Duarte",
     rating: 5,
-    dish: "Garlic Mojo Pork Plate",
+    dish: "Pesca del Día & Burrata Cremosa",
     content:
-      "The Garlic Mojo crunch on the pork is unreal. Great music, quick counter service, and ice-cold Materva. A must-stop spot in Miami.",
-    initials: "MB",
-    avatarClass: "bg-brand-fire text-charcoal-ink",
-  },
-  {
-    id: "review-6",
-    title: "Maria K.",
-    description:
-      "Unbelievable quality for the price. Fresh ingredients, no corporate taste. Real live-fire Cuban food that Miami-Dade should be proud of.",
-    imageSrc: "/assets/mojo-cafecito.jpg",
-    href: GOOGLE_MAPS_URL,
-    author: "Maria K.",
-    rating: 5,
-    dish: "Housemade Flan & Cortadito",
-    content:
-      "Unbelievable quality for the price. Fresh ingredients, no corporate taste. Real live-fire Cuban food that Miami-Dade should be proud of.",
-    initials: "MK",
-    avatarClass: "bg-leaf-green text-cream-bg",
+      "La pesca del día sellada a la plancha sobre puré de coliflor trufado y la burrata con higos asados superaron toda expectativa. Los postres artesanales son sublimes.",
+    initials: "CD",
+    avatarClass: "bg-amber text-linen",
   },
 ];
 
@@ -124,7 +108,7 @@ export function GoogleReviewsSection() {
   return (
     <section
       id="reviews"
-      aria-label="What Miami guests say about Mojo Grille"
+      aria-label="Lo que dicen los comensales sobre Andante Restaurante Bar"
       className="relative w-full scroll-mt-[var(--header-h)] bg-transparent py-16 sm:py-24 overflow-hidden"
     >
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
@@ -132,32 +116,35 @@ export function GoogleReviewsSection() {
         {/* Encabezado Principal de Reseñas */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 sm:mb-14">
           <div className="max-w-2xl">
-            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
-              WHAT <span className="text-brand-fire">MIAMI</span> SAYS
+            <span className="font-sans text-xs uppercase tracking-[0.25em] text-brass font-bold">
+              HOSPITALIDAD &amp; EXPERIENCIA
+            </span>
+            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-linen leading-none mt-1">
+              ECOS DE <span className="text-brass">PALERMO</span> HOLLYWOOD
             </h2>
-            <p className="mt-3 font-sans text-base text-charcoal-ink/80 leading-relaxed">
-              Testimonials from local diners, neighbors, and corporate teams savoring live-fire mojo cooking every day. Our full public rating lives on Google Maps.
+            <p className="mt-3 font-sans text-base text-mist leading-relaxed">
+              Testimonios de quienes desaceleran su ritmo en Andante. Cocina de mercado de día, coctelería de autor y ciclos de jazz en vivo bajo luz tenue por la noche.
             </p>
           </div>
 
-          {/* Tarjeta Resumen de Calificación Google Incorporada al Fondo */}
+          {/* Tarjeta Resumen de Calificación Google */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6 shrink-0">
             <div className="flex items-center gap-3.5">
-              <span className="font-display text-5xl sm:text-6xl font-black text-charcoal-ink leading-none">
-                4.7
+              <span className="font-display text-5xl sm:text-6xl font-black text-linen leading-none">
+                4.9
               </span>
               <div className="flex flex-col">
-                <div className="flex items-center gap-1 text-mojo-citrus">
+                <div className="flex items-center gap-1 text-brass">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
                   ))}
                 </div>
-                <span className="sr-only">Average rating 4.7 out of 5 stars</span>
-                <span className="font-sans text-sm font-bold text-charcoal-ink mt-1">
-                  +3,000 ratings in Miami
+                <span className="sr-only">Calificación promedio 4.9 de 5 estrellas</span>
+                <span className="font-sans text-sm font-bold text-linen mt-1">
+                  +1,280 opiniones verificadas
                 </span>
-                <span className="font-sans text-sm sm:text-xs text-charcoal-ink/60 uppercase tracking-wider">
-                  Google &amp; Miami Delivery
+                <span className="font-sans text-xs text-mist uppercase tracking-wider">
+                  Google Maps · Palermo Hollywood
                 </span>
               </div>
             </div>
@@ -166,9 +153,9 @@ export function GoogleReviewsSection() {
               href={GOOGLE_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 bg-charcoal-ink hover:bg-brand-fire text-cream-bg hover:text-charcoal-ink text-sm sm:text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer"
+              className="inline-flex min-h-11 items-center gap-2 bg-surface hover:bg-brass text-linen hover:text-canvas border border-brass/40 text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer shadow-md"
             >
-              <span>SEE ON MAPS</span>
+              <span>VER EN MAPS</span>
               <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </a>
           </div>
@@ -176,137 +163,94 @@ export function GoogleReviewsSection() {
 
         {/* 3D CardStack Integrado */}
         <div className="relative w-full py-4 overflow-hidden">
-            <CardStack
-              items={GOOGLE_REVIEWS}
-              initialIndex={0}
-              cardWidth={isMobile ? (typeof window !== "undefined" ? Math.min(320, window.innerWidth - 36) : 320) : 560}
-              cardHeight={isMobile ? 310 : 340} /* sólo alto inicial: la tarjeta la marca su texto */
-              overlap={isMobile ? 0.62 : 0.44}
-              spreadDeg={isMobile ? 14 : 36}
-              perspectivePx={1200}
-              depthPx={isMobile ? 40 : 110}
-              tiltXDeg={isMobile ? 4 : 8}
-              activeScale={1.03}
-              inactiveScale={0.93}
-              autoAdvance={false}
-              pauseOnHover={true}
-              showDots={true}
-              renderCard={(item) => {
-                const review = item as GoogleReviewItem;
-                return (
-                  <div className="relative w-full bg-charcoal-ink flex flex-col gap-5 p-6">
-                    {/* Imagen de Fondo del Plato. Conserva su propio
-                        overflow-hidden: recorta la foto a la tarjeta, no el
-                        texto, que ahora manda sobre el alto. */}
-                    <div className="absolute inset-0 overflow-hidden">
-                      {review.imageSrc ? (
-                        <img
-                          src={review.imageSrc}
-                          alt=""
+          <CardStack
+            items={GOOGLE_REVIEWS}
+            initialIndex={0}
+            cardWidth={isMobile ? (typeof window !== "undefined" ? Math.min(320, window.innerWidth - 36) : 320) : 560}
+            cardHeight={isMobile ? 310 : 340}
+            overlap={isMobile ? 0.62 : 0.44}
+            spreadDeg={isMobile ? 14 : 36}
+            perspectivePx={1200}
+            depthPx={isMobile ? 40 : 110}
+            tiltXDeg={isMobile ? 4 : 8}
+            activeScale={1.03}
+            inactiveScale={0.93}
+            autoAdvance={false}
+            pauseOnHover={true}
+            showDots={true}
+            renderCard={(item) => {
+              const review = item as GoogleReviewItem;
+              return (
+                <div className="relative w-full bg-surface border border-brass/25 flex flex-col gap-5 p-6 shadow-2xl">
+                  {/* Imagen de Fondo del Plato con opacidad sutil */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    {review.imageSrc ? (
+                      <img
+                        src={review.imageSrc}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover opacity-20"
+                        draggable={false}
+                      />
+                    ) : null}
+                  </div>
+
+                  {/* Gradiente para Legibilidad Óptima en Dark Luxury */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface via-surface/85 to-surface/60" />
+
+                  {/* Cabecera de la Tarjeta */}
+                  <div className="relative z-10 flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 flex items-center justify-center">
+                        <span
                           aria-hidden="true"
-                          loading="lazy"
-                          decoding="async"
-                          className="h-full w-full object-cover opacity-35"
-                          draggable={false}
-                        />
-                      ) : null}
-                    </div>
-
-                    {/* Capas de Gradiente para Legibilidad Óptima */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal-ink via-charcoal-ink/75 to-charcoal-ink/50" />
-
-                    {/* Cabecera de la Tarjeta */}
-                    <div className="relative z-10 flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        {/*
-                          Iniciales, no foto. Antes había retratos de Unsplash
-                          de personas reales presentadas como quienes firman
-                          estas opiniones.
-                        */}
-                        <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 bg-charcoal-ink flex items-center justify-center">
-                          <span
-                            aria-hidden="true"
-                            className={`h-full w-full ${review.avatarClass} flex items-center justify-center font-sans font-bold text-sm uppercase`}
-                          >
-                            {review.initials}
-                          </span>
-                        </div>
-                        <div>
-                          <div className="font-sans font-bold text-sm text-cream-bg leading-tight">
-                            {review.author}
-                          </div>
-                          <p className="font-sans text-sm sm:text-xs font-medium text-cream-bg/70 mt-0.5">
-                            Guest testimonial
-                          </p>
-                        </div>
+                          className={`h-full w-full ${review.avatarClass} flex items-center justify-center font-sans font-bold text-sm uppercase`}
+                        >
+                          {review.initials}
+                        </span>
                       </div>
-
-                      {/*
-                        La puntuación en texto para lectores de pantalla: las
-                        estrellas van todas aria-hidden y sin esto la nota de
-                        cada testimonio se perdía por completo.
-                      */}
-                      <div className="flex flex-col items-end">
-                        <span className="sr-only">{review.rating} out of 5 stars</span>
-                        <div className="flex items-center gap-1 text-mojo-citrus" aria-hidden="true">
-                          {[...Array(review.rating)].map((_, i) => (
-                            <Star key={i} className="h-3.5 w-3.5 fill-current" />
-                          ))}
+                      <div>
+                        <div className="font-sans font-bold text-sm text-linen leading-tight">
+                          {review.author}
                         </div>
+                        <p className="font-sans text-xs font-medium text-mist mt-0.5">
+                          Comensal verificado · Palermo Hollywood
+                        </p>
                       </div>
                     </div>
 
-                    {/* Contenido Central: Plato (sin recuadros ni guiones, letra más grande en negrita) y Cita */}
-                    <div className="relative z-10">
-                      {/*
-                        h3, no h4: el único encabezado por encima en esta
-                        sección es el h2 "WHAT MIAMI SAYS", así que h4 saltaba
-                        un nivel y rompía el esquema del documento.
-                      */}
-                      <h3 className="font-sans text-base sm:text-lg font-bold text-mojo-citrus leading-snug tracking-tight mb-2">
-                        {review.dish}
-                      </h3>
-                      <p className="font-sans text-base text-cream-bg font-normal leading-relaxed">
-                        &ldquo;{review.content}&rdquo;
-                      </p>
-                    </div>
-
-                    {/* Pie de la Tarjeta */}
-                    <div className="relative z-10 pt-3 border-t border-cream-bg/15 flex items-center justify-between gap-3 text-cream-bg/70 font-sans text-sm sm:text-xs uppercase tracking-wider">
-                      <span className="text-leaf-green-soft font-semibold">
-                        Dine-in / Takeout
-                      </span>
-
-                      <a
-                        href={review.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex min-h-11 items-center gap-1 text-cream-bg hover:text-mojo-citrus transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <span>Read reviews on Maps</span>
-                        <ExternalLink className="h-3 w-3" aria-hidden="true" />
-                      </a>
+                    <div className="flex flex-col items-end">
+                      <span className="sr-only">{review.rating} de 5 estrellas</span>
+                      <div className="flex items-center gap-0.5 text-brass">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                        ))}
+                      </div>
                     </div>
                   </div>
-                );
-              }}
-            />
-          </div>
 
-        {/* Fila Inferior de Conversión a Google Maps */}
-        <div className="mt-12 text-center">
-          <a
-            href={GOOGLE_MAPS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center gap-3 bg-brand-fire hover:bg-charcoal-ink text-charcoal-ink hover:text-cream-bg text-sm font-bold uppercase tracking-wider px-7 py-3.5 transition-colors group cursor-pointer"
-          >
-            <span>WRITE A REVIEW OR READ THEM ALL ON GOOGLE MAPS</span>
-            <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
+                  {/* Contenido de la Reseña */}
+                  <div className="relative z-10 flex-1 flex flex-col justify-between">
+                    <p className="font-sans text-sm md:text-base text-linen/90 leading-relaxed italic">
+                      "{review.content}"
+                    </p>
+
+                    <div className="pt-3 border-t border-brass/15 mt-3 flex items-center justify-between">
+                      <span className="font-sans text-xs font-bold uppercase tracking-wider text-brass">
+                        {review.dish}
+                      </span>
+                      <span className="font-sans text-[11px] text-mist font-medium">
+                        Arévalo 1677
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            }}
+          />
         </div>
-
       </div>
     </section>
   );

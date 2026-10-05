@@ -8,11 +8,11 @@ export interface EditorialFooterProps {
 }
 
 const FOOTER_LINKS = [
-  { href: "#cuban-deconstruction", label: "Anatomy of the Pressed Cubano" },
-  { href: "#curated-menu", label: "Plancha Selection (Signature Dishes)" },
-  { href: "#menu", label: "Full Menu & Criollo Bowls" },
-  { href: "#reviews", label: "What Miami Says" },
-  { href: "#catering", label: "Catering & Events" },
+  { href: "#cuban-deconstruction", label: "Anatomía de Nuestra Cocina" },
+  { href: "#curated-menu", label: "Selección de Estación (Al Fuego)" },
+  { href: "#menu", label: "Carta & Maridajes" },
+  { href: "#reviews", label: "Ecos de Palermo Hollywood" },
+  { href: "#catering", label: "Ciclos de Jazz & Cava Privada" },
 ] as const;
 
 export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
@@ -22,10 +22,6 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
   const emailFieldId = useId();
   const reducedMotion = useReducedMotion();
 
-  // Efecto magnético interactivo en el microbotón 'Volver Arriba' con GSAP.
-  // Con prefers-reduced-motion ni siquiera se engancha el listener: además de
-  // ser movimiento no solicitado, escuchaba `mousemove` en `window` durante
-  // toda la vida de la página y calculaba una hipotenusa en cada píxel.
   useEffect(() => {
     const btn = backToTopRef.current;
     if (!btn || typeof window === "undefined") return;
@@ -83,7 +79,6 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
   const handleScrollToTop = () => {
     if (typeof window === "undefined") return;
 
-    // Scroll inercial con Lenis si está disponible, con fallback nativo
     const windowWithLenis = window as unknown as {
       lenis?: { scrollTo: (target: number | string, opts?: { duration?: number }) => void };
     };
@@ -99,103 +94,85 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
     e.preventDefault();
     if (!email.trim()) return;
     setSubscribed(true);
-    setEmail("");
-    setTimeout(() => {
-      setSubscribed(false);
-    }, 4500);
   };
 
   return (
     <footer
-      id="footer"
-      aria-label="Mojo Grille editorial footer"
-      className="relative bg-leaf-green text-cream-bg pt-16 pb-28 md:pb-12 overflow-hidden"
+      aria-label="Pie de página editorial de Andante Restaurante Bar"
+      className="relative bg-surface text-linen overflow-hidden pt-16 sm:pt-20 border-t border-brass/25"
     >
-      {/*
-        Misma retícula que las secciones: max-w-[1600px] centrado con el
-        relleno por dentro. Con el relleno en el <footer>, en pantallas de más
-        de 1600px el pie quedaba 32px más a la izquierda que el contenido.
-      */}
-      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        {/*
-          1. Marca de agua superior. Era un <h1>, que daba dos h1 en la home (el
-          otro es el titular del hero) y ponía el encabezado principal del
-          documento en un adorno del pie. Es decorativo, así que ahora es un div
-          oculto a lectores de pantalla: el nombre del negocio ya está en el
-          <title>, en el logo de la cabecera y en los datos estructurados.
-        */}
-        <div className="w-full border-b border-cream-bg/20 pb-10 sm:pb-14 overflow-hidden">
+      <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
+        
+        {/* 1. Marca de agua superior */}
+        <div className="w-full border-b border-brass/20 pb-10 sm:pb-14 overflow-hidden">
           <div
             aria-hidden="true"
-            className="text-[min(12vw,12rem)] font-display uppercase tracking-tight text-cream-bg leading-none select-none text-center sm:text-left"
+            className="text-[min(14vw,13rem)] font-display uppercase tracking-widest text-brass/20 leading-none select-none text-center sm:text-left"
           >
-            MOJO GRILLE
+            ANDANTE
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-sm font-sans uppercase tracking-widest text-cream-bg">
-            <p className="font-semibold">CUBAN KITCHEN &amp; ARTISANAL PLANCHA IN MIAMI, FL</p>
-            <p className="font-sans text-sm font-bold uppercase tracking-[0.15em] text-cream-bg mt-1 sm:mt-0">
-              AUTHENTIC CRIOLLO FLAVOR, 24-HOUR CITRUS MOJO
+          <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-xs sm:text-sm font-sans uppercase tracking-widest text-mist">
+            <p className="font-semibold text-linen">
+              BISTRÓ CONTEMPORÁNEO &amp; COCTELERÍA NOCTURNA · PALERMO HOLLYWOOD
+            </p>
+            <p className="font-sans font-bold uppercase tracking-[0.18em] text-brass mt-1 sm:mt-0">
+              ARÉVALO 1677 · TEMPO 76–108 PPM · SIN TACC GARANTIZADO
             </p>
           </div>
         </div>
 
-        {/* 2. Grilla de Información (3 Columnas de Alto Impacto) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 py-12 sm:py-16 border-b border-cream-bg/20">
+        {/* 2. Grilla de Información (3 Columnas) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 py-12 sm:py-16 border-b border-brass/20">
         
-          {/* Columna 1: Horarios de Plancha y Ubicación Física */}
+          {/* Columna 1: Horarios y Ubicación */}
           <div className="md:col-span-4 space-y-4">
-            <div className="flex items-center gap-2 text-cream-bg">
+            <div className="flex items-center gap-2 text-brass">
               <MapPin className="h-4 w-4" />
-              <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-mojo-citrus">
-                Location &amp; Plancha Hours
+              <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-brass">
+                Sede &amp; Horarios
               </h3>
             </div>
 
-            <div className="space-y-1 font-sans text-base text-cream-bg">
-              <p className="font-bold text-base text-cream-bg">Brownsville Central Kitchen</p>
+            <div className="space-y-1 font-sans text-base text-linen">
+              <p className="font-bold text-base text-linen">Andante Restaurante Bar</p>
               <a
-                href="https://maps.google.com/?q=2920+NW+27th+Ave,+Miami,+FL+33142"
+                href="https://maps.google.com/?q=Ar%C3%A9valo+1677,+Palermo+Hollywood,+Buenos+Aires"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center hover:underline transition-colors cursor-pointer"
-                aria-label="View 2920 NW 27th Ave, Miami on Google Maps"
+                className="inline-flex min-h-11 items-center hover:text-brass hover:underline transition-colors cursor-pointer text-sm"
+                aria-label="Ver Arévalo 1677 en Google Maps"
               >
-                2920 NW 27th Ave, Miami, FL 33142
+                Arévalo 1677, Palermo Hollywood, CABA, Argentina
               </a>
-              <p className="text-sm text-cream-bg">Pickup hubs: Little Havana, Brickell, Doral</p>
+              <p className="text-xs text-mist">Salón Principal · Terraza Andante · Cava Subsuelo</p>
             </div>
 
-            <div className="pt-2 border-t border-cream-bg/20 space-y-1 font-sans text-sm text-cream-bg leading-relaxed">
-              <div className="flex items-center gap-1.5 font-bold text-cream-bg">
-                <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>Plancha Active al Momento:</span>
+            <div className="pt-2 border-t border-brass/20 space-y-1 font-sans text-sm text-mist leading-relaxed">
+              <div className="flex items-center gap-1.5 font-bold text-linen">
+                <Clock className="h-3.5 w-3.5 text-brass" aria-hidden="true" />
+                <span>Compás de Apertura:</span>
               </div>
-              <p>Monday to Thursday: 11:00 AM to 10:00 PM</p>
-              <p>Friday &amp; Saturday: 11:00 AM to 11:30 PM</p>
-              <p>Sunday: 12:00 PM to 9:00 PM</p>
+              <p>Martes a Domingo: 09:00 a 01:00 hs</p>
+              <p>Cafetería de Especialidad: 09:00 a 19:00 hs</p>
+              <p>Cocina, Coctelería &amp; Jazz: 20:00 a 01:00 hs</p>
             </div>
           </div>
 
           {/* Columna 2: Enlaces de Navegación Rápida */}
           <div className="md:col-span-4 space-y-4">
-            <div className="flex items-center gap-2 text-cream-bg">
+            <div className="flex items-center gap-2 text-brass">
               <Sparkles className="h-4 w-4" />
-              <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-mojo-citrus">
-                Quick Navigation
+              <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-brass">
+                Navegación
               </h3>
             </div>
 
-            <ul className="space-y-2.5 font-sans text-sm font-semibold text-cream-bg">
-              {/*
-                Mismo orden en que aparecen las secciones al bajar, y las cinco
-                presentes. Faltaban las reseñas, y el catering se anunciaba como
-                "Thermal Packaging", de una sección que ya no existe.
-              */}
+            <ul className="space-y-2.5 font-sans text-sm font-semibold text-linen">
               {FOOTER_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
+                    className="inline-flex min-h-11 items-center hover:text-brass hover:underline hover:translate-x-1 transition-all duration-200"
                   >
                     {link.label}
                   </a>
@@ -205,98 +182,77 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 <button
                   type="button"
                   onClick={onOpenCart}
-                  className="inline-flex min-h-11 items-center gap-1.5 hover:underline hover:translate-x-1 transition-transform duration-200 cursor-pointer text-left"
+                  className="inline-flex min-h-11 items-center gap-1.5 hover:text-brass hover:underline hover:translate-x-1 transition-all duration-200 cursor-pointer text-left"
                 >
-                  View Your Order
+                  Ver tu Orden o Reserva
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Columna 3: Registro a Newsletter en una Sola Línea */}
+          {/* Columna 3: Registro a Novedades de Jazz & Catas */}
           <div className="md:col-span-4 space-y-4">
-            <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-mojo-citrus">
-              Criollo Dispatch &amp; Secret Drops
+            <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-brass">
+              Sobremesa &amp; Ciclos de Jazz
             </h3>
-            <p className="font-sans text-base text-cream-bg leading-relaxed">
-              Get early access to exclusive small-batch citrus mojo, pop-up tastings, and secret perks for Miami gatherings.
+            <p className="font-sans text-sm text-mist leading-relaxed">
+              Recibe avisos exclusivos sobre nuevas fechas de música en vivo, ingresos de bodega estacionales y catas privadas en nuestra cava subterránea.
             </p>
 
-            <form onSubmit={handleNewsletterSubmit} className="pt-2">
-              {/*
-                Etiqueta real, no sólo placeholder: el placeholder desaparece en
-                cuanto escribes y muchos lectores de pantalla no lo anuncian, así
-                que el campo se presentaba sin nombre.
-              */}
-              <label htmlFor={emailFieldId} className="sr-only">
-                Email address for the Criollo Dispatch newsletter
-              </label>
-              <div className="flex items-center border-b-2 border-cream-bg/40 pb-2 focus-within:border-cream-bg transition-colors">
-                <input
-                  id={emailFieldId}
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="your-email@miami.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full min-h-11 bg-transparent font-sans text-base text-cream-bg placeholder:text-cream-bg/80 focus:outline-hidden"
-                />
-                <button
-                  type="submit"
-                  className="shrink-0 min-h-11 font-sans text-sm sm:text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-leaf-green hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5"
-                >
-                  JOIN
-                </button>
+            {subscribed ? (
+              <div
+                role="status"
+                aria-live="polite"
+                className="py-3 px-4 bg-canvas border border-brass/40 text-brass font-sans text-sm font-bold flex items-center gap-2"
+              >
+                <Heart className="h-4 w-4 fill-brass" />
+                <span>Gracias por unirte al compás de Andante.</span>
               </div>
-              {/*
-                role="status" en un contenedor siempre presente: si la región
-                viva se monta a la vez que el texto, muchos lectores no la
-                anuncian. Vacío mientras no hay alta.
-              */}
-              <p role="status" className="mt-2 text-sm font-sans font-bold text-cream-bg">
-                {subscribed ? "You're on the list! Welcome to the Mojo Grille table." : ""}
-              </p>
-            </form>
-
-            <p className="text-sm font-sans text-cream-bg pt-1">
-              No spam. Pure plancha heat, culture, and high-craft criollo food.
-            </p>
+            ) : (
+              <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+                <label htmlFor={emailFieldId} className="sr-only">
+                  Correo electrónico para novedades
+                </label>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <input
+                    id={emailFieldId}
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="tu@email.com"
+                    className="bg-canvas border border-brass/30 px-4 py-3 text-linen placeholder:text-mist/50 text-sm focus:outline-none focus:border-brass flex-1"
+                  />
+                  <button
+                    type="submit"
+                    className="bg-brass text-canvas hover:bg-amber hover:text-linen font-sans text-xs uppercase tracking-wider font-bold px-5 py-3 transition-colors cursor-pointer shrink-0"
+                  >
+                    SUSCRIBIRSE
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
-
         </div>
 
-        {/* 3. Barra Inferior Legal & Marca de Agua */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm sm:text-xs font-sans text-cream-bg">
-          <p>© {new Date().getFullYear()} MOJO GRILLE LLC, ALL RIGHTS RESERVED</p>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://maps.google.com/?q=2920+NW+27th+Ave,+Miami,+FL+33142"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-1 hover:underline transition-colors cursor-pointer text-cream-bg"
-              aria-label="View 2920 NW 27th Ave, Miami on Google Maps"
+        {/* 3. Barra Inferior Legal & Volver Arriba */}
+        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-mist">
+          <p>© {new Date().getFullYear()} Andante Restaurante Bar. Arévalo 1677, Palermo Hollywood, CABA, Argentina.</p>
+          <div className="flex items-center gap-6">
+            <button
+              ref={backToTopRef}
+              type="button"
+              onClick={handleScrollToTop}
+              className="inline-flex items-center gap-1.5 text-brass hover:text-amber transition-colors font-bold uppercase tracking-wider cursor-pointer select-none"
+              aria-label="Volver arriba de la página"
             >
-              <MapPin className="h-3 w-3 shrink-0" aria-hidden="true" />
-              <span>2920 NW 27th Ave, Miami, FL 33142</span>
-            </a>
-            <span className="inline-flex items-center gap-1">
-              Crafted with <Heart className="h-3 w-3" aria-hidden="true" /> and Seville Sour Orange
-            </span>
+              <span>VOLVER ARRIBA</span>
+              <ArrowUp className="h-3.5 w-3.5" />
+            </button>
           </div>
         </div>
-      </div>
 
-      {/* 4. Botonera Flotante 'Volver Arriba' Cuadrada Magnética */}
-      <button
-        ref={backToTopRef}
-        type="button"
-        onClick={handleScrollToTop}
-        aria-label="Back to top of page"
-        className="fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] md:bottom-6 right-6 z-40 h-12 w-12 rounded-none bg-charcoal-ink text-cream-bg shadow-none flex items-center justify-center hover:bg-cream-bg hover:text-brand-fire transition-colors duration-200 cursor-pointer active:scale-95 group"
-      >
-        <ArrowUp className="h-5 w-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
-      </button>
+      </div>
     </footer>
   );
 }

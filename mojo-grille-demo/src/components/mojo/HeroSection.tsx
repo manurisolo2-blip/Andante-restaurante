@@ -77,21 +77,19 @@ export function HeroSection({
     <section
       ref={sectionRef}
       id="top"
-      aria-label="Welcome to Mojo Grille Cuban Kitchen"
+      aria-label="Andante Restaurante Bar - Palermo Hollywood"
       className="relative z-10 w-full h-full min-h-dvh flex flex-col justify-center bg-transparent"
     >
       {/* Descriptor editorial para lectores de pantalla y buscadores */}
       <p className="sr-only">
-        The Authentic Criollo Flavor of Miami, Marinado to Perfection.
+        Bistró contemporáneo, cocina de mercado estacional, opciones Sin TACC garantizadas y coctelería con jazz en vivo en Palermo Hollywood.
       </p>
 
-      {/*
-        Fondo de vídeo estático: se mantiene fijo dentro del contenedor del hero.
-      */}
+      {/* Fondo de vídeo estático con velo profundo de medianoche */}
       <HeroVideoBackground
         videoSrc="/assets/hero-kitchen-loop.mp4"
         posterSrc="/assets/mojo-bowl-ropa-vieja.jpg"
-        opacity={0.45}
+        opacity={0.3}
       />
 
       {/* Bloque Principal Hero */}
@@ -103,38 +101,27 @@ export function HeroSection({
           
           {/* Encabezado Monumental Centrado */}
           <div className="flex flex-col items-center text-center space-y-6 max-w-7xl mx-auto">
-            {/*
-              Prueba social sin cápsula. Estaba metida en un rectángulo
-              translúcido con borde y desenfoque; la estrella y el texto se
-              apoyan solos sobre el fondo y se leen igual.
-
-              Deliberadamente sin región viva: es contenido fijo, y marcarlo
-              como tal hacía que se anunciara solo al cargar, pisando la
-              lectura del titular. El texto ya se lee como contenido normal.
-            */}
+            {/* Prueba social y tempo musical */}
             <div
               className={`inline-flex items-center gap-2.5 ${animItemClass}`}
             >
               <Star
-                className="h-4 w-4 shrink-0 fill-mojo-citrus text-mojo-citrus"
+                className="h-4 w-4 shrink-0 fill-amber text-amber"
                 aria-hidden="true"
               />
-              <span className="font-sans text-sm font-bold uppercase tracking-[0.08em] sm:tracking-[0.14em] text-charcoal-ink">
-                4.7 Stars across +3,000 orders in Miami
+              <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.14em] sm:tracking-[0.2em] text-brass">
+                TEMPO 76–108 PPM · PALERMO HOLLYWOOD · ARÉVALO 1677
               </span>
             </div>
 
             {/* Titular Central con Efecto Spotlight HoverHighlightText */}
-            {/* overflow-x-clip contiene el resplandor del titular, que se
-                extiende -1.5rem a cada lado y a 375px se salía del viewport
-                generando scroll horizontal. */}
             <div className={`w-full max-w-7xl mx-auto flex justify-center overflow-x-clip ${animItemClass}`}>
               <HoverHighlightText
                 as="h1"
-                text="HOT CAST IRON CRUSHED GARLIC SLOW ROASTED PERNIL"
-                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-charcoal-ink leading-[0.84] text-center"
-                highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center"
-                strokeColor="#E8413C"
+                text="EL ARTE DE DESACELERAR EL RITMO URBANO"
+                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(3.8rem,8.5vw,8.5rem)] font-black uppercase tracking-tight text-linen leading-[0.88] text-center"
+                highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(3.8rem,8.5vw,8.5rem)] font-black uppercase tracking-tight text-brass leading-[0.88] text-center"
+                strokeColor="#C9A86A"
                 strokeWidth={1.5}
                 spotlightRadius={220}
                 spotlightSoftness={0.84}
@@ -142,26 +129,24 @@ export function HeroSection({
               />
             </div>
 
-            {/* Subtítulo Narrativo Visceral Editorial Amplio */}
-            {/*
-              24 horas, no 4: es la cifra que repiten la meta description, la
-              rejilla de menú y el footer. Antes el hero se contradecía con el
-              resto del sitio.
-            */}
-            <p className={`max-w-4xl text-balance font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink text-center font-normal ${animItemClass}`}>
-              No corporate bowls. We cook generational family recipes of slow-roasted pork marinated for 24 hours in Seville sour orange, pressed{" "}
-              <span className="font-bold underline decoration-brand-fire decoration-[3px] underline-offset-4">al momento</span> in the heart of Brownsville.
+            {/* Subtítulo Narrativo Editorial */}
+            <p className={`max-w-4xl text-balance font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-mist text-center font-normal ${animItemClass}`}>
+              Bistró contemporáneo y coctelería nocturna. Dualidad armónica: cafetería de especialidad y cocina de mercado de día; alta gastronomía estacional con{" "}
+              <span className="font-bold underline decoration-amber decoration-[2px] underline-offset-4 text-linen">
+                opciones Sin TACC garantizadas
+              </span>{" "}
+              y ciclos de jazz en vivo al caer la noche.
             </p>
 
-            {/* Botones de Llamada a la Acción: ORDER HOT y Catering & Events */}
+            {/* Botones de Llamada a la Acción: EXPLORAR CARTA y RESERVAS */}
             <div className={`pt-6 sm:pt-8 flex flex-col items-center justify-center gap-4 sm:flex-row ${animItemClass}`}>
               <MagneticButton
                 href={`#${menuAnchorId}`}
                 onClick={handleScrollToMenu}
-                className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-brand-fire px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer select-none"
+                className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-brass px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-amber hover:text-linen transition-colors cursor-pointer select-none border border-brass shadow-lg"
               >
                 <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
-                <span>ORDER HOT</span>
+                <span>EXPLORAR CARTA</span>
                 <ArrowRight
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                   aria-hidden="true"
@@ -170,10 +155,10 @@ export function HeroSection({
 
               <a
                 href={cateringHref}
-                className="inline-flex items-center justify-center gap-2.5 rounded-none bg-surface-sand px-7 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors select-none"
+                className="inline-flex items-center justify-center gap-2.5 rounded-none bg-surface border border-brass/35 px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors select-none shadow-md"
               >
-                <CalendarHeart className="h-4 w-4 text-leaf-green" aria-hidden="true" />
-                <span>Catering &amp; Events</span>
+                <CalendarHeart className="h-4 w-4 text-amber" aria-hidden="true" />
+                <span>RESERVAR MESA · JAZZ</span>
               </a>
             </div>
           </div>

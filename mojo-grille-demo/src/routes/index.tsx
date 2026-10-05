@@ -20,9 +20,9 @@ import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
 import { JellyWaveTransition } from "@/components/mojo/JellyWaveTransition";
 import type { MenuItem } from "@/data/menu";
 
-const title = "Mojo Grille | Authentic Cuban Kitchen & Bowls in Miami";
+const title = "Andante Restaurante Bar | Bistró Contemporáneo & Coctelería en Palermo Hollywood";
 const description =
-  "Artisanal Cuban bowls, freshly pressed Cubano sandwiches, and party catering in Miami. Marinated 24h in citrus mojo. Fast takeout & delivery al momento.";
+  "Bistró contemporáneo, cafetería de especialidad, alta gastronomía estacional con opciones Sin TACC garantizadas, coctelería de autor y ciclos de jazz en Palermo Hollywood, Buenos Aires.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,29 +32,29 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "Cuban food Miami, Cuban restaurant Little Havana, lechón asado, Cuban bowls, cubano sandwich, ropa vieja, catering Miami, cafecito cubano, mojo criollo, Brickell Cuban food, Doral takeout",
+          "Andante Restaurante Bar, bistró Palermo Hollywood, restaurante Arévalo 1677, cafetería de especialidad CABA, menú Sin TACC CABA, coctelería de autor Buenos Aires, jazz en vivo Palermo, cava de vinos Palermo",
       },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "restaurant" },
-      { property: "og:url", content: "https://mojogrille.com/" },
-      { property: "og:site_name", content: "Mojo Grille Cuban Kitchen" },
-      { property: "og:locale", content: "en_US" },
-      { property: "og:locale:alternate", content: "es_US" },
-      { property: "og:image", content: "https://mojogrille.com/og-image.jpg" },
+      { property: "og:url", content: "https://andantebar.com.ar/" },
+      { property: "og:site_name", content: "Andante Restaurante Bar" },
+      { property: "og:locale", content: "es_AR" },
+      { property: "og:locale:alternate", content: "en_US" },
+      { property: "og:image", content: "https://andantebar.com.ar/og-image.jpg" },
       {
         property: "og:image:alt",
-        content: "Mojo Grille Cuban Kitchen - Authentic Cuban Bowls & Pressed Sandwiches in Miami",
+        content: "Andante Restaurante Bar - Bistró Contemporáneo en Palermo Hollywood",
       },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
-      { name: "twitter:image", content: "https://mojogrille.com/og-image.jpg" },
-      { name: "twitter:image:alt", content: "Mojo Grille Cuban Kitchen Miami" },
+      { name: "twitter:image", content: "https://andantebar.com.ar/og-image.jpg" },
+      { name: "twitter:image:alt", content: "Andante Restaurante Bar Palermo Hollywood" },
     ],
-    links: [{ rel: "canonical", href: "https://mojogrille.com/" }],
+    links: [{ rel: "canonical", href: "https://andantebar.com.ar/" }],
   }),
   component: Index,
 });
@@ -130,7 +130,7 @@ function IndexContent() {
       {/* Textura de grano de papel artesanal editorial */}
       <NoiseOverlay />
 
-      <div className="min-h-dvh bg-cream-bg text-charcoal-ink">
+      <div className="min-h-dvh bg-canvas text-linen">
         <TopBar onOpenCart={openCart} />
         <main className="bg-transparent pb-20 md:pb-0">
           {/* Contenedor del Hero con pin/sticky: el hero se queda fijo y el fondo inferior sube tapándolo */}
@@ -145,29 +145,27 @@ function IndexContent() {
           </div>
 
           {/*
-            El fondo inferior que sube y tapa el hero. Sin border-top: el
-            filete de 1px era una arista de tarjeta sobre un canto que ya se
-            lee por la sombra proyectada del borde de la cortina.
+            El fondo inferior que sube y tapa el hero con atmósfera Dark Luxury.
           */}
-          <div className="relative z-20 -mt-[100dvh] bg-cream-bg shadow-[0_-24px_50px_rgba(20,18,16,0.14)]">
-            {/* Fase 5: El Elemento Estrella: Deconstrucción en Scroll (CubanDeconstruction) */}
+          <div className="relative z-20 -mt-[100dvh] bg-canvas shadow-[0_-24px_50px_rgba(0,0,0,0.5)]">
+            {/* Anatomía Gastronómica · Compás Andante */}
             <CubanDeconstruction />
 
-            {/* Transición 1: Onda Orgánica Jelly (Criollo Cream -> Mojo Scarlet) con stickers de guarnición */}
+            {/* Transición 1: Canvas Índigo -> Superficie Marino Profundo */}
             <JellyWaveTransition
-              topColor="#F2ECE1"
-              bottomColor="#14402A"
+              topColor="#0E1726"
+              bottomColor="#162238"
               direction="down"
               showGarnish
             />
 
-            {/* Selección de la Plancha: 6 Platos Estelares Curados (Mojo Scarlet Live-Fire Section) */}
+            {/* Selección de Estación · Al Fuego (Sección Superficie) */}
             <CuratedMenu />
 
-            {/* Transición 2: Onda Orgánica Jelly (Mojo Scarlet -> Criollo Cream) */}
+            {/* Transición 2: Superficie Marino Profundo -> Canvas Índigo */}
             <JellyWaveTransition
-              topColor="#14402A"
-              bottomColor="#F2ECE1"
+              topColor="#162238"
+              bottomColor="#0E1726"
               direction="up"
             />
 
@@ -175,44 +173,45 @@ function IndexContent() {
               <CravStyleMenuGrid onSelect={setSelected} />
             </section>
 
-            {/* Testimonios de clientes con enlace a las reseñas reales de Google Maps */}
+            {/* Testimonios y Reseñas de comensales en Palermo Hollywood */}
             <GoogleReviewsSection />
 
             <section
               id="catering"
-              className="scroll-mt-[var(--header-h)] bg-transparent px-4 py-16 sm:px-6 lg:px-8"
+              className="scroll-mt-[var(--header-h)] bg-surface/50 border-y border-brass/15 px-4 py-16 sm:px-6 lg:px-8"
             >
               <div className="mx-auto max-w-4xl text-center">
-                <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
-                  Authentic Criollo Catering for your next celebration
+                <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight uppercase text-linen leading-none">
+                  EXPERIENCIAS PRIVADAS, CATAS EN CAVA Y CICLOS DE JAZZ
                 </h2>
-                <p className="mx-auto mt-3 max-w-2xl font-sans text-base text-charcoal-ink/80 leading-relaxed">
-                  Family-style bandejas, live pressed Cubano stations, and hot cafecito for
-                  corporate offices, weddings, and quinces. Booked with 48h notice.
+                <p className="mx-auto mt-4 max-w-2xl font-sans text-base text-linen/80 leading-relaxed">
+                  Eventos corporativos a medida, catas guiadas por sommelier en nuestra cava subterránea y celebraciones exclusivas con gastronomía de estación y coctelería de autor.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <a
-                    href="tel:+13055550123"
-                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer select-none"
+                    href="https://wa.me/5491147789000?text=Hola%20Andante%20Bar%2C%20quisiera%20consultar%20por%20experiencias%20privadas%20y%20eventos."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-brass px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none"
                   >
                     <Phone className="h-4 w-4" aria-hidden="true" />
-                    <span>Talk to Catering Team: (305) 555-0123</span>
+                    <span>CONSULTAR POR EXPERIENCIAS: +54 11 4778-9000</span>
                   </a>
                 </div>
-                <p className="mt-4 font-sans text-sm font-semibold text-charcoal-ink/70 uppercase tracking-wider">
-                  Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade, instant quotes al momento
+                <p className="mt-4 font-sans text-sm font-semibold text-mist uppercase tracking-wider">
+                  Arévalo 1677, Palermo Hollywood · Salón Central, Terraza Arbolada &amp; Cava Subsuelo
                 </p>
               </div>
             </section>
 
-            {/* Transición hacia el Footer Rojo Mojo Scarlet */}
+            {/* Transición hacia el Editorial Footer */}
             <JellyWaveTransition
-              topColor="#F2ECE1"
-              bottomColor="#14402A"
+              topColor="#0E1726"
+              bottomColor="#0E1726"
               direction="down"
             />
 
-            {/* Editorial Footer de Alto Impacto */}
+            {/* Editorial Footer de Alto Impacto Dark Luxury */}
             <EditorialFooter onOpenCart={openCart} />
           </div>
         </main>

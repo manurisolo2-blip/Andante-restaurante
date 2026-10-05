@@ -1,6 +1,6 @@
 {
-  "name": "Mojo Grille Cuban Kitchen",
-  "short_name": "Mojo Grille",
+  "name": "Andante Restaurante Bar",
+  "short_name": "Andante Bar",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#14402A",
-  "background_color": "#F2ECE1",
+  "theme_color": "#0E1726",
+  "background_color": "#0E1726",
   "display": "standalone"
 }

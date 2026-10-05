@@ -30,63 +30,63 @@ export interface CuratedMenuItem {
 const CURATED_ITEMS: CuratedMenuItem[] = [
   {
     id: "plancha-mojo-pork-bowl",
-    name: "Mojo Pork Bowl",
-    price: 13.5,
-    feature: "4h Braised",
+    name: "Bife de Chorizo Madurado con Salvia",
+    price: 16.95,
+    feature: "28 Días Maduración",
     description:
-      "Slow-roasted pork shoulder braised for 4 hours in Seville citrus mojo, served over moro rice and plancha-caramelized sweet onions.",
+      "Madurado en cámara propia, sellado a las brasas con manteca noisette de salvia, milhojas de papa crocante y demi-glace artesanal (Sin TACC).",
     imageUrl: "/assets/mojo-bowl-ropa-vieja.jpg",
-    authorNote: "slow-roasted pernil & caramelized onions",
+    authorNote: "brasas de quebracho & salvia fresca",
   },
   {
     id: "plancha-classic-cubano-press",
-    name: "Classic Cubano Press",
-    price: 12.95,
-    feature: "Plancha Crunch",
+    name: "Bocado Andante de Gruyère & Panceta",
+    price: 14.95,
+    feature: "Panceta 8 Horas",
     description:
-      "Pressed Cuban bread with toasted butter, slow-roasted lechón, sweet smoked ham, melted Swiss, crisp pickles & yellow mustard.",
+      "Panceta confitada a baja temperatura, queso gruyère fundido, mostaza en grano a la antigua y pan de masa madre dorado a la manteca.",
     imageUrl: "/assets/mojo-cubano.jpg",
-    authorNote: "crispy golden crust & sweet ham fold",
+    authorNote: "costra crocante & queso fundido",
   },
   {
     id: "plancha-picadillo-meltadilla",
-    name: "Picadillo Meltadilla",
-    price: 11.5,
-    feature: "Queso Fundido",
+    name: "Carpaccio de Lomo Curado & Focaccia",
+    price: 17.5,
+    feature: "Lomo de Pastura",
     description:
-      "Ground beef seasoned with Cuban sofrito, Spanish olives & sweet peppers, plancha-pressed with melted Swiss cheese and garlic mojo.",
+      "Finas láminas de lomo curado en sal marina y hierbas, reducción de balsámico añejo, escamas de sardo y focaccia artesanal sin TACC.",
     imageUrl: "/assets/mojo-cubano.jpg",
-    authorNote: "seasoned ground beef & melted swiss",
+    authorNote: "alcaparras fritas & rúcula salvaje",
   },
   {
     id: "plancha-loaded-pork-tostones",
-    name: "Loaded Pork Tostones",
-    price: 10.75,
-    feature: "Doble Fritura",
+    name: "Burrata de Tandil & Higos Asados",
+    price: 13.5,
+    feature: "Origen Tandil",
     description:
-      "Handcrafted double-fried crispy green plantain tostones, topped with mojo roasted pernil, caramelized onions & fresh cilantro.",
+      "Burrata fresca con corazón de crema, variedad de tomates reliquia, higos asados al horno de leña, pesto de albahaca y pistachos tostados.",
     imageUrl: "/assets/mojo-tostones.jpg",
-    authorNote: "double-fried plantain & crushed garlic",
+    authorNote: "pesto fresco & frutos secos",
   },
   {
     id: "plancha-chicken-fresco-bowl",
-    name: "Chicken Fresco Bowl",
-    price: 13.0,
-    feature: "Pechuga Marinada",
+    name: "Pesca del Día a la Plancha & Coliflor",
+    price: 15.5,
+    feature: "Pesca de Anzuelo",
     description:
-      "Tender plancha-grilled chicken breast marinated 24 hours in sour orange & garlic, served with white rice, black beans & Hass avocado.",
+      "Pesca fresca de estación sellada al punto justo, puré aterciopelado de coliflor asada, crocante de alcaparras baby y emulsión de limón confitado.",
     imageUrl: "/assets/mojo-pollo-bowl.jpg",
-    authorNote: "24h citrus mojo & grilled hass avocado",
+    authorNote: "fuego vivo & puré aterciopelado",
   },
   {
     id: "plancha-pepper-steak-platter",
-    name: "Pepper Steak Platter",
-    price: 14.5,
-    feature: "Salteado Criollo",
+    name: "Risotto de Hongos Silvestres & Trufa",
+    price: 15.95,
+    feature: "Carnaroli al Dente",
     description:
-      "Tender beef strips wok-seared over live flame with peppers and onions in rich criollo sofrito reduction, served with yuca con mojo.",
+      "Gírgolas y portobellos de mercado salteados, manteca noisette, queso parmesano estacionado 24 meses y perfume de trufa negra fresca.",
     imageUrl: "/assets/mojo-bowl-ropa-vieja.jpg",
-    authorNote: "flame-seared wok beef & tender yuca",
+    authorNote: "plato insignia de noche & jazz",
   },
 ];
 
@@ -230,12 +230,11 @@ export function CuratedMenu() {
       */}
       <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-        <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-cream-bg leading-none">
-          HOT PLANCHA SELECTION
+        <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-linen leading-none">
+          SELECCIÓN DE ESTACIÓN · AL FUEGO
         </h2>
-        {/* Amarillo sobre el verde de la sección: 6.98:1. */}
-        <p className="mt-2 sm:mt-3 font-sans text-sm font-bold uppercase tracking-[0.18em] text-mojo-citrus">
-          MADE AL MOMENTO, SEASONED WITH MOJO
+        <p className="mt-2 sm:mt-3 font-sans text-sm font-bold uppercase tracking-[0.18em] text-brass">
+          COCINA DE MERCADO · TEMPO PAUSADO 76–108 PPM
         </p>
         </div>
         <span

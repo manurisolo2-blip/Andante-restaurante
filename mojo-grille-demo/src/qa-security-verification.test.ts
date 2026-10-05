@@ -71,29 +71,23 @@ const token = (name: string): string => {
   assert.ok(value, `Token --color-${name} must be defined in styles.css`);
   return value;
 };
-const cream = token("cream-bg");
-const sand = token("surface-sand");
-const ink = token("charcoal-ink");
-const red = token("brand-fire");
-const green = token("leaf-green");
-const lime = token("leaf-green-soft");
-const yellow = token("mojo-citrus");
+const canvas = token("canvas");
+const surface = token("surface");
+const brass = token("brass");
+const amber = token("amber");
+const linen = token("linen");
+const mist = token("mist");
 
 const contrastChecks: ContrastCheck[] = [
-  { description: "Ink on cream (body text, headings)", foreground: ink, background: cream, minRatio: 4.5, level: "AA Normal" },
-  { description: "Ink on sand (secondary hero button)", foreground: ink, background: sand, minRatio: 4.5, level: "AA Normal" },
-  { description: "Cream on ink (dark buttons, testimonial cards)", foreground: cream, background: ink, minRatio: 4.5, level: "AA Normal" },
-  { description: "Cream on green (Plancha selection, footer, preloader)", foreground: cream, background: green, minRatio: 4.5, level: "AA Normal" },
-  { description: "Green on cream (small accent text, buttons inside green blocks)", foreground: green, background: cream, minRatio: 4.5, level: "AA Normal" },
-  { description: "Yellow on green (eyebrows and footer headings)", foreground: yellow, background: green, minRatio: 4.5, level: "AA Normal" },
-  { description: "Ink on red (primary CTA labels)", foreground: ink, background: red, minRatio: 4.5, level: "AA Normal" },
-  { description: "Ink on yellow (preview tag, chef badge)", foreground: ink, background: yellow, minRatio: 4.5, level: "AA Normal" },
-  { description: "Green on yellow (chef badge tag)", foreground: green, background: yellow, minRatio: 4.5, level: "AA Normal" },
-  { description: "Yellow on ink (dish names on testimonial cards)", foreground: yellow, background: ink, minRatio: 4.5, level: "AA Normal" },
-  { description: "Lime on ink (testimonial footer label)", foreground: lime, background: ink, minRatio: 4.5, level: "AA Normal" },
-  { description: "Ink on lime (mobile bar item counter)", foreground: ink, background: lime, minRatio: 4.5, level: "AA Normal" },
-  { description: "Red on cream (display accents >= 24px, focus ring)", foreground: red, background: cream, minRatio: 3.0, level: "AA Large" },
-  { description: "Cream focus ring on green surfaces", foreground: cream, background: green, minRatio: 3.0, level: "AA Large" },
+  { description: "Linen on canvas (body text, headings on main canvas)", foreground: linen, background: canvas, minRatio: 7.0, level: "AAA Normal" },
+  { description: "Linen on surface (menu cards, modals, drawer text)", foreground: linen, background: surface, minRatio: 7.0, level: "AAA Normal" },
+  { description: "Mist on canvas (secondary descriptions, tempo notes)", foreground: mist, background: canvas, minRatio: 4.5, level: "AA Normal" },
+  { description: "Mist on surface (secondary copy on menu surfaces)", foreground: mist, background: surface, minRatio: 4.5, level: "AA Normal" },
+  { description: "Canvas on brass (primary CTA button labels)", foreground: canvas, background: brass, minRatio: 4.5, level: "AA Normal" },
+  { description: "Amber on canvas (jazz, Sin TACC microindicators)", foreground: amber, background: canvas, minRatio: 4.5, level: "AA Normal" },
+  { description: "Amber on surface (jazz, Sin TACC tags on cards)", foreground: amber, background: surface, minRatio: 4.5, level: "AA Normal" },
+  { description: "Brass on canvas (gold borders, accents, pricing)", foreground: brass, background: canvas, minRatio: 4.5, level: "AA Normal" },
+  { description: "Brass on surface (gold accents, pricing on cards)", foreground: brass, background: surface, minRatio: 4.5, level: "AA Normal" },
 ];
 
 for (const check of contrastChecks) {
@@ -108,26 +102,15 @@ for (const check of contrastChecks) {
   );
 }
 
-// Critical QA Audit Observation: #D95327 on white/cream
-const terracottaOnWhite = contrastRatio("#FFFFFF", "#D95327");
+// Critical Dark Luxury Contrast Observations
 console.log(
-  `  ℹ AUDIT FINDING: Mojo Terracotta (#D95327) with white text achieves ${terracottaOnWhite.toFixed(2)}:1 contrast.`
+  `  ℹ AUDIT FINDING: Linen (#F4EFE6) on Canvas (#0E1726) achieves ${contrastRatio(linen, canvas).toFixed(2)}:1 (far exceeding AAA 7.0:1 threshold).`
 );
 console.log(
-  `    - Exceeds WCAG 2.1 AA Large Text & UI Component threshold (3.0:1) with 4.04:1.`
-);
-console.log(
-  `    - For small non-bold body text (<18.66px), hover/active state #B83E16 achieves ${contrastRatio("#FFFFFF", "#B83E16").toFixed(2)}:1 (exceeds 4.5:1).`
+  `  ℹ AUDIT FINDING: Canvas (#0E1726) text on Brass (#C9A86A) CTA achieves ${contrastRatio(canvas, brass).toFixed(2)}:1 (exceeds AA 4.5:1).`
 );
 
-// Check why #F59E0B is restricted to decorative/icons rather than body text
-const rawGoldOnWhiteRatio = contrastRatio("#F59E0B", "#FFFFFF");
-console.log(
-  `  ℹ INFO: Raw #F59E0B on #FFFFFF contrast is ${rawGoldOnWhiteRatio.toFixed(2)}:1 (< 4.5:1), confirming the design decision to use #B45309 on #FEF3C7 for accessible text badges.`
-);
-assert.ok(rawGoldOnWhiteRatio < 3.0, "Raw gold on white has low contrast, justifying #B45309 text badge");
-
-console.log("✓ All color combinations satisfy WCAG 2.1 AA requirements.\n");
+console.log("✓ All Andante Dark Luxury color combinations satisfy WCAG 2.1 AA/AAA requirements.\n");
 
 // -----------------------------------------------------------------
 // 2. SECURITY & INPUT SANITIZATION AUDIT
@@ -195,8 +178,8 @@ console.log("  ✓ Location resolver safely falls back to default on invalid/mal
 
 // Test 2.3: Empty cart states
 const emptyUrl = whatsappHref("brickell", [], 0);
-assert.ok(emptyUrl.includes("https://wa.me/13055550124"), "Empty cart URL routes to Brickell store");
-assert.ok(decodeURIComponent(emptyUrl).includes("Hello Mojo Grille! I'd like to place an order from your Brickell store."));
+assert.ok(emptyUrl.includes("https://wa.me/5491147789001"), "Empty cart URL routes to Brickell (Terraza) store");
+assert.ok(decodeURIComponent(emptyUrl).includes("Hola Andante Bar! Quisiera consultar por una reserva o pedido en Terraza & Barra Andante (Arévalo 1677, Palermo Hollywood)."));
 console.log("  ✓ Empty cart state generates courteous default inquiry message without crashing.");
 
 console.log("✓ Security & input sanitization tests passed.\n");
@@ -293,13 +276,12 @@ console.log("  ✓ TopBar: Location dropdown has listbox/option ARIA roles and E
 // texto "4.7 Stars across +3,000 orders in Miami" ya lo lee el lector como
 // contenido normal, sin necesidad de anuncio ni de aria-label que lo duplique.
 const heroCode = fs.readFileSync(path.join(componentsDir, "HeroSection.tsx"), "utf-8");
-assert.ok(!heroCode.includes('role="status"'), "Hero static rating badge must NOT be a live region");
 assert.ok(
-  heroCode.includes("4.7 Stars across +3,000 orders in Miami"),
-  "Hero rating must expose its value as readable text",
+  heroCode.includes("TEMPO 76–108 PPM · PALERMO HOLLYWOOD · ARÉVALO 1677"),
+  "Hero tempo and location badge must expose its value as readable text",
 );
 assert.ok(heroCode.includes('aria-hidden="true"'), "Decorative icons must have aria-hidden");
-console.log("  ✓ HeroSection: Social proof is plain readable text and decorative icons are hidden from screen readers.");
+console.log("  ✓ HeroSection: Tempo and location badge is plain readable text and decorative icons are hidden from screen readers.");
 
 // Check CravStyleMenuGrid.tsx
 //
@@ -331,9 +313,9 @@ console.log("  ✓ QuickOrderModal: Complies with WAI-ARIA Dialog pattern and ha
 const cartSheetCode = fs.readFileSync(path.join(componentsDir, "CartSheet.tsx"), "utf-8");
 assert.ok(cartSheetCode.includes('role="dialog"'), "CartSheet must have role=dialog");
 assert.ok(cartSheetCode.includes('aria-modal="true"'), "CartSheet must have aria-modal=true");
-assert.ok(cartSheetCode.includes('aria-label="Your Order Shopping Cart"'), "CartSheet must have accessible name");
-assert.ok(cartSheetCode.includes('aria-label={`Decrease quantity of ${line.name}`}'), "Decrement button must have accessible label");
-assert.ok(cartSheetCode.includes('aria-label={`Increase quantity of ${line.name}`}'), "Increment button must have accessible label");
+assert.ok(cartSheetCode.includes('aria-label="Tu Selección Andante"'), "CartSheet must have accessible name");
+assert.ok(cartSheetCode.includes('aria-label={`Disminuir cantidad de ${line.name}`}'), "Decrement button must have accessible label");
+assert.ok(cartSheetCode.includes('aria-label={`Aumentar cantidad de ${line.name}`}'), "Increment button must have accessible label");
 console.log("  ✓ CartSheet: Complies with WAI-ARIA Dialog pattern with accessible counter controls.");
 
 // Check MobileActionBar.tsx

@@ -1,11 +1,11 @@
-# Mojo Grille Cuban Kitchen - Miami, FL
-# Multi-location Cuban Kitchen (Little Havana, Brickell, Doral)
+# Andante Restaurante Bar - Palermo Hollywood, Buenos Aires, Argentina
+# Arévalo 1677, Palermo Hollywood, CABA
 
 User-agent: *
 Allow: /
 
 # Host
-Host: https://mojogrille.com
+Host: https://andantebar.com.ar
 
 # Sitemaps
-Sitemap: https://mojogrille.com/sitemap.xml
+Sitemap: https://andantebar.com.ar/sitemap.xml

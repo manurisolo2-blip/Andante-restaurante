@@ -135,26 +135,26 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
       ref={containerRef}
       role="status"
       aria-live="polite"
-      aria-label="Loading Mojo Grille artisanal dining experience"
+      aria-label="Cargando experiencia sensorial de Andante Restaurante Bar"
       data-loaded={false}
       onClick={finish}
-      className="fixed inset-0 z-[9999] bg-leaf-green text-cream-bg flex items-center justify-center p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none cursor-pointer"
+      className="fixed inset-0 z-[9999] bg-canvas text-linen flex items-center justify-center p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none cursor-pointer"
     >
-      {/* Centro Monumental: Contador Display + Titular Editorial */}
+      {/* Centro Monumental: Contador Display + Titular Editorial Andante */}
       <div className="text-center flex flex-col items-center justify-center">
         <div className="overflow-hidden">
           <span
             ref={counterRef}
-            className="block font-display text-[22vw] sm:text-[20vw] md:text-[18vw] font-bold leading-[0.8] tracking-tight tabular-nums text-cream-bg select-none"
+            className="block font-display text-[22vw] sm:text-[20vw] md:text-[18vw] font-bold leading-[0.8] tracking-tight tabular-nums text-linen select-none"
           >
             0%
           </span>
         </div>
-        <p className="mt-6 sm:mt-8 font-sans text-sm md:text-base font-bold uppercase tracking-widest text-mojo-citrus">
-          HEATING UP THE CRIOLLO PLANCHA...
+        <p className="mt-6 sm:mt-8 font-sans text-sm md:text-base font-bold uppercase tracking-[0.25em] text-brass">
+          AFINANDO EL TEMPO · 76–108 PPM · PALERMO HOLLYWOOD
         </p>
-        <p className="mt-4 font-sans text-sm uppercase tracking-widest text-cream-bg">
-          Tap or press Esc to skip
+        <p className="mt-4 font-sans text-xs uppercase tracking-widest text-mist">
+          Tocá o presioná Esc para ingresar
         </p>
       </div>
     </aside>

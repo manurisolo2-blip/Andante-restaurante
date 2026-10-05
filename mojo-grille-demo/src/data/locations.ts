@@ -1,67 +1,68 @@
 import type { Location, LocationId } from "@/types/mojo";
 
 /**
- * Mojo Grille Official Store Locations in Miami, FL.
+ * Andante Restaurante Bar — Espacios y Sedes Oficiales en Palermo Hollywood.
+ * Arévalo 1677, Palermo Hollywood, Ciudad Autónoma de Buenos Aires, Argentina.
  */
 export const LOCATIONS: Record<LocationId, Location> = {
   "little-havana": {
     id: "little-havana",
-    name: "Little Havana",
-    slug: "little-havana",
-    phone: "+1-305-555-0123",
-    phoneRaw: "13055550123",
+    name: "Palermo Hollywood",
+    slug: "palermo-hollywood",
+    phone: "+54 11 4778-9000",
+    phoneRaw: "5491147789000",
     address: {
-      street: "1234 SW 8th St",
-      city: "Miami",
-      state: "FL",
-      zipCode: "33135",
-      fullAddress: "1234 SW 8th St, Little Havana, Miami, FL 33135",
+      street: "Arévalo 1677",
+      city: "Palermo Hollywood, CABA",
+      state: "BA",
+      zipCode: "C1414",
+      fullAddress: "Arévalo 1677, Palermo Hollywood, C1414 CABA, Argentina",
     },
     coordinates: {
-      latitude: 25.7654,
-      longitude: -80.2115,
+      latitude: -34.5815,
+      longitude: -58.4372,
     },
-    hours: "Mon to Sun 11:00 AM to 10:00 PM",
+    hours: "Mar a Dom 09:00 a 01:00 hs (Cocina de mercado & Jazz)",
     isPrimary: true,
   },
   brickell: {
     id: "brickell",
-    name: "Brickell",
-    slug: "brickell",
-    phone: "+1-305-555-0124",
-    phoneRaw: "13055550124",
+    name: "Terraza & Barra Andante",
+    slug: "terraza-andante",
+    phone: "+54 11 4778-9001",
+    phoneRaw: "5491147789001",
     address: {
-      street: "901 S Miami Ave",
-      city: "Miami",
-      state: "FL",
-      zipCode: "33130",
-      fullAddress: "901 S Miami Ave, Brickell, Miami, FL 33130",
+      street: "Arévalo 1677 (Terraza Jardín)",
+      city: "Palermo Hollywood, CABA",
+      state: "BA",
+      zipCode: "C1414",
+      fullAddress: "Arévalo 1677, Terraza Andante, Palermo Hollywood, Argentina",
     },
     coordinates: {
-      latitude: 25.7645,
-      longitude: -80.1936,
+      latitude: -34.5815,
+      longitude: -58.4372,
     },
-    hours: "Mon to Sun 11:00 AM to 11:00 PM",
+    hours: "Mar a Dom 18:00 a 02:00 hs (Coctelería & Acústico)",
     isPrimary: false,
   },
   doral: {
     id: "doral",
-    name: "Doral",
-    slug: "doral",
-    phone: "+1-305-555-0125",
-    phoneRaw: "13055550125",
+    name: "Cava Privada & Jazz",
+    slug: "cava-jazz",
+    phone: "+54 11 4778-9002",
+    phoneRaw: "5491147789002",
     address: {
-      street: "8400 NW 36th St",
-      city: "Doral",
-      state: "FL",
-      zipCode: "33166",
-      fullAddress: "8400 NW 36th St, Doral, FL 33166",
+      street: "Arévalo 1677 (Cava Subsuelo)",
+      city: "Palermo Hollywood, CABA",
+      state: "BA",
+      zipCode: "C1414",
+      fullAddress: "Arévalo 1677, Cava Privada, Palermo Hollywood, Argentina",
     },
     coordinates: {
-      latitude: 25.809,
-      longitude: -80.334,
+      latitude: -34.5815,
+      longitude: -58.4372,
     },
-    hours: "Mon to Sun 11:00 AM to 10:00 PM",
+    hours: "Jue a Dom 20:00 a 02:00 hs (Ciclos de Jazz & Catas)",
     isPrimary: false,
   },
 };
@@ -102,11 +103,14 @@ export function resolveLocation(input?: LocationId | Location | string | null): 
     if (Object.hasOwn(LOCATIONS, slug)) {
       return LOCATIONS[slug as LocationId];
     }
-    // Case-insensitive name match
-    const byName = locationsList.find(
-      (l) => l.name.toLowerCase() === input.toLowerCase().trim(),
+    // Case-insensitive name or slug match
+    const byMatch = locationsList.find(
+      (l) =>
+        l.name.toLowerCase() === input.toLowerCase().trim() ||
+        l.slug.toLowerCase() === input.toLowerCase().trim() ||
+        l.slug === slug,
     );
-    if (byName) return byName;
+    if (byMatch) return byMatch;
   }
 
   return DEFAULT_LOCATION;

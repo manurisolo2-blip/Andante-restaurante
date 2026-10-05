@@ -2,37 +2,37 @@ import type { Location, MenuItem, Category } from "@/types/mojo";
 import { DEFAULT_LOCATION, locationsList } from "@/data/locations";
 
 /**
- * Generates Schema.org Restaurant structured data for Google Rich Results.
+ * Genera datos estructurados Schema.org Restaurant para Google Rich Results.
+ * Andante Restaurante Bar — Palermo Hollywood, Buenos Aires, Argentina.
  */
 export function generateRestaurantSchema(location: Location = DEFAULT_LOCATION) {
   return {
     "@context": "https://schema.org",
     "@type": "Restaurant",
-    "@id": `https://mojogrille.com/#location-${location.id}`,
-    name: `Mojo Grille - ${location.name}`,
-    image: "https://mojogrille.com/og-image.jpg",
-    url: "https://mojogrille.com",
+    "@id": `https://andantebar.com.ar/#location-${location.id}`,
+    name: `Andante Restaurante Bar - ${location.name}`,
+    image: "https://andantebar.com.ar/og-image.jpg",
+    url: "https://andantebar.com.ar",
     telephone: location.phone,
-    priceRange: "$$",
-    servesCuisine: ["Cuban", "Caribbean", "Latin American"],
+    priceRange: "$$$",
+    servesCuisine: ["Bistró Contemporáneo", "Cocina de Mercado", "Opciones Sin TACC", "Coctelería de Autor"],
     address: {
       "@type": "PostalAddress",
       streetAddress: location.address.street,
       addressLocality: location.address.city,
       addressRegion: location.address.state,
       postalCode: location.address.zipCode,
-      addressCountry: "US",
+      addressCountry: "AR",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: location.coordinates?.latitude ?? 25.7654,
-      longitude: location.coordinates?.longitude ?? -80.2115,
+      latitude: location.coordinates?.latitude ?? -34.5815,
+      longitude: location.coordinates?.longitude ?? -58.4372,
     },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: [
-          "Monday",
           "Tuesday",
           "Wednesday",
           "Thursday",
@@ -40,14 +40,14 @@ export function generateRestaurantSchema(location: Location = DEFAULT_LOCATION) 
           "Saturday",
           "Sunday",
         ],
-        opens: "11:00",
-        closes: location.id === "brickell" ? "23:00" : "22:00",
+        opens: "09:00",
+        closes: "01:00",
       },
     ],
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.7",
-      reviewCount: "3000",
+      ratingValue: "4.9",
+      reviewCount: "1280",
       bestRating: "5",
       worstRating: "1",
     },
@@ -55,8 +55,8 @@ export function generateRestaurantSchema(location: Location = DEFAULT_LOCATION) 
       "@type": "OrderAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://mojogrille.com/#menu",
-        inLanguage: "en-US",
+        urlTemplate: "https://andantebar.com.ar/#menu",
+        inLanguage: "es-AR",
         actionPlatform: [
           "http://schema.org/DesktopWebPlatform",
           "http://schema.org/MobileWebPlatform",
@@ -68,13 +68,13 @@ export function generateRestaurantSchema(location: Location = DEFAULT_LOCATION) 
 }
 
 /**
- * Generates Schema.org Menu structured data for catalog items.
+ * Genera datos estructurados Schema.org Menu para la carta de Andante.
  */
 export function generateMenuSchema(categories: Category[], menu: MenuItem[]) {
   return {
     "@context": "https://schema.org",
     "@type": "Menu",
-    name: "Mojo Grille Cuban Kitchen Menu",
+    name: "Carta Andante Restaurante Bar",
     hasMenuSection: categories
       .filter((cat) => cat.id !== "favoritos")
       .map((cat) => ({
@@ -97,7 +97,7 @@ export function generateMenuSchema(categories: Category[], menu: MenuItem[]) {
 }
 
 /**
- * Generates a multi-location Schema.org graph for all Miami branches.
+ * Genera grafo multi-sede / espacios para Andante en Palermo Hollywood.
  */
 export function generateMultiLocationRestaurantSchema() {
   return {
@@ -107,7 +107,7 @@ export function generateMultiLocationRestaurantSchema() {
 }
 
 /**
- * Serializes restaurant and menu schemas into a string ready for <script type="application/ld+json">.
+ * Serializa los esquemas en JSON-LD para inyección directa en el documento.
  */
 export function generateRestaurantAndMenuJsonLd(
   location: Location = DEFAULT_LOCATION,
@@ -127,9 +127,7 @@ export function generateRestaurantAndMenuJsonLd(
 }
 
 /**
- * Generates the full comprehensive Schema.org structured data graph
- * including all Miami restaurant branches (Little Havana, Brickell, Doral)
- * and the complete Menu catalog.
+ * Grafo completo con todas las áreas de servicio y la carta gastronómica.
  */
 export function generateFullStructuredDataGraph(
   locations: readonly Location[] = locationsList,
@@ -147,5 +145,3 @@ export function generateFullStructuredDataGraph(
     "@graph": menuData ? [...restaurantBranches, menuData] : restaurantBranches,
   };
 }
-
-

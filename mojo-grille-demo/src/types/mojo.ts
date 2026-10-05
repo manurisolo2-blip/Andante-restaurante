@@ -103,6 +103,10 @@ export const CategorySchema = z.object({
 });
 
 export const BADGE_TYPES = [
+  "Firma Andante",
+  "Sin TACC",
+  "Coctelería de Autor",
+  "De Estación",
   "Mojo Signature",
   "Popular",
   "Top Seller",
@@ -111,6 +115,10 @@ export const BADGE_TYPES = [
 export type BadgeType = (typeof BADGE_TYPES)[number];
 
 export const BadgeTypeSchema = z.enum([
+  "Firma Andante",
+  "Sin TACC",
+  "Coctelería de Autor",
+  "De Estación",
   "Mojo Signature",
   "Popular",
   "Top Seller",

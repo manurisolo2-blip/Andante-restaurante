@@ -33,12 +33,9 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0"
       }`}
     >
-      <div className="pointer-events-auto flex items-center justify-between gap-3 rounded-none bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-none">
+      <div className="pointer-events-auto flex items-center justify-between gap-3 rounded-none bg-surface border border-brass/30 p-3 pl-4 text-linen shadow-2xl">
         {/*
           Lado Izquierdo: Contador y Total Acumulado.
-          Es un <button> de verdad. Antes era un div con role="button" y
-          tabIndex={0} pero sin onKeyDown: recibía el foco, se anunciaba como
-          botón y al pulsar Enter o Espacio no pasaba nada.
         */}
         <button
           type="button"
@@ -46,40 +43,39 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
           onClick={onOpenCart}
           aria-label={
             count > 0
-              ? `Open cart, ${count} ${count === 1 ? "item" : "items"}, ${currency(total)}`
-              : "Open cart, empty"
+              ? `Abrir pedido, ${count} ${count === 1 ? "plato" : "platos"}, ${currency(total)}`
+              : "Abrir pedido, vacío"
           }
         >
           <div className="relative flex h-11 w-11 shrink-0 items-center justify-center">
-            <ShoppingBag className="h-5 w-5 text-cream-bg" aria-hidden="true" />
-            {/* Contador en lima sobre la barra de tinta: 8.51:1 con la cifra en tinta */}
+            <ShoppingBag className="h-5 w-5 text-brass" aria-hidden="true" />
             <span
               aria-hidden="true"
-              className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-none bg-leaf-green-soft px-1 font-sans text-xs font-black text-charcoal-ink"
+              className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-none bg-brass px-1 font-sans text-xs font-black text-canvas"
             >
               {count}
             </span>
           </div>
 
           <div aria-hidden="true" className="flex flex-col text-left">
-            <span className="font-sans text-sm sm:text-xs font-bold uppercase tracking-wider text-cream-bg/70">
-              {count > 0 ? `${count} item${count > 1 ? "s" : ""}` : "Your Order"}
+            <span className="font-sans text-sm sm:text-xs font-bold uppercase tracking-wider text-mist">
+              {count > 0 ? `${count} ${count === 1 ? "ítem" : "ítems"}` : "Tu Selección"}
             </span>
-            <span className="font-display text-lg font-bold tracking-tight text-cream-bg leading-tight">
+            <span className="font-display text-lg font-bold tracking-tight text-brass leading-tight">
               {count > 0 ? currency(total) : "$0.00"}
             </span>
           </div>
         </button>
 
-        {/* Lado Derecho: botón rojo (brand-fire) con la etiqueta en tinta */}
+        {/* Lado Derecho: botón latón con texto en canvas */}
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Order via WhatsApp"
-          className="group flex min-h-11 items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-3 font-sans text-sm font-bold uppercase tracking-wider text-charcoal-ink shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink"
+          aria-label="Pedir o reservar por WhatsApp"
+          className="group flex min-h-11 items-center justify-center gap-2 rounded-none bg-brass px-5 py-3 font-sans text-sm font-bold uppercase tracking-wider text-canvas shadow-none transition-colors duration-150 hover:bg-linen hover:text-canvas"
         >
-          <span>Order Now</span>
+          <span>Pedir / Reservar</span>
           <ArrowRight
             className="h-4 w-4 transition-transform group-hover:translate-x-1"
             aria-hidden="true"

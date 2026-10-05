@@ -439,7 +439,7 @@ export function CubanDeconstruction() {
     <section
       ref={containerRef}
       id="cuban-deconstruction"
-      aria-label="Interactive Deconstruction of the Mojo Grille Cuban Sandwich"
+      aria-label="Deconstrucción Sensorial del Bocado Andante"
       className="relative h-[180vh] bg-transparent overflow-x-clip"
     >
       <div
@@ -451,8 +451,8 @@ export function CubanDeconstruction() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden z-0 select-none opacity-40"
         >
-          <span className="font-display text-[26vw] font-black uppercase tracking-tight text-charcoal-ink/5 leading-none select-none">
-            ASADO
+          <span className="font-display text-[24vw] font-black uppercase tracking-tight text-linen/5 leading-none select-none">
+            ANDANTE
           </span>
         </div>
 
@@ -461,14 +461,17 @@ export function CubanDeconstruction() {
           <InkStamp size={135} />
         </div>
 
-        {/* Encabezado Superior de Sección en Inglés */}
+        {/* Encabezado Superior de Sección */}
         <div className="absolute top-3 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
-          <h2 className="font-display text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1 leading-none">
-            THE UNFORGIVING CUBANO
+          <span className="font-sans text-xs uppercase tracking-[0.25em] text-brass font-bold">
+            COMPÁS 76 PPM · ALQUIMIA DE MERCADO
+          </span>
+          <h2 className="font-display text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-linen mt-0.5 sm:mt-1 leading-none">
+            ANATOMÍA GASTRONÓMICA
           </h2>
         </div>
 
-        {/* Contenedor central del sándwich monumental y unificado */}
+        {/* Contenedor central del plato monumental y unificado */}
         <div className="relative w-full max-w-[1700px] px-2 sm:px-6 md:px-12 flex items-center justify-center pt-2 sm:pt-8">
           <div className="relative w-full max-w-[390px] h-[460px] sm:max-w-[540px] sm:h-[600px] md:max-w-[740px] md:h-[680px] lg:max-w-[960px] lg:h-[760px] xl:max-w-[1100px] xl:h-[820px] flex items-center justify-center overflow-visible mx-auto">
             {/* Sombra de Contacto Dinámica en el Piso */}
@@ -479,7 +482,7 @@ export function CubanDeconstruction() {
 
             {/* Envoltorio Flotante Suave */}
             <div className="relative w-full h-full flex items-center justify-center animate-sandwich-float will-change-transform">
-              {/* Capa 1: Tapa superior de pan cubano (DERECHA) */}
+              {/* Capa 1: Tapa superior de masa madre tostada (DERECHA) */}
               <div
                 ref={topBreadRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-50 pointer-events-none overflow-visible"
@@ -487,7 +490,7 @@ export function CubanDeconstruction() {
                 <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/01-top-bread.webp"
-                    alt="Toasted artisanal Cuban bread top crust"
+                    alt="Pan artesanal de masa madre dorado a la manteca"
                     width={2816}
                     height={1536}
                     loading="eager"
@@ -495,14 +498,14 @@ export function CubanDeconstruction() {
                     className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
-                    name="ARTISANAL TOP CRUST"
-                    detail="Golden Griddled Cuban Bread"
+                    name="MASA MADRE TOSTADA"
+                    detail="Dorado en Manteca de Salvia"
                     side="right"
                   />
                 </div>
               </div>
 
-              {/* Capa 2: Pepinillos encurtidos y mostaza criolla (IZQUIERDA) */}
+              {/* Capa 2: Pepinillos encurtidos y mostaza antigua (IZQUIERDA) */}
               <div
                 ref={picklesRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-40 pointer-events-none overflow-visible"
@@ -510,7 +513,7 @@ export function CubanDeconstruction() {
                 <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/02-pickles.webp"
-                    alt="Tangy dill pickles and yellow mustard slices"
+                    alt="Encurtidos artesanales y mostaza antigua en grano"
                     width={2816}
                     height={1536}
                     loading="eager"
@@ -518,17 +521,15 @@ export function CubanDeconstruction() {
                     className="w-full max-w-[150px] sm:max-w-[260px] md:max-w-[660px] lg:max-w-[850px] xl:max-w-[970px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
-                    name="CRISP PICKLES & MUSTARD"
-                    detail="Crunchy Dill Spears & Yellow Mustard"
+                    name="ENCURTIDOS DE ESTACIÓN"
+                    detail="Mostaza Antigua & Pepinillos"
                     side="left"
-                    // Los pepinillos no llenan su caja: sin este ajuste la
-                    // ficha queda a 180px del ingrediente en vez de a 40.
                     anchorClassName="right-[57%] sm:right-[62%] md:right-[75%] lg:right-[70%] xl:right-[69%]"
                   />
                 </div>
               </div>
 
-              {/* Capa 3: Queso suizo fundido (DERECHA) */}
+              {/* Capa 3: Queso gruyère fundido (DERECHA) */}
               <div
                 ref={cheeseRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-30 pointer-events-none overflow-visible"
@@ -536,7 +537,7 @@ export function CubanDeconstruction() {
                 <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/03-melted-cheese.webp"
-                    alt="Melted stretchy Swiss cheese"
+                    alt="Queso gruyère artesanal fundido"
                     width={2816}
                     height={1536}
                     loading="eager"
@@ -544,14 +545,14 @@ export function CubanDeconstruction() {
                     className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
-                    name="MELTED SWISS CHEESE"
-                    detail="Plancha Melted & Stretchy"
+                    name="QUESO GRUYÈRE FUNDIDO"
+                    detail="Fundido al Compás Exacto"
                     side="right"
                   />
                 </div>
               </div>
 
-              {/* Capa 4: Pernil asado al mojo cítrico y jamón dulce (IZQUIERDA) */}
+              {/* Capa 4: Panceta braseada 8 horas (IZQUIERDA) */}
               <div
                 ref={mojoPorkRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-20 pointer-events-none overflow-visible"
@@ -559,7 +560,7 @@ export function CubanDeconstruction() {
                 <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/04-mojo-pork.webp"
-                    alt="Slow-roasted 4-hour citrus mojo pork and sweet cured ham"
+                    alt="Panceta de pastura braseada a baja temperatura"
                     width={2816}
                     height={1536}
                     loading="eager"
@@ -567,14 +568,14 @@ export function CubanDeconstruction() {
                     className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
-                    name="CITRUS MOJO ROAST PORK"
-                    detail="Slow-Roasted 4h in Sour Orange & Garlic"
+                    name="PANCETA BRASEADA 8H"
+                    detail="Cocción Lenta a Fuego Pausado"
                     side="left"
                   />
                 </div>
               </div>
 
-              {/* Capa 5: Tapa inferior de pan cubano prensado (DERECHA) */}
+              {/* Capa 5: Base crujiente artesanal (DERECHA) */}
               <div
                 ref={bottomBreadRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-10 pointer-events-none overflow-visible"
@@ -582,7 +583,7 @@ export function CubanDeconstruction() {
                 <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/05-bottom-bread.webp"
-                    alt="Bottom crust of plancha-pressed Cuban bread"
+                    alt="Base crujiente de pan artesanal"
                     width={2816}
                     height={1536}
                     loading="eager"
@@ -590,8 +591,8 @@ export function CubanDeconstruction() {
                     className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
-                    name="CRUNCHY PLANCHA BASE"
-                    detail="Toasted with Rich Griddle Juices"
+                    name="BASE CRUJIENTE ARTESANAL"
+                    detail="100% Sin TACC Garantizado"
                     side="right"
                   />
                 </div>

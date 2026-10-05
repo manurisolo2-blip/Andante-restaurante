@@ -159,10 +159,10 @@ assert.ok(!multiUrl.includes("\r"), "Must NOT contain literal raw CR");
 const decodedMulti = new URL(multiUrl).searchParams.get("text")!;
 const linesArray = decodedMulti.split("\n");
 assert.equal(linesArray.length, 5, "Formatted message should have exactly 5 lines (header, 2 items, total, footer)");
-assert.equal(linesArray[0], "Hello Mojo Grille! I'd like to order from your Doral store:");
+assert.equal(linesArray[0], "Hola Andante Bar! Deseo solicitar el siguiente pedido / reserva para Cava Privada & Jazz:");
 assert.equal(linesArray[1], "• 1× Dish One — $10.00");
 assert.equal(linesArray[2], "• 2× Dish Two (Side A) — $30.00");
-assert.equal(linesArray[3], "Estimated Total: $40.00");
+assert.equal(linesArray[3], "Total Estimado: $40.00");
 assert.equal(linesArray[4], "Muchas gracias!");
 console.log("  ✓ Multi-line formatted messages decode cleanly into exact line breaks.");
 
@@ -188,9 +188,9 @@ console.log(`  ✓ Mega cart URL length is ${megaUrl.length} characters and deco
 // 7. Empty Cart Fallback URL
 console.log("  [3.7] Testing empty cart URL generation...");
 const emptyUrl = whatsappHref("brickell", [], 0);
-assert.ok(emptyUrl.includes("https://wa.me/13055550124?text="));
+assert.ok(emptyUrl.includes("https://wa.me/5491147789001?text="));
 const decodedEmpty = new URL(emptyUrl).searchParams.get("text")!;
-assert.equal(decodedEmpty, "Hello Mojo Grille! I'd like to place an order from your Brickell store.");
+assert.equal(decodedEmpty, "Hola Andante Bar! Quisiera consultar por una reserva o pedido en Terraza & Barra Andante (Arévalo 1677, Palermo Hollywood).");
 console.log("  ✓ Empty cart triggers courteous store-specific greeting URL.");
 
 console.log("=== [PASS] WhatsApp Link & URL Encoding Robustness Passed Cleanly ===\n");

@@ -83,62 +83,62 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mojo Grille | Authentic Cuban Kitchen & Bowls in Miami" },
+      { title: "Andante Restaurante Bar | Bistró Contemporáneo & Coctelería en Palermo Hollywood" },
       {
         name: "description",
         content:
-          "Artisanal Cuban bowls, freshly pressed Cubano sandwiches, and party catering in Miami. Marinated 24h in citrus mojo. Fast takeout & delivery al momento.",
+          "Bistró contemporáneo, cafetería de especialidad, alta gastronomía estacional con opciones Sin TACC garantizadas, coctelería de autor y ciclos de jazz en Palermo Hollywood, Buenos Aires.",
       },
       {
         name: "keywords",
         content:
-          "Cuban food Miami, Cuban restaurant Little Havana, lechón asado, Cuban bowls, cubano sandwich, ropa vieja, catering Miami, cafecito cubano, mojo criollo, Brickell Cuban food, Doral takeout",
+          "Andante Restaurante Bar, bistró Palermo Hollywood, restaurante Arévalo 1677, cafetería de especialidad CABA, menú Sin TACC CABA, coctelería de autor Buenos Aires, jazz en vivo Palermo, cava de vinos Palermo",
       },
-      { name: "theme-color", content: "#14402A" },
-      { name: "author", content: "Mojo Grille Cuban Kitchen" },
+      { name: "theme-color", content: "#0E1726" },
+      { name: "author", content: "Andante Restaurante Bar" },
 
       // OpenGraph Metadata
-      { property: "og:title", content: "Mojo Grille | Authentic Cuban Kitchen & Bowls in Miami" },
+      { property: "og:title", content: "Andante Restaurante Bar | Bistró Contemporáneo & Coctelería en Palermo Hollywood" },
       {
         property: "og:description",
         content:
-          "Artisanal Cuban bowls, freshly pressed Cubano sandwiches, and party catering in Miami. Marinated 24h in citrus mojo. Fast takeout & delivery al momento.",
+          "Bistró contemporáneo, cafetería de especialidad, alta gastronomía estacional con opciones Sin TACC garantizadas, coctelería de autor y ciclos de jazz en Palermo Hollywood, Buenos Aires.",
       },
-      { property: "og:url", content: "https://mojogrille.com/" },
+      { property: "og:url", content: "https://andantebar.com.ar/" },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Mojo Grille Cuban Kitchen" },
-      { property: "og:locale", content: "en_US" },
-      { property: "og:locale:alternate", content: "es_US" },
-      { property: "og:image", content: "https://mojogrille.com/og-image.jpg" },
+      { property: "og:site_name", content: "Andante Restaurante Bar" },
+      { property: "og:locale", content: "es_AR" },
+      { property: "og:locale:alternate", content: "en_US" },
+      { property: "og:image", content: "https://andantebar.com.ar/og-image.jpg" },
       {
         property: "og:image:alt",
-        content: "Mojo Grille Cuban Kitchen - Authentic Cuban Bowls & Pressed Sandwiches in Miami",
+        content: "Andante Restaurante Bar - Bistró Contemporáneo en Palermo Hollywood",
       },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
 
       // Twitter Card Metadata
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Mojo Grille | Authentic Cuban Kitchen & Bowls in Miami" },
+      { name: "twitter:title", content: "Andante Restaurante Bar | Bistró Contemporáneo en Palermo Hollywood" },
       {
         name: "twitter:description",
         content:
-          "Artisanal Cuban bowls, freshly pressed Cubano sandwiches, and party catering in Miami. Marinated 24h in citrus mojo. Fast takeout & delivery al momento.",
+          "Alta gastronomía estacional con opciones Sin TACC garantizadas, coctelería de autor y ciclos de jazz en Palermo Hollywood.",
       },
-      { name: "twitter:image", content: "https://mojogrille.com/og-image.jpg" },
-      { name: "twitter:image:alt", content: "Mojo Grille Cuban Kitchen Miami" },
+      { name: "twitter:image", content: "https://andantebar.com.ar/og-image.jpg" },
+      { name: "twitter:image:alt", content: "Andante Restaurante Bar Palermo Hollywood" },
 
-      // Local Geo Meta for Miami
-      { name: "geo.region", content: "US-FL" },
-      { name: "geo.placename", content: "Miami, Florida" },
-      { name: "geo.position", content: "25.7654;-80.2115" },
-      { name: "ICBM", content: "25.7654, -80.2115" },
+      // Local Geo Meta for Palermo Hollywood, Buenos Aires
+      { name: "geo.region", content: "AR-C" },
+      { name: "geo.placename", content: "Palermo Hollywood, Buenos Aires, Argentina" },
+      { name: "geo.position", content: "-34.5815;-58.4372" },
+      { name: "ICBM", content: "-34.5815, -58.4372" },
     ],
     links: [
-      { rel: "canonical", href: "https://mojogrille.com/" },
-      { rel: "alternate", href: "https://mojogrille.com/", hrefLang: "x-default" },
-      { rel: "alternate", href: "https://mojogrille.com/", hrefLang: "en-us" },
-      { rel: "alternate", href: "https://mojogrille.com/", hrefLang: "es-us" },
+      { rel: "canonical", href: "https://andantebar.com.ar/" },
+      { rel: "alternate", href: "https://andantebar.com.ar/", hrefLang: "x-default" },
+      { rel: "alternate", href: "https://andantebar.com.ar/", hrefLang: "es-ar" },
+      { rel: "alternate", href: "https://andantebar.com.ar/", hrefLang: "en-us" },
       {
         rel: "preload",
         href: "/fonts/spot-normal.otf",

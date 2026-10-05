@@ -16,65 +16,69 @@ import type {
 // Re-export type contracts for seamless module interoperability
 export type { Category, CategoryId, MenuItem, BadgeType, SideOption };
 
+/**
+ * Categorías oficiales de la carta de Andante Restaurante Bar
+ * Palermo Hollywood, Buenos Aires.
+ */
 export const categories: Category[] = [
-  { id: "favoritos", label: "Must-Tries / Favoritos" },
-  { id: "bowls", label: "Bowls Criollos" },
-  { id: "sandwiches", label: "Pressed Cubano Sandwiches" },
-  { id: "sides", label: "Pa' Picar / Sides" },
-  { id: "bebidas", label: "Cafecito & Drinks" },
-  { id: "catering", label: "Party Catering" },
+  { id: "favoritos", label: "Firma Andante / Favoritos" },
+  { id: "bowls", label: "Cocina de Mercado & Principales" },
+  { id: "sandwiches", label: "Bistró & Bocados de Autor" },
+  { id: "sides", label: "Guarniciones & Entradas" },
+  { id: "bebidas", label: "Café de Especialidad & Coctelería" },
+  { id: "catering", label: "Ciclos de Jazz & Cava Privada" },
 ];
 
 export const sideOptions: SideOption[] = [
-  { id: "moro", name: "Arroz Moro (Black beans & rice)", price: 0, isIncluded: true },
-  { id: "tostones", name: "Crispy Tostones con Mojo", price: 1.5 },
-  { id: "yuca", name: "Yuca con Mojo de Ajo", price: 2 },
-  { id: "maduros", name: "Sweet Plátanos Maduros", price: 1.75 },
+  { id: "moro", name: "Guarnición Estacional (Milhojas de Papa / Puré Trufado)", price: 0, isIncluded: true },
+  { id: "tostones", name: "Ensalada Tibia de Hojas de Huerta & Vinagreta", price: 1.5 },
+  { id: "yuca", name: "Panera Artesanal Sin TACC & Manteca de Salvia", price: 2 },
+  { id: "maduros", name: "Copa de Vino de Autor (Pinot Noir de la Patagonia)", price: 1.75 },
 ];
 
 export const menu: MenuItem[] = [
-  // --- Bowls Criollos ---
+  // --- Cocina de Mercado & Principales (100% Sin TACC garantizado) ---
   {
     id: "ropa-vieja-bowl",
-    name: "Ropa Vieja Bowl",
+    name: "Bife de Chorizo Madurado con Manteca de Salvia",
     description:
-      "Tender shredded flank steak slow-cooked in rich criollo sofrito with bell peppers, onions & Spanish olives after 24h citrus mojo marinade, over savory arroz moro with sweet maduros & fresh cilantro.",
+      "Corte seleccionado madurado a las brasas con manteca de salvia fresca, milhojas de papas crocantes, demi-glace artesanal y emulsión de hongos silvestres. 100% libre de gluten garantizado.",
     price: 16.95,
     image: ropaVieja,
     category: "bowls",
-    badge: "Mojo Signature",
+    badge: "Firma Andante",
     sidesAllowed: true,
     featured: true,
   },
   {
     id: "lechon-asado-bowl",
-    name: "Lechón Asado al Mojo Criollo",
+    name: "Risotto de Hongos Silvestres & Aceite de Trufa",
     description:
-      "Authentic slow-roasted pork shoulder marinated for 24 hours in our signature sour orange, garlic & oregano mojo criollo, crisped on the plancha with sweet caramelized onions over moro rice.",
+      "Arroz carnaroli al dente cocinado a fuego pausado con gírgolas de mercado, manteca noisette, queso parmesano estacionado 24 meses y gotas de trufa negra fresca (Sin TACC).",
     price: 15.95,
     image: ropaVieja,
     category: "bowls",
-    badge: "Mojo Signature",
+    badge: "Sin TACC",
     sidesAllowed: true,
     featured: true,
   },
   {
     id: "pollo-mojo-bowl",
-    name: "Mojo Chicken Bowl (Chicken Fresco)",
+    name: "Pesca del Día a la Plancha con Puré de Coliflor",
     description:
-      "Charbroiled tender chicken thighs infused with sour orange mojo, served over fluffy white rice, seasoned black beans, sliced ripe Hass avocado & pickled red onions.",
+      "Pesca fresca de anzuelo sellada al sartén de hierro, puré aterciopelado de coliflor asada, crocante de alcaparras baby y emulsión cítrica de hierbas frescas de huerta.",
     price: 15.5,
     image: polloBowl,
     category: "bowls",
-    badge: "Top Seller",
+    badge: "De Estación",
     sidesAllowed: true,
     featured: true,
   },
   {
     id: "vaca-frita-bowl",
-    name: "Vaca Frita Criolla Bowl",
+    name: "Carpaccio de Lomo Curado & Focaccia Sin TACC",
     description:
-      "Crispy seared shredded flank steak flash-fried al sartén with caramelized Spanish onions, fresh lime juice and garlic mojo, served with tender black beans and arroz blanco.",
+      "Finas láminas de lomo de pastura curado, reducción de aceto balsámico de Módena, emulsión de dijón en grano, rúcula selvática y escamas de queso sardo con focaccia artesanal tibia.",
     price: 17.5,
     image: ropaVieja,
     category: "bowls",
@@ -82,106 +86,107 @@ export const menu: MenuItem[] = [
     sidesAllowed: true,
   },
 
-  // --- Pressed Cubano Sandwiches ---
+  // --- Bistró & Bocados de Autor ---
   {
     id: "cubano-prensado",
-    name: "Cuban Sandwich Tradicional (El Cubano Prensado)",
+    name: "Sándwich Andante de Panceta Confitada & Gruyère",
     description:
-      "Authentic pressed Cuban sandwich with slow-roasted lechón asado, sweet smoked ham, melted Swiss cheese, tangy dill pickles & yellow mustard on crusty buttered Cuban bread.",
+      "Panceta braseada a fuego lento durante 8 horas, queso gruyère fundido, mostaza en grano a la antigua y pepinillos agridulces en pan crujiente tostado con manteca.",
     price: 14.95,
     image: cubano,
     category: "sandwiches",
-    badge: "Mojo Signature",
+    badge: "Firma Andante",
     sidesAllowed: true,
     featured: true,
   },
   {
     id: "media-noche",
-    name: "Media Noche Especial",
+    name: "Brioche Tostado con Jamón Crudo & Stracciatella",
     description:
-      "The legendary Havana midnight sandwich: 24h mojo-roasted pork, sweet cured ham, Swiss cheese and pickles, pressed hot on soft, slightly sweet egg challah bread.",
-    price: 14.5,
+      "Pan brioche artesanal dorado a la plancha, jamón crudo de guarda 18 meses, stracciatella cremosa, higos frescos glaseados y hojas tiernas de albahaca morada.",
+    price: 13.95,
     image: cubano,
     category: "sandwiches",
-    badge: "Popular",
+    badge: "Top Seller",
     sidesAllowed: true,
   },
   {
     id: "pan-con-lechon",
-    name: "Pan con Lechón al Mojo",
+    name: "Bocado de Osobuco Braseado & Tuétano",
     description:
-      "Heaping portion of succulent pulled mojo roast pork smothered in hot grilled mojo onions and house garlic reduction on warm pressed Cuban baguette.",
+      "Osobuco cocido a baja temperatura con vino tinto y mirepoix aromático, servido en pan crocante de masa madre con emulsión tibia de tuétano y cebollas moradas encurtidas.",
     price: 13.95,
     image: cubano,
     category: "sandwiches",
-    badge: "Fresco del día",
+    badge: "Popular",
     sidesAllowed: true,
   },
 
-  // --- Pa' Picar / Sides ---
+  // --- Guarniciones & Entradas ---
   {
     id: "tostones-mojo",
-    name: "Crispy Tostones con Mojo",
+    name: "Burrata Cremosa de Tandil & Higos Asados",
     description:
-      "Twice-fried golden green plantain discs smashed and crisped to order, sprinkled with sea salt flakes and served with our zesty garlic-lime mojo dipping sauce.",
-    price: 7.25,
+      "Burrata fresca con corazón de crema, tomates reliquia confitados, pesto de albahaca fresca y pistachos tostados con lluvia de sal marina (Sin TACC).",
+    price: 7.5,
     image: tostones,
     category: "sides",
-    badge: "Popular",
+    badge: "Sin TACC",
     sidesAllowed: false,
     featured: true,
   },
   {
     id: "yuca-con-mojo",
-    name: "Yuca con Mojo de la Casa",
+    name: "Croquetas de Jamón de Bellota & Alioli Suave",
     description:
-      "Tender boiled cassava root steeped in warm sizzling garlic mojo criollo, sweet sautéed Spanish onions, and fresh key lime juice.",
+      "Cuatro piezas doradas de bechamel sedosa infusionada con jamón ibérico, fritas al momento y acompañadas de alioli de ajo asado al rescoldo.",
     price: 6.95,
     image: tostones,
     category: "sides",
-    badge: "Mojo Signature",
+    badge: "Popular",
     sidesAllowed: false,
   },
   {
     id: "platanos-maduros",
-    name: "Sweet Plátanos Maduros",
+    name: "Papas Rústicas Rotas al Romero & Flor de Sal",
     description:
-      "Golden caramelized sweet ripe plantains, pan-fried to sweet melting tenderness with crispy caramelized outer edges.",
-    price: 6.5,
+      "Papas de campo crocantes y doradas, perfumadas con romero fresco de nuestra huerta orgánica y cristales de sal marina.",
+    price: 5.5,
+    image: tostones,
+    category: "sides",
+    badge: "Popular",
+    sidesAllowed: false,
+  },
+  {
+    id: "arroz-moro-side",
+    name: "Zanahorias Glaseadas al Horno de Barro & Queso de Cabra",
+    description:
+      "Zanahorias de mercado glaseadas con miel de monte y tomillo fresco, servidas sobre base tibia de queso de cabra artesanal desgranado.",
+    price: 5.0,
     image: tostones,
     category: "sides",
     badge: "Fresco del día",
     sidesAllowed: false,
   },
-  {
-    id: "arroz-moro",
-    name: "Arroz Moro Tradicional",
-    description:
-      "Cuban black beans and long-grain white rice cooked together with smoked pork, cumin, oregano, and sweet bell pepper criollo sofrito.",
-    price: 5.95,
-    image: tostones,
-    category: "sides",
-    sidesAllowed: false,
-  },
 
-  // --- Cafecito & Drinks / Postres ---
+  // --- Café de Especialidad & Coctelería de Autor ---
   {
     id: "cafecito-cubano",
-    name: "Cafecito Cubano (Colada al Estilo Miami)",
+    name: "Espresso Doble de Especialidad (Huila, Colombia)",
     description:
-      "Iconic Miami Cuban espresso brewed dark and whipped vigorously with demerara sugar to create a rich, velvety golden espumita. Served with sharing cups.",
-    price: 4.25,
+      "Extracción calibrada en máquina espresso La Marzocco. Tostado medio, acidez brillante y notas a chocolate amargo y avellanas.",
+    price: 3.5,
     image: cafecito,
     category: "bebidas",
-    badge: "Mojo Signature",
+    badge: "Firma Andante",
     sidesAllowed: false,
     featured: true,
   },
   {
     id: "cafecito-pastelito",
-    name: "Cafecito & Pastelito de Guayaba",
+    name: "Flat White Andante & Financier Sin TACC",
     description:
-      "Authentic sweet Cuban espresso colada with golden foam, paired with a warm flaky puff pastry filled with cream cheese & sweet tropical guava.",
+      "Espresso de especialidad doble con leche texturizada sedosa, acompañado de un mini financier tibio de almendras y manteca noisette sin TACC.",
     price: 5.95,
     image: cafecito,
     category: "bebidas",
@@ -190,54 +195,54 @@ export const menu: MenuItem[] = [
   },
   {
     id: "flan-tradicional",
-    name: "Flan Tradicional de la Abuela",
+    name: "Cóctel de Autor 'Compás 76' (Bourbon & Cacao)",
     description:
-      "Silky smooth Cuban egg custard baked fresh daily with a deep amber caramel glaze, subtle vanilla bean, and a hint of fresh lime zest.",
-    price: 6.5,
+      "Bourbon añejo macerado en nibs de cacao criollo, vermut rosso artesanal, bitter aromático de la casa y piel de naranja flameada.",
+    price: 9.5,
     image: cafecito,
     category: "bebidas",
-    badge: "Top Seller",
+    badge: "Coctelería de Autor",
     sidesAllowed: false,
   },
   {
     id: "batido-mamey",
-    name: "Batido de Mamey Fresco",
+    name: "Cóctel 'Nocturno en Palermo' (Gin & Sauco)",
     description:
-      "Classic Miami milkshake blended with ripe mamey sapote fruit, chilled whole milk, sweet condensed milk, and crushed ice.",
-    price: 6.25,
+      "Gin botánico de destilería local, licor de flor de sauco, pomelo rosado clarificado y una rama de romero quemado al servicio.",
+    price: 9.0,
     image: cafecito,
     category: "bebidas",
-    badge: "Fresco del día",
+    badge: "Coctelería de Autor",
     sidesAllowed: false,
   },
 
-  // --- Party Catering ---
+  // --- Ciclos de Jazz & Cava Privada ---
   {
     id: "bandeja-familiar",
-    name: "Bandeja Criolla Familiar (Catering Feast)",
+    name: "Experiencia Jazz & Cena Degustación (5 Pasos)",
     description:
-      "Feeds 8 to 10 people: Slow-roasted lechón asado, seasoned yellow rice, black beans, yuca con mojo & sweet maduros. Ready to serve con todo for celebrations.",
+      "Mesa reservada para noche de jazz en vivo en Palermo Hollywood. Menú de cinco pasos estacionales con maridaje de vinos de autor y café de especialidad.",
     price: 129,
     image: catering,
     category: "catering",
-    badge: "Mojo Signature",
+    badge: "Firma Andante",
     sidesAllowed: false,
     featured: true,
   },
   {
     id: "cubano-party-platter",
-    name: "Cuban Sandwich Party Platter (12 Quarters)",
+    name: "Cata Exclusiva en Cava Subsuelo (Hasta 12 Personas)",
     description:
-      "Twelve 4-inch pressed Cuban sandwich portions and Media Noches served with garlic mojo and house cilantro dipping sauce. Perfect for events and corporate gatherings.",
+      "Uso exclusivo de nuestra cava histórica en Arévalo 1677 con sommelier personal, selección de quesos de guarda y charcutería artesanal.",
     price: 89,
     image: catering,
     category: "catering",
-    badge: "Popular",
+    badge: "De Estación",
     sidesAllowed: false,
   },
 ];
 
-// "Favoritos" is a curated cross-section of the menu.
+// "Favoritos" es una selección curada transversal de la carta
 export const favoritosIds = [
   "ropa-vieja-bowl",
   "cubano-prensado",
@@ -260,4 +265,3 @@ export function getItemById(id: string): MenuItem | undefined {
 
 export const currency = (value: number) => `$${value.toFixed(2)}`;
 export const formatPrice = currency;
-

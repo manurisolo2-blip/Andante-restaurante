@@ -13,25 +13,25 @@ import { categories, menu } from "./data/menu";
 
 console.log("--- Starting SEO, Schema.org & Copywriting Verification Suite ---");
 
-// 1. Validate Schema.org Restaurant for all 3 Miami branches
-console.log("1. Validating Restaurant schemas for Little Havana, Brickell, and Doral...");
+// 1. Validate Schema.org Restaurant for all 3 Andante Palermo spaces
+console.log("1. Validating Restaurant schemas for Salón Central, Terraza, and Cava...");
 for (const loc of locationsList) {
   const schema = generateRestaurantSchema(loc);
   assert.equal(schema["@context"], "https://schema.org");
   assert.equal(schema["@type"], "Restaurant");
-  assert.equal(schema.name, `Mojo Grille - ${loc.name}`);
+  assert.equal(schema.name, `Andante Restaurante Bar - ${loc.name}`);
   assert.equal(schema.telephone, loc.phone);
-  assert.equal(schema.priceRange, "$$");
-  assert.deepEqual(schema.servesCuisine, ["Cuban", "Caribbean", "Latin American"]);
+  assert.equal(schema.priceRange, "$$$");
+  assert.deepEqual(schema.servesCuisine, ["Bistró Contemporáneo", "Cocina de Mercado", "Opciones Sin TACC", "Coctelería de Autor"]);
   assert.equal(schema.address.streetAddress, loc.address.street);
-  assert.equal(schema.address.addressRegion, "FL");
-  assert.equal(schema.address.addressCountry, "US");
-  assert.ok(schema.geo.latitude > 25 && schema.geo.latitude < 26);
-  assert.ok(schema.geo.longitude < -80 && schema.geo.longitude > -81);
-  assert.equal(schema.aggregateRating.ratingValue, "4.7");
-  assert.equal(schema.aggregateRating.reviewCount, "3000");
+  assert.equal(schema.address.addressRegion, "BA");
+  assert.equal(schema.address.addressCountry, "AR");
+  assert.ok(schema.geo.latitude < -34 && schema.geo.latitude > -35);
+  assert.ok(schema.geo.longitude < -58 && schema.geo.longitude > -59);
+  assert.equal(schema.aggregateRating.ratingValue, "4.9");
+  assert.equal(schema.aggregateRating.reviewCount, "1280");
   assert.equal(schema.potentialAction["@type"], "OrderAction");
-  assert.equal(schema.potentialAction.target.urlTemplate, "https://mojogrille.com/#menu");
+  assert.equal(schema.potentialAction.target.urlTemplate, "https://andantebar.com.ar/#menu");
   console.log(`  ✓ Location '${loc.name}' schema verified.`);
 }
 
@@ -80,7 +80,7 @@ assert.ok(fs.existsSync(robotsPath), "robots.txt must exist in public/");
 const robotsContent = fs.readFileSync(robotsPath, "utf-8");
 assert.ok(robotsContent.includes("User-agent: *"));
 assert.ok(robotsContent.includes("Allow: /"));
-assert.ok(robotsContent.includes("Sitemap: https://mojogrille.com/sitemap.xml"));
+assert.ok(robotsContent.includes("Sitemap: https://andantebar.com.ar/sitemap.xml"));
 console.log("  ✓ robots.txt verified.");
 
 // 5. Validate public/sitemap.xml
@@ -89,17 +89,16 @@ const sitemapPath = path.resolve(process.cwd(), "public/sitemap.xml");
 assert.ok(fs.existsSync(sitemapPath), "sitemap.xml must exist in public/");
 const sitemapContent = fs.readFileSync(sitemapPath, "utf-8");
 assert.ok(sitemapContent.includes('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'));
-assert.ok(sitemapContent.includes("<loc>https://mojogrille.com/</loc>"));
-assert.ok(sitemapContent.includes("<loc>https://mojogrille.com/#menu</loc>"));
-assert.ok(sitemapContent.includes("<loc>https://mojogrille.com/#catering</loc>"));
-assert.ok(sitemapContent.includes("<loc>https://mojogrille.com/#location-little-havana</loc>"));
-assert.ok(sitemapContent.includes("<loc>https://mojogrille.com/#location-brickell</loc>"));
-assert.ok(sitemapContent.includes("<loc>https://mojogrille.com/#location-doral</loc>"));
-assert.ok(sitemapContent.includes("<lastmod>2026-09-04</lastmod>"));
+assert.ok(sitemapContent.includes("<loc>https://andantebar.com.ar/</loc>"));
+assert.ok(sitemapContent.includes("<loc>https://andantebar.com.ar/#menu</loc>"));
+assert.ok(sitemapContent.includes("<loc>https://andantebar.com.ar/#catering</loc>"));
+assert.ok(sitemapContent.includes("<loc>https://andantebar.com.ar/#location-palermo-hollywood</loc>"));
+assert.ok(sitemapContent.includes("<loc>https://andantebar.com.ar/#location-terraza-andante</loc>"));
+assert.ok(sitemapContent.includes("<loc>https://andantebar.com.ar/#location-cava-jazz</loc>"));
 console.log("  ✓ sitemap.xml verified.");
 
 // 6. Validate public/og-image.jpg
-console.log("6. Validating public/og-image.jpg...");
+console.log("6. Validate public/og-image.jpg...");
 const ogImagePath = path.resolve(process.cwd(), "public/og-image.jpg");
 assert.ok(fs.existsSync(ogImagePath), "og-image.jpg must exist in public/");
 const ogImageStats = fs.statSync(ogImagePath);
@@ -111,32 +110,31 @@ console.log("7. Validating Copywriting requirements in source files...");
 
 const heroPath = path.resolve(process.cwd(), "src/components/mojo/HeroSection.tsx");
 const heroContent = fs.readFileSync(heroPath, "utf-8");
-const heroText = heroContent.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
 assert.ok(
-  heroText.includes("4.7 Stars across +3,000 orders in Miami"),
-  "Hero must contain social proof rating badge",
+  heroContent.includes("EL ARTE DE DESACELERAR EL RITMO URBANO"),
+  "Hero must contain Andante headline",
 );
 assert.ok(
-  heroContent.includes("The Authentic Criollo Flavor of Miami, Marinado to Perfection"),
-  "Hero must contain exact H1 title",
+  heroContent.includes("76–108 PPM"),
+  "Hero must contain tempo 76–108 PPM",
 );
 assert.ok(
-  heroContent.includes("al momento"),
-  "Hero must contain 'al momento' copywriting",
+  heroContent.includes("PALERMO HOLLYWOOD"),
+  "Hero must mention Palermo Hollywood",
 );
 
 const cartSheetPath = path.resolve(process.cwd(), "src/components/mojo/CartSheet.tsx");
 const cartSheetContent = fs.readFileSync(cartSheetPath, "utf-8");
 assert.ok(
-  cartSheetContent.includes("Your cart is empty. Start with our signature favorites!"),
+  cartSheetContent.includes("Tu orden está vacía. Explorá nuestra carta de bistró y coctelería."),
   "CartSheet must contain required empty cart message",
 );
 assert.ok(
-  cartSheetContent.includes("Order via WhatsApp"),
-  "CartSheet must contain 'Order via WhatsApp' button",
+  cartSheetContent.includes("PEDIR / RESERVAR POR WHATSAPP"),
+  "CartSheet must contain 'PEDIR / RESERVAR POR WHATSAPP' button",
 );
 assert.ok(
-  cartSheetContent.includes("Instant order confirmation directly with our"),
+  cartSheetContent.includes("Confirmación directa con el equipo de"),
   "CartSheet must contain WhatsApp conversion confirmation hint",
 );
 

@@ -7,11 +7,36 @@ import { AuthSwitch } from "../ui/auth-switch";
 import { useFocusTrap } from "@/lib/useFocusTrap";
 import { useBodyScrollLock } from "@/lib/useBodyScrollLock";
 
+export function AndanteAstrolabe({ className = "h-8 w-8 text-[#C9A86A]" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true">
+      {/* Doble anillo concéntrico oficial */}
+      <circle cx="50" cy="50" r="46" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 2" opacity="0.6" />
+      <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="50" cy="50" r="26" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+      
+      {/* 4 vértices cardinales en diamante (Rosa de los vientos / astrolabio) */}
+      <polygon points="50,4 53,38 50,34 47,38" fill="currentColor" />
+      <polygon points="50,96 53,62 50,66 47,62" fill="currentColor" />
+      <polygon points="96,50 62,53 66,50 62,47" fill="currentColor" />
+      <polygon points="4,50 38,53 34,50 38,47" fill="currentColor" />
+      
+      {/* Vértices diagonales secundarios */}
+      <polygon points="76,24 58,42 56,40 58,38" fill="currentColor" opacity="0.5" />
+      <polygon points="24,76 42,58 40,56 38,58" fill="currentColor" opacity="0.5" />
+      <polygon points="76,76 58,58 60,56 58,54" fill="currentColor" opacity="0.5" />
+      <polygon points="24,24 42,42 40,44 42,46" fill="currentColor" opacity="0.5" />
+
+      {/* Monograma central 'A' de ANDANTE */}
+      <circle cx="50" cy="50" r="14" fill="#0E1726" stroke="currentColor" strokeWidth="1" />
+      <text x="50" y="55" textAnchor="middle" fill="currentColor" fontSize="12" fontFamily="serif" fontStyle="italic" fontWeight="bold">A</text>
+    </svg>
+  );
+}
+
 export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   const { count, location, setLocation, availableLocations } = useCart();
 
-  // El horario sale de los datos de la sede, no de un texto fijo: estaba
-  // escrito a mano con cierre a las 10:00 PM y Brickell cierra a las 11:00 PM.
   const openingHours = (() => {
     const match = /(\d{1,2}:\d{2} [AP]M) to (\d{1,2}:\d{2} [AP]M)/.exec(location.hours);
     return match ? { opens: match[1], closes: match[2] } : null;
@@ -26,16 +51,12 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   const drawerRef = useRef<HTMLElement>(null);
   const accountModalRef = useRef<HTMLDivElement>(null);
 
-  // Los dos overlays retienen el foco y congelan el scroll de detrás.
   useFocusTrap(drawerRef, menuDrawerOpen);
   useFocusTrap(accountModalRef, accountModalOpen);
   useBodyScrollLock(menuDrawerOpen || accountModalOpen);
 
   const { scrollY } = useScroll();
 
-  // Publica el alto real de la cabecera en --header-h. Antes la barra de
-  // pestañas del menú fijaba 68px y 88px a mano, y la cabecera mide 73, 77 y
-  // 89: quedaba entre 1 y 9px de la barra metida debajo.
   useEffect(() => {
     const header = headerRef.current;
     if (!header || typeof ResizeObserver === "undefined") return undefined;
@@ -68,13 +89,11 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
     const pastHero = latest >= heroHeight - 80;
     setIsPastHero(pastHero);
 
-    // Si estamos cerca del tope o cualquier modal/drawer está abierto, mantener visible
     if (latest <= 60 || menuDrawerOpen || accountModalOpen) {
       setIsVisible(true);
       return;
     }
 
-    // Mientras estamos en el hero (el fondo inferior aún no sobrepasa el hero), mantener visible el header transparente
     if (!pastHero) {
       setIsVisible(true);
       return;
@@ -83,7 +102,6 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
     const previous = scrollY.getPrevious() ?? 0;
     const diff = latest - previous;
 
-    // Fuera del hero: ocultar al bajar, mostrar al subir
     if (diff > 5) {
       setIsVisible(false);
       if (open) setOpen(false);
@@ -98,21 +116,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
     }
   }, [menuDrawerOpen, accountModalOpen]);
 
-  // Escucha del hash #cuenta para abrir directamente el apartado
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const handleHashChange = () => {
-      if (window.location.hash === "#cuenta") {
-        setAccountModalOpen(true);
-      }
-    };
-    handleHashChange();
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
-
-  useEffect(() => {
-    if (!open && !menuDrawerOpen && !accountModalOpen) return;
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setOpen(false);
@@ -146,95 +150,81 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-40 will-change-transform transition-all duration-300 ${
           isPastHero
-            ? "bg-[#F2ECE1]/85 backdrop-blur-xl backdrop-saturate-150 border-b border-charcoal-ink/10 shadow-[0_8px_32px_0_rgba(20,18,16,0.05),inset_0_1px_1px_0_rgba(255,255,255,0.7)]"
+            ? "bg-[#0E1726]/90 backdrop-blur-xl border-b border-[#C9A86A]/20 shadow-[0_8px_32px_0_rgba(14,23,38,0.5)]"
             : "bg-transparent border-b border-transparent shadow-none"
         }`}
       >
         <div className="w-full">
           <nav className="mx-auto max-w-[1600px] w-full flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3.5">
-            {/* Extremo Izquierdo: Titular Monumental MOJO GRILLE */}
+            {/* Extremo Izquierdo: Isotipo Astrolabio & Marca ANDANTE */}
             <a
               href="#top"
-              className="flex min-h-11 min-w-0 items-center group cursor-pointer select-none"
-              aria-label="Mojo Grille Home"
+              className="flex min-h-11 min-w-0 items-center gap-3 group cursor-pointer select-none"
+              aria-label="Andante Restaurante Bar Home"
             >
-              <span className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-charcoal-ink leading-none transition-colors group-hover:text-brand-fire truncate">
-                MOJO GRILLE
-              </span>
+              <AndanteAstrolabe className="h-9 w-9 text-brass transition-transform duration-500 group-hover:rotate-45" />
+              <div className="flex flex-col">
+                <span className="font-display text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-[0.15em] text-linen leading-none transition-colors group-hover:text-brass truncate">
+                  ANDANTE
+                </span>
+                <span className="font-sans text-[9px] uppercase tracking-[0.25em] text-brass/90 font-semibold mt-0.5">
+                  RESTAURANTE · BAR
+                </span>
+              </div>
             </a>
 
-            {/* Extremo Derecho: Botones de Cuenta, Menú y Bolsa de Compra (Liquid Glass) */}
+            {/* Extremo Derecho: Botones de Reserva, Menú y Bolsa de Compra (Dark Luxury Glass) */}
             <div className="flex shrink-0 items-center gap-2.5 sm:gap-3.5">
-              {/* Opción de Cuenta / Club Mojo: Píldora Liquid Glass */}
-              {/*
-                min-h-11 / min-w-11 son los 44px de área táctil. El relleno
-                visual sigue siendo el mismo: lo que crece es la zona pulsable,
-                que antes medía 32x28 en móvil.
-              */}
+              {/* Opción de Reservas / Cuenta */}
               <button
                 type="button"
                 onClick={() => setAccountModalOpen(true)}
-                aria-label="Open account and Club Mojo panel"
-                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-leaf-green transition-all cursor-pointer select-none ${
+                aria-label="Abrir panel de reservas y membresía Andante"
+                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3.5 sm:px-4 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-linen hover:text-brass transition-all cursor-pointer select-none ${
                   isPastHero
-                    ? "bg-white/30 hover:bg-white/60 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]"
-                    : "bg-charcoal-ink/5 hover:bg-charcoal-ink/10 border border-charcoal-ink/10 backdrop-blur-sm"
+                    ? "bg-[#162238]/80 hover:bg-[#162238] backdrop-blur-md border border-[#C9A86A]/30"
+                    : "bg-[#0E1726]/60 hover:bg-[#0E1726]/90 border border-[#C9A86A]/20 backdrop-blur-sm"
                 }`}
               >
-                <User className="h-4 w-4 stroke-[2.2]" aria-hidden="true" />
-                <span lang="es" className="hidden sm:inline">CUENTA</span>
+                <User className="h-4 w-4 stroke-[2.2] text-brass" aria-hidden="true" />
+                <span lang="es" className="hidden sm:inline">RESERVAS</span>
               </button>
 
-              {/* Opción de Menú: Píldora Liquid Glass */}
+              {/* Opción de Menú Desplegable */}
               <button
                 type="button"
                 onClick={() => setMenuDrawerOpen(true)}
-                aria-label="Open navigation menu and locations"
+                aria-label="Abrir menú de navegación y espacios"
                 aria-expanded={menuDrawerOpen}
-                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-leaf-green transition-all cursor-pointer select-none ${
+                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3.5 sm:px-4 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-linen hover:text-brass transition-all cursor-pointer select-none ${
                   isPastHero
-                    ? "bg-white/30 hover:bg-white/60 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]"
-                    : "bg-charcoal-ink/5 hover:bg-charcoal-ink/10 border border-charcoal-ink/10 backdrop-blur-sm"
+                    ? "bg-[#162238]/80 hover:bg-[#162238] backdrop-blur-md border border-[#C9A86A]/30"
+                    : "bg-[#0E1726]/60 hover:bg-[#0E1726]/90 border border-[#C9A86A]/20 backdrop-blur-sm"
                 }`}
               >
-                <Menu className="h-4 w-4 stroke-[2.2]" aria-hidden="true" />
-                <span lang="es" className="hidden sm:inline">MENÚ</span>
+                <Menu className="h-4 w-4 stroke-[2.2] text-brass" aria-hidden="true" />
+                <span lang="es" className="hidden sm:inline">CARTA</span>
               </button>
 
-              {/*
-                Bolsa de Compra: círculo rojo plano.
-
-                Sobre el hero lleva contorno de tinta. El disco rojo solo se
-                queda en 2.50:1 contra el peor fondo del hero: un fotograma
-                negro del bucle al 45% sobre la crema y bajo el velo al 35%
-                deja el fondo en ~#ABA79F. Ese fondo nunca baja de ahí, así
-                que un filete charcoal-ink da 7.80:1 en el peor caso y 3.12:1
-                contra el propio relleno rojo, por encima de los 3:1 que pide
-                WCAG 1.4.11 para el contorno de un control.
-
-                Pasado el hero la cabecera es crema translúcida y el rojo ya
-                da 5.09:1 por sí solo, así que ahí el filete sobra.
-              */}
+              {/* Bolsa de Compra / Pedido */}
               <button
                 type="button"
                 onClick={onOpenCart}
                 aria-label={
                   count > 0
-                    ? `View shopping bag, ${count} ${count === 1 ? "item" : "items"}`
-                    : "View shopping bag, empty"
+                    ? `Ver orden, ${count} ${count === 1 ? "ítem" : "ítems"}`
+                    : "Ver orden, vacía"
                 }
-                className={`relative grid h-11 w-11 place-items-center rounded-full bg-brand-fire text-charcoal-ink transition-colors hover:bg-charcoal-ink hover:text-cream-bg active:scale-95 cursor-pointer select-none ${
-                  isPastHero ? "" : "border-2 border-charcoal-ink"
-                }`}
+                className="relative grid h-11 w-11 place-items-center rounded-full bg-brass text-canvas transition-all hover:bg-amber hover:text-canvas active:scale-95 cursor-pointer select-none border border-brass/50 shadow-md"
               >
-                <LatinMarketBagIcon className="h-5 w-5 stroke-[2]" />
+                <LatinMarketBagIcon className="h-5 w-5 stroke-[2.2] text-[#0E1726]" />
                 {count > 0 && (
-                  <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-cream-bg bg-leaf-green px-1 font-sans text-xs font-black text-cream-bg shadow-none">
+                  <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-canvas bg-amber px-1 font-sans text-xs font-black text-linen shadow-none">
                     {count}
                   </span>
                 )}
                 {count > 0 && (
-                  <span className="absolute inset-0 animate-ping rounded-full border border-brand-fire/40 pointer-events-none" />
+                  <span className="absolute inset-0 animate-ping rounded-full border border-amber/40 pointer-events-none" />
                 )}
               </button>
             </div>
@@ -242,28 +232,22 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
         </div>
       </motion.header>
 
-      {/* Menú Lateral Desplegable (Slide-over Drawer) */}
+      {/* Menú Lateral Desplegable (Slide-over Drawer en Dark Luxury) */}
       <AnimatePresence>
         {menuDrawerOpen && (
           <div className="fixed inset-0 z-50">
-            {/* Backdrop con desenfoque sutil */}
+            {/* Backdrop con desenfoque nocturno */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 bg-charcoal-ink/50"
+              className="fixed inset-0 bg-[#0E1726]/75 backdrop-blur-sm"
               onClick={() => setMenuDrawerOpen(false)}
               aria-hidden="true"
             />
 
-            {/* Panel Lateral Drawer en Criollo Cream */}
-            {/* Panel Lateral Drawer en Criollo Cream (Minimalista, sin líneas ni recuadros) */}
-            {/*
-              lang="es": el panel entero está en español dentro de un documento
-              declarado en inglés. Sin esto un lector de pantalla pronuncia
-              "SEDES MIAMI" y "Abierto hoy" con voz inglesa.
-            */}
+            {/* Panel Lateral Drawer en Azul Marino Profundo (#162238) */}
             <motion.aside
               ref={drawerRef}
               initial={{ x: "100%" }}
@@ -273,87 +257,83 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               role="dialog"
               aria-modal="true"
               lang="es"
-              aria-label="Menú de navegación y sedes"
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-none md:max-w-md bg-cream-bg px-6 py-8 md:p-8 flex flex-col justify-between overflow-y-auto"
+              aria-label="Menú de navegación y espacios"
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-none md:max-w-md bg-surface border-l border-brass/20 px-6 py-8 md:p-8 flex flex-col justify-between overflow-y-auto text-linen"
             >
-              <div className="space-y-12 md:space-y-8">
+              <div className="space-y-10 md:space-y-8">
                 {/* Encabezado del Menú Drawer */}
-                <div className="flex items-center justify-between">
-                  <span className="font-display text-3xl sm:text-4xl font-black uppercase tracking-tight text-charcoal-ink">
-                    MOJO <span className="text-brand-fire">MENÚ</span>
-                  </span>
+                <div className="flex items-center justify-between border-b border-brass/15 pb-4">
+                  <div className="flex items-center gap-2.5">
+                    <AndanteAstrolabe className="h-7 w-7 text-brass" />
+                    <span className="font-display text-2xl sm:text-3xl font-black uppercase tracking-wider text-linen">
+                      ANDANTE <span className="text-brass">BAR</span>
+                    </span>
+                  </div>
                   <button
                     type="button"
                     onClick={() => setMenuDrawerOpen(false)}
                     aria-label="Cerrar menú"
-                    className="grid h-11 w-11 shrink-0 place-items-center text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
+                    className="grid h-11 w-11 shrink-0 place-items-center text-linen hover:text-brass transition-colors cursor-pointer"
                   >
                     <X className="h-6 w-6 stroke-[2.2]" aria-hidden="true" />
                   </button>
                 </div>
 
-                {/* 1. NAVEGACIÓN PRINCIPAL (Minimalista, editorial, sin recuadros) */}
+                {/* 1. NAVEGACIÓN PRINCIPAL */}
                 <nav className="space-y-2">
-                  <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-leaf-green block mb-1">
-                    CARTA & EXPERIENCIA
+                  <span className="font-sans text-xs font-black uppercase tracking-widest text-brass block mb-1">
+                    CARTA &amp; EXPERIENCIA SENSORIAL
                   </span>
-                  {/*
-                    En el orden de la página y con las cinco secciones: faltaba
-                    la Selección de la Plancha. "Reseñas Verificadas" pasa a
-                    "Lo que dice Miami": los testimonios no son reseñas
-                    verificadas y la sección ya no se presenta así. "3D" fuera,
-                    la deconstrucción es por capas, no un modelo 3D.
-                  */}
                   {[
-                    { href: "#cuban-deconstruction", label: "Anatomía del Cubano" },
-                    { href: "#curated-menu", label: "Selección de la Plancha" },
-                    { href: "#menu", label: "Menú & Bowls Criollos" },
-                    { href: "#reviews", label: "Lo que dice Miami" },
-                    { href: "#catering", label: "Catering para Eventos" },
+                    { href: "#cuban-deconstruction", label: "Anatomía de Nuestra Cocina" },
+                    { href: "#curated-menu", label: "Selección de Estación" },
+                    { href: "#menu", label: "Carta & Maridajes" },
+                    { href: "#reviews", label: "Ecos de Palermo Hollywood" },
+                    { href: "#catering", label: "Ciclos de Jazz & Cava Privada" },
                   ].map((item) => (
                     <a
                       key={item.href}
                       href={item.href}
                       onClick={() => setMenuDrawerOpen(false)}
-                      className="group flex min-h-11 items-center justify-between py-2.5 md:py-2 text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
+                      className="group flex min-h-11 items-center justify-between py-2 text-linen hover:text-brass transition-colors cursor-pointer"
                     >
-                      <span className="font-display text-3xl font-black uppercase tracking-tight">
+                      <span className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight">
                         {item.label}
                       </span>
                       <ArrowRight
-                        className="h-5 w-5 shrink-0 text-brand-fire opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+                        className="h-5 w-5 shrink-0 text-brass opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
                         aria-hidden="true"
                       />
                     </a>
                   ))}
                 </nav>
 
-                {/* 2. SEDES MIAMI (Adaptado al fondo, sin recuadros, badges ni líneas) */}
-                <div className="space-y-2">
+                {/* 2. ESPACIOS ANDANTE · ARÉVALO 1677 */}
+                <div className="space-y-3 pt-2 border-t border-brass/15">
                   <div className="flex items-center justify-between">
-                    <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-leaf-green">
-                      SEDES MIAMI
+                    <span className="font-sans text-xs font-black uppercase tracking-widest text-brass">
+                      ESPACIOS · ARÉVALO 1677
                     </span>
-                    <span className="inline-flex items-center gap-1.5 font-sans text-sm sm:text-xs font-bold text-leaf-green">
-                      <span aria-hidden="true" className="h-2 w-2 rounded-full bg-leaf-green" />
+                    <span className="inline-flex items-center gap-1.5 font-sans text-xs font-bold text-amber">
+                      <span aria-hidden="true" className="h-2 w-2 rounded-full bg-amber animate-pulse" />
                       Abierto hoy
                     </span>
                   </div>
 
-                  {/* Selector interactivo de sede */}
+                  {/* Selector interactivo de espacio */}
                   <div ref={dropdownRef} className="relative">
                     <button
                       type="button"
                       onClick={() => setOpen((v) => !v)}
                       aria-haspopup="listbox"
                       aria-expanded={open}
-                      aria-label={`Select location, currently ${location.name}`}
-                      className="flex min-h-11 items-center gap-2 font-display text-2xl font-black uppercase tracking-tight text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer select-none"
+                      aria-label={`Seleccionar espacio, actualmente ${location.name}`}
+                      className="flex min-h-11 items-center gap-2 font-display text-xl font-black uppercase tracking-tight text-linen hover:text-brass transition-colors cursor-pointer select-none"
                     >
-                      <MapPin className="h-4 w-4 text-brand-fire stroke-[2.2] shrink-0" />
+                      <MapPin className="h-4 w-4 text-brass stroke-[2.2] shrink-0" />
                       <span>{location.name}</span>
                       <ChevronDown
-                        className={`h-4 w-4 text-charcoal-ink/60 transition-transform shrink-0 ${
+                        className={`h-4 w-4 text-mist transition-transform shrink-0 ${
                           open ? "rotate-180" : ""
                         }`}
                       />
@@ -362,8 +342,8 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     {open && (
                       <ul
                         role="listbox"
-                        aria-label="Miami restaurant locations"
-                        className="absolute left-0 right-0 top-full mt-2 py-2 bg-cream-bg z-50 space-y-1"
+                        aria-label="Espacios de Andante Restaurante Bar"
+                        className="absolute left-0 right-0 top-full mt-2 py-2 bg-[#0E1726] border border-brass/30 z-50 space-y-1 shadow-2xl"
                       >
                         {availableLocations.map((loc) => (
                           <li key={loc.id} role="option" aria-selected={loc.id === location.id}>
@@ -373,14 +353,14 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                                 setLocation(loc.id);
                                 setOpen(false);
                               }}
-                              className={`block min-h-11 w-full px-3 py-2 text-left font-sans text-sm sm:text-xs uppercase tracking-wider font-bold transition-colors ${
+                              className={`block min-h-11 w-full px-3 py-2 text-left font-sans text-xs uppercase tracking-wider font-bold transition-colors ${
                                 loc.id === location.id
-                                  ? "font-black text-leaf-green"
-                                  : "text-charcoal-ink hover:text-leaf-green"
+                                  ? "font-black text-brass bg-surface/50"
+                                  : "text-linen hover:text-brass hover:bg-surface/30"
                               }`}
                             >
                               <div>{loc.name}</div>
-                              <div className="hidden md:block text-xs text-charcoal-ink/60 font-normal">
+                              <div className="text-[11px] text-mist font-normal">
                                 {loc.address.street}
                               </div>
                             </button>
@@ -394,29 +374,25 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     href={`https://maps.google.com/?q=${encodeURIComponent(location.address.fullAddress)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block font-sans text-sm sm:text-xs text-charcoal-ink/80 hover:text-leaf-green hover:underline transition-colors cursor-pointer"
-                    aria-label={`View ${location.address.fullAddress} on Google Maps`}
+                    className="block font-sans text-xs text-mist hover:text-brass hover:underline transition-colors cursor-pointer"
+                    aria-label={`Ver ${location.address.fullAddress} en Google Maps`}
                   >
                     {location.address.fullAddress}
                   </a>
-                  {openingHours ? (
-                    <p className="hidden md:block font-sans text-xs text-charcoal-ink/60">
-                      Todos los días de {openingHours.opens} a {openingHours.closes}
-                    </p>
-                  ) : null}
+
                   <a
                     href={`tel:${location.phone.replace(/[^0-9+]/g, "")}`}
-                    className="inline-flex min-h-11 items-center gap-1.5 text-leaf-green font-bold text-sm sm:text-xs uppercase tracking-wider hover:underline"
+                    className="inline-flex min-h-11 items-center gap-1.5 text-brass font-bold text-xs uppercase tracking-wider hover:underline"
                   >
                     <Phone className="h-3 w-3" aria-hidden="true" />
                     <span>{location.phone}</span>
                   </a>
                 </div>
 
-                {/* 3. CLUB MOJO / MI CUENTA (Acceso limpio sin duplicar tarjetas ni formularios) */}
-                <div className="space-y-1.5">
-                  <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-leaf-green block">
-                    CLUB MOJO MIAMI
+                {/* 3. EXPERIENCIA & MEMBRESÍA ANDANTE */}
+                <div className="space-y-1.5 pt-2 border-t border-brass/15">
+                  <span className="font-sans text-xs font-black uppercase tracking-widest text-brass block">
+                    MEMBRESÍA &amp; RESERVAS
                   </span>
                   <button
                     type="button"
@@ -426,71 +402,67 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     }}
                     className="group text-left cursor-pointer select-none"
                   >
-                    <p className="flex items-center gap-2 font-display text-2xl font-black uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
-                      MI PASAPORTE & BENEFICIOS
-                      <ArrowRight className="h-5 w-5 shrink-0 text-brand-fire" aria-hidden="true" />
+                    <p className="flex items-center gap-2 font-display text-xl font-black uppercase tracking-tight text-linen group-hover:text-brass transition-colors">
+                      ACCESO PREFERENCIAL A JAZZ
+                      <ArrowRight className="h-5 w-5 shrink-0 text-brass" aria-hidden="true" />
                     </p>
-                    <p className="hidden md:block font-sans text-xs text-charcoal-ink/75 mt-0.5">
-                      Gana 1 cafecito de bienvenida y acumula puntos en cada orden.
+                    <p className="font-sans text-xs text-mist mt-0.5">
+                      Reservas anticipadas para ciclos de jazz en vivo y catas en cava.
                     </p>
                   </button>
                 </div>
               </div>
 
               {/* Pie del Menú Drawer */}
-              <div className="hidden md:flex pt-8 items-center justify-between text-xs text-charcoal-ink/70 font-sans uppercase tracking-widest font-bold">
-                <span>Miami Cuban Kitchen</span>
-                <span className="text-leaf-green">Al Momento</span>
+              <div className="flex pt-6 items-center justify-between text-xs text-mist font-sans uppercase tracking-widest font-bold border-t border-brass/15">
+                <span>Palermo Hollywood · CABA</span>
+                <span className="text-brass">Tempo 76–108 PPM</span>
               </div>
             </motion.aside>
-        </div>
-      )}
-    </AnimatePresence>
+          </div>
+        )}
+      </AnimatePresence>
 
-    {/* Apartado Dedicado de Creación de Cuenta y Autenticación (Modal / Dialog) */}
-    <AnimatePresence>
-      {accountModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-          {/* Backdrop con desenfoque suave */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 bg-charcoal-ink/60"
-            onClick={() => setAccountModalOpen(false)}
-            aria-hidden="true"
-          />
-
-          {/* Contenedor del Modal Dual-Panel */}
-          <motion.div
-            ref={accountModalRef}
-            initial={{ opacity: 0, scale: 0.96, y: 12 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 12 }}
-            transition={{ type: "spring", stiffness: 450, damping: 32 }}
-            role="dialog"
-            aria-modal="true"
-            lang="es"
-            aria-label="Apartado de cuenta y Club Mojo"
-            className="relative z-50 w-full max-w-3xl lg:max-w-4xl bg-cream-bg my-auto overflow-hidden"
-          >
-            {/* Botón de Cierre Flotante Minimalista */}
-            <button
-              type="button"
+      {/* Apartado Dedicado de Cuenta / Reservas (Modal) */}
+      <AnimatePresence>
+        {accountModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 bg-[#0E1726]/80 backdrop-blur-md"
               onClick={() => setAccountModalOpen(false)}
-              aria-label="Cerrar apartado de cuenta"
-              className="absolute top-3.5 right-3.5 z-40 grid h-11 w-11 place-items-center text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
-            >
-              <X className="h-5 w-5 stroke-[2.2]" aria-hidden="true" />
-            </button>
+              aria-hidden="true"
+            />
 
-            {/* Módulo de Autenticación / Pasaporte Dual Panel */}
-            <AuthSwitch onAuthSuccess={() => {}} />
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
+            <motion.div
+              ref={accountModalRef}
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              transition={{ type: "spring", stiffness: 450, damping: 32 }}
+              role="dialog"
+              aria-modal="true"
+              lang="es"
+              aria-label="Apartado de cuenta y reservas Andante"
+              className="relative z-50 w-full max-w-3xl lg:max-w-4xl bg-surface border border-brass/30 my-auto overflow-hidden shadow-2xl"
+            >
+              <button
+                type="button"
+                onClick={() => setAccountModalOpen(false)}
+                aria-label="Cerrar apartado de reservas"
+                className="absolute top-3.5 right-3.5 z-40 grid h-11 w-11 place-items-center text-linen hover:text-brass transition-colors cursor-pointer"
+              >
+                <X className="h-5 w-5 stroke-[2.2]" aria-hidden="true" />
+              </button>
+
+              <AuthSwitch onAuthSuccess={() => {}} />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
