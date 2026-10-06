@@ -241,7 +241,7 @@ console.log(`  ✓ Side option price aggregation matches exact increments (${bas
     [...fs
       .readFileSync(path.resolve(process.cwd(), "src/components/mojo", file), "utf-8")
       .matchAll(/^\s*id: "([^"]+)",$/gm)].map((m) => m[1]);
-  const curatedIds = idsIn("CuratedMenu.tsx");
+  const curatedIds = idsIn("CuratedMenu.tsx").filter((id): id is string => typeof id === "string");
   const gridIds = new Set(menu.map((m) => m.id));
   assert.ok(curatedIds.length > 0 && gridIds.size > 0, "Both menus must expose item ids");
   const shared = curatedIds.filter((id) => gridIds.has(id));
