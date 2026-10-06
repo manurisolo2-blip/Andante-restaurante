@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Phone } from "lucide-react";
+import { Phone, CalendarHeart } from "lucide-react";
 import { CartProvider, useCart } from "@/components/mojo/cart";
 import { TopBar } from "@/components/mojo/TopBar";
 import { HeroSection } from "@/components/mojo/HeroSection";
@@ -15,14 +15,18 @@ import { Preloader } from "@/components/mojo/Preloader";
 import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { CuratedMenu } from "@/components/mojo/CuratedMenu";
 import { GoogleReviewsSection } from "@/components/mojo/GoogleReviewsSection";
+import { CulturalAgendaSection } from "@/components/mojo/CulturalAgendaSection";
+import { SpacesGallerySection } from "@/components/mojo/SpacesGallerySection";
+import { ContactMapSection } from "@/components/mojo/ContactMapSection";
+import { ReservationModal } from "@/components/mojo/ReservationModal";
 import { EditorialFooter } from "@/components/mojo/EditorialFooter";
 import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
 import { JellyWaveTransition } from "@/components/mojo/JellyWaveTransition";
 import type { MenuItem } from "@/data/menu";
 
-const title = "Andante Restaurante Bar | Bistró Contemporáneo & Coctelería en Palermo Hollywood";
+const title = "Andante Restaurante Bar | Alta Cocina Cosmopolita & Jazz en Palermo Hollywood";
 const description =
-  "Bistró contemporáneo, cafetería de especialidad, alta gastronomía estacional con opciones Sin TACC garantizadas, coctelería de autor y ciclos de jazz en Palermo Hollywood, Buenos Aires.";
+  "Enclave gastronómico premium en Palermo Hollywood. Cocina de autor por el chef Pablo Aroma, barra de autor por Santiago Contarino y ciclos de jazz acústico en vivo en Arévalo 1677.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +36,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "Andante Restaurante Bar, bistró Palermo Hollywood, restaurante Arévalo 1677, cafetería de especialidad CABA, menú Sin TACC CABA, coctelería de autor Buenos Aires, jazz en vivo Palermo, cava de vinos Palermo",
+          "restaurante con jazz en vivo Palermo Hollywood, coctelería de autor, cocina de autor Buenos Aires, bistró Palermo Hollywood, Pablo Aroma, Santiago Contarino, menú Sin TACC CABA, Arévalo 1677, catas de vino Palermo",
       },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
@@ -44,7 +48,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: "https://andantebar.com.ar/og-image.jpg" },
       {
         property: "og:image:alt",
-        content: "Andante Restaurante Bar - Bistró Contemporáneo en Palermo Hollywood",
+        content: "Andante Restaurante Bar - Alta Cocina Cosmopolita en Palermo Hollywood",
       },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
@@ -75,6 +79,15 @@ function IndexContent() {
   const { openCart } = useCart();
   const [selected, setSelected] = useState<MenuItem | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  // Estado del Modal de Reservas y Eventos
+  const [reservationOpen, setReservationOpen] = useState(false);
+  const [reservationEvent, setReservationEvent] = useState<string | undefined>(undefined);
+
+  const handleOpenReservation = (eventTitle?: string) => {
+    setReservationEvent(eventTitle);
+    setReservationOpen(true);
+  };
 
   // Refresco de ScrollTrigger al completar la carga de todas las imágenes del DOM
   useEffect(() => {
@@ -133,12 +146,13 @@ function IndexContent() {
       <div className="min-h-dvh bg-canvas text-linen">
         <TopBar onOpenCart={openCart} />
         <main className="bg-transparent pb-20 md:pb-0">
-          {/* Contenedor del Hero con pin/sticky: el hero se queda fijo y el fondo inferior sube tapándolo */}
+          {/* Contenedor del Hero con pin/sticky */}
           <div className="relative h-[200dvh]">
             <div className="sticky top-0 h-dvh w-full overflow-hidden z-10">
               <HeroSection
                 menuAnchorId="menu"
-                cateringHref="#catering"
+                cateringHref="#agenda-cultural"
+                onReservationClick={() => handleOpenReservation()}
                 shouldAnimateIn={isLoaded}
               />
             </div>
@@ -148,8 +162,10 @@ function IndexContent() {
             El fondo inferior que sube y tapa el hero con atmósfera Dark Luxury.
           */}
           <div className="relative z-20 -mt-[100dvh] bg-canvas shadow-[0_-24px_50px_rgba(0,0,0,0.5)]">
-            {/* Anatomía Gastronómica · Compás Andante */}
-            <CubanDeconstruction />
+            {/* Concepto Culinario & Equipo · Chef Ejecutivo Pablo Aroma */}
+            <div id="concepto-culinario">
+              <CubanDeconstruction />
+            </div>
 
             {/* Transición 1: Canvas Índigo -> Superficie Marino Profundo */}
             <JellyWaveTransition
@@ -159,7 +175,9 @@ function IndexContent() {
             />
 
             {/* Selección de Estación · Al Fuego (Sección Superficie) */}
-            <CuratedMenu />
+            <div id="curated-menu">
+              <CuratedMenu />
+            </div>
 
             {/* Transición 2: Superficie Marino Profundo -> Canvas Índigo */}
             <JellyWaveTransition
@@ -168,40 +186,63 @@ function IndexContent() {
               direction="up"
             />
 
+            {/* Carta Digital Interactiva (Pestañas Dinámicas & Filtros Sin TACC / Vegetariano) */}
             <section id="menu" className="scroll-mt-[var(--header-h)]">
               <CravStyleMenuGrid onSelect={setSelected} />
             </section>
 
+            {/* Música en Vivo & Agenda Cultural (Jazz Nights, Musique & Cuisine, Catas) */}
+            <CulturalAgendaSection onOpenReservation={handleOpenReservation} />
+
+            {/* Espacios del Local (Salón Azul, Patio Interior al Aire Libre, Cava Subsuelo) */}
+            <SpacesGallerySection onOpenReservation={handleOpenReservation} />
+
             {/* Testimonios y Reseñas de comensales en Palermo Hollywood */}
             <GoogleReviewsSection />
 
+            {/* Módulo de Eventos Corporativos & Catering Exclusivo */}
             <section
               id="catering"
               className="scroll-mt-[var(--header-h)] bg-surface/50 border-y border-brass/15 px-4 py-16 sm:px-6 lg:px-8"
             >
               <div className="mx-auto max-w-4xl text-center">
+                <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brass mb-3">
+                  <CalendarHeart className="h-4 w-4 text-amber" aria-hidden="true" />
+                  <span>CELEBRACIONES PRIVADAS &amp; EVENTOS CORPORATIVOS</span>
+                </div>
                 <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight uppercase text-linen leading-none">
-                  EXPERIENCIAS PRIVADAS, CATAS EN CAVA Y CICLOS DE JAZZ
+                  EXPERIENCIAS A MEDIDA EN PALERMO
                 </h2>
                 <p className="mx-auto mt-4 max-w-2xl font-sans text-base text-linen/80 leading-relaxed">
-                  Eventos corporativos a medida, catas guiadas por sommelier en nuestra cava subterránea y celebraciones exclusivas con gastronomía de estación y coctelería de autor.
+                  Cierres de salón completo, jornadas corporativas, catas guiadas por sommelier en la cava histórica y cenas de pasos de alta cocina firmadas por Pablo Aroma y Santiago Contarino.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <button
+                    type="button"
+                    onClick={() => handleOpenReservation("Evento Corporativo / Celebración Privada")}
+                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-brass px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none border border-brass shadow-lg"
+                  >
+                    <CalendarHeart className="h-4 w-4" aria-hidden="true" />
+                    <span>COTIZAR EVENTO PRIVADO</span>
+                  </button>
                   <a
-                    href="https://wa.me/5491147789000?text=Hola%20Andante%20Bar%2C%20quisiera%20consultar%20por%20experiencias%20privadas%20y%20eventos."
+                    href="https://wa.me/5491168673856?text=Hola%20Andante%20Bar%2C%20quisiera%20consultar%20por%20eventos%20privados%20y%20catering."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-brass px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none"
+                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-surface border border-brass/35 px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none"
                   >
-                    <Phone className="h-4 w-4" aria-hidden="true" />
-                    <span>CONSULTAR POR EXPERIENCIAS: +54 11 4778-9000</span>
+                    <Phone className="h-4 w-4 text-amber" aria-hidden="true" />
+                    <span>CONSULTA DIRECTA: +54 11 6867-3856</span>
                   </a>
                 </div>
-                <p className="mt-4 font-sans text-sm font-semibold text-mist uppercase tracking-wider">
-                  Arévalo 1677, Palermo Hollywood · Salón Central, Terraza Arbolada &amp; Cava Subsuelo
+                <p className="mt-4 font-sans text-xs sm:text-sm font-semibold text-mist uppercase tracking-wider">
+                  Arévalo 1677, Palermo Hollywood · Salón Azul, Patio Arbolado &amp; Cava Subsuelo
                 </p>
               </div>
             </section>
+
+            {/* Datos de Contacto, Mapa Interactivo de Google Maps & Horarios */}
+            <ContactMapSection />
 
             {/* Transición hacia el Editorial Footer */}
             <JellyWaveTransition
@@ -216,6 +257,11 @@ function IndexContent() {
         </main>
 
         <QuickOrderModal item={selected} onClose={() => setSelected(null)} />
+        <ReservationModal
+          isOpen={reservationOpen}
+          onClose={() => setReservationOpen(false)}
+          defaultEventTitle={reservationEvent}
+        />
         <CartSheet />
         <CartToast />
         <MobileActionBar onOpenCart={openCart} />

@@ -15,7 +15,19 @@ export function generateRestaurantSchema(location: Location = DEFAULT_LOCATION) 
     url: "https://andantebar.com.ar",
     telephone: location.phone,
     priceRange: "$$$",
-    servesCuisine: ["Bistró Contemporáneo", "Cocina de Mercado", "Opciones Sin TACC", "Coctelería de Autor"],
+    servesCuisine: ["Alta Cocina Cosmopolita", "Bistró Contemporáneo", "Cocina de Mercado", "Opciones Sin TACC", "Coctelería de Autor"],
+    founder: {
+      "@type": "Person",
+      "name": "Pablo Aroma",
+      "jobTitle": "Chef Ejecutivo",
+    },
+    employee: [
+      {
+        "@type": "Person",
+        "name": "Santiago Contarino",
+        "jobTitle": "Head Bartender",
+      },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: location.address.street,

@@ -21,9 +21,9 @@ console.log("  [2.1] Validating official store records...");
 assert.equal(locationsList.length, 3);
 
 const expectedStores = [
-  { id: "little-havana", phoneRaw: "5491147789000", phone: "+54 11 4778-9000", name: "Palermo Hollywood" },
-  { id: "brickell", phoneRaw: "5491147789001", phone: "+54 11 4778-9001", name: "Terraza & Barra Andante" },
-  { id: "doral", phoneRaw: "5491147789002", phone: "+54 11 4778-9002", name: "Cava Privada & Jazz" },
+  { id: "little-havana", phoneRaw: "5491168673856", phone: "+54 11 6867-3856", name: "Salón Azul (Palermo Hollywood)" },
+  { id: "brickell", phoneRaw: "5491168062589", phone: "+54 11 6806-2589", name: "Patio Interior al Aire Libre" },
+  { id: "doral", phoneRaw: "5491168673856", phone: "+54 11 6867-3856", name: "Cava Privada & Jazz" },
 ] as const;
 
 for (const exp of expectedStores) {
@@ -45,11 +45,11 @@ assert.equal(resolveLocation("brickell").id, "brickell");
 assert.equal(resolveLocation("doral").id, "doral");
 
 // Name matching & case insensitivity
-assert.equal(resolveLocation("Palermo Hollywood").id, "little-havana");
-assert.equal(resolveLocation("Terraza & Barra Andante").id, "brickell");
+assert.equal(resolveLocation("Salón Azul (Palermo Hollywood)").id, "little-havana");
+assert.equal(resolveLocation("Patio Interior al Aire Libre").id, "brickell");
 assert.equal(resolveLocation("Cava Privada & Jazz").id, "doral");
-assert.equal(resolveLocation("  palermo hollywood  ").id, "little-havana");
-assert.equal(resolveLocation("TERRAZA & BARRA ANDANTE").id, "brickell");
+assert.equal(resolveLocation("  salón azul (palermo hollywood)  ").id, "little-havana");
+assert.equal(resolveLocation("PATIO INTERIOR AL AIRE LIBRE").id, "brickell");
 
 // Object passing
 assert.equal(resolveLocation(LOCATIONS["brickell"]).id, "brickell");
@@ -90,10 +90,10 @@ for (const store of expectedStores) {
   assert.ok(decoded.includes("Total Estimado: $29.90"));
 }
 
-// Overload check: whatsappHref(lines, total) defaults to Little Havana (Palermo Hollywood)
+// Overload check: whatsappHref(lines, total) defaults to Salón Azul (Palermo Hollywood)
 const defaultUrl = whatsappHref(sampleLines, sampleTotal);
-assert.ok(defaultUrl.startsWith("https://wa.me/5491147789000?text="));
-assert.ok(decodeURIComponent(defaultUrl).includes("para Palermo Hollywood:"));
+assert.ok(defaultUrl.startsWith("https://wa.me/5491168673856?text="));
+assert.ok(decodeURIComponent(defaultUrl).includes("para Salón Azul (Palermo Hollywood):"));
 console.log("  ✓ Dynamic phone routing dynamically sets wa.me destination and greeting for each store.");
 
 // 4. Test Cart Content Preservation during Simulated Location Switch
@@ -161,22 +161,22 @@ console.log("  [2.4] Testing cart state preservation during location switching l
   assert.equal(cart.count, 3);
   assert.equal(cart.lines.length, 2);
   assert.equal(cart.total, 18.45 * 2 + 4.25); // 41.15
-  assert.equal(cart.location.name, "Palermo Hollywood");
+  assert.equal(cart.location.name, "Salón Azul (Palermo Hollywood)");
 
   const lhUrl = cart.getWhatsAppUrl();
-  assert.ok(lhUrl.includes("5491147789000"));
-  assert.ok(decodeURIComponent(lhUrl).includes("Palermo Hollywood"));
+  assert.ok(lhUrl.includes("5491168673856"));
+  assert.ok(decodeURIComponent(lhUrl).includes("Salón Azul (Palermo Hollywood)"));
 
-  // Switch to Brickell (Terraza)
+  // Switch to Brickell (Patio Interior)
   cart.setLocation("brickell");
-  assert.equal(cart.location.name, "Terraza & Barra Andante");
-  assert.equal(cart.count, 3, "Cart count must be preserved after switching to Terraza");
-  assert.equal(cart.lines.length, 2, "Cart lines must be preserved after switching to Terraza");
-  assert.equal(cart.total, 41.15, "Cart total must be preserved after switching to Terraza");
+  assert.equal(cart.location.name, "Patio Interior al Aire Libre");
+  assert.equal(cart.count, 3, "Cart count must be preserved after switching to Patio");
+  assert.equal(cart.lines.length, 2, "Cart lines must be preserved after switching to Patio");
+  assert.equal(cart.total, 41.15, "Cart total must be preserved after switching to Patio");
 
   const brickellUrl = cart.getWhatsAppUrl();
-  assert.ok(brickellUrl.includes("5491147789001"), "Target phone must update to Terraza (5491147789001)");
-  assert.ok(decodeURIComponent(brickellUrl).includes("Terraza & Barra Andante"), "Message header must update to Terraza");
+  assert.ok(brickellUrl.includes("5491168062589"), "Target phone must update to Patio (5491168062589)");
+  assert.ok(decodeURIComponent(brickellUrl).includes("Patio Interior al Aire Libre"), "Message header must update to Patio");
 
   // Switch to Doral (Cava)
   cart.setLocation("doral");
@@ -186,16 +186,16 @@ console.log("  [2.4] Testing cart state preservation during location switching l
   assert.equal(cart.total, 41.15, "Cart total must be preserved after switching to Cava");
 
   const doralUrl = cart.getWhatsAppUrl();
-  assert.ok(doralUrl.includes("5491147789002"), "Target phone must update to Cava (5491147789002)");
+  assert.ok(doralUrl.includes("5491168673856"), "Target phone must update to Cava (5491168673856)");
   assert.ok(decodeURIComponent(doralUrl).includes("Cava Privada & Jazz"), "Message header must update to Cava");
 
-  // Switch back to Little Havana (Palermo Hollywood)
+  // Switch back to Little Havana (Salón Azul)
   cart.setLocation("little-havana");
-  assert.equal(cart.location.name, "Palermo Hollywood");
+  assert.equal(cart.location.name, "Salón Azul (Palermo Hollywood)");
   assert.equal(cart.count, 3);
   assert.equal(cart.lines.length, 2);
   assert.equal(cart.total, 41.15);
-  assert.ok(cart.getWhatsAppUrl().includes("5491147789000"));
+  assert.ok(cart.getWhatsAppUrl().includes("5491168673856"));
 
   console.log("  ✓ Cart contents (items, quantities, sides, total) remain 100% intact across repeated store location switches.");
 }

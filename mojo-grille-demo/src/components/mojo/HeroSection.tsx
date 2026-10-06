@@ -7,6 +7,7 @@ import { useReducedMotion } from "@/lib/useReducedMotion";
 
 export interface HeroSectionProps {
   onOrderClick?: () => void;
+  onReservationClick?: () => void;
   menuAnchorId?: string;
   cateringHref?: string;
   /**
@@ -17,6 +18,7 @@ export interface HeroSectionProps {
 
 export function HeroSection({
   onOrderClick,
+  onReservationClick,
   menuAnchorId = "menu",
   cateringHref = "#catering",
   shouldAnimateIn = true,
@@ -68,12 +70,6 @@ export function HeroSection({
       : "opacity-0 translate-y-4";
 
   return (
-    /*
-      Sin select-none en el contenedor: colgado en el <section> impedía
-      copiar el titular, el subtítulo y el "4.7 Stars". El bloqueo de
-      selección sólo tiene sentido en los controles, y esos lo llevan por
-      su cuenta.
-    */
     <section
       ref={sectionRef}
       id="top"
@@ -82,7 +78,7 @@ export function HeroSection({
     >
       {/* Descriptor editorial para lectores de pantalla y buscadores */}
       <p className="sr-only">
-        Bistró contemporáneo, cocina de mercado estacional, opciones Sin TACC garantizadas y coctelería con jazz en vivo en Palermo Hollywood.
+        Andante: Un viaje por el mundo a través del paladar. Cocina de autor, coctelería internacional y sesiones de jazz en vivo en Palermo Hollywood.
       </p>
 
       {/* Fondo de vídeo estático con velo profundo de medianoche */}
@@ -110,7 +106,7 @@ export function HeroSection({
                 aria-hidden="true"
               />
               <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.14em] sm:tracking-[0.2em] text-brass">
-                TEMPO 76–108 PPM · PALERMO HOLLYWOOD · ARÉVALO 1677
+                TEMPO ANDANTE (76–108 PPM) · EL ARTE DE DESACELERAR EL RITMO URBANO · PALERMO HOLLYWOOD
               </span>
             </div>
 
@@ -118,9 +114,9 @@ export function HeroSection({
             <div className={`w-full max-w-7xl mx-auto flex justify-center overflow-x-clip ${animItemClass}`}>
               <HoverHighlightText
                 as="h1"
-                text="EL ARTE DE DESACELERAR EL RITMO URBANO"
-                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(3.8rem,8.5vw,8.5rem)] font-black uppercase tracking-tight text-linen leading-[0.88] text-center"
-                highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(3.8rem,8.5vw,8.5rem)] font-black uppercase tracking-tight text-brass leading-[0.88] text-center"
+                text="ANDANTE: UN VIAJE POR EL MUNDO A TRAVÉS DEL PALADAR"
+                baseClassName="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[clamp(3.2rem,6.8vw,6.8rem)] font-black uppercase tracking-tight text-linen leading-[0.92] text-center"
+                highlightClassName="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[clamp(3.2rem,6.8vw,6.8rem)] font-black uppercase tracking-tight text-brass leading-[0.92] text-center"
                 strokeColor="#C9A86A"
                 strokeWidth={1.5}
                 spotlightRadius={220}
@@ -131,35 +127,35 @@ export function HeroSection({
 
             {/* Subtítulo Narrativo Editorial */}
             <p className={`max-w-4xl text-balance font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-mist text-center font-normal ${animItemClass}`}>
-              Bistró contemporáneo y coctelería nocturna. Dualidad armónica: cafetería de especialidad y cocina de mercado de día; alta gastronomía estacional con{" "}
+              Cocina de autor, coctelería internacional y sesiones de jazz en vivo en Palermo Hollywood. Técnicas de alta escuela fusionadas con sabores de Asia, Europa y Latinoamérica con{" "}
               <span className="font-bold underline decoration-amber decoration-[2px] underline-offset-4 text-linen">
                 opciones Sin TACC garantizadas
-              </span>{" "}
-              y ciclos de jazz en vivo al caer la noche.
+              </span>.
             </p>
 
-            {/* Botones de Llamada a la Acción: EXPLORAR CARTA y RESERVAS */}
+            {/* Botones de Llamada a la Acción: RESERVAR MESA y VER CARTA */}
             <div className={`pt-6 sm:pt-8 flex flex-col items-center justify-center gap-4 sm:flex-row ${animItemClass}`}>
+              <button
+                type="button"
+                onClick={() => onReservationClick ? onReservationClick() : undefined}
+                className="inline-flex items-center justify-center gap-2.5 rounded-none bg-brass px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors select-none shadow-lg cursor-pointer border border-brass"
+              >
+                <CalendarHeart className="h-4 w-4" aria-hidden="true" />
+                <span>RESERVAR MESA</span>
+              </button>
+
               <MagneticButton
                 href={`#${menuAnchorId}`}
                 onClick={handleScrollToMenu}
-                className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-brass px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-amber hover:text-linen transition-colors cursor-pointer select-none border border-brass shadow-lg"
+                className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-surface px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none border border-brass/35 shadow-md"
               >
                 <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
-                <span>EXPLORAR CARTA</span>
+                <span>VER CARTA</span>
                 <ArrowRight
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                   aria-hidden="true"
                 />
               </MagneticButton>
-
-              <a
-                href={cateringHref}
-                className="inline-flex items-center justify-center gap-2.5 rounded-none bg-surface border border-brass/35 px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors select-none shadow-md"
-              >
-                <CalendarHeart className="h-4 w-4 text-amber" aria-hidden="true" />
-                <span>RESERVAR MESA · JAZZ</span>
-              </a>
             </div>
           </div>
 

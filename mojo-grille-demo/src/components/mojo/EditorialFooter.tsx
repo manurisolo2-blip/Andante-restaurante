@@ -8,11 +8,11 @@ export interface EditorialFooterProps {
 }
 
 const FOOTER_LINKS = [
-  { href: "#cuban-deconstruction", label: "Anatomía de Nuestra Cocina" },
-  { href: "#curated-menu", label: "Selección de Estación (Al Fuego)" },
-  { href: "#menu", label: "Carta & Maridajes" },
-  { href: "#reviews", label: "Ecos de Palermo Hollywood" },
-  { href: "#catering", label: "Ciclos de Jazz & Cava Privada" },
+  { href: "#top", label: "Inicio · Filosofía" },
+  { href: "#carta-digital", label: "Carta Digital Interactiva" },
+  { href: "#agenda-cultural", label: "Música en Vivo & Agenda Cultural" },
+  { href: "#espacios", label: "Espacios: Salón Azul & Patio" },
+  { href: "#contacto", label: "Ubicación, Mapa & Horarios" },
 ] as const;
 
 export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
@@ -142,19 +142,25 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 className="inline-flex min-h-11 items-center hover:text-brass hover:underline transition-colors cursor-pointer text-sm"
                 aria-label="Ver Arévalo 1677 en Google Maps"
               >
-                Arévalo 1677, Palermo Hollywood, CABA, Argentina
+                Arévalo 1677, Palermo Hollywood, C1414CQG, Buenos Aires
               </a>
-              <p className="text-xs text-mist">Salón Principal · Terraza Andante · Cava Subsuelo</p>
+              <p className="text-xs text-mist">Salón Azul · Patio Interior · Cava Privada</p>
+              <p className="text-xs text-brass font-bold pt-1">
+                Tel: +54 11 6867-3856 / +54 11 6806-2589
+              </p>
             </div>
 
-            <div className="pt-2 border-t border-brass/20 space-y-1 font-sans text-sm text-mist leading-relaxed">
+            <div className="pt-2 border-t border-brass/20 space-y-1 font-sans text-xs sm:text-sm text-mist leading-relaxed">
               <div className="flex items-center gap-1.5 font-bold text-linen">
                 <Clock className="h-3.5 w-3.5 text-brass" aria-hidden="true" />
-                <span>Compás de Apertura:</span>
+                <span>Horarios Oficiales:</span>
               </div>
-              <p>Martes a Domingo: 09:00 a 01:00 hs</p>
-              <p>Cafetería de Especialidad: 09:00 a 19:00 hs</p>
-              <p>Cocina, Coctelería &amp; Jazz: 20:00 a 01:00 hs</p>
+              <p>Salón General: Mar a Dom 09:00 a 01:00 hs (Lunes cerrado)</p>
+              <p>Bar &amp; Cenas: Mar a Sáb 18:00 a 01:00 hs</p>
+              <p>Jazz Acústico: Mar y Jue 21:00 hs</p>
+              <p className="pt-1 text-brass font-semibold">
+                Instagram: <a href="https://www.instagram.com/somos.andante" target="_blank" rel="noopener noreferrer" className="underline hover:text-linen">@somos.andante</a>
+              </p>
             </div>
           </div>
 

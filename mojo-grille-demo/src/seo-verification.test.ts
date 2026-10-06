@@ -22,7 +22,7 @@ for (const loc of locationsList) {
   assert.equal(schema.name, `Andante Restaurante Bar - ${loc.name}`);
   assert.equal(schema.telephone, loc.phone);
   assert.equal(schema.priceRange, "$$$");
-  assert.deepEqual(schema.servesCuisine, ["Bistró Contemporáneo", "Cocina de Mercado", "Opciones Sin TACC", "Coctelería de Autor"]);
+  assert.deepEqual(schema.servesCuisine, ["Alta Cocina Cosmopolita", "Bistró Contemporáneo", "Cocina de Mercado", "Opciones Sin TACC", "Coctelería de Autor"]);
   assert.equal(schema.address.streetAddress, loc.address.street);
   assert.equal(schema.address.addressRegion, "BA");
   assert.equal(schema.address.addressCountry, "AR");

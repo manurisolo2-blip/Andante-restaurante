@@ -30,19 +30,19 @@ for (const loc of locationsList) {
   assert.match(parsed.phoneRaw, /^\d{10,15}$/, "phoneRaw must be clean digits");
   assert.ok(parsed.coordinates, "coordinates should be defined");
 }
-assert.equal(LOCATIONS["little-havana"].phoneRaw, "5491147789000");
-assert.equal(LOCATIONS["brickell"].phoneRaw, "5491147789001");
-assert.equal(LOCATIONS["doral"].phoneRaw, "5491147789002");
+assert.equal(LOCATIONS["little-havana"].phoneRaw, "5491168673856");
+assert.equal(LOCATIONS["brickell"].phoneRaw, "5491168062589");
+assert.equal(LOCATIONS["doral"].phoneRaw, "5491168673856");
 assert.equal(DEFAULT_LOCATION.id, "little-havana");
 
 // Location resolver tests
 assert.equal(resolveLocation("brickell").id, "brickell");
-assert.equal(resolveLocation("Terraza & Barra Andante").id, "brickell");
-assert.equal(resolveLocation("Palermo Hollywood").id, "little-havana");
+assert.equal(resolveLocation("Patio Interior al Aire Libre").id, "brickell");
+assert.equal(resolveLocation("Salón Azul (Palermo Hollywood)").id, "little-havana");
 assert.equal(resolveLocation("doral").id, "doral");
 assert.equal(resolveLocation("unknown-location").id, "little-havana");
 assert.equal(resolveLocation(null).id, "little-havana");
-assert.equal(getLocationById("brickell")?.name, "Terraza & Barra Andante");
+assert.equal(getLocationById("brickell")?.name, "Patio Interior al Aire Libre");
 console.log("✓ Store locations verified.");
 
 // 2. Validate Menu Catalog & Side Options with Zod
@@ -96,9 +96,9 @@ console.log("4. Validating WhatsApp order builder & multi-store routing...");
 
 // Case A: Empty cart message
 const emptyMsgLH = formatWhatsAppMessage("little-havana", [], 0);
-assert.equal(emptyMsgLH, "Hola Andante Bar! Quisiera consultar por una reserva o pedido en Palermo Hollywood (Arévalo 1677, Palermo Hollywood).");
+assert.equal(emptyMsgLH, "Hola Andante Bar! Quisiera consultar por una reserva o pedido en Salón Azul (Palermo Hollywood) (Arévalo 1677, Palermo Hollywood).");
 const emptyUrlLH = whatsappHref("little-havana", [], 0);
-assert.ok(emptyUrlLH.startsWith("https://wa.me/5491147789000?text="));
+assert.ok(emptyUrlLH.startsWith("https://wa.me/5491168673856?text="));
 assert.ok(decodeURIComponent(emptyUrlLH).includes("Palermo Hollywood"));
 
 // Case B: Brickell store order
@@ -125,22 +125,22 @@ const sampleLines = [
 sampleLines.forEach((l) => CartLineSchema.parse(l));
 
 const brickellMsg = formatWhatsAppMessage("brickell", sampleLines, 51.85);
-assert.ok(brickellMsg.includes("Terraza & Barra Andante"), "Message must mention Terraza & Barra Andante");
+assert.ok(brickellMsg.includes("Patio Interior al Aire Libre"), "Message must mention Patio Interior al Aire Libre");
 assert.ok(brickellMsg.includes("• 1× Ropa Vieja Bowl (Arroz Moro (Black beans & rice), Crispy Tostones con Mojo) — $18.45"));
 assert.ok(brickellMsg.includes("• 2× El Cubano Prensado (Sweet Plátanos Maduros) — $33.40"));
 assert.ok(brickellMsg.includes("Total Estimado: $51.85"));
 assert.ok(brickellMsg.includes("Muchas gracias!"));
 
 const brickellUrl = whatsappHref("brickell", sampleLines, 51.85);
-assert.ok(brickellUrl.startsWith("https://wa.me/5491147789001?text="), "Brickell URL must use phoneRaw 5491147789001");
+assert.ok(brickellUrl.startsWith("https://wa.me/5491168062589?text="), "Brickell URL must use phoneRaw 5491168062589");
 
 // Case C: Doral routing
 const doralUrl = whatsappHref("doral", sampleLines, 51.85);
-assert.ok(doralUrl.startsWith("https://wa.me/5491147789002?text="), "Doral URL must use phoneRaw 5491147789002");
+assert.ok(doralUrl.startsWith("https://wa.me/5491168673856?text="), "Doral URL must use phoneRaw 5491168673856");
 
 // Case D: Backward-compatible 2-argument signature
 const legacyUrl = whatsappHref(sampleLines, 51.85);
-assert.ok(legacyUrl.startsWith("https://wa.me/5491147789000?text="), "Legacy signature must default to Palermo Hollywood");
+assert.ok(legacyUrl.startsWith("https://wa.me/5491168673856?text="), "Legacy signature must default to Palermo Hollywood");
 
 // Case E: Payload schema
 const checkoutObj = buildWhatsAppCheckout({
@@ -148,8 +148,8 @@ const checkoutObj = buildWhatsAppCheckout({
   lines: sampleLines,
   total: 51.85,
 });
-assert.ok(checkoutObj.url.startsWith("https://wa.me/5491147789001"));
-assert.equal(checkoutObj.phone, "+54 11 4778-9001");
+assert.ok(checkoutObj.url.startsWith("https://wa.me/5491168062589"));
+assert.equal(checkoutObj.phone, "+54 11 6806-2589");
 console.log("✓ WhatsApp builder verified across all stores and overloads.");
 
 // 5. Validate Schema.org SEO Structured Data
@@ -157,9 +157,9 @@ console.log("5. Validating Schema.org SEO structured data...");
 const restaurantSchema = generateRestaurantSchema(LOCATIONS["brickell"]);
 assert.equal(restaurantSchema["@context"], "https://schema.org");
 assert.equal(restaurantSchema["@type"], "Restaurant");
-assert.equal(restaurantSchema.name, "Andante Restaurante Bar - Terraza & Barra Andante");
-assert.equal(restaurantSchema.telephone, "+54 11 4778-9001");
-assert.equal(restaurantSchema.address.streetAddress, "Arévalo 1677 (Terraza Jardín)");
+assert.equal(restaurantSchema.name, "Andante Restaurante Bar - Patio Interior al Aire Libre");
+assert.equal(restaurantSchema.telephone, "+54 11 6806-2589");
+assert.equal(restaurantSchema.address.streetAddress, "Arévalo 1677 (Patio Interior)");
 assert.equal(restaurantSchema.geo.latitude, -34.5815);
 assert.equal(restaurantSchema.geo.longitude, -58.4372);
 

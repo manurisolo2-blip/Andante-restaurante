@@ -464,10 +464,10 @@ export function CubanDeconstruction() {
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-3 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
           <span className="font-sans text-xs uppercase tracking-[0.25em] text-brass font-bold">
-            COMPÁS 76 PPM · ALQUIMIA DE MERCADO
+            CHEF EJECUTIVO PABLO AROMA (EX NICKY HARRISON)
           </span>
           <h2 className="font-display text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-linen mt-0.5 sm:mt-1 leading-none">
-            ANATOMÍA GASTRONÓMICA
+            CONCEPTO CULINARIO &amp; EQUIPO
           </h2>
         </div>
 
@@ -601,27 +601,23 @@ export function CubanDeconstruction() {
           </div>
         </div>
 
-        {/* Botón Flotante para Ordenar el Cubano en Inglés */}
+        {/* Botón Flotante para Explorar Carta */}
         <div className="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 z-30 flex items-center">
           <a
-            href="#curated-menu"
-            className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg hover:text-charcoal-ink min-h-11 py-2.5 px-4 sm:py-3 sm:px-6 text-sm sm:text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-2.5 sm:gap-3 rounded-none cursor-pointer group shadow-none"
+            href="#menu"
+            className="bg-brass hover:bg-linen text-canvas font-sans min-h-11 py-2.5 px-4 sm:py-3 sm:px-6 text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2.5 sm:gap-3 rounded-none cursor-pointer group shadow-lg"
           >
             <span className="flex items-center gap-2">
-              <span>ORDER LIVE-FIRE</span>
+              <span>EXPLORAR CARTA DIGITAL</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-            </span>
-            <span className="h-3 w-px bg-cream-bg/30" />
-            <span className="font-sans text-sm sm:text-xs font-black tracking-tight text-cream-bg">
-              $12.95
             </span>
           </a>
         </div>
 
         {/* Indicador de scroll (visible solo en tablet/desktop para no solapar controles en móviles) */}
-        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-2 text-cream-bg font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-charcoal-ink px-4 py-1.5">
-          <span className="animate-bounce text-brand-fire">↓</span>
-          <span>Scroll to deconstruct · Scroll up to assemble</span>
+        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-2 text-linen font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-surface/90 border border-brass/30 px-4 py-1.5 shadow-md">
+          <span className="animate-bounce text-brass">↓</span>
+          <span>Deslizá para deconstruir · Técnicas del mundo en Palermo</span>
         </div>
       </div>
     </section>

@@ -188,9 +188,9 @@ console.log(`  ✓ Mega cart URL length is ${megaUrl.length} characters and deco
 // 7. Empty Cart Fallback URL
 console.log("  [3.7] Testing empty cart URL generation...");
 const emptyUrl = whatsappHref("brickell", [], 0);
-assert.ok(emptyUrl.includes("https://wa.me/5491147789001?text="));
+assert.ok(emptyUrl.includes("https://wa.me/5491168062589?text="));
 const decodedEmpty = new URL(emptyUrl).searchParams.get("text")!;
-assert.equal(decodedEmpty, "Hola Andante Bar! Quisiera consultar por una reserva o pedido en Terraza & Barra Andante (Arévalo 1677, Palermo Hollywood).");
+assert.equal(decodedEmpty, "Hola Andante Bar! Quisiera consultar por una reserva o pedido en Patio Interior al Aire Libre (Arévalo 1677, Palermo Hollywood).");
 console.log("  ✓ Empty cart triggers courteous store-specific greeting URL.");
 
 console.log("=== [PASS] WhatsApp Link & URL Encoding Robustness Passed Cleanly ===\n");

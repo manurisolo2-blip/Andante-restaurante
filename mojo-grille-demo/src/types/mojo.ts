@@ -72,6 +72,11 @@ export const LocationSchema = z.object({
 // ----------------------------------------------------------------------------
 
 export const CATEGORY_IDS = [
+  "entradas",
+  "principales",
+  "postres",
+  "barra",
+  "cafeteria",
   "favoritos",
   "bowls",
   "sandwiches",
@@ -82,6 +87,11 @@ export const CATEGORY_IDS = [
 export type CategoryId = (typeof CATEGORY_IDS)[number];
 
 export const CategoryIdSchema = z.enum([
+  "entradas",
+  "principales",
+  "postres",
+  "barra",
+  "cafeteria",
   "favoritos",
   "bowls",
   "sandwiches",
@@ -105,8 +115,11 @@ export const CategorySchema = z.object({
 export const BADGE_TYPES = [
   "Firma Andante",
   "Sin TACC",
+  "Vegetariano",
   "Coctelería de Autor",
   "De Estación",
+  "Chef Pablo Aroma",
+  "Santiago Contarino",
   "Mojo Signature",
   "Popular",
   "Top Seller",
@@ -117,8 +130,11 @@ export type BadgeType = (typeof BADGE_TYPES)[number];
 export const BadgeTypeSchema = z.enum([
   "Firma Andante",
   "Sin TACC",
+  "Vegetariano",
   "Coctelería de Autor",
   "De Estación",
+  "Chef Pablo Aroma",
+  "Santiago Contarino",
   "Mojo Signature",
   "Popular",
   "Top Seller",
@@ -153,6 +169,10 @@ export interface MenuItem {
   badge?: BadgeType | undefined;
   sidesAllowed: boolean;
   featured?: boolean | undefined;
+  isGlutenFree?: boolean | undefined;
+  isVegetarian?: boolean | undefined;
+  chefNotes?: string | undefined;
+  pairing?: string | undefined;
 }
 
 export const MenuItemSchema = z.object({
@@ -165,6 +185,10 @@ export const MenuItemSchema = z.object({
   badge: BadgeTypeSchema.optional(),
   sidesAllowed: z.boolean(),
   featured: z.boolean().optional(),
+  isGlutenFree: z.boolean().optional(),
+  isVegetarian: z.boolean().optional(),
+  chefNotes: z.string().optional(),
+  pairing: z.string().optional(),
 });
 
 // ----------------------------------------------------------------------------

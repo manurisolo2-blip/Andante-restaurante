@@ -285,11 +285,13 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     CARTA &amp; EXPERIENCIA SENSORIAL
                   </span>
                   {[
-                    { href: "#cuban-deconstruction", label: "Anatomía de Nuestra Cocina" },
-                    { href: "#curated-menu", label: "Selección de Estación" },
-                    { href: "#menu", label: "Carta & Maridajes" },
-                    { href: "#reviews", label: "Ecos de Palermo Hollywood" },
-                    { href: "#catering", label: "Ciclos de Jazz & Cava Privada" },
+                    { href: "#top", label: "Inicio · Filosofía" },
+                    { href: "#concepto-culinario", label: "Concepto Chef Pablo Aroma" },
+                    { href: "#curated-menu", label: "Selección Al Fuego" },
+                    { href: "#carta-digital", label: "Carta Digital Interactiva" },
+                    { href: "#agenda-cultural", label: "Música en Vivo & Jazz" },
+                    { href: "#espacios", label: "Salón Azul & Patio Interior" },
+                    { href: "#contacto", label: "Ubicación, Mapa & Horarios" },
                   ].map((item) => (
                     <a
                       key={item.href}
@@ -297,7 +299,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                       onClick={() => setMenuDrawerOpen(false)}
                       className="group flex min-h-11 items-center justify-between py-2 text-linen hover:text-brass transition-colors cursor-pointer"
                     >
-                      <span className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight">
+                      <span className="font-display text-xl sm:text-2xl font-black uppercase tracking-tight">
                         {item.label}
                       </span>
                       <ArrowRight

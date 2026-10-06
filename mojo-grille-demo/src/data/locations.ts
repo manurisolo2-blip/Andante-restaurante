@@ -7,62 +7,62 @@ import type { Location, LocationId } from "@/types/mojo";
 export const LOCATIONS: Record<LocationId, Location> = {
   "little-havana": {
     id: "little-havana",
-    name: "Palermo Hollywood",
-    slug: "palermo-hollywood",
-    phone: "+54 11 4778-9000",
-    phoneRaw: "5491147789000",
+    name: "Salón Azul (Palermo Hollywood)",
+    slug: "salon-azul",
+    phone: "+54 11 6867-3856",
+    phoneRaw: "5491168673856",
     address: {
       street: "Arévalo 1677",
       city: "Palermo Hollywood, CABA",
       state: "BA",
-      zipCode: "C1414",
-      fullAddress: "Arévalo 1677, Palermo Hollywood, C1414 CABA, Argentina",
+      zipCode: "C1414CQG",
+      fullAddress: "Arévalo 1677, Palermo Hollywood, C1414CQG, Ciudad Autónoma de Buenos Aires, Argentina",
     },
     coordinates: {
       latitude: -34.5815,
       longitude: -58.4372,
     },
-    hours: "Mar a Dom 09:00 a 01:00 hs (Cocina de mercado & Jazz)",
+    hours: "Mar a Dom 09:00 a 01:00 hs (Lunes cerrado)",
     isPrimary: true,
   },
   brickell: {
     id: "brickell",
-    name: "Terraza & Barra Andante",
-    slug: "terraza-andante",
-    phone: "+54 11 4778-9001",
-    phoneRaw: "5491147789001",
+    name: "Patio Interior al Aire Libre",
+    slug: "patio-interior",
+    phone: "+54 11 6806-2589",
+    phoneRaw: "5491168062589",
     address: {
-      street: "Arévalo 1677 (Terraza Jardín)",
+      street: "Arévalo 1677 (Patio Interior)",
       city: "Palermo Hollywood, CABA",
       state: "BA",
-      zipCode: "C1414",
-      fullAddress: "Arévalo 1677, Terraza Andante, Palermo Hollywood, Argentina",
+      zipCode: "C1414CQG",
+      fullAddress: "Arévalo 1677, Patio Interior, Palermo Hollywood, C1414CQG, Argentina",
     },
     coordinates: {
       latitude: -34.5815,
       longitude: -58.4372,
     },
-    hours: "Mar a Dom 18:00 a 02:00 hs (Coctelería & Acústico)",
+    hours: "Mar a Sáb 18:00 a 01:00 hs (Bar & Cenas)",
     isPrimary: false,
   },
   doral: {
     id: "doral",
     name: "Cava Privada & Jazz",
     slug: "cava-jazz",
-    phone: "+54 11 4778-9002",
-    phoneRaw: "5491147789002",
+    phone: "+54 11 6867-3856",
+    phoneRaw: "5491168673856",
     address: {
       street: "Arévalo 1677 (Cava Subsuelo)",
       city: "Palermo Hollywood, CABA",
       state: "BA",
-      zipCode: "C1414",
-      fullAddress: "Arévalo 1677, Cava Privada, Palermo Hollywood, Argentina",
+      zipCode: "C1414CQG",
+      fullAddress: "Arévalo 1677, Cava Privada, Palermo Hollywood, C1414CQG, Argentina",
     },
     coordinates: {
       latitude: -34.5815,
       longitude: -58.4372,
     },
-    hours: "Jue a Dom 20:00 a 02:00 hs (Ciclos de Jazz & Catas)",
+    hours: "Mar y Jue 21:00 hs (Jazz Nights) · Catas Guiadas",
     isPrimary: false,
   },
 };
@@ -98,16 +98,26 @@ export function resolveLocation(input?: LocationId | Location | string | null): 
     if (Object.hasOwn(LOCATIONS, input)) {
       return LOCATIONS[input as LocationId];
     }
-    // Slugified match (e.g. "Little Havana" -> "little-havana")
-    const slug = input.toLowerCase().trim().replace(/\s+/g, "-");
+    const normalized = input.toLowerCase().trim();
+    if (normalized.includes("palermo") || normalized.includes("azul") || normalized.includes("central") || normalized.includes("little-havana")) {
+      return LOCATIONS["little-havana"];
+    }
+    if (normalized.includes("patio") || normalized.includes("terraza") || normalized.includes("brickell")) {
+      return LOCATIONS["brickell"];
+    }
+    if (normalized.includes("cava") || normalized.includes("doral") || normalized.includes("jazz")) {
+      return LOCATIONS["doral"];
+    }
+    // Slugified match
+    const slug = normalized.replace(/\s+/g, "-");
     if (Object.hasOwn(LOCATIONS, slug)) {
       return LOCATIONS[slug as LocationId];
     }
     // Case-insensitive name or slug match
     const byMatch = locationsList.find(
       (l) =>
-        l.name.toLowerCase() === input.toLowerCase().trim() ||
-        l.slug.toLowerCase() === input.toLowerCase().trim() ||
+        l.name.toLowerCase() === normalized ||
+        l.slug.toLowerCase() === normalized ||
         l.slug === slug,
     );
     if (byMatch) return byMatch;
