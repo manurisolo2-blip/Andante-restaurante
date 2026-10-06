@@ -162,7 +162,13 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               className="flex min-h-11 min-w-0 items-center gap-3 group cursor-pointer select-none"
               aria-label="Andante Restaurante Bar Home"
             >
-              <AndanteAstrolabe className="h-9 w-9 text-brass transition-transform duration-500 group-hover:rotate-45" />
+              <img
+                src="/assets/andante-isotipo.png"
+                alt="Andante Isotipo"
+                width={36}
+                height={36}
+                className="h-9 w-9 object-contain rounded-full border border-brass/40 shadow-sm transition-transform duration-500 group-hover:rotate-45"
+              />
               <div className="flex flex-col">
                 <span className="font-display text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-[0.15em] text-linen leading-none transition-colors group-hover:text-brass truncate">
                   ANDANTE
@@ -264,7 +270,13 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 {/* Encabezado del Menú Drawer */}
                 <div className="flex items-center justify-between border-b border-brass/15 pb-4">
                   <div className="flex items-center gap-2.5">
-                    <AndanteAstrolabe className="h-7 w-7 text-brass" />
+                    <img
+                      src="/assets/andante-isotipo.png"
+                      alt="Andante Isotipo"
+                      width={28}
+                      height={28}
+                      className="h-7 w-7 object-contain rounded-full border border-brass/40"
+                    />
                     <span className="font-display text-2xl sm:text-3xl font-black uppercase tracking-wider text-linen">
                       ANDANTE <span className="text-brass">BAR</span>
                     </span>

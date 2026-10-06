@@ -103,21 +103,29 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
     >
       <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         
-        {/* 1. Marca de agua superior */}
+        {/* 1. Marca de agua superior e identidad oficial */}
         <div className="w-full border-b border-brass/20 pb-10 sm:pb-14 overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-6">
+            <img
+              src="/assets/andante-logo.png"
+              alt="Andante Restaurante Bar"
+              className="h-20 sm:h-24 w-auto object-contain rounded-sm"
+              loading="lazy"
+            />
+            <div className="text-center sm:text-right">
+              <p className="font-sans font-bold uppercase tracking-[0.18em] text-brass text-xs sm:text-sm">
+                ARÉVALO 1677 · TEMPO 76–108 PPM · PALERMO HOLLYWOOD
+              </p>
+              <p className="font-sans text-xs text-mist uppercase tracking-widest mt-1">
+                BISTRÓ CONTEMPORÁNEO &amp; COCTELERÍA NOCTURNA
+              </p>
+            </div>
+          </div>
           <div
             aria-hidden="true"
-            className="text-[min(14vw,13rem)] font-display uppercase tracking-widest text-brass/20 leading-none select-none text-center sm:text-left"
+            className="text-[min(14vw,13rem)] font-display uppercase tracking-widest text-brass/15 leading-none select-none text-center sm:text-left"
           >
             ANDANTE
-          </div>
-          <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-xs sm:text-sm font-sans uppercase tracking-widest text-mist">
-            <p className="font-semibold text-linen">
-              BISTRÓ CONTEMPORÁNEO &amp; COCTELERÍA NOCTURNA · PALERMO HOLLYWOOD
-            </p>
-            <p className="font-sans font-bold uppercase tracking-[0.18em] text-brass mt-1 sm:mt-0">
-              ARÉVALO 1677 · TEMPO 76–108 PPM · SIN TACC GARANTIZADO
-            </p>
           </div>
         </div>
 

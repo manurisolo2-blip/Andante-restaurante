@@ -47,7 +47,14 @@ export function CartSheet() {
         className="relative flex h-full w-full max-w-sm flex-col bg-surface border-l border-brass/25 shadow-2xl"
       >
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-brass/20 px-5 py-4">
-          <h2 className="truncate font-display text-2xl font-bold uppercase tracking-tight text-linen">Tu Selección</h2>
+          <div className="flex items-center gap-2.5 min-w-0">
+            <img
+              src="/assets/andante-isotipo.png"
+              alt="Andante"
+              className="h-7 w-7 object-contain rounded-full border border-brass/40 shrink-0"
+            />
+            <h2 className="truncate font-display text-2xl font-bold uppercase tracking-tight text-linen">Tu Selección</h2>
+          </div>
           <button
             type="button"
             onClick={closeCart}

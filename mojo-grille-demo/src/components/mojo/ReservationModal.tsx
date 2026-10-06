@@ -146,9 +146,11 @@ export function ReservationModal({
         {/* Cabecera del Modal */}
         <div className="flex items-center justify-between border-b border-brass/20 bg-canvas/60 px-6 py-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-none border border-brass/40 bg-surface text-brass">
-              <Sparkles className="h-4 w-4" aria-hidden="true" />
-            </div>
+            <img
+              src="/assets/andante-isotipo.png"
+              alt="Andante Isotipo"
+              className="h-9 w-9 object-contain rounded-full border border-brass/40 bg-surface"
+            />
             <div>
               <h2
                 id="modal-reservation-title"
