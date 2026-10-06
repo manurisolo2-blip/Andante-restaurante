@@ -34,7 +34,12 @@ export function AndanteAstrolabe({ className = "h-8 w-8 text-[#C9A86A]" }: { cla
   );
 }
 
-export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
+export interface TopBarProps {
+  onOpenCart: () => void;
+  onOpenReservation?: () => void;
+}
+
+export function TopBar({ onOpenCart, onOpenReservation }: TopBarProps) {
   const { count, location, setLocation, availableLocations } = useCart();
 
   const openingHours = (() => {
@@ -156,18 +161,18 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
       >
         <div className="w-full">
           <nav className="mx-auto max-w-[1600px] w-full flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3.5">
-            {/* Extremo Izquierdo: Isotipo Astrolabio & Marca ANDANTE */}
+            {/* Extremo Izquierdo: Logo del restaurante */}
             <a
               href="#top"
-              className="flex min-h-11 min-w-0 items-center gap-3 group cursor-pointer select-none"
+              className="flex min-h-[48px] min-w-0 items-center gap-3 group cursor-pointer select-none"
               aria-label="Andante Restaurante Bar Home"
             >
               <img
                 src="/assets/andante-isotipo.png"
                 alt="Andante Isotipo"
-                width={36}
-                height={36}
-                className="h-9 w-9 object-contain rounded-full border border-brass/40 shadow-sm transition-transform duration-500 group-hover:rotate-45"
+                width={38}
+                height={38}
+                className="h-9 w-9 sm:h-10 sm:w-10 object-contain rounded-full border border-brass/40 shadow-sm transition-transform duration-500 group-hover:rotate-45"
               />
               <div className="flex flex-col">
                 <span className="font-display text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-[0.15em] text-linen leading-none transition-colors group-hover:text-brass truncate">
@@ -179,37 +184,40 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               </div>
             </a>
 
-            {/* Extremo Derecho: Botones de Reserva, Menú y Bolsa de Compra (Dark Luxury Glass) */}
-            <div className="flex shrink-0 items-center gap-2.5 sm:gap-3.5">
-              {/* Opción de Reservas / Cuenta */}
-              <button
-                type="button"
-                onClick={() => setAccountModalOpen(true)}
-                aria-label="Abrir panel de reservas y membresía Andante"
-                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3.5 sm:px-4 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-linen hover:text-brass transition-all cursor-pointer select-none ${
-                  isPastHero
-                    ? "bg-[#162238]/80 hover:bg-[#162238] backdrop-blur-md border border-[#C9A86A]/30"
-                    : "bg-[#0E1726]/60 hover:bg-[#0E1726]/90 border border-[#C9A86A]/20 backdrop-blur-sm"
-                }`}
-              >
-                <User className="h-4 w-4 stroke-[2.2] text-brass" aria-hidden="true" />
-                <span lang="es" className="hidden sm:inline">RESERVAS</span>
-              </button>
+            {/* Centro: Enlaces de navegación limpios (Desktop) */}
+            <div className="hidden lg:flex items-center gap-7">
+              {[
+                { label: "Inicio", href: "#top" },
+                { label: "Menú", href: "#menu" },
+                { label: "Sedes", href: "#espacios" },
+                { label: "Eventos", href: "#agenda-cultural" },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="font-sans text-xs uppercase tracking-[0.22em] font-bold text-linen/90 hover:text-brass transition-colors py-2 px-1 relative"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
 
-              {/* Opción de Menú Desplegable */}
+            {/* Extremo Derecho: Botón Destacado 'Reservar Mesa', Bolsa de Compra y Menú Móvil */}
+            <div className="flex shrink-0 items-center gap-2.5 sm:gap-3">
+              {/* Botón Destacado de Llamada a la Acción Primario */}
               <button
                 type="button"
-                onClick={() => setMenuDrawerOpen(true)}
-                aria-label="Abrir menú de navegación y espacios"
-                aria-expanded={menuDrawerOpen}
-                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3.5 sm:px-4 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-linen hover:text-brass transition-all cursor-pointer select-none ${
-                  isPastHero
-                    ? "bg-[#162238]/80 hover:bg-[#162238] backdrop-blur-md border border-[#C9A86A]/30"
-                    : "bg-[#0E1726]/60 hover:bg-[#0E1726]/90 border border-[#C9A86A]/20 backdrop-blur-sm"
-                }`}
+                onClick={() => {
+                  if (onOpenReservation) onOpenReservation();
+                  else {
+                    const el = document.getElementById("reservas");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                    else setAccountModalOpen(true);
+                  }
+                }}
+                className="hidden sm:inline-flex min-h-[48px] items-center justify-center rounded-none bg-brass px-5 sm:px-6 py-2.5 font-sans text-xs font-bold uppercase tracking-widest text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none border border-brass shadow-md"
               >
-                <Menu className="h-4 w-4 stroke-[2.2] text-brass" aria-hidden="true" />
-                <span lang="es" className="hidden sm:inline">CARTA</span>
+                <span>Reservar Mesa</span>
               </button>
 
               {/* Bolsa de Compra / Pedido */}
@@ -221,7 +229,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     ? `Ver orden, ${count} ${count === 1 ? "ítem" : "ítems"}`
                     : "Ver orden, vacía"
                 }
-                className="relative grid h-11 w-11 place-items-center rounded-full bg-brass text-canvas transition-all hover:bg-amber hover:text-canvas active:scale-95 cursor-pointer select-none border border-brass/50 shadow-md"
+                className="relative grid h-12 w-12 min-h-[48px] min-w-[48px] place-items-center rounded-full bg-brass text-canvas transition-all hover:bg-amber hover:text-canvas active:scale-95 cursor-pointer select-none border border-brass/50 shadow-md"
               >
                 <LatinMarketBagIcon className="h-5 w-5 stroke-[2.2] text-[#0E1726]" />
                 {count > 0 && (
@@ -229,9 +237,17 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     {count}
                   </span>
                 )}
-                {count > 0 && (
-                  <span className="absolute inset-0 animate-ping rounded-full border border-amber/40 pointer-events-none" />
-                )}
+              </button>
+
+              {/* Menú Hamburguesa Accesible para Dispositivos Móviles (área táctil >= 48x48 px) */}
+              <button
+                type="button"
+                onClick={() => setMenuDrawerOpen(true)}
+                aria-label="Abrir menú de navegación"
+                aria-expanded={menuDrawerOpen}
+                className="lg:hidden flex h-12 w-12 min-h-[48px] min-w-[48px] items-center justify-center rounded-none bg-surface/80 border border-brass/30 text-linen hover:text-brass hover:border-brass transition-colors cursor-pointer select-none"
+              >
+                <Menu className="h-6 w-6 stroke-[2]" aria-hidden="true" />
               </button>
             </div>
           </nav>
@@ -285,33 +301,30 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     type="button"
                     onClick={() => setMenuDrawerOpen(false)}
                     aria-label="Cerrar menú"
-                    className="grid h-11 w-11 shrink-0 place-items-center text-linen hover:text-brass transition-colors cursor-pointer"
+                    className="flex h-12 w-12 min-h-[48px] min-w-[48px] shrink-0 items-center justify-center rounded-none text-linen hover:text-brass transition-colors cursor-pointer border border-brass/20"
                   >
                     <X className="h-6 w-6 stroke-[2.2]" aria-hidden="true" />
                   </button>
                 </div>
 
                 {/* 1. NAVEGACIÓN PRINCIPAL */}
-                <nav className="space-y-2">
+                <nav className="space-y-3">
                   <span className="font-sans text-xs font-black uppercase tracking-widest text-brass block mb-1">
-                    CARTA &amp; EXPERIENCIA SENSORIAL
+                    NAVEGACIÓN
                   </span>
                   {[
-                    { href: "#top", label: "Inicio · Filosofía" },
-                    { href: "#concepto-culinario", label: "Concepto Chef Pablo Aroma" },
-                    { href: "#curated-menu", label: "Selección Al Fuego" },
-                    { href: "#carta-digital", label: "Carta Digital Interactiva" },
-                    { href: "#agenda-cultural", label: "Música en Vivo & Jazz" },
-                    { href: "#espacios", label: "Salón Azul & Patio Interior" },
-                    { href: "#contacto", label: "Ubicación, Mapa & Horarios" },
+                    { href: "#top", label: "Inicio" },
+                    { href: "#menu", label: "Menú" },
+                    { href: "#espacios", label: "Sedes" },
+                    { href: "#agenda-cultural", label: "Eventos" },
                   ].map((item) => (
                     <a
                       key={item.href}
                       href={item.href}
                       onClick={() => setMenuDrawerOpen(false)}
-                      className="group flex min-h-11 items-center justify-between py-2 text-linen hover:text-brass transition-colors cursor-pointer"
+                      className="group flex min-h-[48px] items-center justify-between py-2 text-linen hover:text-brass transition-colors cursor-pointer border-b border-brass/10"
                     >
-                      <span className="font-display text-xl sm:text-2xl font-black uppercase tracking-tight">
+                      <span className="font-display text-2xl font-black uppercase tracking-tight">
                         {item.label}
                       </span>
                       <ArrowRight
@@ -320,6 +333,25 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                       />
                     </a>
                   ))}
+
+                  {/* Botón Destacado Móvil: Reservar Mesa */}
+                  <div className="pt-3">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMenuDrawerOpen(false);
+                        if (onOpenReservation) onOpenReservation();
+                        else {
+                          const el = document.getElementById("reservas");
+                          if (el) el.scrollIntoView({ behavior: "smooth" });
+                          else setAccountModalOpen(true);
+                        }
+                      }}
+                      className="w-full flex min-h-[48px] items-center justify-center rounded-none bg-brass px-6 py-3 font-sans text-xs font-bold uppercase tracking-widest text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none border border-brass shadow-lg"
+                    >
+                      Reservar Mesa
+                    </button>
+                  </div>
                 </nav>
 
                 {/* 2. ESPACIOS ANDANTE · ARÉVALO 1677 */}

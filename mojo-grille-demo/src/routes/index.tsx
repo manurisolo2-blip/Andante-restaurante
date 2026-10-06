@@ -144,7 +144,10 @@ function IndexContent() {
       <NoiseOverlay />
 
       <div className="min-h-dvh bg-canvas text-linen">
-        <TopBar onOpenCart={openCart} />
+        <TopBar
+          onOpenCart={openCart}
+          onOpenReservation={() => handleOpenReservation()}
+        />
         <main className="bg-transparent pb-20 md:pb-0">
           {/* Contenedor del Hero con pin/sticky */}
           <div className="relative h-[200dvh]">
@@ -199,6 +202,9 @@ function IndexContent() {
 
             {/* Testimonios y Reseñas de comensales en Palermo Hollywood */}
             <GoogleReviewsSection />
+
+            {/* Ancla para Reservas */}
+            <div id="reservas" className="scroll-mt-[var(--header-h)]" />
 
             {/* Módulo de Eventos Corporativos & Catering Exclusivo */}
             <section
