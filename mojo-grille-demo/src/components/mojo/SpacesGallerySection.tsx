@@ -68,7 +68,7 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
     <section
       id="espacios"
       aria-label="Espacios del Local"
-      className="relative w-full bg-canvas py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-brass/15"
+      className="relative w-full bg-obsidian py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-brass/15"
     >
       <div className="mx-auto max-w-7xl">
         {/* Cabecera de la Sección */}
@@ -141,7 +141,7 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
               <button
                 type="button"
                 onClick={() => onOpenReservation(current.name)}
-                className="inline-flex items-center gap-2.5 rounded-none bg-brass px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none"
+                className="inline-flex items-center gap-2.5 rounded-none bg-brass px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-linen hover:bg-brass/90 transition-colors cursor-pointer select-none border border-brass shadow-md"
               >
                 <span>RESERVAR MESA EN {current.name.toUpperCase()}</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />

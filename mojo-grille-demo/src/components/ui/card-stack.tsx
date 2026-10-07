@@ -427,8 +427,8 @@ export function CardStack<T extends CardStackItem>({
                     className={cn(
                       "block h-2.5 w-2.5 rounded-full transition-all duration-200",
                       on
-                        ? "bg-brand-fire scale-125"
-                        : "bg-charcoal-ink/30 hover:bg-charcoal-ink/60",
+                        ? "bg-brass scale-125 shadow-sm"
+                        : "bg-linen/25 hover:bg-linen/60",
                     )}
                   />
                 </button>
@@ -440,7 +440,7 @@ export function CardStack<T extends CardStackItem>({
               href={activeItem.href}
               target="_blank"
               rel="noreferrer"
-              className="grid h-11 w-11 shrink-0 place-items-center text-charcoal-ink/60 hover:text-brand-fire transition-colors"
+              className="grid h-11 w-11 shrink-0 place-items-center text-brass hover:text-amber transition-colors"
               aria-label="Open review link"
             >
               <SquareArrowOutUpRight className="h-4 w-4" aria-hidden="true" />
@@ -454,7 +454,7 @@ export function CardStack<T extends CardStackItem>({
 
 function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
   return (
-    <div className="relative h-full w-full bg-surface-sand">
+    <div className="relative h-full w-full bg-surface border border-brass/25">
       {/* image */}
       <div className="absolute inset-0">
         {item.imageSrc ? (
@@ -466,22 +466,22 @@ function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
             loading="eager"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-surface-sand text-sm text-charcoal-ink/60">
+          <div className="flex h-full w-full items-center justify-center bg-surface text-sm text-mist">
             No image
           </div>
         )}
       </div>
 
       {/* subtle gradient overlay at bottom for text readability */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal-ink/90 via-charcoal-ink/40 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent" />
 
       {/* content */}
       <div className="relative z-10 flex h-full flex-col justify-end p-5">
-        <div className="truncate text-lg font-bold text-cream-bg font-sans">
+        <div className="truncate text-lg font-bold text-linen font-sans">
           {item.title}
         </div>
         {item.description ? (
-          <div className="mt-1 line-clamp-2 text-sm text-cream-bg/85 font-sans">
+          <div className="mt-1 line-clamp-2 text-sm text-mist font-sans">
             {item.description}
           </div>
         ) : null}

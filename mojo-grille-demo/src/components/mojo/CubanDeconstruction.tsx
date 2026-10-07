@@ -44,10 +44,10 @@ function IngredientCallout({
         <>
           {/* Ficha Tipográfica Izquierda (Alineada a la derecha) */}
           <div className="flex flex-col text-right items-end max-w-[110px] sm:max-w-[155px] md:max-w-[200px] lg:max-w-[240px]">
-            <span className="font-display text-sm sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
+            <span className="font-display text-sm sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-linen leading-tight drop-shadow-sm">
               {name}
             </span>
-            <span className="font-sans text-sm md:text-sm lg:text-base font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
+            <span className="font-sans text-sm md:text-sm lg:text-base font-bold uppercase tracking-wider text-brass leading-tight mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
@@ -55,12 +55,12 @@ function IngredientCallout({
           {/* Flecha y Conector Izquierdo apuntando al sándwich (derecha) */}
           <div className="flex items-center shrink-0">
             <span
-              className="h-[2px] w-3 sm:w-4 md:w-6 lg:w-8 xl:w-10 bg-brand-fire inline-block shrink-0 opacity-95"
+              className="h-[2px] w-3 sm:w-4 md:w-6 lg:w-8 xl:w-10 bg-brass inline-block shrink-0 opacity-95"
               aria-hidden="true"
             />
             {/* Punta de Flecha Directa al Plato */}
             <svg
-              className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-brand-fire fill-current -ml-0.5 shrink-0"
+              className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-brass fill-current -ml-0.5 shrink-0"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
@@ -74,24 +74,24 @@ function IngredientCallout({
           <div className="flex items-center shrink-0">
             {/* Punta de Flecha Directa al Plato */}
             <svg
-              className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-brand-fire fill-current -mr-0.5 shrink-0 rotate-180"
+              className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-brass fill-current -mr-0.5 shrink-0 rotate-180"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
               <path d="M5 3l14 9-14 9V3z" />
             </svg>
             <span
-              className="h-[2px] w-3 sm:w-4 md:w-6 lg:w-8 xl:w-10 bg-brand-fire inline-block shrink-0 opacity-95"
+              className="h-[2px] w-3 sm:w-4 md:w-6 lg:w-8 xl:w-10 bg-brass inline-block shrink-0 opacity-95"
               aria-hidden="true"
             />
           </div>
 
           {/* Ficha Tipográfica Derecha (Alineada a la izquierda) */}
           <div className="flex flex-col text-left items-start max-w-[110px] sm:max-w-[155px] md:max-w-[200px] lg:max-w-[240px]">
-            <span className="font-display text-sm sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
+            <span className="font-display text-sm sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-linen leading-tight drop-shadow-sm">
               {name}
             </span>
-            <span className="font-sans text-sm md:text-sm lg:text-base font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
+            <span className="font-sans text-sm md:text-sm lg:text-base font-bold uppercase tracking-wider text-brass leading-tight mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
@@ -476,7 +476,7 @@ export function CubanDeconstruction() {
           <div className="relative w-full max-w-[390px] h-[460px] sm:max-w-[540px] sm:h-[600px] md:max-w-[740px] md:h-[680px] lg:max-w-[960px] lg:h-[760px] xl:max-w-[1100px] xl:h-[820px] flex items-center justify-center overflow-visible mx-auto">
             {/* Sombra de Contacto Dinámica en el Piso */}
             <div
-              className="absolute -bottom-6 sm:-bottom-14 w-[85%] max-w-[750px] h-6 sm:h-12 rounded-[100%] bg-charcoal-ink/20 blur-2xl pointer-events-none animate-sandwich-shadow"
+              className="absolute -bottom-6 sm:-bottom-14 w-[85%] max-w-[750px] h-6 sm:h-12 rounded-[100%] bg-black/50 blur-2xl pointer-events-none animate-sandwich-shadow"
               aria-hidden="true"
             />
 

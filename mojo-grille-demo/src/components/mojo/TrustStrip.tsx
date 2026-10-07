@@ -10,20 +10,20 @@ export function TrustStrip() {
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-center">
           
-          {/* 1. Distinción Central Destacada: Top 100 Mejores Restaurantes Italianos */}
+          {/* 1. Distinción Central Destacada: Calificación y Opiniones */}
           <div className="flex items-center gap-3.5 border-b md:border-b-0 md:border-r border-brass/20 pb-3 md:pb-0 md:pr-4">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-brass/40 bg-canvas/80 text-brass shadow-sm">
               <Trophy className="h-5 w-5 text-amber" aria-hidden="true" />
             </div>
             <div>
               <p className="font-sans text-[10px] font-black uppercase tracking-[0.2em] text-brass">
-                DISTINCIÓN NACIONAL 2024
+                EXCELENCIA GASTRONÓMICA
               </p>
               <h3 className="font-serif font-display text-sm sm:text-base font-bold text-linen leading-snug">
-                Top 100 Mejores Restaurantes Italianos en Colombia 2024
+                4,7 / 5 Estrellas · +2.100 Opiniones
               </h3>
               <p className="font-sans text-[11px] text-mist leading-tight mt-0.5">
-                Guía Culinaria de Excelencia y Tradición
+                Alta Cocina, Coctelería de Autor &amp; Jazz en Vivo
               </p>
             </div>
           </div>
@@ -41,7 +41,7 @@ export function TrustStrip() {
                 Recomendado Restaurant Guru 2024
               </h3>
               <p className="font-sans text-[11px] text-mist leading-tight mt-0.5">
-                Sello de Excelencia en Cocina de Autor
+                Sello de Calidad Culinaria en Palermo Hollywood
               </p>
             </div>
           </div>
@@ -59,25 +59,25 @@ export function TrustStrip() {
                 Travellers' Choice 2024
               </h3>
               <p className="font-sans text-[11px] text-mist leading-tight mt-0.5">
-                Top 10% a nivel global · Calificación 4.9/5
+                Top 10% Restaurantes a Nivel Global
               </p>
             </div>
           </div>
 
-          {/* 4. Sedes La Candelaria & La Macarena (Bogotá) */}
+          {/* 4. Ubicación Oficial Palermo Hollywood */}
           <div className="flex items-center gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-brass/40 bg-canvas/80 text-brass shadow-sm">
               <MapPin className="h-5 w-5 text-amber" aria-hidden="true" />
             </div>
             <div>
               <p className="font-sans text-[10px] font-black uppercase tracking-[0.2em] text-brass">
-                PRESENCIA EN BOGOTÁ
+                PALERMO HOLLYWOOD · CABA
               </p>
               <h3 className="font-serif font-display text-sm sm:text-base font-bold text-linen leading-snug">
-                La Candelaria &amp; La Macarena
+                Arévalo 1677 · Buenos Aires
               </h3>
               <p className="font-sans text-[11px] text-mist leading-tight mt-0.5">
-                Dos enclaves gastronómicos con horario continuo
+                Salón Azul, Patio al Aire Libre &amp; Gran Barra
               </p>
             </div>
           </div>

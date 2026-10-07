@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { MapPin, Phone, Clock, ExternalLink, MessageSquare, Compass, ShieldCheck } from "lucide-react";
+import { MapPin, Phone, Clock, ExternalLink, MessageSquare, Compass, Accessibility, Wine } from "lucide-react";
 
-interface SedeStatus {
+interface SpaceStatus {
   isOpen: boolean;
   statusLabel: string;
   detail: string;
 }
 
 /**
- * Calcula el estado de apertura en tiempo real para las sedes de Bogotá (UTC-5).
+ * Calcula el estado de apertura en tiempo real para Palermo Hollywood, Buenos Aires (ART / UTC-3).
  */
-function getSedeStatus(sedeId: "candelaria" | "macarena"): SedeStatus {
+function getSpaceStatus(spaceId: "salon" | "patio"): SpaceStatus {
   try {
     const now = new Date();
-    // Obtener día y hora en zona horaria America/Bogota
     const formatter = new Intl.DateTimeFormat("en-US", {
-      timeZone: "America/Bogota",
+      timeZone: "America/Argentina/Buenos_Aires",
       hour12: false,
       weekday: "short",
       hour: "numeric",
@@ -36,66 +35,57 @@ function getSedeStatus(sedeId: "candelaria" | "macarena"): SedeStatus {
     const day = dayMap[weekdayStr] ?? now.getDay();
     const currentDecimal = hour + minute / 60;
 
-    if (sedeId === "candelaria") {
-      // Lun a Sáb: 12:00 a 23:00; Dom: 12:00 a 18:00
-      if (day >= 1 && day <= 6) {
-        if (currentDecimal >= 12 && currentDecimal < 23) {
-          return { isOpen: true, statusLabel: "Abierto ahora", detail: "Cierra a las 23:00 hs" };
-        }
-        return {
-          isOpen: false,
-          statusLabel: "Cerrado ahora",
-          detail: currentDecimal < 12 ? "Abre hoy a las 12:00 hs" : "Abre mañana a las 12:00 hs",
-        };
-      }
-      // Domingo
-      if (currentDecimal >= 12 && currentDecimal < 18) {
-        return { isOpen: true, statusLabel: "Abierto ahora", detail: "Cierra a las 18:00 hs" };
+    // Lunes: Cerrado por descanso
+    if (day === 1) {
+      return { isOpen: false, statusLabel: "Cerrado hoy", detail: "Descanso semanal · Abre martes 09:00 hs" };
+    }
+
+    if (spaceId === "salon") {
+      // Salón General: Mar a Dom de 09:00 a 01:00 hs del día siguiente
+      // Abierto si >= 9 o < 1 (madrugada)
+      if (currentDecimal >= 9 || currentDecimal < 1) {
+        return { isOpen: true, statusLabel: "Abierto ahora", detail: "Cierra a la 01:00 hs" };
       }
       return {
         isOpen: false,
         statusLabel: "Cerrado ahora",
-        detail: currentDecimal < 12 ? "Abre hoy a las 12:00 hs" : "Abre lunes a las 12:00 hs",
+        detail: currentDecimal < 9 ? "Abre hoy a las 09:00 hs" : "Abre mañana a las 09:00 hs",
       };
     }
 
-    // Sede La Macarena: Mar a Sáb 12:00 a 23:00; Dom 12:00 a 17:00; Lunes cerrado
-    if (day === 1) {
-      return { isOpen: false, statusLabel: "Cerrado hoy", detail: "Descanso del personal · Abre martes 12:00 hs" };
-    }
+    // Patio Interior & Bar: Mar a Sáb de 18:00 a 01:00 hs
     if (day >= 2 && day <= 6) {
-      if (currentDecimal >= 12 && currentDecimal < 23) {
-        return { isOpen: true, statusLabel: "Abierto ahora", detail: "Cierra a las 23:00 hs" };
+      if (currentDecimal >= 18 || currentDecimal < 1) {
+        return { isOpen: true, statusLabel: "Abierto ahora", detail: "Cierra a la 01:00 hs" };
       }
       return {
         isOpen: false,
         statusLabel: "Cerrado ahora",
-        detail: currentDecimal < 12 ? "Abre hoy a las 12:00 hs" : "Abre mañana a las 12:00 hs",
+        detail: currentDecimal < 18 ? "Abre hoy a las 18:00 hs" : "Abre mañana a las 18:00 hs",
       };
     }
-    // Domingo
-    if (currentDecimal >= 12 && currentDecimal < 17) {
-      return { isOpen: true, statusLabel: "Abierto ahora", detail: "Cierra a las 17:00 hs" };
+    // Domingos en patio
+    if (currentDecimal >= 18 || currentDecimal < 1) {
+      return { isOpen: true, statusLabel: "Abierto ahora", detail: "Cierra a la 01:00 hs" };
     }
     return {
       isOpen: false,
       statusLabel: "Cerrado ahora",
-      detail: currentDecimal < 12 ? "Abre hoy a las 12:00 hs" : "Abre martes a las 12:00 hs",
+      detail: currentDecimal < 18 ? "Abre hoy a las 18:00 hs" : "Abre martes a las 18:00 hs",
     };
   } catch {
-    return { isOpen: true, statusLabel: "Abierto ahora", detail: "Horario de almuerzo y cena" };
+    return { isOpen: true, statusLabel: "Abierto ahora", detail: "Servicio de Salón & Bar" };
   }
 }
 
 export function ContactMapSection() {
-  const [candelariaStatus, setCandelariaStatus] = useState<SedeStatus>(() => getSedeStatus("candelaria"));
-  const [macarenaStatus, setMacarenaStatus] = useState<SedeStatus>(() => getSedeStatus("macarena"));
-  const [selectedMapSede, setSelectedMapSede] = useState<"candelaria" | "macarena">("candelaria");
+  const [salonStatus, setSalonStatus] = useState<SpaceStatus>(() => getSpaceStatus("salon"));
+  const [patioStatus, setPatioStatus] = useState<SpaceStatus>(() => getSpaceStatus("patio"));
 
   useEffect(() => {
     const updateStatuses = () => {
-      setCandelariaStatus(getSedeStatus("candelaria"));
-      setMacarenaStatus(getSedeStatus("macarena"));
+      setSalonStatus(getSpaceStatus("salon"));
+      setPatioStatus(getSpaceStatus("patio"));
     };
     updateStatuses();
     const interval = setInterval(updateStatuses, 60000);
@@ -105,7 +95,7 @@ export function ContactMapSection() {
   return (
     <section
       id="contacto"
-      aria-label="Sedes Oficiales en Bogotá, Horarios y Contacto"
+      aria-label="Ubicación en Palermo Hollywood, Espacios y Contacto Oficial"
       className="relative w-full bg-surface/50 border-t border-brass/15 py-16 sm:py-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
@@ -114,56 +104,59 @@ export function ContactMapSection() {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brass mb-3">
             <Compass className="h-4 w-4 text-amber" aria-hidden="true" />
-            <span>PRESENCIA EN BOGOTÁ · ALTA COCINA ITALIANA &amp; DE AUTOR</span>
+            <span>PALERMO HOLLYWOOD · BUENOS AIRES, ARGENTINA</span>
           </div>
           <h2 className="font-display font-serif text-4xl sm:text-6xl font-bold uppercase tracking-tight text-linen leading-none">
-            NUESTRAS SEDES &amp; CONTACTO
+            ESPACIOS &amp; CONTACTO DIRECTO
           </h2>
-          <p className="mt-3 font-sans text-base text-mist leading-relaxed">
-            Dos enclaves gastronómicos concebidos con idéntico rigor culinario y atmósfera íntima: el encanto colonial de La Candelaria y la vanguardia bohemia de La Macarena.
+          <p className="mt-3 font-sans text-sm sm:text-base text-mist leading-relaxed">
+            Arévalo 1677, C1414CQG, Palermo Hollywood (Comuna 14), Ciudad Autónoma de Buenos Aires.
+          </p>
+          <p className="mt-2 font-sans text-xs text-brass/80 font-medium tracking-wide">
+            Aclaración territorial: Restaurante bar gastronómico ubicado en Palermo Hollywood, CABA (no confundir con comercios homónimos registrados en Córdoba o Río Tercero).
           </p>
         </div>
 
-        {/* Tarjetas Comparativas de Sedes con Idéntica Simetría */}
+        {/* Tarjetas Comparativas de los Espacios Oficiales con Idéntica Simetría */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch mb-14">
           
           {/* ========================================================= */}
-          {/* TARJETA 1: SEDE LA CANDELARIA                             */}
+          {/* TARJETA 1: SALÓN AZUL PRINCIPAL                           */}
           {/* ========================================================= */}
           <article className="border border-brass/25 bg-canvas/80 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-brass/60 hover:shadow-2xl hover:shadow-brass/5">
             <div>
               {/* Indicador en tiempo real de apertura */}
               <div className="flex items-center justify-between gap-2 border-b border-brass/15 pb-4 mb-5">
                 <span className="font-sans text-[11px] font-black uppercase tracking-[0.2em] text-brass">
-                  SEDE PATRIMONIAL
+                  SALÓN PRINCIPAL
                 </span>
                 <div
                   className={`inline-flex items-center gap-2 px-3 py-1 border text-xs font-bold uppercase tracking-wider ${
-                    candelariaStatus.isOpen
-                      ? "border-olive-green bg-olive-green/20 text-linen"
+                    salonStatus.isOpen
+                      ? "border-[#8DBE3D] bg-[#8DBE3D]/20 text-linen"
                       : "border-amber/40 bg-amber/15 text-amber"
                   }`}
                 >
                   <span
                     className={`h-2 w-2 rounded-full ${
-                      candelariaStatus.isOpen ? "bg-olive-green animate-pulse" : "bg-amber"
+                      salonStatus.isOpen ? "bg-[#8DBE3D] animate-pulse" : "bg-amber"
                     }`}
                   />
                   <span>
-                    {candelariaStatus.statusLabel} · {candelariaStatus.detail}
+                    {salonStatus.statusLabel} · {salonStatus.detail}
                   </span>
                 </div>
               </div>
 
               {/* Nombre y subtítulo */}
               <h3 className="font-serif font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-linen">
-                Sede La Candelaria
+                Salón Azul Principal
               </h3>
               <p className="font-sans text-xs uppercase tracking-widest text-brass mt-1 mb-4 font-semibold">
-                Centro Histórico · Bogotá
+                Atmósfera a Media Luz &amp; Jazz en Vivo
               </p>
               <p className="font-sans text-xs sm:text-sm text-mist leading-relaxed mb-6">
-                Casona republicana restaurada con techos altos de madera noble, patio andaluz y salón a media luz ambientado con jazz acústico.
+                Muros pintados íntegramente en color azul noche, claroscuro envolvente y arquitectura en varios niveles. Escenario de ciclos de jazz acústico en vivo los martes y jueves a las 21:00 hs.
               </p>
 
               {/* Dirección y Botón 'Cómo llegar' */}
@@ -172,19 +165,19 @@ export function ContactMapSection() {
                   <MapPin className="h-4 w-4 text-amber shrink-0 mt-0.5" aria-hidden="true" />
                   <div>
                     <span className="block font-sans text-xs font-bold uppercase tracking-wider text-mist">
-                      Dirección Física
+                      Dirección Exacta
                     </span>
                     <span className="font-sans text-sm font-semibold text-linen">
-                      Calle 11 # 2-78, La Candelaria, Bogotá
+                      Arévalo 1677, Palermo Hollywood, CABA
                     </span>
                   </div>
                 </div>
                 <a
-                  href="https://maps.google.com/?q=Calle+11+%23+2-78,+La+Candelaria,+Bogota,+Colombia"
+                  href="https://maps.google.com/?q=Ar%C3%A9valo+1677,+Palermo+Hollywood,+Buenos+Aires"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex min-h-[48px] items-center justify-center gap-2 border border-brass/30 bg-canvas/80 px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider text-brass hover:bg-brass hover:text-canvas transition-colors cursor-pointer select-none"
-                  aria-label="Cómo llegar a Sede La Candelaria en Google Maps"
+                  aria-label="Cómo llegar a Arévalo 1677 en Google Maps"
                 >
                   <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                   <span>Cómo llegar · Google Maps</span>
@@ -198,30 +191,30 @@ export function ContactMapSection() {
                 </span>
                 
                 <a
-                  href="tel:+5713412345"
+                  href="tel:+541168673856"
                   className="flex min-h-[48px] items-center justify-between border border-brass/20 bg-surface/50 px-4 py-2.5 text-linen hover:border-brass hover:text-brass transition-colors"
-                  aria-label="Llamar al teléfono fijo de Sede La Candelaria al +57 1 341-2345"
+                  aria-label="Llamar a línea Salón Azul al +54 11 6867-3856"
                 >
                   <div className="flex items-center gap-2.5">
                     <Phone className="h-4 w-4 text-brass" aria-hidden="true" />
-                    <span className="font-sans text-xs font-semibold">Línea Fija Recepción</span>
+                    <span className="font-sans text-xs font-semibold">Línea Salón Azul</span>
                   </div>
                   <span className="font-sans text-xs sm:text-sm font-bold text-linen tabular-nums">
-                    +57 (1) 341-2345
+                    +54 11 6867-3856
                   </span>
                 </a>
 
                 <a
-                  href="tel:+573105551234"
+                  href="tel:+541168062589"
                   className="flex min-h-[48px] items-center justify-between border border-brass/20 bg-surface/50 px-4 py-2.5 text-linen hover:border-brass hover:text-brass transition-colors"
-                  aria-label="Llamar al móvil de reservas de Sede La Candelaria al +57 310 555-1234"
+                  aria-label="Llamar a línea de reservas al +54 11 6806-2589"
                 >
                   <div className="flex items-center gap-2.5">
                     <Phone className="h-4 w-4 text-amber" aria-hidden="true" />
-                    <span className="font-sans text-xs font-semibold">Móvil &amp; Reservas</span>
+                    <span className="font-sans text-xs font-semibold">Línea Reservas &amp; Cenas</span>
                   </div>
                   <span className="font-sans text-xs sm:text-sm font-bold text-linen tabular-nums">
-                    +57 310 555-1234
+                    +54 11 6806-2589
                   </span>
                 </a>
               </div>
@@ -231,72 +224,76 @@ export function ContactMapSection() {
                 <div className="flex items-center gap-2 text-brass mb-2">
                   <Clock className="h-3.5 w-3.5 text-amber" aria-hidden="true" />
                   <span className="font-sans text-xs font-bold uppercase tracking-wider">
-                    Horarios de Atención
+                    Horario de Salón &amp; Cafetería
                   </span>
                 </div>
                 <div className="space-y-1 font-sans text-xs text-mist">
                   <p className="flex justify-between">
-                    <span>Lunes a Sábado:</span>
-                    <span className="font-semibold text-linen">12:00 a 23:00 hs</span>
+                    <span>Martes a Domingo:</span>
+                    <span className="font-semibold text-linen">09:00 a 01:00 hs</span>
                   </p>
                   <p className="flex justify-between">
-                    <span>Domingos &amp; Festivos:</span>
-                    <span className="font-semibold text-linen">12:00 a 18:00 hs</span>
+                    <span>Lunes:</span>
+                    <span className="font-semibold text-amber">Cerrado por descanso</span>
+                  </p>
+                  <p className="flex justify-between pt-1 border-t border-brass/10">
+                    <span>Ticket Estimado:</span>
+                    <span className="font-semibold text-brass">$20.000 a $60.000 ARS</span>
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* CTA Inferior de Reserva en Candelaria */}
+            {/* CTA Inferior de Reserva en Salón Azul */}
             <a
-              href="https://wa.me/573105551234?text=Hola%20Andante%20Restaurante%2C%20quisiera%20reservar%20una%20mesa%20en%20Sede%20La%20Candelaria."
+              href="https://wa.me/5491168673856?text=Hola%20Andante%20Restaurante%20Bar%2C%20quisiera%20consultar%20disponibilidad%20para%20reservar%20una%20mesa%20en%20el%20Sal%C3%B3n%20Azul%20(Palermo%20Hollywood)."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex min-h-[48px] items-center justify-center gap-2.5 bg-brass px-6 py-3 font-sans text-xs font-bold uppercase tracking-widest text-canvas hover:bg-linen hover:text-canvas transition-colors border border-brass shadow-md select-none"
             >
               <MessageSquare className="h-4 w-4" aria-hidden="true" />
-              <span>RESERVAR EN LA CANDELARIA</span>
+              <span>RESERVAR EN SALÓN AZUL</span>
             </a>
           </article>
 
 
           {/* ========================================================= */}
-          {/* TARJETA 2: SEDE LA MACARENA                               */}
+          {/* TARJETA 2: PATIO INTERIOR & BARRA CENTRAL                 */}
           {/* ========================================================= */}
           <article className="border border-brass/25 bg-canvas/80 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-brass/60 hover:shadow-2xl hover:shadow-brass/5">
             <div>
               {/* Indicador en tiempo real de apertura */}
               <div className="flex items-center justify-between gap-2 border-b border-brass/15 pb-4 mb-5">
                 <span className="font-sans text-[11px] font-black uppercase tracking-[0.2em] text-brass">
-                  SEDE BOHEMIA
+                  PATIO &amp; BARRA DE AUTOR
                 </span>
                 <div
                   className={`inline-flex items-center gap-2 px-3 py-1 border text-xs font-bold uppercase tracking-wider ${
-                    macarenaStatus.isOpen
-                      ? "border-olive-green bg-olive-green/20 text-linen"
+                    patioStatus.isOpen
+                      ? "border-[#8DBE3D] bg-[#8DBE3D]/20 text-linen"
                       : "border-amber/40 bg-amber/15 text-amber"
                   }`}
                 >
                   <span
                     className={`h-2 w-2 rounded-full ${
-                      macarenaStatus.isOpen ? "bg-olive-green animate-pulse" : "bg-amber"
+                      patioStatus.isOpen ? "bg-[#8DBE3D] animate-pulse" : "bg-amber"
                     }`}
                   />
                   <span>
-                    {macarenaStatus.statusLabel} · {macarenaStatus.detail}
+                    {patioStatus.statusLabel} · {patioStatus.detail}
                   </span>
                 </div>
               </div>
 
               {/* Nombre y subtítulo */}
               <h3 className="font-serif font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-linen">
-                Sede La Macarena
+                Patio Interior &amp; Barra
               </h3>
               <p className="font-sans text-xs uppercase tracking-widest text-brass mt-1 mb-4 font-semibold">
-                Distrito Gastronómico · Bogotá
+                Al Aire Libre &amp; Coctelería de Autor
               </p>
               <p className="font-sans text-xs sm:text-sm text-mist leading-relaxed mb-6">
-                Rincón bohemio con amplia barra de coctelería de autor, cavas a la vista y salón íntimo para maridajes y sobremesas prolongadas.
+                Área descubierta al aire libre rodeada de verde, ideal para noches templadas, catas de vino (Andante Wine Experience) y barra protagónica con coctelería diseñada por Santiago Contarino.
               </p>
 
               {/* Dirección y Botón 'Cómo llegar' */}
@@ -305,19 +302,19 @@ export function ContactMapSection() {
                   <MapPin className="h-4 w-4 text-amber shrink-0 mt-0.5" aria-hidden="true" />
                   <div>
                     <span className="block font-sans text-xs font-bold uppercase tracking-wider text-mist">
-                      Dirección Física
+                      Dirección Exacta
                     </span>
                     <span className="font-sans text-sm font-semibold text-linen">
-                      Carrera 4A # 26B-22, La Macarena, Bogotá
+                      Arévalo 1677 (Patio Interior), Palermo Hollywood, CABA
                     </span>
                   </div>
                 </div>
                 <a
-                  href="https://maps.google.com/?q=Carrera+4A+%23+26B-22,+La+Macarena,+Bogota,+Colombia"
+                  href="https://maps.google.com/?q=Ar%C3%A9valo+1677,+Palermo+Hollywood,+Buenos+Aires"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex min-h-[48px] items-center justify-center gap-2 border border-brass/30 bg-canvas/80 px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider text-brass hover:bg-brass hover:text-canvas transition-colors cursor-pointer select-none"
-                  aria-label="Cómo llegar a Sede La Macarena en Google Maps"
+                  aria-label="Cómo llegar a Arévalo 1677 en Google Maps"
                 >
                   <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                   <span>Cómo llegar · Google Maps</span>
@@ -331,30 +328,30 @@ export function ContactMapSection() {
                 </span>
                 
                 <a
-                  href="tel:+5712865432"
+                  href="tel:+541168062589"
                   className="flex min-h-[48px] items-center justify-between border border-brass/20 bg-surface/50 px-4 py-2.5 text-linen hover:border-brass hover:text-brass transition-colors"
-                  aria-label="Llamar al teléfono fijo de Sede La Macarena al +57 1 286-5432"
+                  aria-label="Llamar a línea Patio y Barra al +54 11 6806-2589"
                 >
                   <div className="flex items-center gap-2.5">
                     <Phone className="h-4 w-4 text-brass" aria-hidden="true" />
-                    <span className="font-sans text-xs font-semibold">Línea Fija Recepción</span>
+                    <span className="font-sans text-xs font-semibold">Línea Patio &amp; Barra</span>
                   </div>
                   <span className="font-sans text-xs sm:text-sm font-bold text-linen tabular-nums">
-                    +57 (1) 286-5432
+                    +54 11 6806-2589
                   </span>
                 </a>
 
                 <a
-                  href="tel:+573208885678"
+                  href="tel:+541168673856"
                   className="flex min-h-[48px] items-center justify-between border border-brass/20 bg-surface/50 px-4 py-2.5 text-linen hover:border-brass hover:text-brass transition-colors"
-                  aria-label="Llamar al móvil de reservas de Sede La Macarena al +57 320 888-5678"
+                  aria-label="Llamar a línea de eventos al +54 11 6867-3856"
                 >
                   <div className="flex items-center gap-2.5">
-                    <Phone className="h-4 w-4 text-amber" aria-hidden="true" />
-                    <span className="font-sans text-xs font-semibold">Móvil &amp; Reservas</span>
+                    <Wine className="h-4 w-4 text-amber" aria-hidden="true" />
+                    <span className="font-sans text-xs font-semibold">Catas &amp; Eventos Privados</span>
                   </div>
                   <span className="font-sans text-xs sm:text-sm font-bold text-linen tabular-nums">
-                    +57 320 888-5678
+                    +54 11 6867-3856
                   </span>
                 </a>
               </div>
@@ -364,17 +361,17 @@ export function ContactMapSection() {
                 <div className="flex items-center gap-2 text-brass mb-2">
                   <Clock className="h-3.5 w-3.5 text-amber" aria-hidden="true" />
                   <span className="font-sans text-xs font-bold uppercase tracking-wider">
-                    Horarios de Atención
+                    Horario de Bar &amp; Cenas
                   </span>
                 </div>
                 <div className="space-y-1 font-sans text-xs text-mist">
                   <p className="flex justify-between">
                     <span>Martes a Sábado:</span>
-                    <span className="font-semibold text-linen">12:00 a 23:00 hs</span>
+                    <span className="font-semibold text-linen">18:00 a 01:00 hs</span>
                   </p>
                   <p className="flex justify-between">
-                    <span>Domingos &amp; Festivos:</span>
-                    <span className="font-semibold text-linen">12:00 a 17:00 hs</span>
+                    <span>Domingos:</span>
+                    <span className="font-semibold text-linen">18:00 a 01:00 hs</span>
                   </p>
                   <p className="flex justify-between text-amber">
                     <span>Lunes:</span>
@@ -384,65 +381,40 @@ export function ContactMapSection() {
               </div>
             </div>
 
-            {/* CTA Inferior de Reserva en Macarena */}
+            {/* CTA Inferior de Reserva en Patio & Barra */}
             <a
-              href="https://wa.me/573208885678?text=Hola%20Andante%20Restaurante%2C%20quisiera%20reservar%20una%20mesa%20en%20Sede%20La%20Macarena."
+              href="https://wa.me/5491168062589?text=Hola%20Andante%20Restaurante%20Bar%2C%20quisiera%20consultar%20disponibilidad%20para%20el%20Patio%20Interior%20o%20la%20Barra%20(Palermo%20Hollywood)."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex min-h-[48px] items-center justify-center gap-2.5 bg-brass px-6 py-3 font-sans text-xs font-bold uppercase tracking-widest text-canvas hover:bg-linen hover:text-canvas transition-colors border border-brass shadow-md select-none"
             >
               <MessageSquare className="h-4 w-4" aria-hidden="true" />
-              <span>RESERVAR EN LA MACARENA</span>
+              <span>RESERVAR EN PATIO &amp; BARRA</span>
             </a>
           </article>
 
         </div>
 
-        {/* Mapa Interactivo con Selector de Sede */}
+        {/* Módulo de Accesibilidad & Mapa Google Maps Embebido */}
         <div className="border border-brass/25 bg-canvas overflow-hidden">
           <div className="bg-canvas/90 px-5 py-4 border-b border-brass/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-sans">
             <div className="flex items-center gap-3">
               <span className="font-bold text-linen uppercase tracking-wider flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-brass" aria-hidden="true" />
-                <span>MAPA DE LOCALIZACIÓN BOGOTÁ</span>
+                <span>ARÉVALO 1677, PALERMO HOLLYWOOD, CIUDAD AUTÓNOMA DE BUENOS AIRES</span>
               </span>
             </div>
 
-            {/* Pestañas para alternar sede en el mapa */}
-            <div className="inline-flex border border-brass/30 p-1 bg-surface/60">
-              <button
-                type="button"
-                onClick={() => setSelectedMapSede("candelaria")}
-                className={`px-3 py-1.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${
-                  selectedMapSede === "candelaria"
-                    ? "bg-brass text-canvas"
-                    : "text-mist hover:text-linen"
-                }`}
-              >
-                La Candelaria
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedMapSede("macarena")}
-                className={`px-3 py-1.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${
-                  selectedMapSede === "macarena"
-                    ? "bg-brass text-canvas"
-                    : "text-mist hover:text-linen"
-                }`}
-              >
-                La Macarena
-              </button>
+            <div className="flex items-center gap-2 text-brass font-bold">
+              <Accessibility className="h-4 w-4 text-amber" />
+              <span className="text-[11px] uppercase tracking-wider">Ingreso adaptado con rampa para movilidad reducida</span>
             </div>
           </div>
 
           <div className="relative min-h-[360px] h-[380px] w-full">
             <iframe
-              title={`Ubicación de Andante Restaurante Bar - ${selectedMapSede === "candelaria" ? "Sede La Candelaria" : "Sede La Macarena"}`}
-              src={
-                selectedMapSede === "candelaria"
-                  ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.993444452134!2d-74.0722359!3d4.5976523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a19c5c93cb%3A0x6b24a3501cb6a620!2sLa%20Candelaria%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1710000000000!5m2!1ses!2sco"
-                  : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.882194512967!2d-74.0664532!3d4.6148352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a6d7083c79%3A0x86134a6523a76352!2sLa%20Macarena%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1710000000000!5m2!1ses!2sco"
-              }
+              title="Ubicación oficial de Andante Restaurante Bar en Arévalo 1677, Palermo Hollywood, Buenos Aires"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.896791694297!2d-58.43940262348577!3d-34.581475772962164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb58a2d10c017%3A0x89e246e7fbe29f01!2sAr%C3%A9valo%201677%2C%20C1414CQG%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1710000000000!5m2!1ses!2sar"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: "360px" }}

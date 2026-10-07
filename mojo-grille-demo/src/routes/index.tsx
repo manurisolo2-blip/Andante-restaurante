@@ -147,22 +147,15 @@ function IndexContent() {
           onOpenReservation={() => handleOpenReservation()}
         />
         <main className="bg-transparent pb-20 md:pb-0">
-          {/* Contenedor del Hero con pin/sticky */}
-          <div className="relative h-[200dvh]">
-            <div className="sticky top-0 h-dvh w-full overflow-hidden z-10">
-              <HeroSection
-                menuAnchorId="menu"
-                cateringHref="#agenda-cultural"
-                onReservationClick={() => handleOpenReservation()}
-                shouldAnimateIn={isLoaded}
-              />
-            </div>
-          </div>
+          {/* Sección Hero Monumental Fluida */}
+          <HeroSection
+            menuAnchorId="menu"
+            cateringHref="#agenda-cultural"
+            onReservationClick={() => handleOpenReservation()}
+            shouldAnimateIn={isLoaded}
+          />
 
-          {/*
-            El fondo inferior que sube y tapa el hero con atmósfera Dark Luxury.
-          */}
-          <div className="relative z-20 -mt-[100dvh] bg-canvas shadow-[0_-24px_50px_rgba(0,0,0,0.5)]">
+          <div className="relative z-20 bg-canvas">
             {/* Cintillo Horizontal de Confianza (Trust Strip) */}
             <TrustStrip />
 
@@ -171,10 +164,10 @@ function IndexContent() {
               <CubanDeconstruction />
             </div>
 
-            {/* Transición 1: Canvas Índigo -> Superficie Marino Profundo */}
+            {/* Transición 1: Canvas Índigo -> Carbón Espresso Profundo */}
             <JellyWaveTransition
               topColor="#0E1726"
-              bottomColor="#162238"
+              bottomColor="#1A1715"
               direction="down"
             />
 
@@ -183,15 +176,15 @@ function IndexContent() {
               <CuratedMenu />
             </div>
 
-            {/* Transición 2: Superficie Marino Profundo -> Canvas Índigo */}
+            {/* Transición 2: Carbón Espresso Profundo -> Púrpura Nocturno */}
             <JellyWaveTransition
-              topColor="#162238"
-              bottomColor="#0E1726"
+              topColor="#1A1715"
+              bottomColor="#16121C"
               direction="up"
             />
 
             {/* Carta Digital Interactiva (Pestañas Dinámicas & Filtros Sin TACC / Vegetariano) */}
-            <section id="menu" className="scroll-mt-[var(--header-h)]">
+            <section id="menu" className="scroll-mt-[var(--header-h)] bg-night-purple border-b border-brass/15">
               <CravStyleMenuGrid onSelect={setSelected} />
             </section>
 
@@ -210,7 +203,7 @@ function IndexContent() {
             {/* Módulo de Eventos Corporativos & Catering Exclusivo */}
             <section
               id="catering"
-              className="scroll-mt-[var(--header-h)] bg-surface/50 border-y border-brass/15 px-4 py-16 sm:px-6 lg:px-8"
+              className="scroll-mt-[var(--header-h)] bg-night-purple border-y border-brass/15 px-4 py-16 sm:px-6 lg:px-8"
             >
               <div className="mx-auto max-w-4xl text-center">
                 <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brass mb-3">
@@ -248,14 +241,14 @@ function IndexContent() {
               </div>
             </section>
 
-            {/* Datos de Contacto, Sedes en Bogotá, Mapa Interactivo de Google Maps & Horarios */}
+            {/* Datos de Contacto, Espacios en Palermo Hollywood, Mapa de Google Maps & Horarios */}
             <div id="sedes" className="scroll-mt-[var(--header-h)]" />
             <ContactMapSection />
 
             {/* Transición hacia el Editorial Footer */}
             <JellyWaveTransition
-              topColor="#0E1726"
-              bottomColor="#0E1726"
+              topColor="#181513"
+              bottomColor="#162238"
               direction="down"
             />
 

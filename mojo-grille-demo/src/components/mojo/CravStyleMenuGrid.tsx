@@ -152,7 +152,7 @@ function DishCard({ item, onSelect }: DishCardProps) {
               <span
                 itemProp="price"
                 content={String(displayTotal)}
-                className="font-display text-2xl font-bold text-brass group-hover:text-terracotta transition-colors shrink-0 tabular-nums"
+                className="font-display text-2xl font-bold text-brass group-hover:text-amber transition-colors shrink-0 tabular-nums"
               >
                 ${formatPriceCOP(displayTotal)}
               </span>

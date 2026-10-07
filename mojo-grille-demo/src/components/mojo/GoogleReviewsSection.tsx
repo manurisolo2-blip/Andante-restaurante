@@ -109,7 +109,7 @@ export function GoogleReviewsSection() {
     <section
       id="reviews"
       aria-label="Lo que dicen los comensales sobre Andante Restaurante Bar"
-      className="relative w-full scroll-mt-[var(--header-h)] bg-transparent py-16 sm:py-24 overflow-hidden"
+      className="relative w-full scroll-mt-[var(--header-h)] bg-canvas border-t border-brass/15 py-16 sm:py-24 overflow-hidden"
     >
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         

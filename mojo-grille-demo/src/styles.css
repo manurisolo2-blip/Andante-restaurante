@@ -71,6 +71,16 @@
   --color-linen: #F4EFE6;
   --color-mist: #9CA3AF;
 
+  /* Graduaciones de Fondo Diferenciadas Dark Luxury */
+  --color-canvas-indigo: #0E1726;
+  --color-surface-navy: #162238;
+  --color-bg-obsidian: #181513;
+  --color-bg-espresso-deep: #1A1715;
+  --color-bg-night-purple: #16121C;
+  --color-obsidian: #181513;
+  --color-espresso-deep: #1A1715;
+  --color-night-purple: #16121C;
+
   /* Aliases de compatibilidad semántica con contraste WCAG 2.1 AA riguroso */
   --color-cream-bg: #0E1726;
   --color-brand-fire: #C9A86A;
@@ -78,7 +88,7 @@
   --color-surface-sand: #162238;
   --color-mojo-citrus: #D98236;
   --color-leaf-green: #162238;
-  --color-leaf-green-soft: #C9A86A;
+  --color-leaf-green-soft: #8DBE3D;
 
   --color-cream: #0E1726;
   --color-surface-white: #162238;
@@ -262,57 +272,73 @@
   :root { --header-h: 89px; }
 }
 
-/* Official Miami-Latin Modernism Design Token Utilities */
+/* Graduaciones Diferenciadas y Cálidas de Fondo (Dark Luxury) */
+@utility bg-canvas-indigo {
+  background-color: #0E1726;
+}
+@utility bg-surface-navy {
+  background-color: #162238;
+}
+@utility bg-obsidian {
+  background-color: #181513;
+}
+@utility bg-espresso-deep {
+  background-color: #1A1715;
+}
+@utility bg-night-purple {
+  background-color: #16121C;
+}
+
+/* Official Miami-Latin Modernism Design Token Utilities (Adaptados a Dark Luxury) */
 @utility bg-cream-bg {
-  background-color: #F2ECE1;
+  background-color: #0E1726;
 }
 @utility bg-cream-canvas {
-  background-color: #F2ECE1;
+  background-color: #0E1726;
 }
 @utility text-cream-bg {
-  color: #F2ECE1;
+  color: #F4EFE6;
 }
 @utility bg-brand-fire {
-  background-color: #E8413C;
+  background-color: #C9A86A;
 }
 @utility text-brand-fire {
-  color: #E8413C;
+  color: #C9A86A;
 }
 @utility border-brand-fire {
-  border-color: #E8413C;
+  border-color: #C9A86A;
 }
 @utility bg-charcoal-ink {
-  background-color: #141210;
+  background-color: #181513;
 }
 @utility text-charcoal-ink {
-  color: #141210;
+  color: #F4EFE6;
 }
 @utility border-charcoal-ink {
-  border-color: #141210;
+  border-color: rgba(201, 168, 106, 0.25);
 }
 @utility bg-surface-sand {
-  background-color: #ECE4D5;
+  background-color: #162238;
 }
 @utility text-surface-sand {
   color: #ECE4D5;
 }
 @utility border-surface-sand {
-  border-color: #ECE4D5;
+  border-color: rgba(201, 168, 106, 0.25);
 }
 @utility bg-mojo-citrus {
-  background-color: #F2C230;
+  background-color: #D98236;
 }
 @utility text-mojo-citrus {
-  color: #F2C230;
+  color: #D98236;
 }
 @utility bg-leaf-green {
-  background-color: #14402A;
+  background-color: #162238;
 }
 @utility text-leaf-green {
-  color: #14402A;
+  color: #E6CA85;
 }
-/* Verde para superficies oscuras: el leaf-green normal se queda en 2.93:1
-   sobre charcoal-ink, este llega a 5.76:1. */
+/* Verde para superficies oscuras: cumple WCAG 2.1 AA riguroso (>= 4.5:1) */
 @utility text-leaf-green-soft {
   color: #8DBE3D;
 }
@@ -363,39 +389,39 @@
 }
 
 @utility text-strong {
-  color: #1E1C1A;
+  color: #FDFBF7;
 }
 @utility bg-text-strong {
-  background-color: #1E1C1A;
+  background-color: #181513;
 }
 @utility text-espresso {
-  color: #1E1C1A;
+  color: #ECE4D5;
 }
 @utility bg-espresso {
-  background-color: #1E1C1A;
+  background-color: #1A1715;
 }
 
 @utility text-muted-warm {
-  color: #6B6560;
+  color: #ECE4D5;
 }
 @utility text-warm-gray {
-  color: #6B6560;
+  color: #E5E7EB;
 }
 
 @utility bg-olive-green {
-  background-color: #3D7A5F;
+  background-color: #162238;
 }
 @utility text-olive-green {
-  color: #3D7A5F;
+  color: #8DBE3D;
 }
 @utility border-olive-green {
-  border-color: #3D7A5F;
+  border-color: #8DBE3D;
 }
 @utility bg-dietary {
-  background-color: #3D7A5F;
+  background-color: #162238;
 }
 @utility text-dietary {
-  color: #3D7A5F;
+  color: #8DBE3D;
 }
 
 @utility bg-ochre-gold {
@@ -426,52 +452,52 @@
   color: #ECE4D5;
 }
 @utility bg-mojoRed {
-  background-color: #E8413C;
+  background-color: #D98236;
 }
 @utility text-mojoRed {
-  color: #E8413C;
+  color: #D98236;
 }
 @utility surface-white {
-  background-color: #FFFFFF;
+  background-color: #162238;
 }
 @utility text-charcoal {
-  color: #1C1917;
+  color: #F4EFE6;
 }
 @utility text-muted {
-  color: #78716C;
+  color: #9CA3AF;
 }
 @utility text-lime {
-  color: #4D7C0F;
+  color: #8DBE3D;
 }
 @utility bg-lime {
-  background-color: #4D7C0F;
+  background-color: #162238;
 }
 @utility text-gold {
-  color: #F59E0B;
+  color: #C9A86A;
 }
 @utility bg-gold {
-  background-color: #F59E0B;
+  background-color: #C9A86A;
 }
 @utility border-subtle {
-  border-color: #EAE5DC;
+  border-color: rgba(201, 168, 106, 0.2);
 }
 @utility border-hover {
-  border-color: #D6CFBF;
+  border-color: rgba(201, 168, 106, 0.35);
 }
 @utility bg-cream-warm {
-  background-color: #F4EFEA;
+  background-color: #181513;
 }
 @utility bg-gold-soft {
-  background-color: #FEF3C7;
+  background-color: #162238;
 }
 @utility text-gold-text {
-  color: #B45309;
+  color: #E6CA85;
 }
 @utility bg-lime-soft {
-  background-color: #F0F6E8;
+  background-color: #162238;
 }
 @utility bg-charcoal {
-  background-color: #1C1917;
+  background-color: #1A1715;
 }
 @utility mojo-terracotta {
   background-color: #D95327;

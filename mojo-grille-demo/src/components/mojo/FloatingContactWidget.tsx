@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MessageSquare, Phone, X, ChevronRight, CalendarCheck, Clock, MapPin } from "lucide-react";
+import { MessageSquare, Phone, X, ChevronRight, Clock, MapPin } from "lucide-react";
 
 export function FloatingContactWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,13 +18,13 @@ export function FloatingContactWidget() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  // Mensaje preconfigurado para WhatsApp que consulta sede y personas
-  const whatsappCandelariaUrl = `https://wa.me/573105551234?text=${encodeURIComponent(
-    "Hola Andante Restaurante Bar, quisiera consultar disponibilidad para reservar una mesa en Sede La Candelaria. Número de personas: [Indicar cantidad] - Fecha y hora: [Indicar fecha y hora]."
+  // Mensajes preconfigurados para WhatsApp con números oficiales argentinos
+  const whatsappSalonUrl = `https://wa.me/5491168673856?text=${encodeURIComponent(
+    "Hola Andante Restaurante Bar, quisiera consultar disponibilidad para reservar una mesa en el Salón Azul (Palermo Hollywood). Número de personas: [Indicar cantidad] - Fecha y hora: [Indicar fecha y hora]."
   )}`;
 
-  const whatsappMacarenaUrl = `https://wa.me/573208885678?text=${encodeURIComponent(
-    "Hola Andante Restaurante Bar, quisiera consultar disponibilidad para reservar una mesa en Sede La Macarena. Número de personas: [Indicar cantidad] - Fecha y hora: [Indicar fecha y hora]."
+  const whatsappPatioUrl = `https://wa.me/5491168062589?text=${encodeURIComponent(
+    "Hola Andante Restaurante Bar, quisiera consultar disponibilidad para reservar una mesa en el Patio Interior (Palermo Hollywood). Número de personas: [Indicar cantidad] - Fecha y hora: [Indicar fecha y hora]."
   )}`;
 
   return (
@@ -55,11 +55,14 @@ export function FloatingContactWidget() {
             <div className="flex items-start justify-between border-b border-brass/20 pb-3 mb-4">
               <div>
                 <span className="font-sans text-[10px] font-black uppercase tracking-[0.2em] text-brass">
-                  ATENCIÓN INMEDIATA · BOGOTÁ
+                  ATENCIÓN INMEDIATA · PALERMO HOLLYWOOD
                 </span>
                 <h3 className="font-serif font-display text-lg font-bold text-linen mt-0.5">
                   Contacto &amp; Reservas
                 </h3>
+                <p className="font-sans text-[11px] text-mist">
+                  Arévalo 1677, CABA · Salón Azul &amp; Patio
+                </p>
               </div>
               <button
                 type="button"
@@ -81,42 +84,42 @@ export function FloatingContactWidget() {
                   </span>
                 </div>
                 <p className="font-sans text-[11px] text-mist leading-snug">
-                  Mensaje preconfigurado para consultar sede y número de comensales:
+                  Mensaje preconfigurado para consultar espacio, fecha y comensales:
                 </p>
 
-                {/* Sub-opción Sede La Candelaria */}
+                {/* Sub-opción Salón Azul */}
                 <a
-                  href={whatsappCandelariaUrl}
+                  href={whatsappSalonUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Reservar por WhatsApp en Sede La Candelaria"
+                  aria-label="Reservar por WhatsApp en Salón Azul al +54 9 11 6867-3856"
                   className="group flex min-h-[48px] items-center justify-between border border-brass/25 bg-canvas/80 px-4 py-3 hover:border-brass hover:bg-canvas transition-all"
                 >
                   <div className="flex flex-col text-left">
                     <span className="font-sans text-xs font-bold text-linen group-hover:text-brass transition-colors">
-                      WhatsApp · La Candelaria
+                      WhatsApp · Salón Azul
                     </span>
                     <span className="font-sans text-[10px] text-mist">
-                      +57 310 555-1234 · Centro Histórico
+                      +54 9 11 6867-3856 · Jazz &amp; Cenas
                     </span>
                   </div>
                   <ChevronRight className="h-4 w-4 text-brass group-hover:translate-x-1 transition-transform" />
                 </a>
 
-                {/* Sub-opción Sede La Macarena */}
+                {/* Sub-opción Patio Interior & Barra */}
                 <a
-                  href={whatsappMacarenaUrl}
+                  href={whatsappPatioUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Reservar por WhatsApp en Sede La Macarena"
+                  aria-label="Reservar por WhatsApp en Patio y Barra al +54 9 11 6806-2589"
                   className="group flex min-h-[48px] items-center justify-between border border-brass/25 bg-canvas/80 px-4 py-3 hover:border-brass hover:bg-canvas transition-all"
                 >
                   <div className="flex flex-col text-left">
                     <span className="font-sans text-xs font-bold text-linen group-hover:text-brass transition-colors">
-                      WhatsApp · La Macarena
+                      WhatsApp · Patio &amp; Barra
                     </span>
                     <span className="font-sans text-[10px] text-mist">
-                      +57 320 888-5678 · Distrito Bohemio
+                      +54 9 11 6806-2589 · Aire Libre &amp; Cócteles
                     </span>
                   </div>
                   <ChevronRight className="h-4 w-4 text-brass group-hover:translate-x-1 transition-transform" />
@@ -132,33 +135,33 @@ export function FloatingContactWidget() {
                   </span>
                 </div>
                 <p className="font-sans text-[11px] text-mist leading-snug">
-                  Llamada telefónica directa a recepción:
+                  Líneas telefónicas directas de recepción:
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <a
-                    href="tel:+5713412345"
-                    aria-label="Llamar a Sede La Candelaria al +57 (1) 341-2345"
+                    href="tel:+541168673856"
+                    aria-label="Llamar a recepción Salón Azul al +54 11 6867-3856"
                     className="flex min-h-[48px] flex-col justify-center border border-brass/20 bg-canvas/80 px-3 py-2 text-left hover:border-brass transition-colors"
                   >
                     <span className="text-[10px] font-bold uppercase tracking-wider text-mist">
-                      La Candelaria
+                      Salón Azul
                     </span>
                     <span className="font-sans text-xs font-bold text-brass">
-                      +57 (1) 341-2345
+                      +54 11 6867-3856
                     </span>
                   </a>
 
                   <a
-                    href="tel:+5712865432"
-                    aria-label="Llamar a Sede La Macarena al +57 (1) 286-5432"
+                    href="tel:+541168062589"
+                    aria-label="Llamar a línea Patio y Barra al +54 11 6806-2589"
                     className="flex min-h-[48px] flex-col justify-center border border-brass/20 bg-canvas/80 px-3 py-2 text-left hover:border-brass transition-colors"
                   >
                     <span className="text-[10px] font-bold uppercase tracking-wider text-mist">
-                      La Macarena
+                      Patio &amp; Barra
                     </span>
                     <span className="font-sans text-xs font-bold text-brass">
-                      +57 (1) 286-5432
+                      +54 11 6806-2589
                     </span>
                   </a>
                 </div>
@@ -167,7 +170,7 @@ export function FloatingContactWidget() {
               {/* Indicador de Horario */}
               <div className="flex items-center gap-2 pt-2 text-[11px] text-mist border-t border-brass/10">
                 <Clock className="h-3.5 w-3.5 text-amber shrink-0" aria-hidden="true" />
-                <span>Horario continuo: 12:00 a 23:00 hs</span>
+                <span>Mar a Dom 09:00 a 01:00 hs (Lunes cerrado)</span>
               </div>
             </div>
           </div>
