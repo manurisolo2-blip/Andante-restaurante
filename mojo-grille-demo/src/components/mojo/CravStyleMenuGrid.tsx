@@ -1,7 +1,7 @@
-import { useRef, useState, type KeyboardEvent } from "react";
-import { Plus, Check, Filter, Sparkles, Wine, Utensils } from "lucide-react";
+import React, { useRef, useState, type KeyboardEvent } from "react";
+import { Plus, Check, Filter, Sparkles, Wine, Utensils, UtensilsCrossed, ChevronDown, ChevronUp } from "lucide-react";
 import { useCart } from "./cart";
-import { categories, menu, type MenuItem, type CategoryId } from "@/data/menu";
+import { menu, type MenuItem } from "@/data/menu";
 
 export interface CravStyleMenuGridProps {
   onSelect?: (item: MenuItem) => void;
@@ -9,12 +9,303 @@ export interface CravStyleMenuGridProps {
 
 type DietaryFilter = "all" | "gluten-free" | "vegetarian";
 
-export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryId>("entradas");
-  const [dietaryFilter, setDietaryFilter] = useState<DietaryFilter>("all");
-  const [clickedItemId, setClickedItemId] = useState<string | null>(null);
+interface MenuCategoryTab {
+  id: string;
+  label: string;
+}
 
+const MENU_CATEGORIES: MenuCategoryTab[] = [
+  { id: "entradas", label: "Entradas" },
+  { id: "pastas", label: "Pastas" },
+  { id: "carnes", label: "Carnes" },
+  { id: "risottos", label: "Risottos" },
+  { id: "principales", label: "Todos los Principales" },
+  { id: "postres", label: "Postres & Pastelería" },
+  { id: "barra", label: "Barra de Autor" },
+  { id: "cafeteria", label: "Cafetería / Merienda" },
+];
+
+const INCLUDED_SIDES_OPTIONS = [
+  "Pasta artesanal al dente",
+  "Arroz carnaroli al azafrán",
+  "Papas rústicas a la provenzal",
+  "Verduras grilladas de estación",
+  "Ensalada fresca de huerta",
+];
+
+function formatPriceCOP(price: number): string {
+  if (price >= 1000) {
+    return price.toLocaleString("es-CO");
+  }
+  return (price * 1000).toLocaleString("es-CO");
+}
+
+interface DishCardProps {
+  item: MenuItem;
+  onSelect?: ((item: MenuItem) => void) | undefined;
+}
+
+function DishCard({ item, onSelect }: DishCardProps) {
   const cart = useCart();
+  const [imgError, setImgError] = useState(false);
+  const [accordionOpen, setAccordionOpen] = useState(false);
+  const [selectedGuarnicion, setSelectedGuarnicion] = useState<string>("Papas rústicas a la provenzal");
+  const [extraSalsa, setExtraSalsa] = useState(false);
+  const [extraParmesano, setExtraParmesano] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+
+  // Platos con guarnición incluida (Carnes, Risottos, Pastas y principales)
+  const isLomoOrMeat = item.name.toLowerCase().includes("bife") || item.name.toLowerCase().includes("carne") || item.name.toLowerCase().includes("pato");
+  const isRisotto = item.name.toLowerCase().includes("risotto") || item.name.toLowerCase().includes("curry");
+  const hasIncludedSides = item.sidesAllowed || item.category === "principales" || isLomoOrMeat || isRisotto;
+
+  const extraTotal = (extraSalsa ? 5.5 : 0) + (extraParmesano ? 4.2 : 0);
+  const displayTotal = item.price + extraTotal;
+
+  const handleCardAdd = () => {
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 1200);
+
+    const sides: string[] = [];
+    if (hasIncludedSides) {
+      sides.push(`Guarnición: ${selectedGuarnicion}`);
+    }
+    if (extraSalsa) {
+      sides.push("Salsa especial de trufas (+$5.500)");
+    }
+    if (extraParmesano) {
+      sides.push("Queso Parmigiano Reggiano 24m (+$4.200)");
+    }
+
+    cart.add({
+      itemId: item.id,
+      name: item.name,
+      price: displayTotal,
+      sides,
+    });
+  };
+
+  return (
+    <article
+      key={item.id}
+      itemScope
+      itemType="https://schema.org/MenuItem"
+      className="group relative flex flex-col justify-between border border-brass/20 bg-surface/70 transition-all duration-300 hover:border-brass hover:shadow-2xl hover:shadow-brass/5"
+    >
+      <div>
+        {/* Espacio Contenedor para Fotografía del Plato con Fallback Elegante */}
+        <div className="relative aspect-video w-full overflow-hidden bg-canvas">
+          <button
+            type="button"
+            onClick={() => onSelect?.(item)}
+            aria-label={`View details for ${item.name}`}
+            className="w-full h-full text-left cursor-pointer focus:outline-none"
+          >
+            {!imgError && item.image ? (
+              <img
+                src={item.image}
+                alt={item.name}
+                loading="lazy"
+                onError={() => setImgError(true)}
+                className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+              />
+            ) : (
+              /* Fallback elegante si falta imagen o falla la carga */
+              <div className="h-full w-full flex flex-col items-center justify-center bg-surface border border-brass/25 p-4 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-brass/40 bg-canvas/90 text-brass mb-2 shadow-inner">
+                  <UtensilsCrossed className="h-5 w-5 text-amber" aria-hidden="true" />
+                </div>
+                <span className="font-serif text-sm font-bold uppercase tracking-wider text-linen line-clamp-1">
+                  {item.name}
+                </span>
+                <span className="font-sans text-[10px] text-brass uppercase tracking-widest mt-1">
+                  Andante Palermo Hollywood
+                </span>
+              </div>
+            )}
+          </button>
+          <meta itemProp="image" content={item.image} />
+
+          {item.badge && (
+            <span className="absolute top-3 left-3 bg-canvas/90 border border-brass/40 px-2.5 py-1 text-[11px] font-sans font-bold uppercase tracking-wider text-brass backdrop-blur-sm pointer-events-none">
+              {item.badge}
+            </span>
+          )}
+          {item.isGlutenFree && (
+            <span className="absolute top-3 right-3 bg-olive-green px-2 py-0.5 text-[10px] font-sans font-black uppercase tracking-wider text-surface-warm pointer-events-none shadow-sm">
+              Sin TACC
+            </span>
+          )}
+        </div>
+
+        {/* Cuerpo de la Tarjeta con Título en Fuente Serif y Precio Formateado */}
+        <div className="p-6 pb-4">
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <h3
+              itemProp="name"
+              className="font-serif font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-linen group-hover:text-brass transition-colors leading-tight"
+            >
+              {item.name}
+            </h3>
+            <div itemProp="offers" itemScope itemType="https://schema.org/Offer" className="shrink-0 text-right">
+              <meta itemProp="priceCurrency" content="COP" />
+              <span
+                itemProp="price"
+                content={String(displayTotal)}
+                className="font-display text-2xl font-bold text-brass group-hover:text-terracotta transition-colors shrink-0 tabular-nums"
+              >
+                ${formatPriceCOP(displayTotal)}
+              </span>
+              <link itemProp="availability" href="https://schema.org/InStock" />
+            </div>
+          </div>
+
+          <p itemProp="description" className="font-sans text-xs sm:text-sm text-mist leading-relaxed mb-3">
+            {item.description}
+          </p>
+
+          {item.pairing && (
+            <p className="font-sans text-[11px] text-amber border-l-2 border-amber/40 pl-2.5 py-0.5 mb-2">
+              {item.pairing}
+            </p>
+          )}
+
+          {item.chefNotes && (
+            <p className="font-sans text-[11px] text-linen/70 italic border-l-2 border-brass/30 pl-2.5 py-0.5 mb-2">
+              Nota del Chef: {item.chefNotes}
+            </p>
+          )}
+
+          {/* Selector Interactivo / Acordeón para Guarnición Incluida */}
+          {hasIncludedSides && (
+            <div className="mt-4 pt-3 border-t border-brass/15">
+              <button
+                type="button"
+                onClick={() => setAccordionOpen(!accordionOpen)}
+                className="w-full flex items-center justify-between text-left text-xs font-sans font-bold uppercase tracking-wider text-brass hover:text-linen transition-colors cursor-pointer py-1.5 px-2 bg-canvas/40 border border-brass/20"
+              >
+                <span className="flex items-center gap-1.5 truncate">
+                  <Check className="h-3.5 w-3.5 text-amber shrink-0" aria-hidden="true" />
+                  <span className="truncate">
+                    Guarnición: <span className="text-linen font-normal capitalize">{selectedGuarnicion}</span>
+                  </span>
+                </span>
+                {accordionOpen ? (
+                  <ChevronUp className="h-4 w-4 text-amber shrink-0 ml-1" aria-hidden="true" />
+                ) : (
+                  <ChevronDown className="h-4 w-4 text-amber shrink-0 ml-1" aria-hidden="true" />
+                )}
+              </button>
+
+              {accordionOpen && (
+                <div className="mt-2 p-2.5 bg-canvas/90 border border-brass/25 space-y-1.5 transition-all">
+                  <p className="text-[11px] font-sans text-mist mb-1">
+                    Selecciona tu guarnición artesanal incluida:
+                  </p>
+                  {INCLUDED_SIDES_OPTIONS.map((side) => {
+                    const isSelectedSide = selectedGuarnicion === side;
+                    return (
+                      <button
+                        key={side}
+                        type="button"
+                        onClick={() => {
+                          setSelectedGuarnicion(side);
+                          setAccordionOpen(false);
+                        }}
+                        className={`w-full flex items-center justify-between px-2.5 py-1.5 text-xs text-left cursor-pointer border transition-colors ${
+                          isSelectedSide
+                            ? "bg-surface border-brass text-linen font-bold shadow-sm"
+                            : "border-brass/10 text-mist hover:text-linen hover:border-brass/30"
+                        }`}
+                      >
+                        <span className="font-sans text-xs">{side}</span>
+                        {isSelectedSide && <Check className="h-3 w-3 text-amber" aria-hidden="true" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Indicadores para Adiciones con Cargo Extra */}
+              <div className="mt-3 space-y-1.5">
+                <span className="block text-[10px] font-sans font-bold uppercase tracking-widest text-brass/90">
+                  Adiciones sugeridas con cargo extra:
+                </span>
+                <label className="flex items-center justify-between gap-2 p-2 bg-canvas/50 border border-brass/15 text-xs text-linen cursor-pointer hover:border-brass/35 transition-colors">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={extraSalsa}
+                      onChange={(e) => setExtraSalsa(e.target.checked)}
+                      className="rounded-none border-brass/40 accent-amber cursor-pointer"
+                    />
+                    <span className="font-sans text-[11px]">Salsa especial de trufas</span>
+                  </div>
+                  <span className="font-sans text-[11px] font-bold text-amber tabular-nums">+$5.500</span>
+                </label>
+
+                <label className="flex items-center justify-between gap-2 p-2 bg-canvas/50 border border-brass/15 text-xs text-linen cursor-pointer hover:border-brass/35 transition-colors">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={extraParmesano}
+                      onChange={(e) => setExtraParmesano(e.target.checked)}
+                      className="rounded-none border-brass/40 accent-amber cursor-pointer"
+                    />
+                    <span className="font-sans text-[11px]">Queso Parmigiano 24 meses</span>
+                  </div>
+                  <span className="font-sans text-[11px] font-bold text-amber tabular-nums">+$4.200</span>
+                </label>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Pie de Acción */}
+      <div className="p-6 pt-0 border-t border-brass/10 mt-4 flex items-center justify-between gap-3">
+        <div className="flex flex-col">
+          <span className="text-[11px] font-sans text-mist uppercase tracking-wider">
+            {hasIncludedSides ? "Guarnición incluida" : "Listo al compás"}
+          </span>
+          {extraTotal > 0 && (
+            <span className="text-[10px] font-sans text-amber font-bold tabular-nums">
+              +${(extraTotal * 1000).toLocaleString("es-CO")} extras
+            </span>
+          )}
+        </div>
+
+        <button
+          type="button"
+          onClick={handleCardAdd}
+          aria-label={`Add ${item.name} to order`}
+          className={`inline-flex min-h-11 items-center gap-2 rounded-none px-5 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none border ${
+            isAdded
+              ? "bg-amber text-canvas border-amber"
+              : "bg-brass text-canvas border-brass hover:bg-linen hover:text-canvas"
+          }`}
+        >
+          {isAdded ? (
+            <>
+              <Check className="h-4 w-4 stroke-[3]" aria-hidden="true" />
+              <span>AGREGADO</span>
+            </>
+          ) : (
+            <>
+              <Plus className="h-4 w-4 stroke-[3]" aria-hidden="true" />
+              <span>AGREGAR</span>
+            </>
+          )}
+        </button>
+      </div>
+    </article>
+  );
+}
+
+export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string>("entradas");
+  const [dietaryFilter, setDietaryFilter] = useState<DietaryFilter>("all");
+
   const tablistRef = useRef<HTMLDivElement>(null);
 
   // Navegación accesible con flechas según WAI-ARIA Tabs pattern
@@ -39,15 +330,58 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
     const nextTab = tabs[nextIndex];
     if (nextTab) {
       nextTab.focus();
-      const catId = categories[nextIndex]?.id;
+      const catId = MENU_CATEGORIES[nextIndex]?.id;
       if (catId) {
         setSelectedCategory(catId);
       }
     }
   };
 
-  // Filtrado reactivo por categoría y filtros visuales (Sin TACC / Vegetariano)
-  const categoryItems = menu.filter((item) => item.category === selectedCategory);
+  // Filtrado reactivo por categoría (Entradas, Pastas, Carnes, Risottos, Principales, Postres, Barra, Cafetería)
+  const categoryItems = menu.filter((item) => {
+    if (selectedCategory === "entradas") {
+      return item.category === "entradas";
+    }
+    if (selectedCategory === "pastas") {
+      return (
+        item.category === "principales" &&
+        (item.name.toLowerCase().includes("ñoquis") ||
+          item.name.toLowerCase().includes("ravioli") ||
+          item.name.toLowerCase().includes("pasta"))
+      );
+    }
+    if (selectedCategory === "carnes") {
+      return (
+        item.category === "principales" &&
+        (item.name.toLowerCase().includes("bife") ||
+          item.name.toLowerCase().includes("pato") ||
+          item.name.toLowerCase().includes("carne") ||
+          item.name.toLowerCase().includes("ternera"))
+      );
+    }
+    if (selectedCategory === "risottos") {
+      return (
+        item.category === "principales" &&
+        (item.name.toLowerCase().includes("risotto") ||
+          item.name.toLowerCase().includes("curry") ||
+          item.name.toLowerCase().includes("arroz"))
+      );
+    }
+    if (selectedCategory === "principales") {
+      return item.category === "principales";
+    }
+    if (selectedCategory === "postres") {
+      return item.category === "postres";
+    }
+    if (selectedCategory === "barra") {
+      return item.category === "barra";
+    }
+    if (selectedCategory === "cafeteria") {
+      return item.category === "cafeteria";
+    }
+    return true;
+  });
+
   const filteredItems = categoryItems.filter((item) => {
     if (dietaryFilter === "gluten-free") {
       return item.isGlutenFree === true;
@@ -58,22 +392,6 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
     return true;
   });
 
-  const handleQuickAdd = (item: MenuItem) => {
-    setClickedItemId(item.id);
-    setTimeout(() => setClickedItemId(null), 1200);
-
-    if (item.sidesAllowed && onSelect) {
-      onSelect(item);
-    } else {
-      cart.add({
-        itemId: item.id,
-        name: item.name,
-        price: item.price,
-        sides: [],
-      });
-    }
-  };
-
   return (
     <section id="carta-digital" className="relative w-full bg-transparent py-14 sm:py-20 overflow-hidden">
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
@@ -82,25 +400,25 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brass mb-3">
             <Utensils className="h-4 w-4 text-amber" aria-hidden="true" />
-            <span>CARTA DIGITAL INTERACTIVA · PALERMO HOLLYWOOD</span>
+            <span>CARTA GASTRONÓMICA MODULAR · PALERMO HOLLYWOOD</span>
           </div>
-          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-linen leading-none">
-            UN VIAJE POR EL MUNDO <span className="text-brass">A TRAVÉS DEL PALADAR</span>
+          <h2 className="font-serif font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-linen leading-none">
+            CATÁLOGO MODULAR <span className="text-brass">&amp; GASTRONOMÍA DE AUTOR</span>
           </h2>
           <p className="mt-4 font-sans text-base text-mist leading-relaxed max-w-2xl mx-auto">
-            Alta cocina cosmopolita liderada por el chef ejecutivo Pablo Aroma y barra de autor dirigida por Santiago Contarino. Opciones Sin TACC garantizadas y materias primas nobles de estación.
+            Pastas artesanales, risottos al dente, cortes madurados al fuego y coctelería internacional. Diseñado para personalizar cada plato con guarniciones y maridajes exclusivos.
           </p>
         </div>
 
-        {/* 1. Pestañas Dinámicas de Categoría */}
-        <div className="sticky top-[var(--header-h)] z-30 mb-8 py-3 bg-canvas/90 backdrop-blur-md border-y border-brass/15">
+        {/* 1. Pestañas Dinámicas de Categoría Adhesivas (Sticky Tabs) */}
+        <div className="sticky top-[var(--header-h)] z-30 mb-8 py-3 bg-canvas/95 backdrop-blur-md border-y border-brass/20 shadow-lg">
           <div
             ref={tablistRef}
             role="tablist"
-            aria-label="Categorías de la Carta"
-            className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1 max-w-5xl mx-auto"
+            aria-label="Categorías de la Carta Gastronómica"
+            className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1 max-w-6xl mx-auto"
           >
-            {categories.map((category, index) => {
+            {MENU_CATEGORIES.map((category, index) => {
               const isSelected = selectedCategory === category.id;
               return (
                 <button
@@ -113,7 +431,7 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
                   type="button"
                   onClick={() => setSelectedCategory(category.id)}
                   onKeyDown={(event) => handleTabKeyDown(event, index)}
-                  className={`relative flex min-h-11 shrink-0 items-center rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none cursor-pointer border ${
+                  className={`relative flex min-h-11 shrink-0 items-center rounded-none px-4 sm:px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none cursor-pointer border ${
                     isSelected
                       ? "bg-brass text-canvas border-brass shadow-lg"
                       : "bg-surface text-mist border-brass/20 hover:text-linen hover:border-brass/50"
@@ -158,8 +476,8 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
               onClick={() => setDietaryFilter("vegetarian")}
               className={`px-3 py-1 text-xs font-sans font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border ${
                 dietaryFilter === "vegetarian"
-                  ? "border-emerald-500 text-emerald-400 bg-emerald-950/20"
-                  : "border-brass/20 text-mist hover:text-emerald-400"
+                  ? "border-olive-green text-olive-green bg-olive-green/10"
+                  : "border-brass/20 text-mist hover:text-olive-green"
               }`}
             >
               Vegetarianos ({categoryItems.filter((i) => i.isVegetarian).length})
@@ -167,18 +485,18 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
           </div>
         </div>
 
-        {/* Banner contextual de autor según pestaña */}
+        {/* Banners contextuales según categoría */}
         {selectedCategory === "barra" && (
           <div className="mb-10 max-w-4xl mx-auto border border-brass/30 bg-surface/80 p-5 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
             <div className="flex h-10 w-10 items-center justify-center border border-brass text-brass shrink-0 bg-canvas">
               <Wine className="h-5 w-5" aria-hidden="true" />
             </div>
             <div className="text-left">
-              <h4 className="font-display text-base font-bold uppercase tracking-wider text-brass">
+              <h4 className="font-serif font-display text-base font-bold uppercase tracking-wider text-brass">
                 Barra de Autor &amp; Bodegas Boutique · Dirección de Santiago Contarino
               </h4>
               <p className="font-sans text-xs text-mist leading-relaxed">
-                Coctelería clásica reinterpretada con botánicos locales, bitters caseros y cuidada selección de etiquetas y vinos de corte de pequeños productores argentinos.
+                Coctelería clásica reinterpretada con botánicos locales, bitters caseros y cuidada selección de etiquetas y vinos de corte de pequeños productores independientes.
               </p>
             </div>
           </div>
@@ -190,8 +508,8 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
               <Sparkles className="h-5 w-5" aria-hidden="true" />
             </div>
             <div className="text-left">
-              <h4 className="font-display text-base font-bold uppercase tracking-wider text-brass">
-                Pastelería Artesanal &amp; Panadería de Masa Madre · Chef Ejecutivo Pablo Aroma (ex Nicky Harrison)
+              <h4 className="font-serif font-display text-base font-bold uppercase tracking-wider text-brass">
+                Pastelería Artesanal &amp; Panadería de Masa Madre · Chef Ejecutivo Pablo Aroma
               </h4>
               <p className="font-sans text-xs text-mist leading-relaxed">
                 Precisión técnica de pastelería volcada a la fermentación lenta de 48 horas, medialunas artesanales y la célebre Torta Vasca (San Sebastián).
@@ -200,120 +518,29 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
           </div>
         )}
 
-        {/* Retícula de Platos */}
+        {/* Retícula de Platos (Cards Modulares) */}
         <div
           id="menu-grid-panel"
           role="tabpanel"
           aria-labelledby={`tab-${selectedCategory}`}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         >
-          {filteredItems.map((item) => {
-            const isAdded = clickedItemId === item.id;
-
-            return (
-              <article
-                key={item.id}
-                className="group relative flex flex-col justify-between border border-brass/20 bg-surface/70 transition-all duration-300 hover:border-brass hover:shadow-2xl hover:shadow-brass/5"
-              >
-                <div>
-                  {/* Imagen y botón de visualización */}
-                  <div className="relative aspect-video w-full overflow-hidden bg-canvas">
-                    <button
-                      type="button"
-                      onClick={() => onSelect?.(item)}
-                      aria-label={`View details for ${item.name}`}
-                      className="w-full h-full text-left cursor-pointer focus:outline-none"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        loading="lazy"
-                        className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
-                      />
-                    </button>
-                    {item.badge && (
-                      <span className="absolute top-3 left-3 bg-canvas/90 border border-brass/40 px-2.5 py-1 text-[11px] font-sans font-bold uppercase tracking-wider text-brass backdrop-blur-sm pointer-events-none">
-                        {item.badge}
-                      </span>
-                    )}
-                    {item.isGlutenFree && (
-                      <span className="absolute top-3 right-3 bg-olive-green px-2 py-0.5 text-[10px] font-sans font-black uppercase tracking-wider text-surface-warm pointer-events-none shadow-sm">
-                        Sin TACC
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Cuerpo de la Tarjeta */}
-                  <div className="p-6">
-                    <div className="flex items-start justify-between gap-4 mb-2">
-                      <h3 className="font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-linen group-hover:text-brass transition-colors">
-                        {item.name}
-                      </h3>
-                      <span className="font-display text-2xl font-bold text-brass group-hover:text-terracotta transition-colors shrink-0 tabular-nums">
-                        ${item.price.toFixed(2)}
-                      </span>
-                    </div>
-
-                    <p className="font-sans text-xs sm:text-sm text-mist leading-relaxed mb-4">
-                      {item.description}
-                    </p>
-
-                    {item.pairing && (
-                      <p className="font-sans text-[11px] text-amber border-l-2 border-amber/40 pl-2.5 py-0.5 mb-2">
-                        {item.pairing}
-                      </p>
-                    )}
-
-                    {item.chefNotes && (
-                      <p className="font-sans text-[11px] text-linen/70 italic border-l-2 border-brass/30 pl-2.5 py-0.5">
-                        Nota del Chef: {item.chefNotes}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Pie de Acción */}
-                <div className="p-6 pt-0 border-t border-brass/10 mt-4 flex items-center justify-between gap-3">
-                  <span className="text-[11px] font-sans text-mist uppercase tracking-wider">
-                    {item.sidesAllowed ? "Personalizable" : "Listo al compás"}
-                  </span>
-
-                  <button
-                    type="button"
-                    onClick={() => handleQuickAdd(item)}
-                    aria-label={`Add ${item.name} to order`}
-                    className={`inline-flex min-h-11 items-center gap-2 rounded-none px-5 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none border ${
-                      isAdded
-                        ? "bg-amber text-canvas border-amber"
-                        : "bg-brass text-canvas border-brass hover:bg-linen"
-                    }`}
-                  >
-                    {isAdded ? (
-                      <>
-                        <Check className="h-4 w-4 stroke-[3]" aria-hidden="true" />
-                        <span>AGREGADO</span>
-                      </>
-                    ) : (
-                      <>
-                        <Plus className="h-4 w-4 stroke-[3]" aria-hidden="true" />
-                        <span>{item.sidesAllowed ? "PERSONALIZAR" : "AGREGAR"}</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </article>
-            );
-          })}
+          {filteredItems.map((item) => (
+            <DishCard key={item.id} item={item} onSelect={onSelect} />
+          ))}
         </div>
 
         {filteredItems.length === 0 && (
           <div className="text-center py-16 border border-brass/15 bg-surface/40">
             <p className="font-sans text-base text-mist">
-              No se encontraron platos para el filtro seleccionado.
+              No se encontraron platos para la categoría o filtro seleccionado.
             </p>
             <button
               type="button"
-              onClick={() => setDietaryFilter("all")}
+              onClick={() => {
+                setSelectedCategory("entradas");
+                setDietaryFilter("all");
+              }}
               className="mt-4 inline-flex items-center gap-2 text-xs font-sans font-bold uppercase tracking-wider text-brass underline underline-offset-4 cursor-pointer"
             >
               Restablecer filtros
@@ -324,3 +551,5 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
     </section>
   );
 }
+
+export default CravStyleMenuGrid;

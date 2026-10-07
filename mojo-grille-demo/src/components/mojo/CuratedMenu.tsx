@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
-import { Plus } from "lucide-react";
+import { Plus, Check, Soup, Drumstick, Salad } from "lucide-react";
 import { useCart } from "./cart";
 import { useReducedMotion } from "@/lib/useReducedMotion";
 import { MagneticButton } from "./MagneticButton";
@@ -102,6 +102,47 @@ export function CuratedMenu() {
 
   const featured = CURATED_ITEMS[0];
   const listItems = CURATED_ITEMS.slice(1);
+
+  // Estado interactivo para el Menú del Día ($46.300) tipo Bento Grid
+  const [selectedEntrada, setSelectedEntrada] = useState<string>("Zuppa di Pomodoro Asado");
+  const [selectedProteina, setSelectedProteina] = useState<string>("Carne de Res al Malbec");
+  const [selectedAcomp, setSelectedAcomp] = useState<string[]>([
+    "Papas rústicas a la provenzal",
+    "Ensalada fresca de huerta",
+  ]);
+  const [bentoAdded, setBentoAdded] = useState(false);
+
+  const handleToggleAcomp = (option: string) => {
+    if (selectedAcomp.includes(option)) {
+      if (selectedAcomp.length > 1) {
+        setSelectedAcomp(selectedAcomp.filter((o) => o !== option));
+      }
+    } else {
+      if (selectedAcomp.length < 2) {
+        setSelectedAcomp([...selectedAcomp, option]);
+      } else {
+        setSelectedAcomp([selectedAcomp[0]!, option]);
+      }
+    }
+  };
+
+  const handleAddMenuDelDia = () => {
+    setBentoAdded(true);
+    setTimeout(() => setBentoAdded(false), 1500);
+    add({
+      itemId: "plancha-mojo-pork-bowl",
+      name: "Menú del Día Andante ($46.300)",
+      price: 46300,
+      sides: [
+        `Entrada: ${selectedEntrada}`,
+        `Proteína: ${selectedProteina}`,
+        `Guarniciones: ${selectedAcomp.join(" & ")}`,
+        "Pan de masa madre",
+        "Mantequilla de hierbas",
+        "Bebida del día",
+      ],
+    });
+  };
 
   useEffect(() => {
     if (!previewRef.current || typeof window === "undefined") return;
@@ -253,51 +294,314 @@ export function CuratedMenu() {
         cinco siguen como listado: dos densidades distintas dentro de la misma
         sección en vez de seis filas iguales.
       */}
-      {featured ? (
-        <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
-          <div className="relative w-full overflow-hidden aspect-[4/3] sm:aspect-[2/1] lg:aspect-[21/9]">
-            <img
-              src={featured.imageUrl}
-              alt={featured.name}
-              loading="lazy"
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
-
-          <div className="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-            <div className="lg:max-w-[58%]">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="font-sans text-sm sm:text-xs font-bold uppercase tracking-[0.2em] text-cream-bg">
-                  Plato de la casa
+      {/*
+        Menú del Día ($46.300) — Tarjeta Destacada tipo Bento Grid con Desglose de 3 Pasos
+      */}
+      <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-14 sm:mb-20">
+        <article
+          itemScope
+          itemType="https://schema.org/MenuItem"
+          className="relative border border-brass/30 bg-surface/90 backdrop-blur-md shadow-2xl p-6 sm:p-8 md:p-10"
+        >
+          {/* Header del Bento Grid */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-brass/20">
+            <div>
+              <div className="flex flex-wrap items-center gap-3 mb-2">
+                <span className="font-sans text-[11px] font-black uppercase tracking-[0.22em] text-canvas bg-amber px-3 py-1">
+                  IL MENÙ DEL GIORNO · PROPUESTA EJECUTIVA
                 </span>
-                <RebelChefBadge />
+                <span className="font-sans text-xs font-bold uppercase tracking-wider text-brass">
+                  Lunes a Viernes · 12:00 a 16:00 hs
+                </span>
               </div>
-              <h3 className="mt-2 font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-cream-bg leading-none">
-                {featured.name}
+              <h3
+                itemProp="name"
+                className="font-serif font-display text-3xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-linen leading-none"
+              >
+                Menú del Día Andante
               </h3>
-              <p className="mt-4 font-sans text-base sm:text-lg text-cream-bg leading-relaxed">
-                {featured.description}
+              <p
+                itemProp="description"
+                className="mt-3 font-sans text-sm sm:text-base text-mist max-w-2xl leading-relaxed"
+              >
+                Experiencia en tres tiempos de cocina contemporánea y de mercado. Incluye panadería artesanal de masa madre de Pablo Aroma, mantequilla de hierbas y bebida de la casa.
               </p>
             </div>
 
-            <div className="flex items-end gap-6 shrink-0">
-              <span className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-cream-bg tabular-nums leading-none">
-                ${featured.price.toFixed(2)}
-              </span>
-              <MagneticButton
-                as="button"
-                type="button"
-                onClick={() => handleAddToCart(featured)}
-                className="h-12 px-6 font-sans font-bold uppercase tracking-wider text-sm bg-cream-bg text-leaf-green hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-2 cursor-pointer shrink-0 select-none"
-                aria-label={`Add ${featured.name} to order for $${featured.price.toFixed(2)}`}
-              >
-                <Plus className="h-4 w-4 stroke-[3]" aria-hidden="true" />
-                <span>GRAB THIS BOWL</span>
-              </MagneticButton>
+            <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 shrink-0">
+              <div itemProp="offers" itemScope itemType="https://schema.org/Offer" className="text-left lg:text-right">
+                <meta itemProp="priceCurrency" content="COP" />
+                <span
+                  itemProp="price"
+                  content="46300"
+                  className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-brass tabular-nums leading-none"
+                >
+                  $46.300
+                </span>
+                <span className="block font-sans text-[11px] uppercase tracking-wider text-mist mt-1 font-semibold">
+                  Precio final por comensal
+                </span>
+                <link itemProp="availability" href="https://schema.org/InStock" />
+              </div>
+
+              {/* Badges claros de cortesías incluidas */}
+              <div className="flex flex-wrap items-center gap-2 mt-1">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-canvas/90 border border-brass/35 text-brass text-[11px] font-bold uppercase tracking-wider">
+                  <Check className="h-3.5 w-3.5 text-amber" aria-hidden="true" />
+                  Pan de Masa Madre
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-canvas/90 border border-brass/35 text-brass text-[11px] font-bold uppercase tracking-wider">
+                  <Check className="h-3.5 w-3.5 text-amber" aria-hidden="true" />
+                  Mantequilla de Hierbas
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-canvas/90 border border-brass/35 text-brass text-[11px] font-bold uppercase tracking-wider">
+                  <Check className="h-3.5 w-3.5 text-amber" aria-hidden="true" />
+                  Bebida del Día
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      ) : null}
+
+          {/* Retícula Bento Grid de 3 Pasos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8">
+            
+            {/* Bento Celda 1: Paso 1 - Entrada / Sopa del Día */}
+            <div className="flex flex-col justify-between border border-brass/20 bg-canvas/60 p-5 sm:p-6 transition-all duration-300 hover:border-brass/50">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="flex items-center gap-2 text-brass">
+                    <Soup className="h-4 w-4 text-amber" aria-hidden="true" />
+                    <span className="font-sans text-xs font-bold uppercase tracking-[0.18em]">
+                      PASO 1 · ENTRADA
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-canvas bg-brass px-2 py-0.5">
+                    1 Opción
+                  </span>
+                </div>
+                <h4 className="font-serif font-display text-xl font-bold uppercase tracking-tight text-linen mb-2">
+                  Entrada o Sopa del Día
+                </h4>
+                <p className="font-sans text-xs text-mist leading-relaxed mb-4">
+                  Apertura reconfortante elaborada en cocción lenta con ingredientes frescos de la huerta.
+                </p>
+
+                <div className="space-y-2.5">
+                  {[
+                    {
+                      id: "sopa-pomodoro",
+                      name: "Zuppa di Pomodoro Asado",
+                      desc: "Tomates confitados, albahaca fresca y croutons de masa madre.",
+                    },
+                    {
+                      id: "ensalada-estacion",
+                      name: "Insalata di Stagione",
+                      desc: "Hojas verdes, peras doradas al vino blanco y vinagreta cítrica.",
+                    },
+                  ].map((entrada) => {
+                    const isSelected = selectedEntrada === entrada.name;
+                    return (
+                      <button
+                        key={entrada.id}
+                        type="button"
+                        onClick={() => setSelectedEntrada(entrada.name)}
+                        className={`w-full text-left p-3.5 border transition-all cursor-pointer flex items-start gap-3 ${
+                          isSelected
+                            ? "bg-surface border-brass text-linen shadow-md"
+                            : "bg-surface/40 border-brass/15 text-mist hover:text-linen hover:border-brass/30"
+                        }`}
+                      >
+                        <span
+                          className={`mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full border ${
+                            isSelected ? "border-amber bg-amber text-canvas" : "border-brass/40 bg-canvas"
+                          }`}
+                        >
+                          {isSelected && <Check className="h-2.5 w-2.5 stroke-[3]" />}
+                        </span>
+                        <div>
+                          <p className="font-sans text-xs font-bold uppercase tracking-wider text-linen">
+                            {entrada.name}
+                          </p>
+                          <p className="font-sans text-[11px] text-mist mt-0.5 leading-snug">
+                            {entrada.desc}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Bento Celda 2: Paso 2 - Selección de Proteína */}
+            <div className="flex flex-col justify-between border border-brass/20 bg-canvas/60 p-5 sm:p-6 transition-all duration-300 hover:border-brass/50">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="flex items-center gap-2 text-brass">
+                    <Drumstick className="h-4 w-4 text-amber" aria-hidden="true" />
+                    <span className="font-sans text-xs font-bold uppercase tracking-[0.18em]">
+                      PASO 2 · PROTEÍNA
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-canvas bg-brass px-2 py-0.5">
+                    1 Opción
+                  </span>
+                </div>
+                <h4 className="font-serif font-display text-xl font-bold uppercase tracking-tight text-linen mb-2">
+                  Selección de Proteína
+                </h4>
+                <p className="font-sans text-xs text-mist leading-relaxed mb-4">
+                  Cortes nobles y pesca fresca preparados al momento a las brasas o braseados.
+                </p>
+
+                <div className="space-y-2.5">
+                  {[
+                    {
+                      id: "carne-braseada",
+                      name: "Carne de Res al Malbec",
+                      desc: "Braseada 8 horas en vino tinto, vegetales glaseados y demi-glace.",
+                    },
+                    {
+                      id: "pollo-limon",
+                      name: "Pechuga de Pollo al Limón & Romero",
+                      desc: "Sellada a la plancha, marinada con hierbas frescas y manteca noisette.",
+                    },
+                    {
+                      id: "pesca-dia",
+                      name: "Pesca del Día a la Plancha",
+                      desc: "Filete fresco con emulsión tibia de cítricos y alcaparras fritas.",
+                    },
+                  ].map((prot) => {
+                    const isSelected = selectedProteina === prot.name;
+                    return (
+                      <button
+                        key={prot.id}
+                        type="button"
+                        onClick={() => setSelectedProteina(prot.name)}
+                        className={`w-full text-left p-3.5 border transition-all cursor-pointer flex items-start gap-3 ${
+                          isSelected
+                            ? "bg-surface border-brass text-linen shadow-md"
+                            : "bg-surface/40 border-brass/15 text-mist hover:text-linen hover:border-brass/30"
+                        }`}
+                      >
+                        <span
+                          className={`mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full border ${
+                            isSelected ? "border-amber bg-amber text-canvas" : "border-brass/40 bg-canvas"
+                          }`}
+                        >
+                          {isSelected && <Check className="h-2.5 w-2.5 stroke-[3]" />}
+                        </span>
+                        <div>
+                          <p className="font-sans text-xs font-bold uppercase tracking-wider text-linen">
+                            {prot.name}
+                          </p>
+                          <p className="font-sans text-[11px] text-mist mt-0.5 leading-snug">
+                            {prot.desc}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Bento Celda 3: Paso 3 - Selección de Dos Acompañamientos */}
+            <div className="flex flex-col justify-between border border-brass/20 bg-canvas/60 p-5 sm:p-6 transition-all duration-300 hover:border-brass/50 md:col-span-2 lg:col-span-1">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="flex items-center gap-2 text-brass">
+                    <Salad className="h-4 w-4 text-amber" aria-hidden="true" />
+                    <span className="font-sans text-xs font-bold uppercase tracking-[0.18em]">
+                      PASO 3 · GUARNICIONES
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-canvas bg-amber px-2 py-0.5">
+                    Elegir 2 ({selectedAcomp.length}/2)
+                  </span>
+                </div>
+                <h4 className="font-serif font-display text-xl font-bold uppercase tracking-tight text-linen mb-2">
+                  Dos Acompañamientos
+                </h4>
+                <p className="font-sans text-xs text-mist leading-relaxed mb-4">
+                  Elige 2 guarniciones preparadas en el día para acompañar tu proteína.
+                </p>
+
+                <div className="space-y-2">
+                  {[
+                    "Ensalada fresca de huerta",
+                    "Papas rústicas a la provenzal",
+                    "Yuca dorada al vapor",
+                    "Plátano maduro al horno",
+                    "Arroz carnaroli perfumado",
+                  ].map((sideName) => {
+                    const isSelected = selectedAcomp.includes(sideName);
+                    return (
+                      <button
+                        key={sideName}
+                        type="button"
+                        onClick={() => handleToggleAcomp(sideName)}
+                        className={`w-full text-left px-3.5 py-2.5 border transition-all cursor-pointer flex items-center justify-between gap-2 ${
+                          isSelected
+                            ? "bg-surface border-brass text-linen shadow-sm"
+                            : "bg-surface/30 border-brass/10 text-mist hover:text-linen hover:border-brass/30"
+                        }`}
+                      >
+                        <span className="font-sans text-xs font-bold tracking-wide">
+                          {sideName}
+                        </span>
+                        <span
+                          className={`grid h-4 w-4 shrink-0 place-items-center border ${
+                            isSelected ? "border-amber bg-amber text-canvas" : "border-brass/40 bg-canvas"
+                          }`}
+                        >
+                          {isSelected && <Check className="h-2.5 w-2.5 stroke-[3]" />}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Barra de Resumen Interactivo & Acción de Compra */}
+          <div className="mt-8 pt-6 border-t border-brass/20 flex flex-col md:flex-row md:items-center justify-between gap-5 bg-surface/70 p-5">
+            <div className="flex flex-col gap-1">
+              <span className="font-sans text-[11px] font-black uppercase tracking-widest text-brass">
+                TU SELECCIÓN PERSONALIZADA DEL MENÚ DEL DÍA:
+              </span>
+              <p className="font-sans text-xs sm:text-sm text-linen font-medium">
+                <span className="text-amber font-bold">{selectedEntrada}</span> +{" "}
+                <span className="text-amber font-bold">{selectedProteina}</span> +{" "}
+                <span className="text-amber font-bold">{selectedAcomp.join(" & ")}</span>
+              </p>
+              <p className="font-sans text-[11px] text-mist">
+                Incluye pan artesanal de masa madre, mantequilla de hierbas y bebida de la casa.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleAddMenuDelDia}
+              className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-none bg-brass px-8 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-widest text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none border border-brass shadow-xl shrink-0"
+            >
+              {bentoAdded ? (
+                <>
+                  <Check className="h-4 w-4 stroke-[3]" />
+                  <span>¡AGREGADO AL PEDIDO!</span>
+                </>
+              ) : (
+                <>
+                  <Plus className="h-4 w-4 stroke-[2.5]" />
+                  <span>AGREGAR MENÚ DEL DÍA ($46.300)</span>
+                </>
+              )}
+            </button>
+          </div>
+        </article>
+      </div>
 
       {/* Listado Dividido Horizontal (Split Rows) */}
       <div
