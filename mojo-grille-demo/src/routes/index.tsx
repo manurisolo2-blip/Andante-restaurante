@@ -22,6 +22,8 @@ import { ReservationModal } from "@/components/mojo/ReservationModal";
 import { EditorialFooter } from "@/components/mojo/EditorialFooter";
 import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
 import { JellyWaveTransition } from "@/components/mojo/JellyWaveTransition";
+import { TrustStrip } from "@/components/mojo/TrustStrip";
+import { FloatingContactWidget } from "@/components/mojo/FloatingContactWidget";
 import type { MenuItem } from "@/data/menu";
 
 const title = "Andante Restaurante Bar | Alta Cocina Cosmopolita & Jazz en Palermo Hollywood";
@@ -165,6 +167,9 @@ function IndexContent() {
             El fondo inferior que sube y tapa el hero con atmósfera Dark Luxury.
           */}
           <div className="relative z-20 -mt-[100dvh] bg-canvas shadow-[0_-24px_50px_rgba(0,0,0,0.5)]">
+            {/* Cintillo Horizontal de Confianza (Trust Strip) */}
+            <TrustStrip />
+
             {/* Concepto Culinario & Equipo · Chef Ejecutivo Pablo Aroma */}
             <div id="concepto-culinario">
               <CubanDeconstruction />
@@ -247,7 +252,8 @@ function IndexContent() {
               </div>
             </section>
 
-            {/* Datos de Contacto, Mapa Interactivo de Google Maps & Horarios */}
+            {/* Datos de Contacto, Sedes en Bogotá, Mapa Interactivo de Google Maps & Horarios */}
+            <div id="sedes" className="scroll-mt-[var(--header-h)]" />
             <ContactMapSection />
 
             {/* Transición hacia el Editorial Footer */}
@@ -271,6 +277,7 @@ function IndexContent() {
         <CartSheet />
         <CartToast />
         <MobileActionBar onOpenCart={openCart} />
+        <FloatingContactWidget />
       </div>
     </>
   );
