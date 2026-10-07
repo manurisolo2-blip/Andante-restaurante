@@ -125,7 +125,7 @@ export function QuickOrderModal({
                         <span className="min-w-0 truncate text-sm font-semibold text-linen">
                           {side.name}
                         </span>
-                        <span className="shrink-0 font-sans text-sm font-bold text-brass">
+                        <span className="shrink-0 font-sans text-sm font-bold text-brass tabular-nums">
                           {side.price === 0 ? "INCLUIDO" : `+${currency(side.price)}`}
                         </span>
                       </button>
@@ -154,7 +154,7 @@ export function QuickOrderModal({
             className="mt-6 flex w-full items-center justify-between gap-2 rounded-none bg-brass px-6 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none shadow-none"
           >
             <span className="truncate">AGREGAR A MI PEDIDO</span>
-            <span className="shrink-0 font-display text-xl">{currency(total)}</span>
+            <span className="shrink-0 font-display text-xl tabular-nums">{currency(total)}</span>
           </button>
         </div>
       </div>

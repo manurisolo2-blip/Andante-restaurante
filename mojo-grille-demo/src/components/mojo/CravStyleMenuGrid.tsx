@@ -237,7 +237,7 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
                       </span>
                     )}
                     {item.isGlutenFree && (
-                      <span className="absolute top-3 right-3 bg-amber/90 px-2 py-0.5 text-[10px] font-sans font-black uppercase tracking-wider text-canvas pointer-events-none">
+                      <span className="absolute top-3 right-3 bg-olive-green px-2 py-0.5 text-[10px] font-sans font-black uppercase tracking-wider text-surface-warm pointer-events-none shadow-sm">
                         Sin TACC
                       </span>
                     )}
@@ -249,7 +249,7 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
                       <h3 className="font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-linen group-hover:text-brass transition-colors">
                         {item.name}
                       </h3>
-                      <span className="font-display text-2xl font-bold text-brass shrink-0 tabular-nums">
+                      <span className="font-display text-2xl font-bold text-brass group-hover:text-terracotta transition-colors shrink-0 tabular-nums">
                         ${item.price.toFixed(2)}
                       </span>
                     </div>

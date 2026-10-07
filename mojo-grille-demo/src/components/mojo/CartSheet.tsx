@@ -106,7 +106,7 @@ export function CartSheet() {
                         {line.sides.join(", ")}
                       </p>
                     )}
-                    <p className="mt-1 font-sans text-sm font-semibold text-brass">
+                    <p className="mt-1 font-sans text-sm font-semibold text-brass tabular-nums">
                       {currency(line.price * line.qty)}
                     </p>
                   </div>
@@ -147,7 +147,7 @@ export function CartSheet() {
         <div className="px-5 py-4 bg-canvas border-t border-brass/20">
           <div className="flex items-center justify-between font-sans text-sm font-semibold">
             <span className="text-mist">Total Estimado</span>
-            <span className="text-base font-bold text-brass">{currency(total)}</span>
+            <span className="text-base font-bold text-brass tabular-nums">{currency(total)}</span>
           </div>
           <a
             href={whatsappHref(location, lines, total)}

@@ -78,6 +78,14 @@ const amber = token("amber");
 const linen = token("linen");
 const mist = token("mist");
 
+// Tokens de Identidad Cálida Restaurante Italiano
+const surfaceWarm = token("surface-warm");
+const textStrong = token("text-strong");
+const textMutedWarm = token("text-muted");
+const primaryHover = token("primary-hover");
+const oliveGreen = token("olive-green");
+const ochreGold = token("ochre-gold");
+
 const contrastChecks: ContrastCheck[] = [
   { description: "Linen on canvas (body text, headings on main canvas)", foreground: linen, background: canvas, minRatio: 7.0, level: "AAA Normal" },
   { description: "Linen on surface (menu cards, modals, drawer text)", foreground: linen, background: surface, minRatio: 7.0, level: "AAA Normal" },
@@ -88,6 +96,13 @@ const contrastChecks: ContrastCheck[] = [
   { description: "Amber on surface (jazz, Sin TACC tags on cards)", foreground: amber, background: surface, minRatio: 4.5, level: "AA Normal" },
   { description: "Brass on canvas (gold borders, accents, pricing)", foreground: brass, background: canvas, minRatio: 4.5, level: "AA Normal" },
   { description: "Brass on surface (gold accents, pricing on cards)", foreground: brass, background: surface, minRatio: 4.5, level: "AA Normal" },
+
+  // Italian Warm Tokens WCAG Contrast Verifications
+  { description: "Carbón espresso (#1E1C1A) on Marfil cálido (#FDFBF7)", foreground: textStrong, background: surfaceWarm, minRatio: 7.0, level: "AAA Normal" },
+  { description: "Gris cálido (#6B6560) on Marfil cálido (#FDFBF7)", foreground: textMutedWarm, background: surfaceWarm, minRatio: 4.5, level: "AA Normal" },
+  { description: "Terracota hover (#AF4B26) on Marfil cálido (#FDFBF7)", foreground: primaryHover, background: surfaceWarm, minRatio: 4.5, level: "AA Normal" },
+  { description: "Verde oliva suave (#3D7A5F) on Marfil cálido (#FDFBF7)", foreground: oliveGreen, background: surfaceWarm, minRatio: 4.5, level: "AA Normal" },
+  { description: "Dorado ocre (#C29B38) on Carbón espresso (#1E1C1A)", foreground: ochreGold, background: textStrong, minRatio: 4.5, level: "AA Normal" },
 ];
 
 for (const check of contrastChecks) {

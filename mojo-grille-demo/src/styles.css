@@ -37,12 +37,31 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* Andante Typographic Hierarchy: Cooper Hewitt / Playfair Display / Cormorant Garamond + Plus Jakarta Sans */
-  --font-display: "Cooper Hewitt", "Cormorant Garamond", "Playfair Display", "Spot", "Spot-Normal", "Clarkson", Georgia, serif;
+  /* Tipografía y Jerarquía: Serif display (Playfair Display / Cormorant Garamond) para titulares y nombres de platos; Sans-serif geométrica para ingredientes, horarios y precios */
+  --font-display: "Playfair Display", "Cormorant Garamond", "Cooper Hewitt", Georgia, serif;
+  --font-serif: "Playfair Display", "Cormorant Garamond", "Instrument Serif", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-accent: "Cormorant Garamond", "Playfair Display", "Instrument Serif", Georgia, serif;
-  --font-serif: "Cormorant Garamond", "Playfair Display", "Instrument Serif", Georgia, serif;
+  --font-accent: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-mono: "Space Mono", monospace;
+
+  /* Tokens Cromáticos Oficiales de Identidad Visual Cálida Restaurante Italiano */
+  --color-surface-warm: #FDFBF7;
+  --color-bg-warm: #FDFBF7;
+  --color-marfil: #FDFBF7;
+  --color-terracotta: #C85A32;
+  --color-terracotta-dark: #AF4B26;
+  --color-primary-terracotta: #C85A32;
+  --color-primary-hover: #AF4B26;
+  --color-text-strong: #1E1C1A;
+  --color-charcoal-espresso: #1E1C1A;
+  --color-espresso: #1E1C1A;
+  --color-text-muted: #6B6560;
+  --color-text-muted-warm: #6B6560;
+  --color-warm-gray: #6B6560;
+  --color-olive-green: #3D7A5F;
+  --color-dietary: #3D7A5F;
+  --color-ochre-gold: #C29B38;
+  --color-reputation: #C29B38;
 
   /* Tokens Cromáticos Oficiales Andante Restaurante Bar (Dark Luxury) */
   --color-canvas: #0E1726;
@@ -109,6 +128,15 @@
   --radius: 0.875rem;
   --header-h: 73px;
 
+  /* Identidad Visual Cálida Restaurante Italiano (Tokens Oficiales) */
+  --surface-warm: #FDFBF7;
+  --primary-terracotta: #C85A32;
+  --primary-terracotta-hover: #AF4B26;
+  --text-strong: #1E1C1A;
+  --text-muted: #6B6560;
+  --olive-green: #3D7A5F;
+  --ochre-gold: #C29B38;
+
   /* Lienzo Primario Andante Medianoche (#0E1726) */
   --background: #0E1726;
   /* Texto Maestro Linen (#F4EFE6) */
@@ -163,7 +191,7 @@
     background-color: #0E1726;
   }
 
-  /* All Titles & Headings Hierarchy */
+  /* All Titles & Headings Hierarchy (Playfair Display / Cormorant Garamond Serif display) */
   h1,
   h2,
   h3,
@@ -172,10 +200,18 @@
     letter-spacing: -0.015em;
   }
 
+  /* High-legibility geometric sans-serif for secondary hierarchy, specifications, ingredients, schedules */
   h5,
   h6 {
     font-family: var(--font-sans);
     letter-spacing: -0.01em;
+  }
+
+  /* Precios alineados de forma homogénea mediante tabular-nums */
+  [data-price],
+  .price,
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 
@@ -293,6 +329,95 @@
   font-family: var(--font-accent);
 }
 
+/* Official Italian Warm Restaurant Design Token Utilities */
+@utility bg-surface-warm {
+  background-color: #FDFBF7;
+}
+@utility text-surface-warm {
+  color: #FDFBF7;
+}
+@utility border-surface-warm {
+  border-color: #FDFBF7;
+}
+@utility bg-marfil {
+  background-color: #FDFBF7;
+}
+@utility text-marfil {
+  color: #FDFBF7;
+}
+
+@utility bg-terracotta {
+  background-color: #C85A32;
+}
+@utility bg-terracotta-dark {
+  background-color: #AF4B26;
+}
+@utility text-terracotta {
+  color: #C85A32;
+}
+@utility text-terracotta-dark {
+  color: #AF4B26;
+}
+@utility border-terracotta {
+  border-color: #C85A32;
+}
+
+@utility text-strong {
+  color: #1E1C1A;
+}
+@utility bg-text-strong {
+  background-color: #1E1C1A;
+}
+@utility text-espresso {
+  color: #1E1C1A;
+}
+@utility bg-espresso {
+  background-color: #1E1C1A;
+}
+
+@utility text-muted-warm {
+  color: #6B6560;
+}
+@utility text-warm-gray {
+  color: #6B6560;
+}
+
+@utility bg-olive-green {
+  background-color: #3D7A5F;
+}
+@utility text-olive-green {
+  color: #3D7A5F;
+}
+@utility border-olive-green {
+  border-color: #3D7A5F;
+}
+@utility bg-dietary {
+  background-color: #3D7A5F;
+}
+@utility text-dietary {
+  color: #3D7A5F;
+}
+
+@utility bg-ochre-gold {
+  background-color: #C29B38;
+}
+@utility text-ochre-gold {
+  color: #C29B38;
+}
+@utility border-ochre-gold {
+  border-color: #C29B38;
+}
+@utility bg-reputation {
+  background-color: #C29B38;
+}
+@utility text-reputation {
+  color: #C29B38;
+}
+
+@utility tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
 /* Explicit Mojo Grille Design Token Utility Classes (Legacy Aliases) */
 @utility bg-cream {
   background-color: #ECE4D5;
@@ -314,15 +439,6 @@
 }
 @utility text-muted {
   color: #78716C;
-}
-@utility bg-terracotta {
-  background-color: #D95327;
-}
-@utility bg-terracotta-dark {
-  background-color: #B83E16;
-}
-@utility text-terracotta {
-  color: #D95327;
 }
 @utility text-lime {
   color: #4D7C0F;

@@ -104,7 +104,7 @@ export function HeroSection({
                 className={`inline-flex items-center gap-2.5 ${animItemClass}`}
               >
                 <Star
-                  className="h-4 w-4 shrink-0 fill-amber text-amber"
+                  className="h-4 w-4 shrink-0 fill-ochre-gold text-ochre-gold"
                   aria-hidden="true"
                 />
                 <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.14em] sm:tracking-[0.2em] text-brass">
@@ -183,7 +183,7 @@ export function HeroSection({
                     <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-brass">
                       PASTAS &amp; BRASAS DE AUTOR
                     </span>
-                    <span className="font-sans text-[10px] font-black uppercase tracking-wider text-canvas bg-amber px-2 py-0.5">
+                    <span className="font-sans text-[10px] font-black uppercase tracking-wider text-surface-warm bg-olive-green px-2 py-0.5 shadow-sm">
                       Sin TACC
                     </span>
                   </div>
