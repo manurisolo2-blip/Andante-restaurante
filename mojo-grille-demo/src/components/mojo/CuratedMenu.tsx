@@ -228,7 +228,7 @@ export function CuratedMenu() {
     <section
       id="curated-menu"
       aria-label="Hot Plancha Selection - Mojo Grille Signature Dishes"
-      className="relative scroll-mt-[var(--header-h)] bg-espresso-deep border-y border-brass/20 py-16 sm:py-24 overflow-hidden"
+      className="relative scroll-mt-[var(--header-h)] bg-espresso-deep py-16 sm:py-24 overflow-hidden"
     >
       {/* Miniatura Fotográfica Flotante al Cursor (Solo Desktop) */}
       <div

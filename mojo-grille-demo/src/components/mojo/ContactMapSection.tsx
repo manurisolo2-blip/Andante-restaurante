@@ -96,7 +96,7 @@ export function ContactMapSection() {
     <section
       id="contacto"
       aria-label="Ubicación en Palermo Hollywood, Espacios y Contacto Oficial"
-      className="relative w-full bg-surface/50 border-t border-brass/15 py-16 sm:py-24 px-4 sm:px-6 lg:px-8"
+      className="relative w-full bg-obsidian py-16 sm:py-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
         

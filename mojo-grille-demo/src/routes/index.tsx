@@ -184,15 +184,36 @@ function IndexContent() {
             />
 
             {/* Carta Digital Interactiva (Pestañas Dinámicas & Filtros Sin TACC / Vegetariano) */}
-            <section id="menu" className="scroll-mt-[var(--header-h)] bg-night-purple border-b border-brass/15">
+            <section id="menu" className="scroll-mt-[var(--header-h)] bg-night-purple">
               <CravStyleMenuGrid onSelect={setSelected} />
             </section>
+
+            {/* Transición 3: Púrpura Nocturno -> Superficie Marina (Agenda Cultural) */}
+            <JellyWaveTransition
+              topColor="#16121C"
+              bottomColor="#162238"
+              direction="down"
+            />
 
             {/* Música en Vivo & Agenda Cultural (Jazz Nights, Musique & Cuisine, Catas) */}
             <CulturalAgendaSection onOpenReservation={handleOpenReservation} />
 
+            {/* Transición 4: Superficie Marina -> Obsidiana Ébano (Espacios de Andante) */}
+            <JellyWaveTransition
+              topColor="#162238"
+              bottomColor="#181513"
+              direction="up"
+            />
+
             {/* Espacios del Local (Salón Azul, Patio Interior al Aire Libre, Cava Subsuelo) */}
             <SpacesGallerySection onOpenReservation={handleOpenReservation} />
+
+            {/* Transición 5: Obsidiana Ébano -> Canvas Índigo (Reseñas & Ecos) */}
+            <JellyWaveTransition
+              topColor="#181513"
+              bottomColor="#0E1726"
+              direction="down"
+            />
 
             {/* Testimonios y Reseñas de comensales en Palermo Hollywood */}
             <GoogleReviewsSection />
@@ -200,10 +221,17 @@ function IndexContent() {
             {/* Ancla para Reservas */}
             <div id="reservas" className="scroll-mt-[var(--header-h)]" />
 
+            {/* Transición 6: Canvas Índigo -> Púrpura Nocturno (Catering & Celebraciones) */}
+            <JellyWaveTransition
+              topColor="#0E1726"
+              bottomColor="#16121C"
+              direction="up"
+            />
+
             {/* Módulo de Eventos Corporativos & Catering Exclusivo */}
             <section
               id="catering"
-              className="scroll-mt-[var(--header-h)] bg-night-purple border-y border-brass/15 px-4 py-16 sm:px-6 lg:px-8"
+              className="scroll-mt-[var(--header-h)] bg-night-purple px-4 py-16 sm:px-6 lg:px-8"
             >
               <div className="mx-auto max-w-4xl text-center">
                 <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brass mb-3">
@@ -240,6 +268,13 @@ function IndexContent() {
                 </p>
               </div>
             </section>
+
+            {/* Transición 7: Púrpura Nocturno -> Obsidiana Ébano (Sedes & Contacto) */}
+            <JellyWaveTransition
+              topColor="#16121C"
+              bottomColor="#181513"
+              direction="down"
+            />
 
             {/* Datos de Contacto, Espacios en Palermo Hollywood, Mapa de Google Maps & Horarios */}
             <div id="sedes" className="scroll-mt-[var(--header-h)]" />

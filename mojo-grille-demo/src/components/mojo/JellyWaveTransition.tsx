@@ -24,6 +24,7 @@ export interface JellyWaveTransitionProps {
 // se dibuja. Se usa una banda DOM (BLEED_PX) que viaja con el wrapper animado.
 const DOWN_PATHS = {
   a: "M 1544 -4 L -8 -4 L -8 135 C 250 55, 450 180, 768 120 C 1080 60, 1320 170, 1544 100 Z",
+  crest: "M -8 135 C 250 55, 450 180, 768 120 C 1080 60, 1320 170, 1544 100",
 };
 
 /**
@@ -43,6 +44,7 @@ const BLEED_X_PX = 64;
 
 const UP_PATHS = {
   a: "M 1544 224 L -8 224 L -8 85 C 250 165, 450 40, 768 100 C 1080 160, 1320 50, 1544 120 Z",
+  crest: "M -8 85 C 250 165, 450 40, 768 100 C 1080 160, 1320 50, 1544 120",
 };
 
 export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
@@ -175,6 +177,27 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
                   },
                 })}
             fill={waveFill}
+          />
+
+          {/* Sutil realce de latón cálido / oro atenuado sobre la cresta de la onda */}
+          <motion.path
+            d={paths.crest}
+            fill="none"
+            stroke="#C9A86A"
+            strokeOpacity={0.25}
+            strokeWidth={1.5}
+            vectorEffect="non-scaling-stroke"
+            style={{ transformOrigin: "50% 100%" }}
+            {...(reducedMotion
+              ? {}
+              : {
+                  animate: { scaleY: [1, 1.07, 0.95, 1], x: [0, -14, 10, 0] },
+                  transition: {
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut" as const,
+                  },
+                })}
           />
         </svg>
       </motion.div>

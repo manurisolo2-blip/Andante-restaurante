@@ -68,7 +68,7 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
     <section
       id="espacios"
       aria-label="Espacios del Local"
-      className="relative w-full bg-obsidian py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-brass/15"
+      className="relative w-full bg-obsidian py-16 sm:py-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
         {/* Cabecera de la Sección */}

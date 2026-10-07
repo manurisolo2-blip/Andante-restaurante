@@ -43,7 +43,7 @@ export function CulturalAgendaSection({ onOpenReservation }: CulturalAgendaSecti
     <section
       id="agenda-cultural"
       aria-label="Música en Vivo y Agenda Cultural"
-      className="relative w-full bg-surface/60 border-t border-brass/15 py-16 sm:py-24 px-4 sm:px-6 lg:px-8"
+      className="relative w-full bg-surface py-16 sm:py-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
         {/* Cabecera Editorial */}
