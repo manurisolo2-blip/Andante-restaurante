@@ -11,7 +11,6 @@ import { QuickOrderModal } from "@/components/mojo/QuickOrderModal";
 import { CartSheet } from "@/components/mojo/CartSheet";
 import { CartToast } from "@/components/mojo/CartToast";
 import { MobileActionBar } from "@/components/mojo/MobileActionBar";
-import { Preloader } from "@/components/mojo/Preloader";
 import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { CuratedMenu } from "@/components/mojo/CuratedMenu";
 import { GoogleReviewsSection } from "@/components/mojo/GoogleReviewsSection";
@@ -80,7 +79,7 @@ function Index() {
 function IndexContent() {
   const { openCart } = useCart();
   const [selected, setSelected] = useState<MenuItem | null>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded] = useState(true);
 
   // Estado del Modal de Reservas y Eventos
   const [reservationOpen, setReservationOpen] = useState(false);
@@ -139,9 +138,6 @@ function IndexContent() {
 
   return (
     <>
-      {/* Editorial Preloader & Cinematic Curtain Exit */}
-      <Preloader onComplete={() => setIsLoaded(true)} />
-
       {/* Textura de grano de papel artesanal editorial */}
       <NoiseOverlay />
 
