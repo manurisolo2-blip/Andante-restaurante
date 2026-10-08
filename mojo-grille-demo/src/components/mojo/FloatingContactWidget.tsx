@@ -41,7 +41,7 @@ export function FloatingContactWidget() {
       {/* Contenedor Flotante Unificado (Thumb-Zone: esquina inferior derecha con fácil alcance en móviles y desktop) */}
       <div
         ref={menuRef}
-        className="fixed right-4 sm:right-6 bottom-5 sm:bottom-6 z-50 flex flex-col items-end select-none"
+        className="fixed right-3 sm:right-6 bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] sm:bottom-6 z-40 flex flex-col items-end select-none"
       >
         {/* Menú Rápido Desplegable (Modal Flotante) */}
         {isOpen && (
@@ -49,7 +49,7 @@ export function FloatingContactWidget() {
             role="dialog"
             aria-modal="true"
             aria-label="Canales de atención directa y reservas"
-            className="mb-3 w-[min(calc(100vw-2rem),360px)] border border-brass/35 bg-surface text-linen p-5 shadow-2xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+            className="mb-3 w-[min(calc(100vw-1.5rem),360px)] border border-brass/35 bg-surface text-linen p-4 sm:p-5 shadow-2xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
           >
             {/* Cabecera del Menú */}
             <div className="flex items-start justify-between border-b border-brass/20 pb-3 mb-4">

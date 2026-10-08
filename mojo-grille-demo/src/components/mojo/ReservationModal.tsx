@@ -137,7 +137,7 @@ export function ReservationModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-reservation-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-canvas/85 backdrop-blur-md"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-canvas/85 backdrop-blur-md"
     >
       <div
         ref={modalRef}

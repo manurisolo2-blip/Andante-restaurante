@@ -249,8 +249,8 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         </div>
 
         {/* 3. Barra Inferior Legal & Volver Arriba */}
-        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-mist">
-          <p>© {new Date().getFullYear()} Andante Restaurante Bar. Arévalo 1677, Palermo Hollywood, CABA, Argentina.</p>
+        <div className="py-8 pb-28 sm:pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-mist">
+          <p className="text-center sm:text-left">© {new Date().getFullYear()} Andante Restaurante Bar. Arévalo 1677, Palermo Hollywood, CABA, Argentina.</p>
           <div className="flex items-center gap-6">
             <button
               ref={backToTopRef}

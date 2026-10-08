@@ -45,7 +45,7 @@ export function QuickOrderModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-dish-title"
-      className="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
+      className="fixed inset-0 z-[60] flex items-end justify-center sm:items-center"
     >
       {/* Fondo decorativo con backdrop blur oscuro */}
       <div

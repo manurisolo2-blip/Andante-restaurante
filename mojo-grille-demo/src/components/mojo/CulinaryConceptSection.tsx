@@ -110,11 +110,11 @@ export function CulinaryConceptSection({ onOpenReservation }: CulinaryConceptSec
         </div>
 
         {/* Botones de Navegación Rápida */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <a
             href="#menu"
             onClick={handleScrollToMenu}
-            className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-brass px-8 py-3.5 font-sans text-sm font-bold uppercase tracking-wider text-linen hover:bg-brass/90 transition-colors cursor-pointer select-none border border-brass shadow-md"
+            className="w-full sm:w-auto inline-flex min-h-11 items-center justify-center gap-2.5 rounded-none bg-brass px-8 py-3.5 font-sans text-sm font-bold uppercase tracking-wider text-linen hover:bg-brass/90 transition-colors cursor-pointer select-none border border-brass shadow-md text-center"
           >
             <span>Explorar Carta Digital</span>
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -122,7 +122,7 @@ export function CulinaryConceptSection({ onOpenReservation }: CulinaryConceptSec
           <button
             type="button"
             onClick={() => onOpenReservation ? onOpenReservation() : undefined}
-            className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-surface border border-brass/35 px-8 py-3.5 font-sans text-sm font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none"
+            className="w-full sm:w-auto inline-flex min-h-11 items-center justify-center gap-2.5 rounded-none bg-surface border border-brass/35 px-6 sm:px-8 py-3.5 font-sans text-sm font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none text-center"
           >
             <CalendarHeart className="h-4 w-4 text-amber" aria-hidden="true" />
             <span>Reservar Mesa en Salón o Patio</span>

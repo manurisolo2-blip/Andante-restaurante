@@ -1,5 +1,5 @@
 import React, { useRef, useState, type KeyboardEvent } from "react";
-import { Check, UtensilsCrossed, MessageSquare } from "lucide-react";
+import { Check, UtensilsCrossed, MessageSquare, Filter } from "lucide-react";
 import { menu, type MenuItem } from "@/data/menu";
 
 export interface CravStyleMenuGridProps {
@@ -304,12 +304,12 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
         </div>
 
         {/* 1. Pestañas Dinámicas de Categoría Adhesivas (Sticky Tabs) */}
-        <div className="sticky top-[var(--header-h)] z-30 mb-8 py-3 bg-canvas/95 backdrop-blur-md border-y border-brass/20 shadow-lg">
+        <div className="sticky top-[var(--header-h)] z-30 mb-8 py-2.5 bg-canvas/95 backdrop-blur-md border-y border-brass/20 shadow-lg">
           <div
             ref={tablistRef}
             role="tablist"
             aria-label="Categorías de la Carta Gastronómica"
-            className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1 max-w-6xl mx-auto"
+            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto px-3 sm:px-1 max-w-6xl mx-auto"
           >
             {MENU_CATEGORIES.map((category, index) => {
               const isSelected = selectedCategory === category.id;
@@ -324,7 +324,7 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
                   type="button"
                   onClick={() => setSelectedCategory(category.id)}
                   onKeyDown={(event) => handleTabKeyDown(event, index)}
-                  className={`relative flex min-h-11 shrink-0 items-center rounded-none px-4 sm:px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none cursor-pointer border ${
+                  className={`relative flex min-h-11 shrink-0 items-center rounded-none px-3.5 sm:px-5 py-2 sm:py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none cursor-pointer border ${
                     isSelected
                       ? "bg-brass text-canvas border-brass shadow-lg"
                       : "bg-surface text-mist border-brass/20 hover:text-linen hover:border-brass/50"
@@ -337,7 +337,7 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
           </div>
 
           {/* Filtros visuales rápidos: Sin TACC y Vegetarianos */}
-          <div className="flex items-center justify-center gap-2 pt-3">
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-2.5 px-3">
             <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-mist mr-1 flex items-center gap-1">
               <Filter className="h-3 w-3 text-amber" aria-hidden="true" />
               <span>Filtrar:</span>
@@ -345,7 +345,7 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
             <button
               type="button"
               onClick={() => setDietaryFilter("all")}
-              className={`px-3 py-1 text-xs font-sans font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border ${
+              className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-sans font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border ${
                 dietaryFilter === "all"
                   ? "border-linen text-linen bg-surface"
                   : "border-brass/20 text-mist hover:text-linen"
@@ -356,7 +356,7 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
             <button
               type="button"
               onClick={() => setDietaryFilter("gluten-free")}
-              className={`px-3 py-1 text-xs font-sans font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border ${
+              className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-sans font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border ${
                 dietaryFilter === "gluten-free"
                   ? "border-amber text-amber bg-amber/10"
                   : "border-brass/20 text-mist hover:text-amber"
@@ -367,7 +367,7 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
             <button
               type="button"
               onClick={() => setDietaryFilter("vegetarian")}
-              className={`px-3 py-1 text-xs font-sans font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border ${
+              className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-sans font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border ${
                 dietaryFilter === "vegetarian"
                   ? "border-olive-green text-olive-green bg-olive-green/10"
                   : "border-brass/20 text-mist hover:text-olive-green"

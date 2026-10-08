@@ -74,7 +74,7 @@ export function HeroSection({
       ref={sectionRef}
       id="top"
       aria-label="Andante Restaurante Bar - Palermo Hollywood"
-      className="relative z-10 w-full h-full min-h-screen flex flex-col justify-center bg-transparent"
+      className="relative z-10 w-full h-full min-h-[100dvh] flex flex-col justify-center bg-transparent"
     >
       {/* Descriptor editorial para lectores de pantalla y buscadores */}
       <p className="sr-only">
@@ -91,19 +91,19 @@ export function HeroSection({
       {/* Bloque Principal Hero */}
       <div
         ref={contentRef}
-        className={`relative z-10 pt-20 sm:pt-28 md:pt-32 pb-10 sm:pb-16 md:pb-24 ${animContainerClass}`}
+        className={`relative z-10 pt-16 sm:pt-28 md:pt-32 pb-6 sm:pb-16 md:pb-24 ${animContainerClass}`}
       >
         <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
           
           {/* Encabezado Monumental Centrado */}
-          <div className="flex flex-col items-center text-center space-y-6 max-w-7xl mx-auto">
+          <div className="flex flex-col items-center text-center space-y-3 sm:space-y-6 max-w-7xl mx-auto">
             {/* Titular Central con Efecto Spotlight HoverHighlightText */}
             <div className={`w-full max-w-7xl mx-auto flex justify-center overflow-x-clip ${animItemClass}`}>
               <HoverHighlightText
                 as="h1"
                 text="ANDANTE: UN VIAJE POR EL MUNDO A TRAVÉS DEL PALADAR"
-                baseClassName="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[clamp(3.2rem,6.8vw,6.8rem)] font-black uppercase tracking-tight text-linen leading-[0.92] text-center"
-                highlightClassName="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[clamp(3.2rem,6.8vw,6.8rem)] font-black uppercase tracking-tight text-brass leading-[0.92] text-center"
+                baseClassName="font-display text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[clamp(3.2rem,6.8vw,6.8rem)] font-black uppercase tracking-tight text-linen leading-[0.98] sm:leading-[0.92] text-center"
+                highlightClassName="font-display text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[clamp(3.2rem,6.8vw,6.8rem)] font-black uppercase tracking-tight text-brass leading-[0.98] sm:leading-[0.92] text-center"
                 strokeColor="#C9A86A"
                 strokeWidth={1.5}
                 spotlightRadius={220}
@@ -113,7 +113,7 @@ export function HeroSection({
             </div>
 
             {/* Subtítulo Narrativo Editorial */}
-            <p className={`max-w-4xl text-balance font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-mist text-center font-normal ${animItemClass}`}>
+            <p className={`max-w-4xl text-balance font-sans text-xs sm:text-base md:text-xl lg:text-2xl leading-relaxed text-mist text-center font-normal px-2 sm:px-0 ${animItemClass}`}>
               Cocina de autor, coctelería internacional y sesiones de jazz en vivo en Palermo Hollywood. Técnicas de alta escuela fusionadas con sabores de Asia, Europa y Latinoamérica con{" "}
               <span className="font-bold underline decoration-amber decoration-[2px] underline-offset-4 text-linen">
                 opciones Sin TACC garantizadas
@@ -121,11 +121,11 @@ export function HeroSection({
             </p>
 
             {/* Botones de Llamada a la Acción: RESERVAR MESA y VER CARTA */}
-            <div className={`pt-6 sm:pt-8 flex flex-col items-center justify-center gap-4 sm:flex-row ${animItemClass}`}>
+            <div className={`pt-3 sm:pt-8 flex flex-row flex-wrap sm:flex-nowrap items-center justify-center gap-2.5 sm:gap-4 ${animItemClass}`}>
               <button
                 type="button"
                 onClick={() => onReservationClick ? onReservationClick() : undefined}
-                className="inline-flex items-center justify-center gap-2.5 rounded-none bg-brass px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-linen hover:bg-brass/90 transition-colors select-none shadow-lg cursor-pointer border border-brass"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-none bg-brass px-5 sm:px-9 py-2.5 sm:py-4 font-sans text-xs sm:text-base font-bold uppercase tracking-wider text-linen hover:bg-brass/90 transition-colors select-none shadow-lg cursor-pointer border border-brass shrink-0"
               >
                 <CalendarHeart className="h-4 w-4" aria-hidden="true" />
                 <span>RESERVAR MESA</span>
@@ -134,7 +134,7 @@ export function HeroSection({
               <MagneticButton
                 href={`#${menuAnchorId}`}
                 onClick={handleScrollToMenu}
-                className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-surface px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none border border-brass/35 shadow-md"
+                className="group relative inline-flex min-h-[48px] items-center justify-center gap-2 sm:gap-3 rounded-none bg-surface px-5 sm:px-8 py-2.5 sm:py-4 font-sans text-xs sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none border border-brass/35 shadow-md shrink-0"
               >
                 <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
                 <span>VER CARTA</span>

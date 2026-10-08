@@ -138,9 +138,9 @@ function IndexContent() {
         <TopBar
           onOpenReservation={() => handleOpenReservation()}
         />
-        <main className="bg-transparent pb-20 md:pb-0">
+        <main className="bg-transparent">
           {/* Contenedor Hero Sticky (Efecto Cortina Dark Luxury) */}
-          <div className="sticky top-0 h-screen w-full z-10 overflow-hidden">
+          <div className="sticky top-0 h-[100dvh] w-full z-10 overflow-hidden">
             <HeroSection
               menuAnchorId="menu"
               cateringHref="#agenda-cultural"
@@ -227,7 +227,7 @@ function IndexContent() {
                   <button
                     type="button"
                     onClick={() => handleOpenReservation("Evento Corporativo / Celebración Privada")}
-                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-brass px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none border border-brass shadow-lg"
+                    className="w-full sm:w-auto inline-flex min-h-11 items-center justify-center gap-2.5 rounded-none bg-brass px-6 sm:px-8 py-3.5 sm:py-4 font-sans text-xs sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none border border-brass shadow-lg text-center"
                   >
                     <CalendarHeart className="h-4 w-4" aria-hidden="true" />
                     <span>COTIZAR EVENTO PRIVADO</span>
@@ -236,7 +236,7 @@ function IndexContent() {
                     href="https://wa.me/5491168673856?text=Hola%20Andante%20Bar%2C%20quisiera%20consultar%20por%20eventos%20privados%20y%20catering."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-surface border border-brass/35 px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none"
+                    className="w-full sm:w-auto inline-flex min-h-11 items-center justify-center gap-2.5 rounded-none bg-surface border border-brass/35 px-6 sm:px-8 py-3.5 sm:py-4 font-sans text-xs sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none text-center"
                   >
                     <Phone className="h-4 w-4 text-amber" aria-hidden="true" />
                     <span>CONSULTA DIRECTA: +54 11 6867-3856</span>

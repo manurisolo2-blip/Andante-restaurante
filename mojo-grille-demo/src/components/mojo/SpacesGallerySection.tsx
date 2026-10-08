@@ -141,10 +141,10 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
               <button
                 type="button"
                 onClick={() => onOpenReservation(current.name)}
-                className="inline-flex items-center gap-2.5 rounded-none bg-brass px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-linen hover:bg-brass/90 transition-colors cursor-pointer select-none border border-brass shadow-md"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-none bg-brass px-4 sm:px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-linen hover:bg-brass/90 transition-colors cursor-pointer select-none border border-brass shadow-md text-center"
               >
                 <span>RESERVAR MESA EN {current.name.toUpperCase()}</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
               </button>
             </div>
           </div>
