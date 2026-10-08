@@ -1,5 +1,5 @@
 import React, { useRef, useState, type KeyboardEvent } from "react";
-import { Check, UtensilsCrossed, MessageSquare, Filter } from "lucide-react";
+import { Check, UtensilsCrossed, MessageSquare, Filter, Utensils, Wine, Sparkles } from "lucide-react";
 import { menu, type MenuItem } from "@/data/menu";
 
 export interface CravStyleMenuGridProps {
