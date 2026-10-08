@@ -1,5 +1,5 @@
 import React, { useRef, useState, type KeyboardEvent } from "react";
-import { Check, UtensilsCrossed, MessageSquare, Filter, Utensils, Wine, Sparkles } from "lucide-react";
+import { Check, UtensilsCrossed, MessageSquare, Filter, Utensils } from "lucide-react";
 import { menu, type MenuItem } from "@/data/menu";
 
 export interface CravStyleMenuGridProps {
@@ -90,17 +90,6 @@ function DishCard({ item, onSelect }: DishCardProps) {
             )}
           </button>
           <meta itemProp="image" content={item.image} />
-
-          {item.badge && (
-            <span className="absolute top-3 left-3 bg-canvas/90 border border-brass/40 px-2.5 py-1 text-[11px] font-sans font-bold uppercase tracking-wider text-brass backdrop-blur-sm pointer-events-none">
-              {item.badge}
-            </span>
-          )}
-          {item.isGlutenFree && (
-            <span className="absolute top-3 right-3 bg-olive-green px-2 py-0.5 text-[10px] font-sans font-black uppercase tracking-wider text-surface-warm pointer-events-none shadow-sm">
-              Sin TACC
-            </span>
-          )}
         </div>
 
         {/* Cuerpo de la Tarjeta con Título en Fuente Serif y Precio Formateado */}
@@ -377,39 +366,6 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
             </button>
           </div>
         </div>
-
-        {/* Banners contextuales según categoría */}
-        {selectedCategory === "barra" && (
-          <div className="mb-10 max-w-4xl mx-auto border border-brass/30 bg-surface/80 p-5 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="flex h-10 w-10 items-center justify-center border border-brass text-brass shrink-0 bg-canvas">
-              <Wine className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <div className="text-left">
-              <h4 className="font-serif font-display text-base font-bold uppercase tracking-wider text-brass">
-                Barra de Autor &amp; Bodegas Boutique · Dirección de Santiago Contarino
-              </h4>
-              <p className="font-sans text-xs text-mist leading-relaxed">
-                Coctelería clásica reinterpretada con botánicos locales, bitters caseros y cuidada selección de etiquetas y vinos de corte de pequeños productores independientes.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {(selectedCategory === "postres" || selectedCategory === "cafeteria") && (
-          <div className="mb-10 max-w-4xl mx-auto border border-brass/30 bg-surface/80 p-5 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="flex h-10 w-10 items-center justify-center border border-brass text-brass shrink-0 bg-canvas">
-              <Sparkles className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <div className="text-left">
-              <h4 className="font-serif font-display text-base font-bold uppercase tracking-wider text-brass">
-                Pastelería Artesanal &amp; Panadería de Masa Madre · Chef Ejecutivo Pablo Aroma
-              </h4>
-              <p className="font-sans text-xs text-mist leading-relaxed">
-                Precisión técnica de pastelería volcada a la fermentación lenta de 48 horas, medialunas artesanales y la célebre Torta Vasca (San Sebastián).
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Retícula de Platos (Cards Modulares) */}
         <div

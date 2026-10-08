@@ -81,11 +81,6 @@ export function QuickOrderModal({
             <h3 id="modal-dish-title" className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-linen leading-none">
               {item.name}
             </h3>
-            {item.badge && (
-              <span className="shrink-0 font-sans text-xs font-bold uppercase tracking-wider text-amber border border-amber/30 px-2 py-0.5">
-                {item.badge}
-              </span>
-            )}
           </div>
           <p className="mt-3 font-sans text-base leading-relaxed text-linen/80">
             {item.description}
