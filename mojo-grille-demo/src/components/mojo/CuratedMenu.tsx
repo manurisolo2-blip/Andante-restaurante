@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
-import { Plus, Check, Soup, Drumstick, Salad } from "lucide-react";
+import { Plus, Check, Soup, Drumstick, Salad, MessageSquare } from "lucide-react";
 import { useCart } from "./cart";
 import { useReducedMotion } from "@/lib/useReducedMotion";
 import { MagneticButton } from "./MagneticButton";
@@ -582,23 +582,18 @@ export function CuratedMenu() {
               </p>
             </div>
 
-            <button
-              type="button"
-              onClick={handleAddMenuDelDia}
-              className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-none bg-brass px-8 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-widest text-linen hover:bg-brass/90 transition-colors cursor-pointer select-none border border-brass shadow-xl shrink-0"
+            <a
+              href={`https://wa.me/5491168673856?text=${encodeURIComponent(
+                `Hola Andante Bar, quisiera consultar por el Menú del Día ($46.300). Entrada: ${selectedEntrada}, Principal: ${selectedProteina}, Guarniciones: ${selectedAcomp.join(" y ")}.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Consultar disponibilidad del Menú del Día por WhatsApp"
+              className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-none bg-brass px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-widest text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none border border-brass shadow-xl shrink-0"
             >
-              {bentoAdded ? (
-                <>
-                  <Check className="h-4 w-4 stroke-[3]" />
-                  <span>¡AGREGADO AL PEDIDO!</span>
-                </>
-              ) : (
-                <>
-                  <Plus className="h-4 w-4 stroke-[2.5]" />
-                  <span>AGREGAR MENÚ DEL DÍA ($46.300)</span>
-                </>
-              )}
-            </button>
+              <MessageSquare className="h-4 w-4" aria-hidden="true" />
+              <span>CONSULTAR DISPONIBILIDAD</span>
+            </a>
           </div>
         </article>
       </div>
@@ -664,25 +659,18 @@ export function CuratedMenu() {
                 <span className="text-left md:text-right font-display text-2xl sm:text-4xl font-bold tracking-tight text-brass group-hover:text-amber transition-colors duration-200 shrink-0 tabular-nums">
                   ${item.price.toFixed(2)}
                 </span>
-                <MagneticButton
-                  as="button"
-                  type="button"
-                  onClick={(e: React.MouseEvent) => {
-                    e.stopPropagation();
-                    handleAddToCart(item);
-                  }}
-                  className="flex-1 sm:flex-none sm:w-48 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-brass text-linen hover:bg-brass/90 transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 select-none border border-brass shadow-md"
-                  aria-label={`Add ${item.name} to order for $${item.price.toFixed(2)}`}
+                <a
+                  href={`https://wa.me/5491168673856?text=${encodeURIComponent(
+                    `Hola Andante Bar, quisiera consultar sobre el plato "${item.name}" de la selección al fuego.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none sm:w-44 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-surface border border-brass/40 text-linen hover:border-brass hover:text-brass transition-colors duration-200 rounded-none flex items-center justify-center gap-2 cursor-pointer shrink-0 select-none shadow-md"
+                  aria-label={`Consultar sobre ${item.name} por WhatsApp`}
                 >
-                  <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />
-                  <span className="truncate">
-                    {item.id.includes("bowl")
-                      ? "SELECCIONAR PLATO"
-                      : item.id.includes("tostones")
-                        ? "PEDIR ENTRADA"
-                        : "AL FUEGO"}
-                  </span>
-                </MagneticButton>
+                  <MessageSquare className="h-3.5 w-3.5 text-amber" aria-hidden="true" />
+                  <span className="truncate">CONSULTAR</span>
+                </a>
               </div>
             </div>
           ))}

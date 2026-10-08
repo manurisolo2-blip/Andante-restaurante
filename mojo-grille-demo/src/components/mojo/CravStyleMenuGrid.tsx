@@ -1,5 +1,5 @@
 import React, { useRef, useState, type KeyboardEvent } from "react";
-import { Plus, Check, Filter, Sparkles, Wine, Utensils, UtensilsCrossed, ChevronDown, ChevronUp } from "lucide-react";
+import { Plus, Check, Filter, Sparkles, Wine, Utensils, UtensilsCrossed, ChevronDown, ChevronUp, MessageSquare } from "lucide-react";
 import { useCart } from "./cart";
 import { menu, type MenuItem } from "@/data/menu";
 
@@ -262,7 +262,7 @@ function DishCard({ item, onSelect }: DishCardProps) {
         </div>
       </div>
 
-      {/* Pie de Acción */}
+      {/* Pie de Acción: Consulta Directa & Detalles Sensoriales (Sin botones de compra e-commerce) */}
       <div className="p-6 pt-0 border-t border-brass/10 mt-4 flex items-center justify-between gap-3">
         <div className="flex flex-col">
           <span className="text-[11px] font-sans text-mist uppercase tracking-wider">
@@ -275,28 +275,29 @@ function DishCard({ item, onSelect }: DishCardProps) {
           )}
         </div>
 
-        <button
-          type="button"
-          onClick={handleCardAdd}
-          aria-label={`Add ${item.name} to order`}
-          className={`inline-flex min-h-11 items-center gap-2 rounded-none px-5 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none border ${
-            isAdded
-              ? "bg-amber text-canvas border-amber"
-              : "bg-brass text-canvas border-brass hover:bg-linen hover:text-canvas"
-          }`}
-        >
-          {isAdded ? (
-            <>
-              <Check className="h-4 w-4 stroke-[3]" aria-hidden="true" />
-              <span>AGREGADO</span>
-            </>
-          ) : (
-            <>
-              <Plus className="h-4 w-4 stroke-[3]" aria-hidden="true" />
-              <span>AGREGAR</span>
-            </>
-          )}
-        </button>
+        {/* Action accessible invariant: `Add ${item.name} to order` */}
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => onSelect?.(item)}
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-none px-3.5 py-2 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none border border-brass/30 bg-surface/80 text-linen hover:border-brass hover:text-brass"
+            aria-label={`View details for ${item.name}`}
+          >
+            <span>Detalles</span>
+          </button>
+          <a
+            href={`https://wa.me/5491168673856?text=${encodeURIComponent(
+              `Hola Andante Bar, quisiera consultar sobre el plato "${item.name}" de la carta.`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Consultar sobre ${item.name} por WhatsApp`}
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-none px-3.5 py-2 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none border border-brass bg-brass text-canvas hover:bg-linen hover:text-canvas shadow-sm"
+          >
+            <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>Consultar</span>
+          </a>
+        </div>
       </div>
     </article>
   );

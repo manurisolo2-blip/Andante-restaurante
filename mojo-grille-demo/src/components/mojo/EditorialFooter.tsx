@@ -193,13 +193,12 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 </li>
               ))}
               <li>
-                <button
-                  type="button"
-                  onClick={onOpenCart}
+                <a
+                  href="#sedes"
                   className="inline-flex min-h-11 items-center gap-1.5 hover:text-brass hover:underline hover:translate-x-1 transition-all duration-200 cursor-pointer text-left"
                 >
-                  Ver tu Orden o Reserva
-                </button>
+                  Consultas &amp; Reservas
+                </a>
               </li>
             </ul>
           </div>

@@ -74,7 +74,7 @@ export function HeroSection({
       ref={sectionRef}
       id="top"
       aria-label="Andante Restaurante Bar - Palermo Hollywood"
-      className="relative z-10 w-full min-h-screen flex flex-col justify-center bg-transparent"
+      className="relative z-10 w-full h-full min-h-screen flex flex-col justify-center bg-transparent"
     >
       {/* Descriptor editorial para lectores de pantalla y buscadores */}
       <p className="sr-only">
@@ -91,7 +91,7 @@ export function HeroSection({
       {/* Bloque Principal Hero */}
       <div
         ref={contentRef}
-        className={`relative z-10 pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 ${animContainerClass}`}
+        className={`relative z-10 pt-20 sm:pt-28 md:pt-32 pb-10 sm:pb-16 md:pb-24 ${animContainerClass}`}
       >
         <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
           

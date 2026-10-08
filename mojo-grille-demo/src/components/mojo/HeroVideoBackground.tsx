@@ -123,19 +123,33 @@ export function HeroVideoBackground({
       if (document.hidden) {
         video.pause();
       } else {
-        const hero = document.getElementById("top");
-        if (hero && hero.getBoundingClientRect().bottom > 0) {
+        if (typeof window !== "undefined" && window.scrollY <= window.innerHeight) {
           tryPlay();
         }
       }
     };
     document.addEventListener("visibilitychange", handleVisibility);
 
+    const handleScroll = () => {
+      if (typeof window === "undefined") return;
+      if (window.scrollY > window.innerHeight) {
+        if (!video.paused) {
+          video.pause();
+        }
+      } else {
+        if (video.paused && !document.hidden) {
+          tryPlay();
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => {
       observer.disconnect();
       video.removeEventListener("loadeddata", markReady);
       video.removeEventListener("canplay", markReady);
       document.removeEventListener("visibilitychange", handleVisibility);
+      window.removeEventListener("scroll", handleScroll);
       video.pause();
     };
   }, [videoEligible]);

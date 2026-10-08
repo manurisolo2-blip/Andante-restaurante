@@ -3,14 +3,11 @@ import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Phone, CalendarHeart } from "lucide-react";
-import { CartProvider, useCart } from "@/components/mojo/cart";
+import { CartProvider } from "@/components/mojo/cart";
 import { TopBar } from "@/components/mojo/TopBar";
 import { HeroSection } from "@/components/mojo/HeroSection";
 import { CravStyleMenuGrid } from "@/components/mojo/CravStyleMenuGrid";
 import { QuickOrderModal } from "@/components/mojo/QuickOrderModal";
-import { CartSheet } from "@/components/mojo/CartSheet";
-import { CartToast } from "@/components/mojo/CartToast";
-import { MobileActionBar } from "@/components/mojo/MobileActionBar";
 import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { CuratedMenu } from "@/components/mojo/CuratedMenu";
 import { GoogleReviewsSection } from "@/components/mojo/GoogleReviewsSection";
@@ -21,7 +18,6 @@ import { ReservationModal } from "@/components/mojo/ReservationModal";
 import { EditorialFooter } from "@/components/mojo/EditorialFooter";
 import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
 import { JellyWaveTransition } from "@/components/mojo/JellyWaveTransition";
-import { TrustStrip } from "@/components/mojo/TrustStrip";
 import { FloatingContactWidget } from "@/components/mojo/FloatingContactWidget";
 import type { MenuItem } from "@/data/menu";
 
@@ -77,7 +73,6 @@ function Index() {
  * drawer, mobile bar, toast) reads and writes the exact same cart state.
  */
 function IndexContent() {
-  const { openCart } = useCart();
   const [selected, setSelected] = useState<MenuItem | null>(null);
   const [isLoaded] = useState(true);
 
@@ -143,22 +138,20 @@ function IndexContent() {
 
       <div className="min-h-dvh bg-canvas text-linen">
         <TopBar
-          onOpenCart={openCart}
           onOpenReservation={() => handleOpenReservation()}
         />
         <main className="bg-transparent pb-20 md:pb-0">
-          {/* Sección Hero Monumental Fluida */}
-          <HeroSection
-            menuAnchorId="menu"
-            cateringHref="#agenda-cultural"
-            onReservationClick={() => handleOpenReservation()}
-            shouldAnimateIn={isLoaded}
-          />
+          {/* Contenedor Hero Sticky (Efecto Cortina Dark Luxury) */}
+          <div className="sticky top-0 h-screen w-full z-10 overflow-hidden">
+            <HeroSection
+              menuAnchorId="menu"
+              cateringHref="#agenda-cultural"
+              onReservationClick={() => handleOpenReservation()}
+              shouldAnimateIn={isLoaded}
+            />
+          </div>
 
-          <div className="relative z-20 bg-canvas">
-            {/* Cintillo Horizontal de Confianza (Trust Strip) */}
-            <TrustStrip />
-
+          <div className="relative z-20 bg-canvas shadow-[0_-30px_60px_rgba(0,0,0,0.85)] border-t border-brass/25">
             {/* Concepto Culinario & Equipo · Chef Ejecutivo Pablo Aroma */}
             <div id="concepto-culinario">
               <CubanDeconstruction />
@@ -288,7 +281,7 @@ function IndexContent() {
             />
 
             {/* Editorial Footer de Alto Impacto Dark Luxury */}
-            <EditorialFooter onOpenCart={openCart} />
+            <EditorialFooter />
           </div>
         </main>
 
@@ -298,9 +291,6 @@ function IndexContent() {
           onClose={() => setReservationOpen(false)}
           defaultEventTitle={reservationEvent}
         />
-        <CartSheet />
-        <CartToast />
-        <MobileActionBar onOpenCart={openCart} />
         <FloatingContactWidget />
       </div>
     </>

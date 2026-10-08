@@ -38,10 +38,10 @@ export function FloatingContactWidget() {
         />
       )}
 
-      {/* Contenedor Flotante Unificado (Thumb-Zone: esquina inferior derecha con offset seguro en móviles) */}
+      {/* Contenedor Flotante Unificado (Thumb-Zone: esquina inferior derecha con fácil alcance en móviles y desktop) */}
       <div
         ref={menuRef}
-        className="fixed right-4 md:right-6 bottom-24 md:bottom-6 z-50 flex flex-col items-end select-none"
+        className="fixed right-4 sm:right-6 bottom-5 sm:bottom-6 z-50 flex flex-col items-end select-none"
       >
         {/* Menú Rápido Desplegable (Modal Flotante) */}
         {isOpen && (

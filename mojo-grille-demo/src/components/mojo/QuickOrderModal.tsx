@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Check, X } from "lucide-react";
+import { Check, X, MessageSquare } from "lucide-react";
 import { currency, sideOptions, type MenuItem } from "@/data/menu";
 import { useCart } from "./cart";
 import { useFocusTrap } from "@/lib/useFocusTrap";
@@ -140,22 +140,33 @@ export function QuickOrderModal({
             </p>
           )}
 
-          <button
-            type="button"
-            onClick={() => {
-              add({
-                itemId: item.id,
-                name: item.name,
-                sides: sideOptions.filter((s) => sides.includes(s.id)).map((s) => s.name),
-                price: total,
-              });
-              onClose();
-            }}
-            className="mt-6 flex w-full items-center justify-between gap-2 rounded-none bg-brass px-6 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none shadow-none"
-          >
-            <span className="truncate">AGREGAR A MI PEDIDO</span>
-            <span className="shrink-0 font-display text-xl tabular-nums">{currency(total)}</span>
-          </button>
+          <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
+            <a
+              href={`https://wa.me/5491168673856?text=${encodeURIComponent(
+                `Hola Andante Bar, quisiera consultar sobre el plato "${item.name}"${
+                  sides.length > 0
+                    ? ` con guarnición de ${sideOptions
+                        .filter((s) => sides.includes(s.id))
+                        .map((s) => s.name)
+                        .join(", ")}`
+                    : ""
+                } (Precio de referencia: ${currency(total)}).`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex w-full min-h-[48px] items-center justify-center gap-2.5 rounded-none bg-brass px-6 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none shadow-none"
+            >
+              <MessageSquare className="h-4 w-4" aria-hidden="true" />
+              <span>CONSULTAR POR WHATSAPP</span>
+            </a>
+            <button
+              type="button"
+              onClick={onClose}
+              className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-linen border border-brass/30 bg-canvas hover:border-brass hover:text-brass transition-colors cursor-pointer select-none"
+            >
+              CERRAR
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@ export function AndanteAstrolabe({ className = "h-8 w-8 text-[#C9A86A]" }: { cla
 }
 
 export interface TopBarProps {
-  onOpenCart: () => void;
+  onOpenCart?: () => void;
   onOpenReservation?: () => void;
 }
 
@@ -218,25 +218,6 @@ export function TopBar({ onOpenCart, onOpenReservation }: TopBarProps) {
                 className="hidden sm:inline-flex min-h-[48px] items-center justify-center rounded-none bg-brass px-5 sm:px-6 py-2.5 font-sans text-xs font-bold uppercase tracking-widest text-linen hover:bg-brass/90 transition-colors cursor-pointer select-none border border-brass shadow-md"
               >
                 <span>Reservar Mesa</span>
-              </button>
-
-              {/* Bolsa de Compra / Pedido */}
-              <button
-                type="button"
-                onClick={onOpenCart}
-                aria-label={
-                  count > 0
-                    ? `Ver orden, ${count} ${count === 1 ? "ítem" : "ítems"}`
-                    : "Ver orden, vacía"
-                }
-                className="relative grid h-12 w-12 min-h-[48px] min-w-[48px] place-items-center rounded-full bg-brass text-linen transition-all hover:bg-amber active:scale-95 cursor-pointer select-none border border-brass/50 shadow-md"
-              >
-                <LatinMarketBagIcon className="h-5 w-5 stroke-[2.2] text-linen" />
-                {count > 0 && (
-                  <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-canvas bg-amber px-1 font-sans text-xs font-black text-linen shadow-none">
-                    {count}
-                  </span>
-                )}
               </button>
 
               {/* Menú Hamburguesa Accesible para Dispositivos Móviles (área táctil >= 48x48 px) */}
