@@ -189,7 +189,7 @@ export function TopBar({ onOpenCart, onOpenReservation }: TopBarProps) {
               {[
                 { label: "Inicio", href: "#top" },
                 { label: "Menú", href: "#menu" },
-                { label: "Sedes", href: "#sedes" },
+                { label: "Espacios", href: "#espacios" },
                 { label: "Eventos", href: "#agenda-cultural" },
               ].map((link) => (
                 <a
@@ -296,7 +296,7 @@ export function TopBar({ onOpenCart, onOpenReservation }: TopBarProps) {
                   {[
                     { href: "#top", label: "Inicio" },
                     { href: "#menu", label: "Menú" },
-                    { href: "#sedes", label: "Sedes" },
+                    { href: "#espacios", label: "Espacios" },
                     { href: "#agenda-cultural", label: "Eventos" },
                   ].map((item) => (
                     <a

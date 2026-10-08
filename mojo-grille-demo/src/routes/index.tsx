@@ -13,7 +13,6 @@ import { CuratedMenu } from "@/components/mojo/CuratedMenu";
 import { GoogleReviewsSection } from "@/components/mojo/GoogleReviewsSection";
 import { CulturalAgendaSection } from "@/components/mojo/CulturalAgendaSection";
 import { SpacesGallerySection } from "@/components/mojo/SpacesGallerySection";
-import { ContactMapSection } from "@/components/mojo/ContactMapSection";
 import { ReservationModal } from "@/components/mojo/ReservationModal";
 import { EditorialFooter } from "@/components/mojo/EditorialFooter";
 import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
@@ -262,23 +261,16 @@ function IndexContent() {
               </div>
             </section>
 
-            {/* Transición 7: Púrpura Nocturno -> Obsidiana Ébano (Sedes & Contacto) */}
+            {/* Transición 7: Púrpura Nocturno -> Superficie Marina (Editorial Footer) */}
             <JellyWaveTransition
               topColor="#16121C"
-              bottomColor="#181513"
-              direction="down"
-            />
-
-            {/* Datos de Contacto, Espacios en Palermo Hollywood, Mapa de Google Maps & Horarios */}
-            <div id="sedes" className="scroll-mt-[var(--header-h)]" />
-            <ContactMapSection />
-
-            {/* Transición hacia el Editorial Footer */}
-            <JellyWaveTransition
-              topColor="#181513"
               bottomColor="#162238"
               direction="down"
             />
+
+            {/* Anclas de Sede & Contacto (redirigen al footer editorial) */}
+            <div id="sedes" className="scroll-mt-[var(--header-h)]" />
+            <div id="contacto" className="scroll-mt-[var(--header-h)]" />
 
             {/* Editorial Footer de Alto Impacto Dark Luxury */}
             <EditorialFooter />
