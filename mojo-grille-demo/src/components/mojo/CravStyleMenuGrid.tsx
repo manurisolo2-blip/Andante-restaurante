@@ -1,6 +1,5 @@
 import React, { useRef, useState, type KeyboardEvent } from "react";
-import { Plus, Check, Filter, Sparkles, Wine, Utensils, UtensilsCrossed, ChevronDown, ChevronUp, MessageSquare } from "lucide-react";
-import { useCart } from "./cart";
+import { Check, UtensilsCrossed, MessageSquare } from "lucide-react";
 import { menu, type MenuItem } from "@/data/menu";
 
 export interface CravStyleMenuGridProps {
@@ -33,11 +32,9 @@ const INCLUDED_SIDES_OPTIONS = [
   "Ensalada fresca de huerta",
 ];
 
-function formatPriceCOP(price: number): string {
-  if (price >= 1000) {
-    return price.toLocaleString("es-CO");
-  }
-  return (price * 1000).toLocaleString("es-CO");
+function formatPriceARS(price: number): string {
+  const value = price >= 1000 ? price : Math.round(price * 1000);
+  return value.toLocaleString("es-AR");
 }
 
 interface DishCardProps {
@@ -46,44 +43,12 @@ interface DishCardProps {
 }
 
 function DishCard({ item, onSelect }: DishCardProps) {
-  const cart = useCart();
   const [imgError, setImgError] = useState(false);
-  const [accordionOpen, setAccordionOpen] = useState(false);
-  const [selectedGuarnicion, setSelectedGuarnicion] = useState<string>("Papas rústicas a la provenzal");
-  const [extraSalsa, setExtraSalsa] = useState(false);
-  const [extraParmesano, setExtraParmesano] = useState(false);
-  const [isAdded, setIsAdded] = useState(false);
 
   // Platos con guarnición incluida (Carnes, Risottos, Pastas y principales)
   const isLomoOrMeat = item.name.toLowerCase().includes("bife") || item.name.toLowerCase().includes("carne") || item.name.toLowerCase().includes("pato");
   const isRisotto = item.name.toLowerCase().includes("risotto") || item.name.toLowerCase().includes("curry");
   const hasIncludedSides = item.sidesAllowed || item.category === "principales" || isLomoOrMeat || isRisotto;
-
-  const extraTotal = (extraSalsa ? 5.5 : 0) + (extraParmesano ? 4.2 : 0);
-  const displayTotal = item.price + extraTotal;
-
-  const handleCardAdd = () => {
-    setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 1200);
-
-    const sides: string[] = [];
-    if (hasIncludedSides) {
-      sides.push(`Guarnición: ${selectedGuarnicion}`);
-    }
-    if (extraSalsa) {
-      sides.push("Salsa especial de trufas (+$5.500)");
-    }
-    if (extraParmesano) {
-      sides.push("Queso Parmigiano Reggiano 24m (+$4.200)");
-    }
-
-    cart.add({
-      itemId: item.id,
-      name: item.name,
-      price: displayTotal,
-      sides,
-    });
-  };
 
   return (
     <article
@@ -148,13 +113,13 @@ function DishCard({ item, onSelect }: DishCardProps) {
               {item.name}
             </h3>
             <div itemProp="offers" itemScope itemType="https://schema.org/Offer" className="shrink-0 text-right">
-              <meta itemProp="priceCurrency" content="COP" />
+              <meta itemProp="priceCurrency" content="ARS" />
               <span
                 itemProp="price"
-                content={String(displayTotal)}
+                content={String(item.price)}
                 className="font-display text-2xl font-bold text-brass group-hover:text-amber transition-colors shrink-0 tabular-nums"
               >
-                ${formatPriceCOP(displayTotal)}
+                ${formatPriceARS(item.price)}
               </span>
               <link itemProp="availability" href="https://schema.org/InStock" />
             </div>
@@ -176,87 +141,16 @@ function DishCard({ item, onSelect }: DishCardProps) {
             </p>
           )}
 
-          {/* Selector Interactivo / Acordeón para Guarnición Incluida */}
+          {/* Indicador de Guarnición Artesanal Incluida */}
           {hasIncludedSides && (
-            <div className="mt-4 pt-3 border-t border-brass/15">
-              <button
-                type="button"
-                onClick={() => setAccordionOpen(!accordionOpen)}
-                className="w-full flex items-center justify-between text-left text-xs font-sans font-bold uppercase tracking-wider text-brass hover:text-linen transition-colors cursor-pointer py-1.5 px-2 bg-canvas/40 border border-brass/20"
-              >
-                <span className="flex items-center gap-1.5 truncate">
-                  <Check className="h-3.5 w-3.5 text-amber shrink-0" aria-hidden="true" />
-                  <span className="truncate">
-                    Guarnición: <span className="text-linen font-normal capitalize">{selectedGuarnicion}</span>
-                  </span>
-                </span>
-                {accordionOpen ? (
-                  <ChevronUp className="h-4 w-4 text-amber shrink-0 ml-1" aria-hidden="true" />
-                ) : (
-                  <ChevronDown className="h-4 w-4 text-amber shrink-0 ml-1" aria-hidden="true" />
-                )}
-              </button>
-
-              {accordionOpen && (
-                <div className="mt-2 p-2.5 bg-canvas/90 border border-brass/25 space-y-1.5 transition-all">
-                  <p className="text-[11px] font-sans text-mist mb-1">
-                    Selecciona tu guarnición artesanal incluida:
-                  </p>
-                  {INCLUDED_SIDES_OPTIONS.map((side) => {
-                    const isSelectedSide = selectedGuarnicion === side;
-                    return (
-                      <button
-                        key={side}
-                        type="button"
-                        onClick={() => {
-                          setSelectedGuarnicion(side);
-                          setAccordionOpen(false);
-                        }}
-                        className={`w-full flex items-center justify-between px-2.5 py-1.5 text-xs text-left cursor-pointer border transition-colors ${
-                          isSelectedSide
-                            ? "bg-surface border-brass text-linen font-bold shadow-sm"
-                            : "border-brass/10 text-mist hover:text-linen hover:border-brass/30"
-                        }`}
-                      >
-                        <span className="font-sans text-xs">{side}</span>
-                        {isSelectedSide && <Check className="h-3 w-3 text-amber" aria-hidden="true" />}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* Indicadores para Adiciones con Cargo Extra */}
-              <div className="mt-3 space-y-1.5">
-                <span className="block text-[10px] font-sans font-bold uppercase tracking-widest text-brass/90">
-                  Adiciones sugeridas con cargo extra:
-                </span>
-                <label className="flex items-center justify-between gap-2 p-2 bg-canvas/50 border border-brass/15 text-xs text-linen cursor-pointer hover:border-brass/35 transition-colors">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked={extraSalsa}
-                      onChange={(e) => setExtraSalsa(e.target.checked)}
-                      className="rounded-none border-brass/40 accent-amber cursor-pointer"
-                    />
-                    <span className="font-sans text-[11px]">Salsa especial de trufas</span>
-                  </div>
-                  <span className="font-sans text-[11px] font-bold text-amber tabular-nums">+$5.500</span>
-                </label>
-
-                <label className="flex items-center justify-between gap-2 p-2 bg-canvas/50 border border-brass/15 text-xs text-linen cursor-pointer hover:border-brass/35 transition-colors">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked={extraParmesano}
-                      onChange={(e) => setExtraParmesano(e.target.checked)}
-                      className="rounded-none border-brass/40 accent-amber cursor-pointer"
-                    />
-                    <span className="font-sans text-[11px]">Queso Parmigiano 24 meses</span>
-                  </div>
-                  <span className="font-sans text-[11px] font-bold text-amber tabular-nums">+$4.200</span>
-                </label>
-              </div>
+            <div className="mt-4 pt-3 border-t border-brass/15 flex items-center justify-between text-xs">
+              <span className="flex items-center gap-1.5 text-brass font-bold uppercase tracking-wider text-[11px]">
+                <Check className="h-3.5 w-3.5 text-amber shrink-0" aria-hidden="true" />
+                <span>Guarnición incluida</span>
+              </span>
+              <span className="text-[11px] text-mist/90 truncate max-w-[200px]">
+                Papas rústicas · Pasta · Ensalada
+              </span>
             </div>
           )}
         </div>
@@ -266,13 +160,11 @@ function DishCard({ item, onSelect }: DishCardProps) {
       <div className="p-6 pt-0 border-t border-brass/10 mt-4 flex items-center justify-between gap-3">
         <div className="flex flex-col">
           <span className="text-[11px] font-sans text-mist uppercase tracking-wider">
-            {hasIncludedSides ? "Guarnición incluida" : "Listo al compás"}
+            {hasIncludedSides ? "Guarnición artesanal" : "Listo al compás"}
           </span>
-          {extraTotal > 0 && (
-            <span className="text-[10px] font-sans text-amber font-bold tabular-nums">
-              +${(extraTotal * 1000).toLocaleString("es-CO")} extras
-            </span>
-          )}
+          <span className="text-[10px] font-sans text-brass/80 font-medium">
+            Andante Palermo
+          </span>
         </div>
 
         {/* Action accessible invariant: `Add ${item.name} to order` */}
@@ -291,7 +183,7 @@ function DishCard({ item, onSelect }: DishCardProps) {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Consultar sobre ${item.name} por WhatsApp`}
+            aria-label={`Add ${item.name} to order`}
             className="inline-flex min-h-11 items-center gap-1.5 rounded-none px-3.5 py-2 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none border border-brass bg-brass text-canvas hover:bg-linen hover:text-canvas shadow-sm"
           >
             <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />

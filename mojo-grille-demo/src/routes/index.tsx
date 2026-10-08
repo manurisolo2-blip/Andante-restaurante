@@ -8,8 +8,7 @@ import { TopBar } from "@/components/mojo/TopBar";
 import { HeroSection } from "@/components/mojo/HeroSection";
 import { CravStyleMenuGrid } from "@/components/mojo/CravStyleMenuGrid";
 import { QuickOrderModal } from "@/components/mojo/QuickOrderModal";
-import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
-import { CuratedMenu } from "@/components/mojo/CuratedMenu";
+import { CulinaryConceptSection } from "@/components/mojo/CulinaryConceptSection";
 import { GoogleReviewsSection } from "@/components/mojo/GoogleReviewsSection";
 import { CulturalAgendaSection } from "@/components/mojo/CulturalAgendaSection";
 import { SpacesGallerySection } from "@/components/mojo/SpacesGallerySection";
@@ -151,28 +150,16 @@ function IndexContent() {
           </div>
 
           <div className="relative z-20 bg-canvas shadow-[0_-30px_60px_rgba(0,0,0,0.85)] border-t border-brass/25">
-            {/* Concepto Culinario & Equipo · Chef Ejecutivo Pablo Aroma */}
+            {/* Concepto Culinario & Filosofía de Marca (Pablo Aroma & Santiago Contarino) */}
             <div id="concepto-culinario">
-              <CubanDeconstruction />
+              <CulinaryConceptSection onOpenReservation={() => handleOpenReservation()} />
             </div>
 
-            {/* Transición 1: Canvas Índigo -> Carbón Espresso Profundo */}
+            {/* Transición 1: Canvas Índigo -> Púrpura Nocturno (Carta Digital) */}
             <JellyWaveTransition
               topColor="#0E1726"
-              bottomColor="#1A1715"
-              direction="down"
-            />
-
-            {/* Selección de Estación · Al Fuego (Sección Superficie) */}
-            <div id="curated-menu">
-              <CuratedMenu />
-            </div>
-
-            {/* Transición 2: Carbón Espresso Profundo -> Púrpura Nocturno */}
-            <JellyWaveTransition
-              topColor="#1A1715"
               bottomColor="#16121C"
-              direction="up"
+              direction="down"
             />
 
             {/* Carta Digital Interactiva (Pestañas Dinámicas & Filtros Sin TACC / Vegetariano) */}
