@@ -614,11 +614,7 @@ export function CubanDeconstruction() {
           </a>
         </div>
 
-        {/* Indicador de scroll (visible solo en tablet/desktop para no solapar controles en móviles) */}
-        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-2 text-linen font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-surface/90 border border-brass/30 px-4 py-1.5 shadow-md">
-          <span className="animate-bounce text-brass">↓</span>
-          <span>Deslizá para deconstruir · Técnicas del mundo en Palermo</span>
-        </div>
+
       </div>
     </section>
   );
