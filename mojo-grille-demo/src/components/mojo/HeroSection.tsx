@@ -99,13 +99,7 @@ export function HeroSection({
             {/* Columna Principal: Tipografía Monumental en Romana Recta */}
             <div className="lg:col-span-8 flex flex-col items-start text-left space-y-6">
               
-              {/* Badge Editorial de Tempo & Ubicación */}
-              <div className={`inline-flex items-center gap-3 border border-brass/30 bg-surface/85 px-4 py-2 backdrop-blur-md ${animItemClass}`}>
-                <span className="h-1.5 w-1.5 rounded-full bg-amber animate-pulse" aria-hidden="true" />
-                <span className="font-sans text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] text-linen">
-                  TEMPO ANDANTE (76–108 PPM) · ARÉVALO 1677, PALERMO HOLLYWOOD
-                </span>
-              </div>
+
 
               {/* Titular Display Asimétrico en Color Sólido */}
               <h1 className={`font-display text-4xl sm:text-6xl md:text-7xl lg:text-[clamp(3.4rem,6.2vw,6.5rem)] font-bold tracking-tight text-linen leading-[0.94] uppercase ${animItemClass}`}>
