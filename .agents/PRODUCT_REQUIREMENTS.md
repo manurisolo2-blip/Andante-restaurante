@@ -209,16 +209,16 @@ Mojo Grille represents the next generation of digital dining for Miami's authent
 - **Given** the category tab bar,
 - **When** rendered,
 - **Then** it MUST display exactly 6 categories:
-  1. `"🔥 Must-Tries / Favoritos"` (ID: `favoritos`)
-  2. `"🥗 Bowls Criollos"` (ID: `bowls`)
-  3. `"🥪 Pressed Cubano Sandwiches"` (ID: `sandwiches`)
-  4. `"🥟 Pa' Picar / Sides"` (ID: `sides`)
-  5. `"🥤 Cafecito & Drinks"` (ID: `bebidas`)
-  6. `"🎉 Party Catering"` (ID: `catering`)
+  1. `" Must-Tries / Favoritos"` (ID: `favoritos`)
+  2. `" Bowls Criollos"` (ID: `bowls`)
+  3. `" Pressed Cubano Sandwiches"` (ID: `sandwiches`)
+  4. `" Pa' Picar / Sides"` (ID: `sides`)
+  5. `" Cafecito & Drinks"` (ID: `bebidas`)
+  6. `" Party Catering"` (ID: `catering`)
 
 ##### Scenario 4.2: Category selection & active styling
 - **Given** the default category is `"favoritos"`,
-- **When** the user clicks `"🥪 Pressed Cubano Sandwiches"`,
+- **When** the user clicks `" Pressed Cubano Sandwiches"`,
 - **Then** the `"sandwiches"` pill MUST become active with background `#D95327`, text `#FFFFFF`, and shadow,
 - **And** previous active pill MUST revert to white background with `#78716C` text,
 - **And** the menu grid below MUST immediately display only items categorized as `sandwiches` (e.g., El Cubano Prensado).
@@ -253,7 +253,7 @@ Mojo Grille represents the next generation of digital dining for Miami's authent
 - **When** rendered in the grid,
 - **Then**:
   - If badge is `"Mojo Signature"`, background MUST be solid `#D95327` (`mojo-terracotta`) with white text.
-  - If badge is `"Popular"` or `"Top Seller"`, background MUST be soft amber `#FEF3C7` with amber border `#F59E0B/40`, dark amber text `#B45309`, and gold star `★`.
+  - If badge is `"Popular"` or `"Top Seller"`, background MUST be soft amber `#FEF3C7` with amber border `#F59E0B/40`, dark amber text `#B45309`, and gold star ``.
   - If badge is `"Fresco del día"`, background MUST be `#4D7C0F` (`mojo-lime`) with white text.
 
 ##### Scenario 5.3: Card interaction

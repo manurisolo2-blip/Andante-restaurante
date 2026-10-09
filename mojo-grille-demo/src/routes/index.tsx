@@ -15,7 +15,6 @@ import { SpacesGallerySection } from "@/components/mojo/SpacesGallerySection";
 import { ReservationModal } from "@/components/mojo/ReservationModal";
 import { EditorialFooter } from "@/components/mojo/EditorialFooter";
 import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
-import { JellyWaveTransition } from "@/components/mojo/JellyWaveTransition";
 import { FloatingContactWidget } from "@/components/mojo/FloatingContactWidget";
 import type { MenuItem } from "@/data/menu";
 
@@ -155,44 +154,28 @@ function IndexContent() {
               <CulinaryConceptSection onOpenReservation={() => handleOpenReservation()} />
             </div>
 
-            {/* Transición 1: Canvas Índigo -> Púrpura Nocturno (Carta Digital) */}
-            <JellyWaveTransition
-              topColor="#0E1726"
-              bottomColor="#16121C"
-              direction="down"
-            />
+            {/* Separador sutil Dark Luxury */}
+            <div className="border-t border-brass/15" aria-hidden="true" />
 
             {/* Carta Digital Interactiva (Pestañas Dinámicas & Filtros Sin TACC / Vegetariano) */}
             <section id="menu" className="scroll-mt-[var(--header-h)] bg-night-purple">
               <CravStyleMenuGrid onSelect={setSelected} />
             </section>
 
-            {/* Transición 3: Púrpura Nocturno -> Superficie Marina (Agenda Cultural) */}
-            <JellyWaveTransition
-              topColor="#16121C"
-              bottomColor="#162238"
-              direction="down"
-            />
+            {/* Separador sutil Dark Luxury */}
+            <div className="border-t border-brass/15" aria-hidden="true" />
 
             {/* Música en Vivo & Agenda Cultural (Jazz Nights, Musique & Cuisine, Catas) */}
             <CulturalAgendaSection onOpenReservation={handleOpenReservation} />
 
-            {/* Transición 4: Superficie Marina -> Obsidiana Ébano (Espacios de Andante) */}
-            <JellyWaveTransition
-              topColor="#162238"
-              bottomColor="#181513"
-              direction="up"
-            />
+            {/* Separador sutil Dark Luxury */}
+            <div className="border-t border-brass/15" aria-hidden="true" />
 
             {/* Espacios del Local (Salón Azul, Patio Interior al Aire Libre, Cava Subsuelo) */}
             <SpacesGallerySection onOpenReservation={handleOpenReservation} />
 
-            {/* Transición 5: Obsidiana Ébano -> Canvas Índigo (Reseñas & Ecos) */}
-            <JellyWaveTransition
-              topColor="#181513"
-              bottomColor="#0E1726"
-              direction="down"
-            />
+            {/* Separador sutil Dark Luxury */}
+            <div className="border-t border-brass/15" aria-hidden="true" />
 
             {/* Testimonios y Reseñas de comensales en Palermo Hollywood */}
             <GoogleReviewsSection />
@@ -200,12 +183,8 @@ function IndexContent() {
             {/* Ancla para Reservas */}
             <div id="reservas" className="scroll-mt-[var(--header-h)]" />
 
-            {/* Transición 6: Canvas Índigo -> Púrpura Nocturno (Catering & Celebraciones) */}
-            <JellyWaveTransition
-              topColor="#0E1726"
-              bottomColor="#16121C"
-              direction="up"
-            />
+            {/* Separador sutil Dark Luxury */}
+            <div className="border-t border-brass/15" aria-hidden="true" />
 
             {/* Módulo de Eventos Corporativos & Catering Exclusivo */}
             <section
@@ -248,12 +227,8 @@ function IndexContent() {
               </div>
             </section>
 
-            {/* Transición 7: Púrpura Nocturno -> Superficie Marina (Editorial Footer) */}
-            <JellyWaveTransition
-              topColor="#16121C"
-              bottomColor="#162238"
-              direction="down"
-            />
+            {/* Separador sutil Dark Luxury */}
+            <div className="border-t border-brass/15" aria-hidden="true" />
 
             {/* Anclas de Sede & Contacto (redirigen al footer editorial) */}
             <div id="sedes" className="scroll-mt-[var(--header-h)]" />

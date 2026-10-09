@@ -28,7 +28,7 @@ Direct observations from the codebase investigation, execution logs, and compila
    ```
    --- Starting Backend & Data Verification Suite ---
    1. Validating store locations schema...
-   ✓ Store locations verified.
+    Store locations verified.
    2. Validating menu catalog and side options...
      - Category 'favoritos' has 6 items.
      - Category 'bowls' has 4 items.
@@ -36,15 +36,15 @@ Direct observations from the codebase investigation, execution logs, and compila
      - Category 'sides' has 4 items.
      - Category 'bebidas' has 4 items.
      - Category 'catering' has 2 items.
-   ✓ Menu catalog verified.
+    Menu catalog verified.
    3. Validating type guards...
-   ✓ Type guards verified.
+    Type guards verified.
    4. Validating WhatsApp order builder & multi-store routing...
-   ✓ WhatsApp builder verified across all stores and overloads.
+    WhatsApp builder verified across all stores and overloads.
    5. Validating Schema.org SEO structured data...
-   ✓ Schema.org SEO structured data verified.
+    Schema.org SEO structured data verified.
    6. Validating cart line key determinism...
-   ✓ Deterministic cart keys verified.
+    Deterministic cart keys verified.
 
    ALL BACKEND & DATA VERIFICATIONS PASSED CLEANLY!
    ```
@@ -58,16 +58,16 @@ Direct observations from the codebase investigation, execution logs, and compila
    Result:
    ```
    vite v8.1.5 building client environment for production...
-   transforming...✓ 1886 modules transformed.
-   ✓ built in 1.19s
+   transforming... 1886 modules transformed.
+    built in 1.19s
    vite v8.1.5 building ssr environment for production...
-   transforming...✓ 70 modules transformed.
-   ✓ built in 337ms
+   transforming... 70 modules transformed.
+    built in 337ms
    [nitro] o Building [Nitro] (preset: cloudflare-module, compatibility: 2026-08-30)
    [nitro] √ Generated public .output/public
    vite v8.1.5 building nitro environment for production...
-   transforming...✓ 1937 modules transformed.
-   ✓ built in 680ms
+   transforming... 1937 modules transformed.
+    built in 680ms
    [nitro] √ You can preview this build using npx vite preview
    ```
    Result: Exit code `0`, clean production build.

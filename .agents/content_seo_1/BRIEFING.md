@@ -3,14 +3,14 @@
 ## Mission
 Inject final conversion-focused Cuban-American Miami copy, microcopy for empty/error/loading states, Schema.org JSON-LD structured data for multi-location restaurant & menu catalog, OpenGraph/Twitter meta tags, and sitemap/robots.txt for Mojo Grille.
 
-## 🔒 My Identity
+##  My Identity
 - Archetype: content_seo
 - Roles: implementer, qa, specialist
 - Working directory: c:\PaginasWeb\MojoGrille\.agents\content_seo_1
 - Original parent: a85c2135-53d8-464a-b3b0-b5cc831d92f2
 - Milestone: Phase 3 Quality & Content - ContentSEO
 
-## 🔒 Key Constraints
+##  Key Constraints
 - Authentic Miami Cuban-American copywriting ("al momento", "con mojo", "sabor criollo", "cafecito", "lechón asado", "marinado 24 horas").
 - Exact above-the-fold social proof badge: "⭐ 4.7 Stars across +3,000 orders in Miami (UberEats & Google)".
 - Integrate Schema.org JSON-LD generation from `src/lib/seo.ts` (`generateRestaurantSchema` and `generateMenuSchema`) directly into `src/routes/__root.tsx`.

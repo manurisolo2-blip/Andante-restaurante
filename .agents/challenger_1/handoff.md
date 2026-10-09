@@ -39,13 +39,13 @@ Created and executed 4 dedicated adversarial test suites plus 1 master test runn
      ```
      === [TEST SUITE 1] Price Math Precision & Penny Oracle ===
        [1.1] Testing currency() string formatting helper...
-       ✓ currency() formats dollar strings with exactly two decimal places.
+        currency() formats dollar strings with exactly two decimal places.
        [1.2] Testing all 17 menu items across all 16 side combinations...
-       ✓ Successfully verified 2448 menu item, side, and quantity permutations against integer-cent oracle.
+        Successfully verified 2448 menu item, side, and quantity permutations against integer-cent oracle.
        [1.3] Testing multi-line cart total precision...
-       ✓ Multi-line cart total ($268.00) matches exact cents calculation.
+        Multi-line cart total ($268.00) matches exact cents calculation.
        [1.4] Testing interactive side toggle sequence (PRD Scenario 6.2)...
-       ✓ Interactive side toggle sequence adheres strictly to PRD Scenario 6.2.
+        Interactive side toggle sequence adheres strictly to PRD Scenario 6.2.
      === [PASS] Price Math Precision & Penny Oracle Passed Cleanly ===
      ```
    - Result: Exit code `0`.
@@ -56,15 +56,15 @@ Created and executed 4 dedicated adversarial test suites plus 1 master test runn
      ```
      === [TEST SUITE 2] Location Switching & Synchronization ===
        [2.1] Validating official store records...
-       ✓ All 3 Miami locations (Little Havana, Brickell, Doral) are correctly configured with dedicated phone routing.
+        All 3 Miami locations (Little Havana, Brickell, Doral) are correctly configured with dedicated phone routing.
        [2.2] Testing resolveLocation() flexibility and fallbacks...
-       ✓ resolveLocation() accurately handles IDs, names, objects, case insensitivity, and graceful defaults.
+        resolveLocation() accurately handles IDs, names, objects, case insensitivity, and graceful defaults.
        [2.3] Testing dynamic WhatsApp destination phone routing...
-       ✓ Dynamic phone routing dynamically sets wa.me destination and greeting for each store.
+        Dynamic phone routing dynamically sets wa.me destination and greeting for each store.
        [2.4] Testing cart state preservation during location switching lifecycle...
-       ✓ Cart contents (items, quantities, sides, total) remain 100% intact across repeated store location switches.
+        Cart contents (items, quantities, sides, total) remain 100% intact across repeated store location switches.
        [2.5] Testing Component UI output for each location...
-       ✓ CartSheet and MobileActionBar components correctly bind to active store state in UI and link targets.
+        CartSheet and MobileActionBar components correctly bind to active store state in UI and link targets.
      === [PASS] Location Switching & Synchronization Passed Cleanly ===
      ```
    - Result: Exit code `0`.
@@ -75,19 +75,19 @@ Created and executed 4 dedicated adversarial test suites plus 1 master test runn
      ```
      === [TEST SUITE 3] WhatsApp Link & URL Encoding Robustness ===
        [3.1] Testing URL structure and protocol validation...
-       ✓ URL complies strictly with wa.me schema and contains no raw spaces or newlines.
+        URL complies strictly with wa.me schema and contains no raw spaces or newlines.
        [3.2] Testing Spanish accents and authentic Miami Spanglish copy...
-       ✓ All Spanish diacritics (á, é, í, ó, ú, ñ, ¡, ¿) encode and decode losslessly.
+        All Spanish diacritics (á, é, í, ó, ú, ñ, ¡, ¿) encode and decode losslessly.
        [3.3] Testing emoji encoding integrity...
-       ✓ Emojis (•, 🔥, 🥗, 🥟, 🥤, 🎉) survive URL encoding without byte corruption or surrogate breakage.
+        Emojis (•, , , , , ) survive URL encoding without byte corruption or surrogate breakage.
        [3.4] Testing special characters (&, +, ?, =, ", ') in query parameters...
-       ✓ Special URL characters (&, +, #, %) are strictly escaped and do not pollute query parameter boundaries.
+        Special URL characters (&, +, #, %) are strictly escaped and do not pollute query parameter boundaries.
        [3.5] Testing multi-line formatting (\n -> %0A)...
-       ✓ Multi-line formatted messages decode cleanly into exact line breaks.
+        Multi-line formatted messages decode cleanly into exact line breaks.
        [3.6] Stress testing large payload URL generation with all 17 menu items...
-       ✓ Mega cart URL length is 2703 characters and decodes with 100% byte fidelity.
+        Mega cart URL length is 2703 characters and decodes with 100% byte fidelity.
        [3.7] Testing empty cart URL generation...
-       ✓ Empty cart triggers courteous store-specific greeting URL.
+        Empty cart triggers courteous store-specific greeting URL.
      === [PASS] WhatsApp Link & URL Encoding Robustness Passed Cleanly ===
      ```
    - Result: Exit code `0`.
@@ -98,17 +98,17 @@ Created and executed 4 dedicated adversarial test suites plus 1 master test runn
      ```
      === [TEST SUITE 4] Cart Deduplication & State Invariants ===
        [4.1] Testing identical side combinations merge into single line with incremented qty...
-       ✓ Identical side combinations successfully merge and increment quantity regardless of side array order.
+        Identical side combinations successfully merge and increment quantity regardless of side array order.
        [4.2] Testing distinct side combinations generate separate lines...
-       ✓ Distinct side configurations and distinct dish IDs remain strictly segregated lines.
+        Distinct side configurations and distinct dish IDs remain strictly segregated lines.
        [4.3] Testing deduplication for side-less items (empty sides array)...
-       ✓ Side-less items correctly merge on itemId and do not conflict.
+        Side-less items correctly merge on itemId and do not conflict.
        [4.4] Testing remove() decrement and line deletion lifecycle...
-       ✓ remove() decrements quantities and completely purges lines reaching 0 quantity.
+        remove() decrements quantities and completely purges lines reaching 0 quantity.
        [4.5] Testing updateQty() boundary values...
-       ✓ updateQty() enforces positive integers and cleans up zero/negative inputs.
+        updateQty() enforces positive integers and cleans up zero/negative inputs.
        [4.6] Fuzz testing cart state with 5,000 randomized operations...
-       ✓ 5,000 random operations completed with 0 invariant violations. Current cart lines: 27.
+        5,000 random operations completed with 0 invariant violations. Current cart lines: 27.
      === [PASS] Cart Deduplication & State Invariants Passed Cleanly ===
      ```
    - Result: Exit code `0`.
@@ -151,7 +151,7 @@ Created and executed 4 dedicated adversarial test suites plus 1 master test runn
 
 3. **URL Encoding Robustness**:
    - `whatsappHref` relies on JavaScript's native `encodeURIComponent()` to escape the formatted order message.
-   - We probed with multi-byte emojis (•, 🔥, 🥗, 🥟, 🥤, 🎉), Spanish diacritics (á, é, í, ó, ú, ñ, ¡, ¿), URI boundary delimiters (`&`, `+`, `#`, `?`, `=`), quotes, and multi-line breaks (`\n`).
+   - We probed with multi-byte emojis (•, , , , , ), Spanish diacritics (á, é, í, ó, ú, ñ, ¡, ¿), URI boundary delimiters (`&`, `+`, `#`, `?`, `=`), quotes, and multi-line breaks (`\n`).
    - All characters encoded into safe percent-sequences (e.g. `%0A`, `%26`, `%2B`, `%C3%B3`).
    - URL parsing via standard `new URL(url).searchParams.get("text")` proved 100% lossless roundtrip decoding back to the exact formatted message.
 

@@ -139,7 +139,7 @@ const maliciousInputs = [
   "Robert'); DROP TABLE Students;--",
   "Special & Co. < > / \" ' ` = ?",
   "Cafecito & Pastelito de Guayaba con Azúcar Morena #1!",
-  "Emoji test 🔥 ⭐ 🥟 🥤 🥪 🥗 🎉 📍",
+  "Emoji test \u{1F525} \u{2B50} \u{1F95F} \u{1F964} \u{1F96A} \u{1F957} \u{1F389} \u{1F4CD}",
 ];
 
 for (const input of maliciousInputs) {

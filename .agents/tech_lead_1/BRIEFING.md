@@ -3,14 +3,14 @@
 ## Mission
 Establish unified application architecture, TypeScript interfaces, location/cart state synchronization contracts, OpenAPI/Zod schemas, and module boundaries for @FrontendDev and @BackendDev to execute in parallel with 0 build errors.
 
-## 🔒 My Identity
+##  My Identity
 - Archetype: TechLead
 - Roles: implementer, qa, specialist
 - Working directory: c:\PaginasWeb\MojoGrille\.agents\tech_lead_1
 - Original parent: a85c2135-53d8-464a-b3b0-b5cc831d92f2
 - Milestone: Phase 2 - Technical Architecture & Type Contracts
 
-## 🔒 Key Constraints
+##  Key Constraints
 - DO NOT CHEAT. All implementations must be genuine.
 - Location state must be unified and synchronized across all components (TopBar, MenuGrid, QuickOrderModal, CartSheet, MobileActionBar).
 - Strict, complete TypeScript interfaces and schemas for Location, Category, BadgeType, SideOption, MenuItem, CartLine, CartState, WhatsAppOrderPayload.

@@ -1,16 +1,16 @@
 "use client";
 
 import React from "react";
-import { Star, ExternalLink } from "lucide-react";
-import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
+import { Star, ExternalLink, Quote } from "lucide-react";
 
-export interface GoogleReviewItem extends CardStackItem {
+export interface GoogleReviewItem {
+  id: string;
   author: string;
   rating: number;
   dish: string;
+  occasion: string;
   content: string;
   initials: string;
-  avatarClass: string;
 }
 
 const GOOGLE_MAPS_URL =
@@ -19,237 +19,183 @@ const GOOGLE_MAPS_URL =
 const GOOGLE_REVIEWS: GoogleReviewItem[] = [
   {
     id: "review-1",
-    title: "Mariana V.",
-    description:
-      "El bife de chorizo madurado con manteca de salvia y el risotto de hongos silvestres sin TACC son una obra de arte. La acústica durante el ciclo de jazz es íntima y perfecta.",
-    imageSrc: "/assets/mojo-bowl-ropa-vieja.jpg",
-    href: GOOGLE_MAPS_URL,
     author: "Mariana V.",
     rating: 5,
     dish: "Bife Madurado & Risotto Sin TACC",
+    occasion: "Cena & Ciclo de Jazz",
     content:
-      "El bife de chorizo madurado con manteca de salvia y el risotto de hongos silvestres sin TACC son una obra de arte. La acústica durante el ciclo de jazz es íntima y perfecta.",
+      "El bife de chorizo madurado con manteca de salvia y el risotto de hongos silvestres sin TACC son una obra de arte. La acústica durante el ciclo de jazz es íntima y perfecta, sin estridencias.",
     initials: "MV",
-    avatarClass: "bg-brass text-canvas",
   },
   {
     id: "review-2",
-    title: "Santiago P.",
-    description:
-      "Increíble que toda la propuesta gastronómica garantice opciones libres de gluten con este nivel de bistró contemporáneo. El cóctel 'Compás 76' es de los mejores de Palermo.",
-    imageSrc: "/assets/mojo-cafecito.jpg",
-    href: GOOGLE_MAPS_URL,
     author: "Santiago P.",
     rating: 5,
     dish: "Cóctel Compás 76 & Bocado Andante",
+    occasion: "Barra de Autor",
     content:
-      "Increíble que toda la propuesta gastronómica garantice opciones libres de gluten con este nivel de bistró contemporáneo. El cóctel 'Compás 76' es de los mejores de Palermo.",
+      "Increíble que toda la propuesta gastronómica garantice opciones libres de gluten con este nivel de bistró contemporáneo. El cóctel 'Compás 76' es de lo mejor que probé en Palermo.",
     initials: "SP",
-    avatarClass: "bg-amber text-linen",
   },
   {
     id: "review-3",
-    title: "Lucía Giménez",
-    description:
-      "La cafetería de especialidad a la mañana tiene una luz serena en Arévalo, y de noche la atmósfera Dark Luxury se transforma por completo. El servicio es sosegado y atento.",
-    imageSrc: "/assets/mojo-cafecito.jpg",
-    href: GOOGLE_MAPS_URL,
     author: "Lucía Giménez",
     rating: 5,
     dish: "Flat White & Financier Sin TACC",
+    occasion: "Cafetería de Especialidad",
     content:
-      "La cafetería de especialidad a la mañana tiene una luz serena en Arévalo, y de noche la atmósfera Dark Luxury se transforma por completo. El servicio es sosegado y atento.",
+      "La cafetería de especialidad a la mañana tiene una luz serena en Arévalo, y de noche la atmósfera íntima transforma el lugar por completo. El servicio es sosegado y atento.",
     initials: "LG",
-    avatarClass: "bg-surface text-brass border border-brass/40",
   },
   {
     id: "review-4",
-    title: "Esteban R.",
-    description:
-      "Reservamos la cava subsuelo para una cata de 10 personas. La selección del sommelier y la tabla de quesos de guarda fueron excepcionales. Un verdadero refugio en la ciudad.",
-    imageSrc: "/assets/mojo-catering.jpg",
-    href: GOOGLE_MAPS_URL,
     author: "Esteban R.",
     rating: 5,
     dish: "Experiencia Cava Subsuelo",
+    occasion: "Cata Privada de Vinos",
     content:
       "Reservamos la cava subsuelo para una cata de 10 personas. La selección del sommelier y la tabla de quesos de guarda fueron excepcionales. Un verdadero refugio en la ciudad.",
     initials: "ER",
-    avatarClass: "bg-brass text-canvas",
   },
   {
     id: "review-5",
-    title: "Camila Duarte",
-    description:
-      "La pesca del día sellada a la plancha sobre puré de coliflor trufado y la burrata con higos asados superaron toda expectativa. Los postres artesanales son sublimes.",
-    imageSrc: "/assets/mojo-pollo-bowl.jpg",
-    href: GOOGLE_MAPS_URL,
     author: "Camila Duarte",
     rating: 5,
     dish: "Pesca del Día & Burrata Cremosa",
+    occasion: "Almuerzo de Mercado",
     content:
-      "La pesca del día sellada a la plancha sobre puré de coliflor trufado y la burrata con higos asados superaron toda expectativa. Los postres artesanales son sublimes.",
+      "La pesca del día sellada a la plancha sobre puré de coliflor trufado y la burrata con higos asados superaron toda expectativa. Los postres artesanales completan una experiencia impecable.",
     initials: "CD",
-    avatarClass: "bg-amber text-linen",
   },
 ];
 
 export function GoogleReviewsSection() {
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   return (
     <section
       id="reviews"
       aria-label="Lo que dicen los comensales sobre Andante Restaurante Bar"
-      className="relative w-full scroll-mt-[var(--header-h)] bg-canvas py-16 sm:py-24 overflow-hidden"
+      className="relative w-full scroll-mt-[var(--header-h)] bg-canvas py-16 sm:py-24"
     >
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
-        
-        {/* Encabezado Principal de Reseñas */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 sm:mb-14">
-          <div className="max-w-2xl">
-            <span className="font-sans text-xs uppercase tracking-[0.25em] text-brass font-bold">
-              HOSPITALIDAD &amp; EXPERIENCIA
-            </span>
-            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-linen leading-none mt-1">
-              ECOS DE <span className="text-brass">PALERMO</span> HOLLYWOOD
-            </h2>
-            <p className="mt-3 font-sans text-base text-mist leading-relaxed">
-              Testimonios de quienes desaceleran su ritmo en Andante. Cocina de mercado de día, coctelería de autor y ciclos de jazz en vivo bajo luz tenue por la noche.
-            </p>
-          </div>
-
-          {/* Tarjeta Resumen de Calificación Google */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6 shrink-0">
-            <div className="flex items-center gap-3.5">
-              <span className="font-display text-5xl sm:text-6xl font-black text-linen leading-none">
-                4.9
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          
+          {/* Columna Izquierda: Encabezado Editorial y Calificación Verificada */}
+          <div className="lg:col-span-5 lg:sticky lg:top-28 flex flex-col justify-between">
+            <div>
+              <span className="font-sans text-xs uppercase tracking-[0.25em] text-brass font-bold">
+                HOSPITALIDAD &amp; CRÍTICA
               </span>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1 text-ochre-gold">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
-                  ))}
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-linen leading-none mt-2">
+                ECOS DE <span className="text-brass">NUESTRA MESA</span>
+              </h2>
+              <p className="mt-4 font-sans text-base text-mist leading-relaxed">
+                Impresiones de quienes desaceleran su ritmo en Arévalo 1677. Cocina de mercado de día, coctelería de autor y ciclos de jazz acústico bajo luz tenue por la noche.
+              </p>
+
+              {/* Bloque de Calificación Google Maps */}
+              <div className="mt-8 bg-surface border border-brass/25 p-6 sm:p-7">
+                <div className="flex items-center gap-4">
+                  <span className="font-display text-5xl sm:text-6xl font-black text-linen leading-none">
+                    4.9
+                  </span>
+                  <div>
+                    <div className="flex items-center gap-1 text-amber">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
+                      ))}
+                    </div>
+                    <span className="sr-only">Calificación promedio 4.9 de 5 estrellas</span>
+                    <p className="font-sans text-sm font-bold text-linen mt-1">
+                      Calificación promedio en Google Maps
+                    </p>
+                    <p className="font-sans text-xs text-mist">
+                      340+ opiniones reales de comensales
+                    </p>
+                  </div>
                 </div>
-                <span className="sr-only">Calificación promedio 4.9 de 5 estrellas</span>
-                <span className="font-sans text-sm font-bold text-linen mt-1">
-                  +1,280 opiniones verificadas
-                </span>
-                <span className="font-sans text-xs text-mist uppercase tracking-wider">
-                  Google Maps · Palermo Hollywood
-                </span>
+
+                <div className="mt-6 pt-5 border-t border-brass/15 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <a
+                    href={GOOGLE_MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 bg-canvas hover:bg-brass text-linen hover:text-canvas border border-brass/40 text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer"
+                  >
+                    <span>LEER EN GOOGLE MAPS</span>
+                    <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  </a>
+                  <span className="font-sans text-[11px] text-mist uppercase tracking-wider text-center sm:text-right">
+                    Arévalo 1677 · Palermo Hollywood
+                  </span>
+                </div>
               </div>
             </div>
 
-            <a
-              href={GOOGLE_MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 bg-surface hover:bg-brass text-linen hover:text-canvas border border-brass/40 text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer shadow-md"
-            >
-              <span>VER EN MAPS</span>
-              <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-            </a>
+            {/* Cita Editorial de Manifiesto */}
+            <div className="mt-8 pt-6 border-t border-brass/15 hidden lg:block">
+              <p className="font-sans text-xs text-mist leading-relaxed italic">
+                «Un compás moderado donde la cocina de autor y la acústica del jazz conviven sin apuro ni artificios.»
+              </p>
+              <span className="mt-2 block font-sans text-[11px] font-semibold text-brass uppercase tracking-wider">
+                Andante Restaurante Bar · Buenos Aires
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* 3D CardStack Integrado */}
-        <div className="relative w-full py-4 overflow-hidden">
-          <CardStack
-            items={GOOGLE_REVIEWS}
-            initialIndex={0}
-            cardWidth={isMobile ? (typeof window !== "undefined" ? Math.min(320, window.innerWidth - 36) : 320) : 560}
-            cardHeight={isMobile ? 310 : 340}
-            overlap={isMobile ? 0.62 : 0.44}
-            spreadDeg={isMobile ? 14 : 36}
-            perspectivePx={1200}
-            depthPx={isMobile ? 40 : 110}
-            tiltXDeg={isMobile ? 4 : 8}
-            activeScale={1.03}
-            inactiveScale={0.93}
-            autoAdvance={false}
-            pauseOnHover={true}
-            showDots={true}
-            renderCard={(item) => {
-              const review = item as GoogleReviewItem;
+          {/* Columna Derecha: Cuadrícula Editorial de Testimonios */}
+          <div className="lg:col-span-7 flex flex-col gap-5">
+            {GOOGLE_REVIEWS.map((review, index) => {
+              const isFirst = index === 0;
               return (
-                <div className="relative w-full bg-surface border border-brass/25 flex flex-col gap-5 p-6 shadow-2xl">
-                  {/* Imagen de Fondo del Plato con opacidad sutil */}
-                  <div className="absolute inset-0 overflow-hidden">
-                    {review.imageSrc ? (
-                      <img
-                        src={review.imageSrc}
-                        alt=""
-                        aria-hidden="true"
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full object-cover opacity-20"
-                        draggable={false}
-                      />
-                    ) : null}
-                  </div>
-
-                  {/* Gradiente para Legibilidad Óptima en Dark Luxury */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface via-surface/85 to-surface/60" />
-
-                  {/* Cabecera de la Tarjeta */}
-                  <div className="relative z-10 flex items-start justify-between gap-3">
+                <article
+                  key={review.id}
+                  className={`relative bg-surface border border-brass/20 p-6 sm:p-7 transition-colors hover:border-brass/45 ${
+                    isFirst ? "border-l-4 border-l-brass" : ""
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 flex items-center justify-center">
-                        <span
-                          aria-hidden="true"
-                          className={`h-full w-full ${review.avatarClass} flex items-center justify-center font-sans font-bold text-sm uppercase`}
-                        >
-                          {review.initials}
-                        </span>
+                      <div
+                        className="h-10 w-10 shrink-0 bg-canvas border border-brass/30 flex items-center justify-center font-sans font-bold text-xs uppercase text-brass"
+                        aria-hidden="true"
+                      >
+                        {review.initials}
                       </div>
                       <div>
-                        <div className="font-sans font-bold text-sm text-linen leading-tight">
+                        <h3 className="font-sans font-bold text-sm text-linen leading-tight">
                           {review.author}
-                        </div>
-                        <p className="font-sans text-xs font-medium text-mist mt-0.5">
-                          Comensal verificado · Palermo Hollywood
+                        </h3>
+                        <p className="font-sans text-xs text-mist mt-0.5">
+                          {review.occasion}
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex flex-col items-end">
-                      <span className="sr-only">{review.rating} de 5 estrellas</span>
-                      <div className="flex items-center gap-0.5 text-ochre-gold">
-                        {[...Array(review.rating)].map((_, i) => (
-                          <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
-                        ))}
-                      </div>
+                    <div className="flex items-center gap-0.5 text-amber shrink-0">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                      ))}
+                      <span className="sr-only">Calificación 5 de 5 estrellas</span>
                     </div>
                   </div>
 
-                  {/* Contenido de la Reseña */}
-                  <div className="relative z-10 flex-1 flex flex-col justify-between">
-                    <p className="font-sans text-sm md:text-base text-linen/90 leading-relaxed italic">
-                      "{review.content}"
-                    </p>
+                  <blockquote className="font-sans text-sm sm:text-base text-linen/90 leading-relaxed italic">
+                    "{review.content}"
+                  </blockquote>
 
-                    <div className="pt-3 border-t border-brass/15 mt-3 flex items-center justify-between">
-                      <span className="font-sans text-xs font-bold uppercase tracking-wider text-brass">
-                        {review.dish}
-                      </span>
-                      <span className="font-sans text-[11px] text-mist font-medium">
-                        Arévalo 1677
-                      </span>
-                    </div>
+                  <div className="mt-5 pt-3.5 border-t border-brass/15 flex items-center justify-between text-xs">
+                    <span className="font-sans font-bold uppercase tracking-wider text-brass">
+                      {review.dish}
+                    </span>
+                    <span className="font-sans text-mist text-[11px] hidden sm:inline">
+                      Opinión verificada
+                    </span>
                   </div>
-                </div>
+                </article>
               );
-            }}
-          />
+            })}
+          </div>
+
         </div>
       </div>
     </section>

@@ -94,7 +94,7 @@ El sistema utiliza dos familias tipográficas complementarias de Google Fonts:
    - Alto: Auto (`py-2 px-4`).
    - Fondo: `#1C1917` (`bg-charcoal`).
    - Texto: `#FAF8F5`, `font-sans`, 11px a 12px, centrado, tracking-wide.
-   - Contenido: `📍 Miami, FL • Open today until 10:00 PM • Fast Takeout & Delivery Caliente`.
+   - Contenido: ` Miami, FL • Open today until 10:00 PM • Fast Takeout & Delivery Caliente`.
 2. **Main Navigation Container:**
    - Alto: `64px` (Desktop) / `58px` (Mobile).
    - Fondo: `rgba(255, 255, 255, 0.95)` con `backdrop-blur-md`.
@@ -209,7 +209,7 @@ El sistema utiliza dos familias tipográficas complementarias de Google Fonts:
 | Tipo de Badge | Color de Fondo | Borde | Color de Texto | Tipografía y Estilo | Icono / Detalle |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Mojo Signature** | `#D95327` (`bg-terracotta`) | Ninguno | `#FFFFFF` | 11px font-bold, uppercase, tracking `0.08em` | Sombra `shadow-sm` |
-| **Popular / Top Seller** | `#FEF3C7` (`bg-gold-soft`) | `1px solid rgba(245, 158, 11, 0.4)` | `#B45309` (`text-gold-text`) | 11px font-bold, uppercase, tracking `0.08em` | Estrella `★` en `#F59E0B` a la izquierda |
+| **Popular / Top Seller** | `#FEF3C7` (`bg-gold-soft`) | `1px solid rgba(245, 158, 11, 0.4)` | `#B45309` (`text-gold-text`) | 11px font-bold, uppercase, tracking `0.08em` | Estrella `` en `#F59E0B` a la izquierda |
 | **Fresco del día** | `#4D7C0F` (`bg-lime`) | Ninguno | `#FFFFFF` | 11px font-bold, uppercase, tracking `0.08em` | Sombra `shadow-sm` |
 | **Custom / Default** | `#FFFFFF` | `1px solid #EAE5DC` | `#D95327` | 11px font-bold, uppercase, tracking `0.08em` | Borde sutil, sombra suave |
 

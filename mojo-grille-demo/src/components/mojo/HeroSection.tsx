@@ -74,7 +74,7 @@ export function HeroSection({
       ref={sectionRef}
       id="top"
       aria-label="Andante Restaurante Bar - Palermo Hollywood"
-      className="relative z-10 w-full h-full min-h-[100dvh] flex flex-col justify-center bg-transparent"
+      className="relative z-10 w-full min-h-[92dvh] flex flex-col justify-center bg-transparent border-b border-brass/20 overflow-hidden"
     >
       {/* Descriptor editorial para lectores de pantalla y buscadores */}
       <p className="sr-only">
@@ -85,65 +85,90 @@ export function HeroSection({
       <HeroVideoBackground
         videoSrc="/assets/hero-kitchen-loop.mp4"
         posterSrc="/assets/mojo-bowl-ropa-vieja.jpg"
-        opacity={0.3}
+        opacity={0.25}
       />
 
-      {/* Bloque Principal Hero */}
+      {/* Bloque Principal Hero: Disposición Asimétrica Editorial */}
       <div
         ref={contentRef}
-        className={`relative z-10 pt-16 sm:pt-28 md:pt-32 pb-6 sm:pb-16 md:pb-24 ${animContainerClass}`}
+        className={`relative z-10 pt-20 sm:pt-28 md:pt-36 pb-12 sm:pb-20 md:pb-28 ${animContainerClass}`}
       >
-        <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-[1560px] w-full px-5 sm:px-8 lg:px-12">
           
-          {/* Encabezado Monumental Centrado */}
-          <div className="flex flex-col items-center text-center space-y-3 sm:space-y-6 max-w-7xl mx-auto">
-            {/* Titular Central con Efecto Spotlight HoverHighlightText */}
-            <div className={`w-full max-w-7xl mx-auto flex justify-center overflow-x-clip ${animItemClass}`}>
-              <HoverHighlightText
-                as="h1"
-                text="ANDANTE: UN VIAJE POR EL MUNDO A TRAVÉS DEL PALADAR"
-                baseClassName="font-display text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[clamp(3.2rem,6.8vw,6.8rem)] font-black uppercase tracking-tight text-linen leading-[0.98] sm:leading-[0.92] text-center"
-                highlightClassName="font-display text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[clamp(3.2rem,6.8vw,6.8rem)] font-black uppercase tracking-tight text-brass leading-[0.98] sm:leading-[0.92] text-center"
-                strokeColor="#C9A86A"
-                strokeWidth={1.5}
-                spotlightRadius={220}
-                spotlightSoftness={0.84}
-                enableGlow
-              />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+            {/* Columna Principal: Tipografía Monumental en Romana Recta */}
+            <div className="lg:col-span-8 flex flex-col items-start text-left space-y-6">
+              
+              {/* Badge Editorial de Tempo & Ubicación */}
+              <div className={`inline-flex items-center gap-3 border border-brass/30 bg-surface/85 px-4 py-2 backdrop-blur-md ${animItemClass}`}>
+                <span className="h-1.5 w-1.5 rounded-full bg-amber animate-pulse" aria-hidden="true" />
+                <span className="font-sans text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] text-linen">
+                  TEMPO ANDANTE (76–108 PPM) · ARÉVALO 1677, PALERMO HOLLYWOOD
+                </span>
+              </div>
+
+              {/* Titular Display Asimétrico en Color Sólido */}
+              <h1 className={`font-display text-4xl sm:text-6xl md:text-7xl lg:text-[clamp(3.4rem,6.2vw,6.5rem)] font-bold tracking-tight text-linen leading-[0.94] uppercase ${animItemClass}`}>
+                EL ARTE DE <span className="text-brass">DESACELERAR</span> EL RITMO URBANO
+              </h1>
+
+              {/* Subtítulo Narrativo Sensorial */}
+              <p className={`max-w-2xl font-sans text-base sm:text-lg md:text-xl text-mist leading-relaxed font-normal ${animItemClass}`}>
+                Bistró contemporáneo y coctelería nocturna en Palermo Hollywood. Cocina de mercado de día, alta gastronomía estacional con{" "}
+                <span className="text-linen font-medium underline decoration-amber decoration-1 underline-offset-4">
+                  opciones Sin TACC certificadas
+                </span>{" "}
+                y sesiones acústicas de jazz en vivo al caer la noche.
+              </p>
+
+              {/* Llamadas a la Acción: Primaria en Latón, Secundaria en Superficie Marina */}
+              <div className={`pt-4 sm:pt-6 flex flex-row flex-wrap items-center gap-3 sm:gap-4 ${animItemClass}`}>
+                <button
+                  type="button"
+                  onClick={() => onReservationClick ? onReservationClick() : undefined}
+                  className="inline-flex min-h-[50px] items-center justify-center gap-2.5 bg-brass px-7 sm:px-9 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors select-none shadow-lg cursor-pointer border border-brass"
+                >
+                  <CalendarHeart className="h-4 w-4" aria-hidden="true" />
+                  <span>RESERVAR MESA</span>
+                </button>
+
+                <MagneticButton
+                  href={`#${menuAnchorId}`}
+                  onClick={handleScrollToMenu}
+                  className="group relative inline-flex min-h-[50px] items-center justify-center gap-2.5 bg-surface/90 px-6 sm:px-8 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none border border-brass/30 shadow-md backdrop-blur-md"
+                >
+                  <UtensilsCrossed className="h-4 w-4 text-amber transition-transform group-hover:rotate-12" aria-hidden="true" />
+                  <span>CARTA &amp; MARIDAJES</span>
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </MagneticButton>
+              </div>
             </div>
 
-            {/* Subtítulo Narrativo Editorial */}
-            <p className={`max-w-4xl text-balance font-sans text-xs sm:text-base md:text-xl lg:text-2xl leading-relaxed text-mist text-center font-normal px-2 sm:px-0 ${animItemClass}`}>
-              Cocina de autor, coctelería internacional y sesiones de jazz en vivo en Palermo Hollywood. Técnicas de alta escuela fusionadas con sabores de Asia, Europa y Latinoamérica con{" "}
-              <span className="font-bold underline decoration-amber decoration-[2px] underline-offset-4 text-linen">
-                opciones Sin TACC garantizadas
-              </span>.
-            </p>
+            {/* Columna Lateral: Ficha de Sala & Compás (Atmósfera Dark Luxury) */}
+            <div className={`lg:col-span-4 border-l border-brass/20 pl-6 sm:pl-8 py-2 hidden lg:flex flex-col justify-between space-y-6 ${animItemClass}`}>
+              <div className="space-y-3">
+                <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brass block">
+                  HORARIOS DE SALA
+                </span>
+                <p className="font-sans text-xs text-mist leading-relaxed">
+                  Mediodía: Martes a Domingo · 12:00 a 16:00 hs<br />
+                  Noche &amp; Coctelería: Martes a Sábado · 19:30 a 02:00 hs
+                </p>
+              </div>
 
-            {/* Botones de Llamada a la Acción: RESERVAR MESA y VER CARTA */}
-            <div className={`pt-3 sm:pt-8 flex flex-row flex-wrap sm:flex-nowrap items-center justify-center gap-2.5 sm:gap-4 ${animItemClass}`}>
-              <button
-                type="button"
-                onClick={() => onReservationClick ? onReservationClick() : undefined}
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-none bg-brass px-5 sm:px-9 py-2.5 sm:py-4 font-sans text-xs sm:text-base font-bold uppercase tracking-wider text-linen hover:bg-brass/90 transition-colors select-none shadow-lg cursor-pointer border border-brass shrink-0"
-              >
-                <CalendarHeart className="h-4 w-4" aria-hidden="true" />
-                <span>RESERVAR MESA</span>
-              </button>
-
-              <MagneticButton
-                href={`#${menuAnchorId}`}
-                onClick={handleScrollToMenu}
-                className="group relative inline-flex min-h-[48px] items-center justify-center gap-2 sm:gap-3 rounded-none bg-surface px-5 sm:px-8 py-2.5 sm:py-4 font-sans text-xs sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none border border-brass/35 shadow-md shrink-0"
-              >
-                <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
-                <span>VER CARTA</span>
-                <ArrowRight
-                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </MagneticButton>
+              <div className="space-y-3 pt-4 border-t border-brass/15">
+                <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-amber block">
+                  CICLOS EN VIVO
+                </span>
+                <p className="font-sans text-xs text-linen/90 leading-relaxed">
+                  Jazz en Salón Azul y Cava Histórica: Martes &amp; Jueves 21:00 hs con formación de trío acústico.
+                </p>
+              </div>
             </div>
+
           </div>
 
         </div>

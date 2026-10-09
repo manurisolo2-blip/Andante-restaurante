@@ -97,7 +97,7 @@ $$\text{Contrast Ratio} = \frac{L_1 + 0.05}{L_2 + 0.05}$$
   - `"><svg/onload=alert(1)>`
   - `Robert'); DROP TABLE Students;--`
   - Unicode/Special: `Cafecito & Pastelito de Guayaba con Azúcar Morena #1!`
-  - Emojis: `🔥 ⭐ 🥟 🥤 🥪 🥗 🎉 📍`
+  - Emojis: ` ⭐      `
 - **Result:**
   - In `whatsapp.ts`, all outgoing order messages are processed via `encodeURIComponent()`.
   - No raw HTML tags, unescaped quotes, or script delimiters leak into the generated URL query string.

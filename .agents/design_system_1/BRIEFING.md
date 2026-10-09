@@ -3,14 +3,14 @@
 ## Mission
 Define complete visual design tokens, modular typographic hierarchy, gastronomic semantic palette, component visual specifications, and Tailwind CSS configuration for Mojo Grille Cuban Kitchen.
 
-## 🔒 My Identity
+##  My Identity
 - Archetype: design-system-architect
 - Roles: [@DesignSystem, UI/UX Designer]
 - Working directory: c:\PaginasWeb\MojoGrille\.agents\design_system_1
 - Original parent: a85c2135-53d8-464a-b3b0-b5cc831d92f2
 - Milestone: Design System Specification & Token Architecture
 
-## 🔒 Key Constraints
+##  Key Constraints
 - Global canvas must strictly be bg-cream (#FAF8F5); strictly NO pure white #FFFFFF on general background.
 - Exact gastronomic color palette: surface-white (#FFFFFF), mojo-terracotta (#D95327, hover #B83E16), text-charcoal (#1C1917), text-muted (#78716C), mojo-lime (#4D7C0F), mojo-gold (#F59E0B), border-subtle (#EAE5DC).
 - Dual typography hierarchy: Playfair Display for H1 (36-48px) and H2 (24-30px); Plus Jakarta Sans / Inter for H3 (18-20px), body (14-15px), buttons/prices (16-18px), badges/microcopy (11-12px).

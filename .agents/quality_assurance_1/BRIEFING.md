@@ -3,14 +3,14 @@
 ## Mission
 Perform comprehensive E2E quality assurance, security testing, WCAG 2.1 AA accessibility audit, and build verification against the 12 Acceptance Criteria for the Mojo Grille platform redesign.
 
-## 🔒 My Identity
+##  My Identity
 - Archetype: qa
 - Roles: qa, implementer, specialist
 - Working directory: c:\PaginasWeb\MojoGrille\.agents\quality_assurance_1
 - Original parent: a85c2135-53d8-464a-b3b0-b5cc831d92f2
 - Milestone: Phase 3 QA & Security Verification
 
-## 🔒 Key Constraints
+##  Key Constraints
 - Verify all 12 Acceptance Criteria from PRODUCT_REQUIREMENTS.md.
 - Evaluate injection, empty strings, broken links, negative numbers, edge cases.
 - Perform WCAG 2.1 AA contrast and accessibility audit.

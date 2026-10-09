@@ -15,7 +15,7 @@
    - In `src/routes/__root.tsx`, Schema.org JSON-LD structured data script (`<script type="application/ld+json">`) was absent from the HTML `<head>`.
    - OpenGraph tags lacked `og:image`, `og:image:width`, `og:image:height`, `og:url`, `og:locale`, `og:site_name`, canonical URLs, and localized Miami geo coordinates (`geo.region`, `geo.placename`, `geo.position`, `ICBM`).
    - In `public/`, neither `robots.txt` nor `sitemap.xml` existed.
-   - In `src/components/mojo/TopBar.tsx`, the announcement bar read `"📍 Miami, FL • Open today until 10:00 PM • Fast Takeout & Delivery Caliente"`, omitting the three Miami branches (Little Havana, Brickell, Doral).
+   - In `src/components/mojo/TopBar.tsx`, the announcement bar read `" Miami, FL • Open today until 10:00 PM • Fast Takeout & Delivery Caliente"`, omitting the three Miami branches (Little Havana, Brickell, Doral).
    - In `src/components/mojo/CartSheet.tsx`, there was no conversion reassurance hint explaining what occurs upon clicking "Order via WhatsApp".
    - In `src/routes/index.tsx`, the footer only displayed a single Little Havana address, omitting Brickell and Doral branch details.
 
@@ -59,7 +59,7 @@
 4. **Copywriting & Miami Cultural Nuances:**
    - Verified that `HeroSection.tsx` maintains the exact above-the-fold social proof badge: `"⭐ 4.7 Stars across +3,000 orders in Miami (UberEats & Google)"`, H1 `"The Authentic Criollo Flavor of Miami, Marinado to Perfection"`, and subtitle highlighting `"al momento"` and `"24h citrus mojo"`.
    - Enhanced `TopBar.tsx` top announcement banner to highlight all 3 Miami branches and caliente delivery al momento.
-   - Enhanced `CartSheet.tsx` with friendly Miami Cuban Spanglish empty state (`"¡Pide tu lechón asado, bowl criollo o cafecito al momento!"`) while strictly preserving the required baseline `"Your cart is empty. Start with our signature favorites!"`. Added reassuring conversion microcopy below the WhatsApp button: `"📲 Instant order confirmation directly with our {location.name} kitchen"`.
+   - Enhanced `CartSheet.tsx` with friendly Miami Cuban Spanglish empty state (`"¡Pide tu lechón asado, bowl criollo o cafecito al momento!"`) while strictly preserving the required baseline `"Your cart is empty. Start with our signature favorites!"`. Added reassuring conversion microcopy below the WhatsApp button: `" Instant order confirmation directly with our {location.name} kitchen"`.
    - Enhanced `src/routes/index.tsx` with subtitle `"Prepared fresh al momento con auténtico mojo criollo. 15-min pickup or fast delivery caliente in Miami."`, catering reassurance badge, and expanded 4-column footer detailing addresses, phone numbers, and hours for Little Havana, Brickell, and Doral.
 
 5. **Integrity & Verification:**

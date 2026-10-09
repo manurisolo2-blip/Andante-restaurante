@@ -3,14 +3,14 @@
 ## Mission
 Perform a thorough technical survey of the Mojo Grille codebase at mojo-grille-demo and report findings.
 
-## 🔒 My Identity
+##  My Identity
 - Archetype: explorer
 - Roles: Codebase Explorer
 - Working directory: c:\PaginasWeb\MojoGrille\.agents\explorer_1
 - Original parent: a85c2135-53d8-464a-b3b0-b5cc831d92f2
 - Milestone: codebase-survey
 
-## 🔒 Key Constraints
+##  Key Constraints
 - Read-only investigation — do NOT implement source code
 - Inspect c:\PaginasWeb\MojoGrille\mojo-grille-demo
 - Output report to c:\PaginasWeb\MojoGrille\.agents\codebase_survey.md

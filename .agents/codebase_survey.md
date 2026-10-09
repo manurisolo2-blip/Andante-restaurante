@@ -204,12 +204,12 @@ Configured in `src/routes/__root.tsx`:
 
 ### 6.1. Mock Data (`src/data/menu.ts`)
 1. **Categories (6 items):**
-   - `favoritos`: `"🔥 Must-Tries / Favoritos"`
-   - `bowls`: `"🥗 Bowls Criollos"`
-   - `sandwiches`: `"🥪 Pressed Cubano Sandwiches"`
-   - `sides`: `"🥟 Pa' Picar / Sides"`
-   - `bebidas`: `"🥤 Cafecito & Drinks"`
-   - `catering`: `"🎉 Party Catering"`
+   - `favoritos`: `" Must-Tries / Favoritos"`
+   - `bowls`: `" Bowls Criollos"`
+   - `sandwiches`: `" Pressed Cubano Sandwiches"`
+   - `sides`: `" Pa' Picar / Sides"`
+   - `bebidas`: `" Cafecito & Drinks"`
+   - `catering`: `" Party Catering"`
 2. **Sides Options (`sideOptions`):**
    - `moro`: `"Arroz Moro (Black beans & rice)"` — `$0.00` (Included)
    - `tostones`: `"Crispy Tostones con Mojo"` — `+$1.50`

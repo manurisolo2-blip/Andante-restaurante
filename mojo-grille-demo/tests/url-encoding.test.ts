@@ -102,8 +102,8 @@ const emojiLines: CartLine[] = [
   {
     key: "emoji-item::",
     itemId: "emoji-bowl",
-    name: "🔥 Signature Bowl 🥗",
-    sides: ["🥟 Crispy Tostones", "🥤 Cold Materva", "🎉 Party Mojo"],
+    name: "\u{1F525} Signature Bowl \u{1F957}",
+    sides: ["\u{1F95F} Crispy Tostones", "\u{1F964} Cold Materva", "\u{1F389} Party Mojo"],
     price: 20.0,
     qty: 2,
   },
@@ -114,8 +114,8 @@ assert.ok(!emojiUrl.includes(" "), "No unencoded space");
 const parsedEmojiUrl = new URL(emojiUrl);
 const roundtripEmojiText = parsedEmojiUrl.searchParams.get("text")!;
 
-assert.ok(roundtripEmojiText.includes("• 2× 🔥 Signature Bowl 🥗 (🥟 Crispy Tostones, 🥤 Cold Materva, 🎉 Party Mojo) — $40.00"));
-console.log("  ✓ Emojis (•, 🔥, 🥗, 🥟, 🥤, 🎉) survive URL encoding without byte corruption or surrogate breakage.");
+assert.ok(roundtripEmojiText.includes("• 2× \u{1F525} Signature Bowl \u{1F957} (\u{1F95F} Crispy Tostones, \u{1F964} Cold Materva, \u{1F389} Party Mojo) — $40.00"));
+console.log("  ✓ Emojis survive URL encoding without byte corruption or surrogate breakage.");
 
 // 4. Special URI Character Safety: Ampersands, Plus, Slashes, Quotes
 console.log("  [3.4] Testing special characters (&, +, ?, =, \", ') in query parameters...");
