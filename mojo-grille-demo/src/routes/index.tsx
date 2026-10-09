@@ -9,6 +9,7 @@ import { HeroSection } from "@/components/mojo/HeroSection";
 import { CravStyleMenuGrid } from "@/components/mojo/CravStyleMenuGrid";
 import { QuickOrderModal } from "@/components/mojo/QuickOrderModal";
 import { CulinaryConceptSection } from "@/components/mojo/CulinaryConceptSection";
+import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { GoogleReviewsSection } from "@/components/mojo/GoogleReviewsSection";
 import { CulturalAgendaSection } from "@/components/mojo/CulturalAgendaSection";
 import { SpacesGallerySection } from "@/components/mojo/SpacesGallerySection";
@@ -149,10 +150,16 @@ function IndexContent() {
           </div>
 
           <div className="relative z-20 bg-canvas shadow-[0_-30px_60px_rgba(0,0,0,0.85)] border-t border-brass/25">
-            {/* Concepto Culinario & Filosofía de Marca (Pablo Aroma & Santiago Contarino) */}
+            {/* Sándwich de Autor Deconstruido (Apertura y Despiece Monumental al Scroll) */}
             <div id="concepto-culinario">
-              <CulinaryConceptSection onOpenReservation={() => handleOpenReservation()} />
+              <CubanDeconstruction />
             </div>
+
+            {/* Separador sutil Dark Luxury */}
+            <div className="border-t border-brass/15" aria-hidden="true" />
+
+            {/* Filosofía Culinaria & Maridajes (Pablo Aroma & Santiago Contarino) */}
+            <CulinaryConceptSection onOpenReservation={() => handleOpenReservation()} />
 
             {/* Separador sutil Dark Luxury */}
             <div className="border-t border-brass/15" aria-hidden="true" />
