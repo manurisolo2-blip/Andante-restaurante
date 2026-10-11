@@ -36,14 +36,14 @@ const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     id: "review-2",
     title: "Santiago P.",
     description:
-      "Increíble que toda la propuesta gastronómica garantice opciones libres de gluten con este nivel de bistró contemporáneo. El cóctel 'Compás 76' es de los mejores de Palermo.",
+      "Increíble que toda la propuesta gastronómica garantice opciones libres de gluten con este nivel de bistró contemporáneo. El cóctel Paper Plate y las arepitas de pollo con palta son de lo mejor de Palermo.",
     imageSrc: "/assets/mojo-cafecito.jpg",
     href: GOOGLE_MAPS_URL,
     author: "Santiago P.",
     rating: 5,
-    dish: "Cóctel Compás 76 & Bocado Andante",
+    dish: "Cóctel Paper Plate & Arepitas de Pollo",
     content:
-      "Increíble que toda la propuesta gastronómica garantice opciones libres de gluten con este nivel de bistró contemporáneo. El cóctel 'Compás 76' es de los mejores de Palermo.",
+      "Increíble que toda la propuesta gastronómica garantice opciones libres de gluten con este nivel de bistró contemporáneo. El cóctel Paper Plate y las arepitas de pollo con palta son de lo mejor de Palermo.",
     initials: "SP",
     avatarClass: "bg-amber text-linen",
   },

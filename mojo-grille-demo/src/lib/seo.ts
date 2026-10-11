@@ -16,18 +16,7 @@ export function generateRestaurantSchema(location: Location = DEFAULT_LOCATION) 
     telephone: location.phone,
     priceRange: "$$$",
     servesCuisine: ["Alta Cocina Cosmopolita", "Bistró Contemporáneo", "Cocina de Mercado", "Opciones Sin TACC", "Coctelería de Autor"],
-    founder: {
-      "@type": "Person",
-      "name": "Pablo Aroma",
-      "jobTitle": "Chef Ejecutivo",
-    },
-    employee: [
-      {
-        "@type": "Person",
-        "name": "Santiago Contarino",
-        "jobTitle": "Head Bartender",
-      },
-    ],
+    sameAs: ["https://www.instagram.com/somos.andante"],
     address: {
       "@type": "PostalAddress",
       streetAddress: location.address.street,
@@ -50,10 +39,15 @@ export function generateRestaurantSchema(location: Location = DEFAULT_LOCATION) 
           "Thursday",
           "Friday",
           "Saturday",
-          "Sunday",
         ],
-        opens: "09:00",
-        closes: "01:00",
+        opens: "09:30",
+        closes: "01:30",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Sunday"],
+        opens: "09:30",
+        closes: "00:00",
       },
     ],
     aggregateRating: {

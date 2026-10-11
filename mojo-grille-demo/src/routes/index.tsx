@@ -20,9 +20,9 @@ import { JellyWaveTransition } from "@/components/mojo/JellyWaveTransition";
 import { FloatingContactWidget } from "@/components/mojo/FloatingContactWidget";
 import type { MenuItem } from "@/data/menu";
 
-const title = "Andante Restaurante Bar | Alta Cocina Cosmopolita & Jazz en Palermo Hollywood";
+const title = "Andante Restaurante Bar | Sabores del Mundo, Bistró & Jazz en Palermo Hollywood";
 const description =
-  "Enclave gastronómico premium en Palermo Hollywood. Cocina de autor por el chef Pablo Aroma, barra de autor por Santiago Contarino y ciclos de jazz acústico en vivo en Arévalo 1677.";
+  "Bistró contemporáneo y coctelería en Palermo Hollywood. Cocina fusión del mundo, opciones Sin TACC garantizadas, cafetería de especialidad, cava boutique y ciclos de música en vivo en Arévalo 1677.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "restaurante con jazz en vivo Palermo Hollywood, coctelería de autor, cocina de autor Buenos Aires, bistró Palermo Hollywood, Pablo Aroma, Santiago Contarino, menú Sin TACC CABA, Arévalo 1677, catas de vino Palermo",
+          "restaurante con jazz en vivo Palermo Hollywood, coctelería de autor, cocina fusión Buenos Aires, bistró Palermo Hollywood, menú Sin TACC CABA, Arévalo 1677, catas de vino Palermo, brunch Palermo Hollywood, somos andante, bodega boutique",
       },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
@@ -156,7 +156,7 @@ function IndexContent() {
               <CubanDeconstruction />
             </div>
 
-            {/* Filosofía Culinaria & Maridajes (Pablo Aroma & Santiago Contarino) */}
+            {/* Filosofía Culinaria & Maridajes (Sabores del Mundo & Coctelería de Autor) */}
             <CulinaryConceptSection onOpenReservation={() => handleOpenReservation()} />
 
             {/* Transición 1: Canvas Índigo -> Púrpura Nocturno (Carta Digital) */}
@@ -225,7 +225,7 @@ function IndexContent() {
                   EXPERIENCIAS A MEDIDA EN PALERMO
                 </h2>
                 <p className="mx-auto mt-4 max-w-2xl font-sans text-base text-linen/80 leading-relaxed">
-                  Cierres de salón completo, jornadas corporativas, catas guiadas por sommelier en la cava histórica y cenas de pasos de alta cocina firmadas por Pablo Aroma y Santiago Contarino.
+                  Cierres de salón completo, jornadas corporativas, catas guiadas por sommelier en la cava histórica y cenas de pasos maridadas con vinos de bodegas boutique y coctelería de autor.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <button

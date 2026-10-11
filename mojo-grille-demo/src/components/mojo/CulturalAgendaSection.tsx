@@ -23,8 +23,8 @@ export function CulturalAgendaSection({ onOpenReservation }: CulturalAgendaSecti
       tag: "CADA DOS SEMANAS · VIERNES",
       icon: Sparkles,
       description:
-        "Menú de pasos diseñado por el chef ejecutivo Pablo Aroma en sincronía sensorial con sets musicales en vivo y cócteles de autor creados por Santiago Contarino.",
-      details: "5 Pasos de autor · Maridaje de alta gama · Alianzas de experiencias exclusivas",
+        "Menú de pasos diseñado por nuestro equipo de cocina en sincronía sensorial con sets musicales acústicos y maridajes de autor seleccionados por nuestro sommelier.",
+      details: "5 Pasos de autor · Maridaje de bodegas boutique · Experiencia gastronómica sensorial",
       cta: "Reservar Cena Maridada",
     },
     {

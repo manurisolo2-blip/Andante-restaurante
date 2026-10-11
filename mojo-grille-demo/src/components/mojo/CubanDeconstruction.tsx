@@ -464,10 +464,10 @@ export function CubanDeconstruction() {
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-3 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
           <span className="font-sans text-xs uppercase tracking-[0.25em] text-brass font-bold">
-            CHEF EJECUTIVO PABLO AROMA (EX NICKY HARRISON)
+            COCINA DE MERCADO &amp; SABORES DEL MUNDO
           </span>
           <h2 className="font-display text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-linen mt-0.5 sm:mt-1 leading-none">
-            CONCEPTO CULINARIO &amp; EQUIPO
+            CONCEPTO CULINARIO &amp; TÉCNICA
           </h2>
         </div>
 

@@ -38,42 +38,42 @@ export function CulinaryConceptSection({ onOpenReservation }: CulinaryConceptSec
         {/* Estructura Asimétrica Editorial (Díptico Asimétrico 7/5) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           
-          {/* Bloque Principal (7 cols): La Cocina de Pablo Aroma */}
+          {/* Bloque Principal (7 cols): La Cocina de Andante */}
           <article className="lg:col-span-7 bg-surface/75 border border-brass/25 p-8 sm:p-12 flex flex-col justify-between shadow-2xl relative overflow-hidden backdrop-blur-md">
             <div>
               <div className="flex items-center justify-between pb-6 mb-8 border-b border-brass/15">
                 <span className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-amber">
-                  DIRECCIÓN GASTRONÓMICA
+                  PROPUESTA GASTRONÓMICA
                 </span>
                 <span className="font-sans text-xs text-mist font-medium">
-                  Chef Ejecutivo Pablo Aroma
+                  Cocina del Mundo &amp; Identidad Porteña
                 </span>
               </div>
 
               <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-linen mb-6 leading-tight">
-                Cocina Cosmopolita, Memoria Porteña &amp; Fuego
+                Sabores del Mundo, Memoria Porteña &amp; Fuego
               </h3>
 
               <div className="space-y-4 font-sans text-sm sm:text-base text-mist leading-relaxed">
                 <p>
-                  Técnicas de alta escuela europea y fermentaciones asiáticas adaptadas a los productos más nobles del mercado local. Reducciones glaseadas de 36 horas, masas madre de centeno y cortes seleccionados sellados sobre leña dura de quebracho blanco.
+                  Inspirada en las memorias de un fotógrafo explorador de los años 60, nuestra carta propone una travesía por los sabores del mundo adaptados al paladar argentino. Tapeo cosmopolita, arepitas de pollo desmechado con palta fresca, tacos de mollejas crocantes con ají amarillo, terrinas y paté trufado de la casa.
                 </p>
                 <p>
-                  Cada plato dialoga con el ritmo de la sobremesa, buscando texturas untuosas y contrastes herbales que perduren en la memoria del comensal.
+                  Cada bocado dialoga con el ritmo pausado de la sobremesa: pastas al huevo amasadas a diario, reducciones lentas de vino tinto y cocciones nobles a fuego vivo.
                 </p>
               </div>
             </div>
 
             <div className="mt-10 pt-6 border-t border-brass/15 flex flex-wrap items-center justify-between gap-4">
               <span className="font-sans text-xs font-semibold text-brass uppercase tracking-wider">
-                Platos de Culto: Ravioli di Ossobuco · Bife Madurado 45 Días
+                Platos Emblemáticos: Tacos de Molleja · Arepitas de Pollo · Lomo &amp; Risottos
               </span>
               <a
                 href="#menu"
                 onClick={handleScrollToMenu}
                 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-linen hover:text-brass transition-colors"
               >
-                <span>Ver Platos Principales</span>
+                <span>Ver Carta de Platos</span>
                 <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
               </a>
             </div>
@@ -90,7 +90,7 @@ export function CulinaryConceptSection({ onOpenReservation }: CulinaryConceptSec
                     BARRA &amp; BODEGA
                   </span>
                   <span className="font-sans text-xs text-mist font-medium">
-                    Santiago Contarino
+                    Mixología &amp; Vinos Boutique
                   </span>
                 </div>
 
@@ -99,13 +99,13 @@ export function CulinaryConceptSection({ onOpenReservation }: CulinaryConceptSec
                 </h4>
 
                 <p className="font-sans text-xs sm:text-sm text-mist leading-relaxed">
-                  Reinterpretaciones sobrias de aperitivos clásicos y destilados añejos. Nuestra cava en el subsuelo alberga más de 120 etiquetas de productores independientes de Salta, Mendoza y la Patagonia.
+                  Reinterpretaciones sobrias de aperitivos clásicos, vermutería artesanal y destilados de autor. Nuestra cava en el subsuelo resguarda etiquetas selectas de bodegas independientes y pequeños productores boutique de Argentina.
                 </p>
               </div>
 
               <div className="mt-6 pt-4 border-t border-brass/10 flex items-center justify-between">
                 <span className="font-sans text-xs font-medium text-linen/90">
-                  Firma: Paper Plate con Amargo Obrero &amp; Vermouth Artesanal
+                  Insignia: Paper Plate con Amargo Obrero &amp; Vermouth de Autor
                 </span>
               </div>
             </article>
@@ -118,7 +118,7 @@ export function CulinaryConceptSection({ onOpenReservation }: CulinaryConceptSec
                     INCLUSIÓN &amp; AMBIENTE
                   </span>
                   <span className="font-sans text-xs text-mist font-medium">
-                    Cocina Certificada
+                    Cocina Protegida Sin TACC
                   </span>
                 </div>
 
@@ -127,13 +127,13 @@ export function CulinaryConceptSection({ onOpenReservation }: CulinaryConceptSec
                 </h4>
 
                 <p className="font-sans text-xs sm:text-sm text-mist leading-relaxed">
-                  Cocina con línea protegida libre de gluten sin resignar alta gastronomía (como nuestros ñoquis de arroz tostado en dashi de hongos). Sala con tratamiento acústico para gozar del jazz acústico a volumen humano.
+                  Cocina con protocolos estrictos y platos garantizados libres de gluten (tacos de maíz nixtamalizado, ñoquis coreanos de arroz en caldo dashi, chipá recién horneado y postres). Sala acústicamente diseñada para disfrutar de jazz acústico en vivo a volumen humano.
                 </p>
               </div>
 
               <div className="mt-6 pt-4 border-t border-brass/10 flex items-center justify-between">
                 <span className="font-sans text-xs font-medium text-brass">
-                  Música en Vivo: Martes &amp; Jueves 21:00 hs
+                  Música en Vivo: Jueves 21:00 hs (Musique &amp; Cuisine)
                 </span>
               </div>
             </article>

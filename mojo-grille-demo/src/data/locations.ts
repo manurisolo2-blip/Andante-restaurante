@@ -22,7 +22,7 @@ export const LOCATIONS: Record<LocationId, Location> = {
       latitude: -34.5815,
       longitude: -58.4372,
     },
-    hours: "Mar a Dom 09:00 a 01:00 hs (Lunes cerrado)",
+    hours: "Mar a Sáb 09:30 a 01:30 hs · Dom 09:30 a 00:00 hs (Lunes cerrado)",
     isPrimary: true,
   },
   brickell: {
@@ -42,7 +42,7 @@ export const LOCATIONS: Record<LocationId, Location> = {
       latitude: -34.5815,
       longitude: -58.4372,
     },
-    hours: "Mar a Sáb 18:00 a 01:00 hs (Bar & Cenas)",
+    hours: "Mar a Sáb 18:00 a 01:30 hs · Dom 18:00 a 00:00 hs (Patio & Cocktails)",
     isPrimary: false,
   },
   doral: {
@@ -62,7 +62,7 @@ export const LOCATIONS: Record<LocationId, Location> = {
       latitude: -34.5815,
       longitude: -58.4372,
     },
-    hours: "Mar y Jue 21:00 hs (Jazz Nights) · Catas Guiadas",
+    hours: "Jueves 21:00 hs (Musique & Cuisine) · Andante Wine Experience",
     isPrimary: false,
   },
 };

@@ -29,17 +29,17 @@ export const categories: Category[] = [
   {
     id: "principales",
     label: "Platos Principales",
-    description: "Cocina de autor estacional, pastas artesanales, pato y brasas.",
+    description: "Cocina de autor estacional, pastas artesanales, carnes y brasas.",
   },
   {
     id: "postres",
     label: "Postres & Pastelería",
-    description: "Pastelería artesanal y masa madre por el Chef Ejecutivo Pablo Aroma.",
+    description: "Pastelería artesanal, tortas del día y opciones Sin TACC.",
   },
   {
     id: "barra",
     label: "Barra de Autor",
-    description: "Coctelería clásica y de autor bajo la dirección de Santiago Contarino.",
+    description: "Coctelería de autor, clásicos reversionados y vinos de bodegas boutique.",
   },
   {
     id: "cafeteria",
@@ -51,7 +51,7 @@ export const categories: Category[] = [
 export const sideOptions: SideOption[] = [
   { id: "moro", name: "Papas Rústicas a la Provenzal", price: 0, isIncluded: true },
   { id: "tostones", name: "Puré de Kale con Manteca Noisette", price: 1.5 },
-  { id: "yuca", name: "Panera Artesanal de Masa Madre (Pablo Aroma)", price: 2 },
+  { id: "yuca", name: "Panera Artesanal de Masa Madre & Focaccia", price: 2 },
   { id: "maduros", name: "Copa de Vino de Corte (Bodega Boutique)", price: 1.75 },
 ];
 
@@ -175,7 +175,7 @@ export const menu: MenuItem[] = [
     price: 18.5,
     image: cubano,
     category: "principales",
-    badge: "Chef Pablo Aroma",
+    badge: "Firma Andante",
     sidesAllowed: true,
     featured: true,
     isGlutenFree: false,
@@ -196,7 +196,7 @@ export const menu: MenuItem[] = [
     featured: true,
     isGlutenFree: false,
     isVegetarian: false,
-    chefNotes: "Pasta al huevo amasada a diario por el equipo de Pablo Aroma.",
+    chefNotes: "Pasta al huevo amasada a diario por nuestro equipo de cocina.",
   },
   {
     id: "bife-chorizo-madurado",
@@ -242,17 +242,17 @@ export const menu: MenuItem[] = [
   },
 
   // ==========================================
-  // 3. POSTRES & PASTELERÍA (CHEF PABLO AROMA)
+  // 3. POSTRES & PASTELERÍA ARTESANAL
   // ==========================================
   {
     id: "torta-vasca",
     name: "Torta Vasca (San Sebastián)",
     description:
-      "Tarta de queso horneada a alta temperatura con costra caramelizada y corazón cremoso e indulgente. Receta emblemática del chef pastelero Pablo Aroma.",
+      "Tarta de queso horneada a alta temperatura con costra caramelizada y corazón cremoso e indulgente. Receta emblemática de nuestra pastelería.",
     price: 8.5,
     image: catering,
     category: "postres",
-    badge: "Chef Pablo Aroma",
+    badge: "Firma Andante",
     sidesAllowed: false,
     featured: true,
     isGlutenFree: true,
@@ -263,11 +263,11 @@ export const menu: MenuItem[] = [
     id: "panificados-madre",
     name: "Panificados Artesanales de Masa Madre",
     description:
-      "Selección de panadería de fermentación lenta (48 hs) elaborada por Pablo Aroma: hogaza de campo, focaccia de romero y pan de nueces con manteca batida.",
+      "Selección de panadería de fermentación lenta (48 hs): hogaza de campo, focaccia de romero y pan de nueces con manteca batida.",
     price: 6.0,
     image: catering,
     category: "postres",
-    badge: "Chef Pablo Aroma",
+    badge: "Firma Andante",
     sidesAllowed: false,
     isGlutenFree: false,
     isVegetarian: true,
@@ -300,17 +300,17 @@ export const menu: MenuItem[] = [
   },
 
   // ==========================================
-  // 4. BARRA & COCTELERÍA DE AUTOR (SANTIAGO CONTARINO)
+  // 4. BARRA & COCTELERÍA DE AUTOR
   // ==========================================
   {
     id: "paper-plate",
-    name: "Paper Plate (Santiago Contarino Signature)",
+    name: "Paper Plate (Cóctel Insignia)",
     description:
       "Bourbon whiskey, Aperol, Amargo Obrero y jugo fresco de limón. Cóctel insignia que reinterpreta el Paper Plane con aperitivo autóctono porteño.",
     price: 9.5,
     image: cafecito,
     category: "barra",
-    badge: "Santiago Contarino",
+    badge: "Coctelería de Autor",
     sidesAllowed: false,
     featured: true,
     chefNotes: "Equilibrio cítrico y herbal con destilados de primera línea.",
@@ -345,7 +345,7 @@ export const menu: MenuItem[] = [
     price: 10.0,
     image: cafecito,
     category: "barra",
-    badge: "Santiago Contarino",
+    badge: "Coctelería de Autor",
     sidesAllowed: false,
     featured: true,
   },

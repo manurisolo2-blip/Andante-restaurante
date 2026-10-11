@@ -163,11 +163,11 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 <Clock className="h-3.5 w-3.5 text-brass" aria-hidden="true" />
                 <span>Horarios Oficiales:</span>
               </div>
-              <p>Salón General: Mar a Dom 09:00 a 01:00 hs (Lunes cerrado)</p>
-              <p>Bar &amp; Cenas: Mar a Sáb 18:00 a 01:00 hs</p>
-              <p>Jazz Acústico: Mar y Jue 21:00 hs</p>
+              <p>Salón General: Mar a Sáb 09:30 a 01:30 hs · Dom 09:30 a 00:00 hs (Lunes cerrado)</p>
+              <p>Bar &amp; Cenas: Mar a Sáb 18:00 a 01:30 hs · Dom 18:00 a 00:00 hs</p>
+              <p>Música en Vivo: Jueves 21:00 hs (Musique &amp; Cuisine)</p>
               <p className="pt-1 text-brass font-semibold">
-                Instagram: <a href="https://www.instagram.com/somos.andante" target="_blank" rel="noopener noreferrer" className="underline hover:text-linen">@somos.andante</a>
+                Instagram: <a href="https://www.instagram.com/somos.andante" target="_blank" rel="noopener noreferrer" className="underline hover:text-linen">@somos.andante</a> · Rappi &amp; Bigbox
               </p>
             </div>
           </div>
