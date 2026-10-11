@@ -42,7 +42,7 @@ const CURATED_ITEMS: CuratedMenuItem[] = [
     id: "plancha-classic-cubano-press",
     name: "Magret de Pato con Puré de Kale & Membrillo",
     price: 18.5,
-    feature: "Chef Pablo Aroma",
+    feature: "Firma Andante",
     description:
       "Pechuga de pato sellada a punto jugoso, puré sedoso de kale con manteca tostada, compota tibia de membrillo y reducción glaseada de su fondo de cocción.",
     imageUrl: "/assets/mojo-cubano.jpg",
@@ -64,13 +64,13 @@ const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 11.5,
     feature: "Técnica Francesa",
     description:
-      "Suave emulsión de higaditos de pollo perfumada con trufa negra, manteca noisette, oporto y tostadas de pan de nuez de masa madre de Pablo Aroma.",
+      "Suave emulsión de higaditos de pollo perfumada con trufa negra, manteca noisette, oporto y tostadas de pan de nuez de masa madre artesanal.",
     imageUrl: "/assets/mojo-tostones.jpg",
     authorNote: "textura aterciopelada & pan de masa madre",
   },
   {
     id: "plancha-chicken-fresco-bowl",
-    name: "Paper Plate (Santiago Contarino Signature)",
+    name: "Paper Plate (Cóctel Insignia)",
     price: 9.5,
     feature: "Barra de Autor",
     description:
@@ -82,9 +82,9 @@ const CURATED_ITEMS: CuratedMenuItem[] = [
     id: "plancha-pepper-steak-platter",
     name: "Torta Vasca (San Sebastián)",
     price: 8.5,
-    feature: "Pablo Aroma Signature",
+    feature: "Pastelería Artesanal",
     description:
-      "Tarta de queso horneada a alta temperatura con costra caramelizada y corazón cremoso e indulgente. Receta emblemática del chef pastelero.",
+      "Tarta de queso horneada a alta temperatura con costra caramelizada y corazón cremoso e indulgente. Receta emblemática de nuestra casa.",
     imageUrl: "/assets/mojo-bowl-ropa-vieja.jpg",
     authorNote: "corazón fluido & caramelo tostado",
   },
@@ -311,7 +311,7 @@ export function CuratedMenu() {
                   IL MENÙ DEL GIORNO · PROPUESTA EJECUTIVA
                 </span>
                 <span className="font-sans text-xs font-bold uppercase tracking-wider text-brass">
-                  Lunes a Viernes · 12:00 a 16:00 hs
+                  Martes a Viernes · 12:00 a 16:00 hs
                 </span>
               </div>
               <h3
@@ -324,13 +324,13 @@ export function CuratedMenu() {
                 itemProp="description"
                 className="mt-3 font-sans text-sm sm:text-base text-mist max-w-2xl leading-relaxed"
               >
-                Experiencia en tres tiempos de cocina contemporánea y de mercado. Incluye panadería artesanal de masa madre de Pablo Aroma, mantequilla de hierbas y bebida de la casa.
+                Experiencia en tres tiempos de cocina contemporánea y de mercado. Incluye panadería artesanal de masa madre, mantequilla de hierbas y bebida de la casa.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 shrink-0">
               <div itemProp="offers" itemScope itemType="https://schema.org/Offer" className="text-left lg:text-right">
-                <meta itemProp="priceCurrency" content="COP" />
+                <meta itemProp="priceCurrency" content="ARS" />
                 <span
                   itemProp="price"
                   content="46300"

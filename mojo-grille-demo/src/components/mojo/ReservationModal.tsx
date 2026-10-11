@@ -75,10 +75,10 @@ export function ReservationModal({
     const sectorLabel = sector === "salon-azul" ? "Salón Azul (Interior / Jazz)" : "Patio Interior al Aire Libre";
     const slotLabel =
       timeSlot === "almuerzo"
-        ? "Almuerzo (12:00 a 15:30 hs)"
+        ? "Almuerzo & Cocina de Mercado (12:00 a 16:00 hs)"
         : timeSlot === "merienda"
-        ? "Merienda / Cafetería (16:00 a 19:30 hs)"
-        : "Cena & Ciclo de Jazz (20:00 a 00:30 hs)";
+        ? "Merienda / Café de Especialidad (16:00 a 19:30 hs)"
+        : "Cena & Coctelería Nocturna (20:00 a 01:00 hs)";
 
     const message = [
       "Hola Andante Restaurante Bar! Deseo solicitar una reserva de mesa:",
@@ -253,9 +253,9 @@ export function ReservationModal({
                   onChange={(e) => setTimeSlot(e.target.value as "almuerzo" | "merienda" | "cena")}
                   className="w-full bg-canvas border border-brass/25 px-3 py-2.5 text-sm text-linen focus:border-brass focus:outline-none"
                 >
-                  <option value="cena">Cena &amp; Jazz (20:00 a 00:30 hs)</option>
-                  <option value="almuerzo">Almuerzo (12:00 a 15:30 hs)</option>
-                  <option value="merienda">Merienda / Café (16:00 a 19:30 hs)</option>
+                  <option value="cena">Cena &amp; Coctelería Nocturna (20:00 a 01:00 hs)</option>
+                  <option value="almuerzo">Almuerzo &amp; Cocina de Mercado (12:00 a 16:00 hs)</option>
+                  <option value="merienda">Merienda / Café de Especialidad (16:00 a 19:30 hs)</option>
                 </select>
               </div>
             </div>
@@ -429,7 +429,7 @@ export function ReservationModal({
               </label>
               <textarea
                 rows={3}
-                placeholder="Menú por pasos de Pablo Aroma, barra libre de cócteles de autor de Santiago Contarino, proyector/pantalla, música en vivo..."
+                placeholder="Menú por pasos maridado, barra de cócteles de autor, cata guiada por sommelier en cava, proyector/pantalla, música acústica en vivo..."
                 value={eventNotes}
                 onChange={(e) => setEventNotes(e.target.value)}
                 className="w-full bg-canvas border border-brass/25 p-3 text-sm text-linen placeholder:text-mist/50 focus:border-brass focus:outline-none resize-none"

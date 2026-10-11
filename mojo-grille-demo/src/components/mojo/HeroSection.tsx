@@ -148,8 +148,8 @@ export function HeroSection({
                   HORARIOS DE SALA
                 </span>
                 <p className="font-sans text-xs text-mist leading-relaxed">
-                  Mediodía: Martes a Domingo · 12:00 a 16:00 hs<br />
-                  Noche &amp; Coctelería: Martes a Sábado · 19:30 a 02:00 hs
+                  Martes a Sábado: 09:30 a 01:30 hs<br />
+                  Domingo: 09:30 a 00:00 hs · Lunes cerrado
                 </p>
               </div>
 
@@ -158,7 +158,7 @@ export function HeroSection({
                   CICLOS EN VIVO
                 </span>
                 <p className="font-sans text-xs text-linen/90 leading-relaxed">
-                  Jazz en Salón Azul y Cava Histórica: Martes &amp; Jueves 21:00 hs con formación de trío acústico.
+                  Ciclo Musique &amp; Cuisine: Jueves 21:00 hs · Catas Andante Wine Experience en Cava Subsuelo.
                 </p>
               </div>
             </div>

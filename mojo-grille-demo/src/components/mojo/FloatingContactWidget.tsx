@@ -170,7 +170,7 @@ export function FloatingContactWidget() {
               {/* Indicador de Horario */}
               <div className="flex items-center gap-2 pt-2 text-[11px] text-mist border-t border-brass/10">
                 <Clock className="h-3.5 w-3.5 text-amber shrink-0" aria-hidden="true" />
-                <span>Mar a Dom 09:00 a 01:00 hs (Lunes cerrado)</span>
+                <span>Mar a Sáb 09:30 a 01:30 hs · Dom 09:30 a 00:00 hs (Lunes cerrado)</span>
               </div>
             </div>
           </div>
