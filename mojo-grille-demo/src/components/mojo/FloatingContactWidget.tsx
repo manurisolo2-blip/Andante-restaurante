@@ -18,13 +18,9 @@ export function FloatingContactWidget() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  // Mensajes preconfigurados para WhatsApp con números oficiales argentinos
-  const whatsappSalonUrl = `https://wa.me/5491168673856?text=${encodeURIComponent(
-    "Hola Andante Restaurante Bar, quisiera consultar disponibilidad para reservar una mesa en el Salón Azul (Palermo Hollywood). Número de personas: [Indicar cantidad] - Fecha y hora: [Indicar fecha y hora]."
-  )}`;
-
-  const whatsappPatioUrl = `https://wa.me/5491168062589?text=${encodeURIComponent(
-    "Hola Andante Restaurante Bar, quisiera consultar disponibilidad para reservar una mesa en el Patio Interior (Palermo Hollywood). Número de personas: [Indicar cantidad] - Fecha y hora: [Indicar fecha y hora]."
+  // Mensaje oficial unificado para WhatsApp
+  const whatsappUrl = `https://wa.me/5491168062589?text=${encodeURIComponent(
+    "Hola Andante Restaurante Bar, quisiera consultar disponibilidad para reservar una mesa. Número de personas: [Indicar cantidad] - Fecha y hora: [Indicar fecha y hora]."
   )}`;
 
   return (
@@ -38,7 +34,7 @@ export function FloatingContactWidget() {
         />
       )}
 
-      {/* Contenedor Flotante Unificado (Thumb-Zone: esquina inferior derecha con fácil alcance en móviles y desktop) */}
+      {/* Contenedor Flotante Unificado (Thumb-Zone: esquina inferior derecha) */}
       <div
         ref={menuRef}
         className="fixed right-3 sm:right-6 bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] sm:bottom-6 z-40 flex flex-col items-end select-none"
@@ -55,14 +51,15 @@ export function FloatingContactWidget() {
             <div className="flex items-start justify-between border-b border-brass/20 pb-3 mb-4">
               <div>
                 <span className="font-sans text-[10px] font-black uppercase tracking-[0.2em] text-brass">
-                  ATENCIÓN INMEDIATA · PALERMO HOLLYWOOD
+                  ATENCIÓN DIRECTA · PALERMO HOLLYWOOD
                 </span>
                 <h3 className="font-serif font-display text-lg font-bold text-linen mt-0.5">
-                  Contacto &amp; Reservas
+                  Andante Restaurante Bar
                 </h3>
-                <p className="font-sans text-[11px] text-mist">
-                  Arévalo 1677, CABA · Salón Azul &amp; Patio
-                </p>
+                <div className="flex items-center gap-1.5 font-sans text-[11px] text-mist mt-1">
+                  <MapPin className="h-3 w-3 text-amber shrink-0" aria-hidden="true" />
+                  <span>Arévalo 1677 - Buenos Aires</span>
+                </div>
               </div>
               <button
                 type="button"
@@ -75,102 +72,75 @@ export function FloatingContactWidget() {
             </div>
 
             <div className="space-y-4">
-              {/* Opción A: Reservar por WhatsApp */}
+              {/* Opción 1: WhatsApp Oficial */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-brass">
                   <MessageSquare className="h-4 w-4 text-amber" aria-hidden="true" />
                   <span className="font-sans text-xs font-bold uppercase tracking-wider text-linen">
-                    Reservar por WhatsApp
+                    WhatsApp Directo
                   </span>
                 </div>
                 <p className="font-sans text-[11px] text-mist leading-snug">
-                  Mensaje preconfigurado para consultar espacio, fecha y comensales:
+                  Escribinos para reservas inmediatas, consultas y carta del día:
                 </p>
 
-                {/* Sub-opción Salón Azul */}
                 <a
-                  href={whatsappSalonUrl}
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Reservar por WhatsApp en Salón Azul al +54 9 11 6867-3856"
-                  className="group flex min-h-[48px] items-center justify-between border border-brass/25 bg-canvas/80 px-4 py-3 hover:border-brass hover:bg-canvas transition-all"
+                  aria-label="Contactar por WhatsApp al +54 9 11 6806-2589"
+                  className="group flex min-h-[48px] items-center justify-between border border-brass/30 bg-canvas/80 px-4 py-3 hover:border-brass hover:bg-canvas transition-all"
                 >
                   <div className="flex flex-col text-left">
                     <span className="font-sans text-xs font-bold text-linen group-hover:text-brass transition-colors">
-                      WhatsApp · Salón Azul
+                      Enviar Mensaje a Andante
                     </span>
-                    <span className="font-sans text-[10px] text-mist">
-                      +54 9 11 6867-3856 · Jazz &amp; Cenas
-                    </span>
-                  </div>
-                  <ChevronRight className="h-4 w-4 text-brass group-hover:translate-x-1 transition-transform" />
-                </a>
-
-                {/* Sub-opción Patio Interior & Barra */}
-                <a
-                  href={whatsappPatioUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Reservar por WhatsApp en Patio y Barra al +54 9 11 6806-2589"
-                  className="group flex min-h-[48px] items-center justify-between border border-brass/25 bg-canvas/80 px-4 py-3 hover:border-brass hover:bg-canvas transition-all"
-                >
-                  <div className="flex flex-col text-left">
-                    <span className="font-sans text-xs font-bold text-linen group-hover:text-brass transition-colors">
-                      WhatsApp · Patio &amp; Barra
-                    </span>
-                    <span className="font-sans text-[10px] text-mist">
-                      +54 9 11 6806-2589 · Aire Libre &amp; Cócteles
+                    <span className="font-sans text-[11px] text-amber font-semibold">
+                      +54 9 11 6806-2589
                     </span>
                   </div>
                   <ChevronRight className="h-4 w-4 text-brass group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
 
-              {/* Opción B: Llamar al Restaurante */}
+              {/* Opción 2: Llamada Telefónica */}
               <div className="space-y-2 pt-2 border-t border-brass/15">
                 <div className="flex items-center gap-2 text-brass">
                   <Phone className="h-4 w-4 text-amber" aria-hidden="true" />
                   <span className="font-sans text-xs font-bold uppercase tracking-wider text-linen">
-                    Llamar al Restaurante
+                    Línea Telefónica
                   </span>
                 </div>
                 <p className="font-sans text-[11px] text-mist leading-snug">
-                  Líneas telefónicas directas de recepción:
+                  Atención en sala y recepción:
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  <a
-                    href="tel:+541168673856"
-                    aria-label="Llamar a recepción Salón Azul al +54 11 6867-3856"
-                    className="flex min-h-[48px] flex-col justify-center border border-brass/20 bg-canvas/80 px-3 py-2 text-left hover:border-brass transition-colors"
-                  >
+                <a
+                  href="tel:+5491168062589"
+                  aria-label="Llamar al restaurante al +54 9 11 6806-2589"
+                  className="flex min-h-[48px] items-center justify-between border border-brass/25 bg-canvas/80 px-4 py-3 text-left hover:border-brass hover:bg-canvas transition-colors group"
+                >
+                  <div className="flex flex-col text-left">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-mist">
-                      Salón Azul
+                      Recepción Andante
                     </span>
-                    <span className="font-sans text-xs font-bold text-brass">
-                      +54 11 6867-3856
+                    <span className="font-sans text-xs font-bold text-brass group-hover:text-linen transition-colors">
+                      +54 9 11 6806-2589
                     </span>
-                  </a>
-
-                  <a
-                    href="tel:+541168062589"
-                    aria-label="Llamar a línea Patio y Barra al +54 11 6806-2589"
-                    className="flex min-h-[48px] flex-col justify-center border border-brass/20 bg-canvas/80 px-3 py-2 text-left hover:border-brass transition-colors"
-                  >
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-mist">
-                      Patio &amp; Barra
-                    </span>
-                    <span className="font-sans text-xs font-bold text-brass">
-                      +54 11 6806-2589
-                    </span>
-                  </a>
-                </div>
+                  </div>
+                  <ChevronRight className="h-4 w-4 text-brass group-hover:translate-x-1 transition-transform" />
+                </a>
               </div>
 
               {/* Indicador de Horario */}
-              <div className="flex items-center gap-2 pt-2 text-[11px] text-mist border-t border-brass/10">
-                <Clock className="h-3.5 w-3.5 text-amber shrink-0" aria-hidden="true" />
-                <span>Mar a Sáb 09:30 a 01:30 hs · Dom 09:30 a 00:00 hs (Lunes cerrado)</span>
+              <div className="pt-2 border-t border-brass/10 space-y-1">
+                <div className="flex items-start gap-2 text-[11px] text-mist">
+                  <Clock className="h-3.5 w-3.5 text-amber shrink-0 mt-0.5" aria-hidden="true" />
+                  <div>
+                    <p className="text-linen font-medium">Martes a sábado de 09:30 a 01:30 hs</p>
+                    <p className="text-mist">Domingos de 09:30 a 00 hs (Lunes cerrado)</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

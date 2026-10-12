@@ -21,9 +21,9 @@ console.log("  [2.1] Validating official store records...");
 assert.equal(locationsList.length, 3);
 
 const expectedStores = [
-  { id: "little-havana", phoneRaw: "5491168673856", phone: "+54 11 6867-3856", name: "Salón Azul (Palermo Hollywood)" },
-  { id: "brickell", phoneRaw: "5491168062589", phone: "+54 11 6806-2589", name: "Patio Interior al Aire Libre" },
-  { id: "doral", phoneRaw: "5491168673856", phone: "+54 11 6867-3856", name: "Cava Privada & Jazz" },
+  { id: "little-havana", phoneRaw: "5491168062589", phone: "+54 9 11 6806-2589", name: "Salón Azul (Palermo Hollywood)" },
+  { id: "brickell", phoneRaw: "5491168062589", phone: "+54 9 11 6806-2589", name: "Patio Interior al Aire Libre" },
+  { id: "doral", phoneRaw: "5491168062589", phone: "+54 9 11 6806-2589", name: "Cava Privada & Jazz" },
 ] as const;
 
 for (const exp of expectedStores) {
@@ -92,7 +92,7 @@ for (const store of expectedStores) {
 
 // Overload check: whatsappHref(lines, total) defaults to Salón Azul (Palermo Hollywood)
 const defaultUrl = whatsappHref(sampleLines, sampleTotal);
-assert.ok(defaultUrl.startsWith("https://wa.me/5491168673856?text="));
+assert.ok(defaultUrl.startsWith("https://wa.me/5491168062589?text="));
 assert.ok(decodeURIComponent(defaultUrl).includes("para Salón Azul (Palermo Hollywood):"));
 console.log("  ✓ Dynamic phone routing dynamically sets wa.me destination and greeting for each store.");
 
@@ -164,7 +164,7 @@ console.log("  [2.4] Testing cart state preservation during location switching l
   assert.equal(cart.location.name, "Salón Azul (Palermo Hollywood)");
 
   const lhUrl = cart.getWhatsAppUrl();
-  assert.ok(lhUrl.includes("5491168673856"));
+  assert.ok(lhUrl.includes("5491168062589"));
   assert.ok(decodeURIComponent(lhUrl).includes("Salón Azul (Palermo Hollywood)"));
 
   // Switch to Brickell (Patio Interior)
@@ -186,7 +186,7 @@ console.log("  [2.4] Testing cart state preservation during location switching l
   assert.equal(cart.total, 41.15, "Cart total must be preserved after switching to Cava");
 
   const doralUrl = cart.getWhatsAppUrl();
-  assert.ok(doralUrl.includes("5491168673856"), "Target phone must update to Cava (5491168673856)");
+  assert.ok(doralUrl.includes("5491168062589"), "Target phone must update to Cava (5491168062589)");
   assert.ok(decodeURIComponent(doralUrl).includes("Cava Privada & Jazz"), "Message header must update to Cava");
 
   // Switch back to Little Havana (Salón Azul)
@@ -195,7 +195,7 @@ console.log("  [2.4] Testing cart state preservation during location switching l
   assert.equal(cart.count, 3);
   assert.equal(cart.lines.length, 2);
   assert.equal(cart.total, 41.15);
-  assert.ok(cart.getWhatsAppUrl().includes("5491168673856"));
+  assert.ok(cart.getWhatsAppUrl().includes("5491168062589"));
 
   console.log("  ✓ Cart contents (items, quantities, sides, total) remain 100% intact across repeated store location switches.");
 }

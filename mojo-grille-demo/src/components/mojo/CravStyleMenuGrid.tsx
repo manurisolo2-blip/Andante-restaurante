@@ -167,7 +167,7 @@ function DishCard({ item, onSelect }: DishCardProps) {
             <span>Detalles</span>
           </button>
           <a
-            href={`https://wa.me/5491168673856?text=${encodeURIComponent(
+            href={`https://wa.me/5491168062589?text=${encodeURIComponent(
               `Hola Andante Bar, quisiera consultar sobre el plato "${item.name}" de la carta.`
             )}`}
             target="_blank"

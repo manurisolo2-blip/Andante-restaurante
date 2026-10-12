@@ -583,7 +583,7 @@ export function CuratedMenu() {
             </div>
 
             <a
-              href={`https://wa.me/5491168673856?text=${encodeURIComponent(
+              href={`https://wa.me/5491168062589?text=${encodeURIComponent(
                 `Hola Andante Bar, quisiera consultar por el Menú del Día ($46.300). Entrada: ${selectedEntrada}, Principal: ${selectedProteina}, Guarniciones: ${selectedAcomp.join(" y ")}.`
               )}`}
               target="_blank"
@@ -660,7 +660,7 @@ export function CuratedMenu() {
                   ${item.price.toFixed(2)}
                 </span>
                 <a
-                  href={`https://wa.me/5491168673856?text=${encodeURIComponent(
+                  href={`https://wa.me/5491168062589?text=${encodeURIComponent(
                     `Hola Andante Bar, quisiera consultar sobre el plato "${item.name}" de la selección al fuego.`
                   )}`}
                   target="_blank"

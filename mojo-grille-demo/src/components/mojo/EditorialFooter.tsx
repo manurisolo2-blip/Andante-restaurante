@@ -150,11 +150,11 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 className="inline-flex min-h-11 items-center hover:text-brass hover:underline transition-colors cursor-pointer text-sm"
                 aria-label="Ver Arévalo 1677 en Google Maps"
               >
-                Arévalo 1677, Palermo Hollywood, C1414CQG, Buenos Aires
+                Arévalo 1677 - Buenos Aires
               </a>
-              <p className="text-xs text-mist">Salón Azul · Patio Interior · Cava Privada</p>
+              <p className="text-xs text-mist">Bistró contemporáneo, cafetería de especialidad &amp; coctelería</p>
               <p className="text-xs text-brass font-bold pt-1">
-                Tel: +54 11 6867-3856 / +54 11 6806-2589
+                Tel / WhatsApp: <a href="https://wa.me/5491168062589" target="_blank" rel="noopener noreferrer" className="hover:underline">+54 9 11 6806-2589</a>
               </p>
             </div>
 
@@ -163,11 +163,11 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 <Clock className="h-3.5 w-3.5 text-brass" aria-hidden="true" />
                 <span>Horarios Oficiales:</span>
               </div>
-              <p>Salón General: Mar a Sáb 09:30 a 01:30 hs · Dom 09:30 a 00:00 hs (Lunes cerrado)</p>
-              <p>Bar &amp; Cenas: Mar a Sáb 18:00 a 01:30 hs · Dom 18:00 a 00:00 hs</p>
-              <p>Música en Vivo: Jueves 21:00 hs (Musique &amp; Cuisine)</p>
+              <p className="text-linen">Martes a sábado de 09:30 a 01:30 hs</p>
+              <p className="text-linen">Domingos de 09:30 a 00 hs</p>
+              <p className="text-amber font-medium">Lunes cerrado</p>
               <p className="pt-1 text-brass font-semibold">
-                Instagram: <a href="https://www.instagram.com/somos.andante" target="_blank" rel="noopener noreferrer" className="underline hover:text-linen">@somos.andante</a> · Rappi &amp; Bigbox
+                Instagram: <a href="https://www.instagram.com/somos.andante" target="_blank" rel="noopener noreferrer" className="underline hover:text-linen">@somos.andante</a>
               </p>
             </div>
           </div>
@@ -250,7 +250,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
 
         {/* 3. Barra Inferior Legal & Volver Arriba */}
         <div className="py-8 pb-28 sm:pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-mist">
-          <p className="text-center sm:text-left">© {new Date().getFullYear()} Andante Restaurante Bar. Arévalo 1677, Palermo Hollywood, CABA, Argentina.</p>
+          <p className="text-center sm:text-left">© {new Date().getFullYear()} Andante Restaurante Bar. Arévalo 1677 - Buenos Aires.</p>
           <div className="flex items-center gap-6">
             <button
               ref={backToTopRef}

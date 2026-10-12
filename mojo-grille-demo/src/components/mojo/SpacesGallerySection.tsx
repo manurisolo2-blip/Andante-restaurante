@@ -15,7 +15,6 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
       subtitle: "A Media Luz & Clima Íntimo de Jazz",
       icon: Moon,
       tag: "AMBIENTE NOCTURNO · JAZZ EN VIVO",
-      capacity: "Capacidad: 65 Comensales",
       description:
         "Muros bañados en azul noche profundo, iluminación de candelabros tenues y lámparas de latón. El epicentro de nuestra experiencia gastronómica nocturna con vista directa al escenario acústico.",
       features: [
@@ -32,7 +31,6 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
       subtitle: "Pulmón Verde & Cielo Abierto",
       icon: Trees,
       tag: "AL AIRE LIBRE · VEGETACIÓN & BRISA",
-      capacity: "Capacidad: 50 Comensales",
       description:
         "Un oasis sereno en el corazón de Palermo Hollywood. Rodeado de vegetación nativa, árboles centenarios y guirnaldas de luz cálida. Ideal para almuerzos relajados, tardes de pastelería y noches estrelladas.",
       features: [
@@ -45,18 +43,17 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
     },
     {
       id: "cava" as const,
-      name: "Cava Privada & Guarda",
-      subtitle: "Catas Exclusivas en el Subsuelo",
+      name: "Cava de Guarda & Vinos",
+      subtitle: "Selección de Bodegas Boutique",
       icon: Wine,
-      tag: "SUBSUELO HISTÓRICO · HASTA 14 COMENSALES",
-      capacity: "Capacidad: 14 Comensales (Privado)",
+      tag: "SUBSUELO HISTÓRICO · BODEGA BOUTIQUE",
       description:
-        "Un espacio subterráneo climatizado que resguarda más de 120 etiquetas de bodegas boutique y vinos de corte de pequeños productores argentinos. Mesa comunal de madera maciza para reuniones íntimas y catas guiadas.",
+        "Un espacio subterráneo climatizado que resguarda más de 120 etiquetas de bodegas boutique y vinos de corte de pequeños productores argentinos para enriquecer cada cena y encuentro.",
       features: [
         "Temperatura y humedad controlada para vinos de guarda",
-        "Mesa comunal de roble macizo para catas guiadas",
-        "Privacidad absoluta para reuniones directivas o familiares",
-        "Sommelier dedicado durante toda la experiencia",
+        "Mesa de degustación y maridaje de autor",
+        "Etiquetas exclusivas de terruños argentinos",
+        "Asesoramiento y recomendaciones del sommelier",
       ],
       imageUrl: "/assets/mojo-catering.jpg",
     },
@@ -80,7 +77,7 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
             ESPACIOS DE ANDANTE
           </h2>
           <p className="mt-4 font-sans text-base sm:text-lg text-mist leading-relaxed">
-            Una casa histórica en Arévalo 1677 dividida en tres universos sensoriales: la intimidad del salón azul a media luz, la frescura de nuestro patio arbolado y el secreto de la cava subterránea.
+            Una casa histórica en Arévalo 1677 con distintos sectores para disfrutar a tu propio ritmo: la intimidad del salón azul a media luz, la brisa de nuestro patio arbolado y la serenidad de la cava subterránea.
           </p>
         </div>
 
@@ -120,7 +117,7 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
                 {current.name}
               </h3>
               <p className="font-sans text-sm font-semibold uppercase tracking-wider text-brass mb-5">
-                {current.subtitle} · {current.capacity}
+                {current.subtitle}
               </p>
 
               <p className="font-sans text-base text-mist leading-relaxed mb-6">
@@ -141,9 +138,9 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
               <button
                 type="button"
                 onClick={() => onOpenReservation(current.name)}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-none bg-brass px-4 sm:px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-linen hover:bg-brass/90 transition-colors cursor-pointer select-none border border-brass shadow-md text-center"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-none bg-brass px-4 sm:px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-canvas hover:bg-linen transition-colors cursor-pointer select-none border border-brass shadow-md text-center"
               >
-                <span>RESERVAR MESA EN {current.name.toUpperCase()}</span>
+                <span>RESERVAR MESA EN ANDANTE</span>
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
               </button>
             </div>
@@ -164,3 +161,5 @@ export function SpacesGallerySection({ onOpenReservation }: SpacesGallerySection
     </section>
   );
 }
+
+export default SpacesGallerySection;

@@ -211,7 +211,7 @@ function IndexContent() {
               direction="up"
             />
 
-            {/* Módulo de Eventos Corporativos & Catering Exclusivo */}
+            {/* Experiencia & Encuentros en Andante */}
             <section
               id="catering"
               className="scroll-mt-[var(--header-h)] bg-night-purple px-4 py-16 sm:px-6 lg:px-8"
@@ -219,35 +219,35 @@ function IndexContent() {
               <div className="mx-auto max-w-4xl text-center">
                 <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brass mb-3">
                   <CalendarHeart className="h-4 w-4 text-amber" aria-hidden="true" />
-                  <span>CELEBRACIONES PRIVADAS &amp; EVENTOS CORPORATIVOS</span>
+                  <span>ENCUENTROS &amp; SOBREMESA EN PALERMO</span>
                 </div>
                 <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight uppercase text-linen leading-none">
-                  EXPERIENCIAS A MEDIDA EN PALERMO
+                  VIVÍ LA EXPERIENCIA ANDANTE
                 </h2>
                 <p className="mx-auto mt-4 max-w-2xl font-sans text-base text-linen/80 leading-relaxed">
-                  Cierres de salón completo, jornadas corporativas, catas guiadas por sommelier en la cava histórica y cenas de pasos maridadas con vinos de bodegas boutique y coctelería de autor.
+                  Te invitamos a desacelerar el compás urbano en Arévalo 1677. Cocina contemporánea de mercado, cafetería de especialidad, barra de autor y música en un entorno íntimo y sosegado.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <button
                     type="button"
-                    onClick={() => handleOpenReservation("Evento Corporativo / Celebración Privada")}
+                    onClick={() => handleOpenReservation()}
                     className="w-full sm:w-auto inline-flex min-h-11 items-center justify-center gap-2.5 rounded-none bg-brass px-6 sm:px-8 py-3.5 sm:py-4 font-sans text-xs sm:text-base font-bold uppercase tracking-wider text-canvas hover:bg-linen hover:text-canvas transition-colors cursor-pointer select-none border border-brass shadow-lg text-center"
                   >
                     <CalendarHeart className="h-4 w-4" aria-hidden="true" />
-                    <span>COTIZAR EVENTO PRIVADO</span>
+                    <span>RESERVAR MESA</span>
                   </button>
                   <a
-                    href="https://wa.me/5491168673856?text=Hola%20Andante%20Bar%2C%20quisiera%20consultar%20por%20eventos%20privados%20y%20catering."
+                    href="https://wa.me/5491168062589?text=Hola%20Andante%20Bar%2C%20quisiera%20consultar%20por%20una%20reserva%20de%20mesa."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto inline-flex min-h-11 items-center justify-center gap-2.5 rounded-none bg-surface border border-brass/35 px-6 sm:px-8 py-3.5 sm:py-4 font-sans text-xs sm:text-base font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none text-center"
                   >
                     <Phone className="h-4 w-4 text-amber" aria-hidden="true" />
-                    <span>CONSULTA DIRECTA: +54 11 6867-3856</span>
+                    <span>WHATSAPP: +54 9 11 6806-2589</span>
                   </a>
                 </div>
                 <p className="mt-4 font-sans text-xs sm:text-sm font-semibold text-mist uppercase tracking-wider">
-                  Arévalo 1677, Palermo Hollywood · Salón Azul, Patio Arbolado &amp; Cava Subsuelo
+                  Arévalo 1677 - Buenos Aires · Martes a sábado de 09:30 a 01:30 hs · Domingos de 09:30 a 00 hs
                 </p>
               </div>
             </section>

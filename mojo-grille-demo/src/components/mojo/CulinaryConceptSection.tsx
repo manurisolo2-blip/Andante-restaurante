@@ -147,7 +147,7 @@ export function CulinaryConceptSection({ onOpenReservation }: CulinaryConceptSec
           <div className="flex items-center gap-3">
             <span className="h-2 w-2 rounded-full bg-brass" aria-hidden="true" />
             <p className="font-sans text-xs sm:text-sm text-mist uppercase tracking-wider font-semibold">
-              Arévalo 1677, Palermo Hollywood · Salón Central, Patio &amp; Cava Privada
+              Arévalo 1677 - Buenos Aires · Martes a domingo
             </p>
           </div>
 
@@ -166,7 +166,7 @@ export function CulinaryConceptSection({ onOpenReservation }: CulinaryConceptSec
               className="flex-1 sm:flex-none inline-flex min-h-[46px] items-center justify-center gap-2 bg-surface border border-brass/35 px-6 py-3 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-linen hover:border-brass hover:text-brass transition-colors cursor-pointer select-none text-center"
             >
               <CalendarHeart className="h-4 w-4 text-amber" aria-hidden="true" />
-              <span>Reservar Salón</span>
+              <span>Reservar Mesa</span>
             </button>
           </div>
         </div>

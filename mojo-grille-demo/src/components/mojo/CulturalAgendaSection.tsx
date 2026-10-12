@@ -34,7 +34,7 @@ export function CulturalAgendaSection({ onOpenReservation }: CulturalAgendaSecti
       icon: Wine,
       description:
         "Catas guiadas por sommelier y ferias itinerantes de bodegas independientes y boutique de Argentina en nuestra cava subterránea de guarda.",
-      details: "Cava Subsuelo (Capacidad máx. 14 comensales) · Charcutería & quesos de guarda",
+      details: "Cava Histórica · Maridaje con charcutería & quesos de guarda",
       cta: "Reservar Cata en Cava",
     },
   ];
@@ -108,7 +108,7 @@ export function CulturalAgendaSection({ onOpenReservation }: CulturalAgendaSecti
         {/* Nota al pie de agenda */}
         <div className="mt-12 text-center">
           <p className="font-sans text-xs uppercase tracking-widest text-mist">
-            Arévalo 1677, Palermo Hollywood · Entrada libre para comensales con reserva previa
+            Arévalo 1677 - Buenos Aires · Reserva de mesa previa recomendada
           </p>
         </div>
       </div>

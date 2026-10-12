@@ -137,7 +137,7 @@ export function QuickOrderModal({
 
           <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
             <a
-              href={`https://wa.me/5491168673856?text=${encodeURIComponent(
+              href={`https://wa.me/5491168062589?text=${encodeURIComponent(
                 `Hola Andante Bar, quisiera consultar sobre el plato "${item.name}"${
                   sides.length > 0
                     ? ` con guarnición de ${sideOptions
