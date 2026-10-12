@@ -142,22 +142,22 @@ export function HeroSection({
             </div>
 
             {/* Columna Lateral: Ficha de Sala & Compás (Atmósfera Dark Luxury) */}
-            <div className={`lg:col-span-4 border-l border-brass/20 pl-6 sm:pl-8 py-2 hidden lg:flex flex-col justify-between space-y-6 ${animItemClass}`}>
-              <div className="space-y-3">
-                <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brass block">
+            <div className={`lg:col-span-4 border-l-2 border-brass/30 pl-8 lg:pl-10 py-3 hidden lg:flex flex-col justify-between space-y-8 ${animItemClass}`}>
+              <div className="space-y-3.5">
+                <span className="font-sans text-xs sm:text-sm font-extrabold uppercase tracking-[0.22em] text-brass block">
                   HORARIOS DE SALA
                 </span>
-                <p className="font-sans text-xs text-mist leading-relaxed">
+                <p className="font-sans text-base sm:text-lg text-linen/95 leading-relaxed">
                   Martes a Sábado: 09:30 a 01:30 hs<br />
                   Domingo: 09:30 a 00:00 hs · Lunes cerrado
                 </p>
               </div>
 
-              <div className="space-y-3 pt-4 border-t border-brass/15">
-                <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-amber block">
+              <div className="space-y-3.5 pt-6 border-t border-brass/20">
+                <span className="font-sans text-xs sm:text-sm font-extrabold uppercase tracking-[0.22em] text-amber block">
                   CICLOS EN VIVO
                 </span>
-                <p className="font-sans text-xs text-linen/90 leading-relaxed">
+                <p className="font-sans text-sm sm:text-base text-mist leading-relaxed">
                   Ciclo Musique &amp; Cuisine: Jueves 21:00 hs · Catas Andante Wine Experience en Cava Subsuelo.
                 </p>
               </div>
