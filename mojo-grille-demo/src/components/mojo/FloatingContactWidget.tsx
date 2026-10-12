@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MessageSquare, Phone, X, ChevronRight, Clock, MapPin } from "lucide-react";
+import { MessageSquare, X, ChevronRight, Clock, MapPin } from "lucide-react";
 
 export function FloatingContactWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,7 +72,7 @@ export function FloatingContactWidget() {
             </div>
 
             <div className="space-y-4">
-              {/* Opción 1: WhatsApp Oficial */}
+              {/* Único Canal Oficial: WhatsApp Directo */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-brass">
                   <MessageSquare className="h-4 w-4 text-amber" aria-hidden="true" />
@@ -89,42 +89,13 @@ export function FloatingContactWidget() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Contactar por WhatsApp al +54 9 11 6806-2589"
-                  className="group flex min-h-[48px] items-center justify-between border border-brass/30 bg-canvas/80 px-4 py-3 hover:border-brass hover:bg-canvas transition-all"
+                  className="group flex min-h-[50px] items-center justify-between border border-brass/30 bg-canvas/80 px-4 py-3 hover:border-brass hover:bg-canvas transition-all"
                 >
                   <div className="flex flex-col text-left">
                     <span className="font-sans text-xs font-bold text-linen group-hover:text-brass transition-colors">
                       Enviar Mensaje a Andante
                     </span>
-                    <span className="font-sans text-[11px] text-amber font-semibold">
-                      +54 9 11 6806-2589
-                    </span>
-                  </div>
-                  <ChevronRight className="h-4 w-4 text-brass group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-
-              {/* Opción 2: Llamada Telefónica */}
-              <div className="space-y-2 pt-2 border-t border-brass/15">
-                <div className="flex items-center gap-2 text-brass">
-                  <Phone className="h-4 w-4 text-amber" aria-hidden="true" />
-                  <span className="font-sans text-xs font-bold uppercase tracking-wider text-linen">
-                    Línea Telefónica
-                  </span>
-                </div>
-                <p className="font-sans text-[11px] text-mist leading-snug">
-                  Atención en sala y recepción:
-                </p>
-
-                <a
-                  href="tel:+5491168062589"
-                  aria-label="Llamar al restaurante al +54 9 11 6806-2589"
-                  className="flex min-h-[48px] items-center justify-between border border-brass/25 bg-canvas/80 px-4 py-3 text-left hover:border-brass hover:bg-canvas transition-colors group"
-                >
-                  <div className="flex flex-col text-left">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-mist">
-                      Recepción Andante
-                    </span>
-                    <span className="font-sans text-xs font-bold text-brass group-hover:text-linen transition-colors">
+                    <span className="font-sans text-xs text-amber font-semibold mt-0.5">
                       +54 9 11 6806-2589
                     </span>
                   </div>
@@ -153,7 +124,7 @@ export function FloatingContactWidget() {
           onClick={() => setIsOpen((prev) => !prev)}
           aria-expanded={isOpen}
           aria-haspopup="dialog"
-          aria-label={isOpen ? "Cerrar menú de contacto y reservas" : "Abrir menú de contacto rápido y reservas por WhatsApp o teléfono"}
+          aria-label={isOpen ? "Cerrar menú de contacto y reservas" : "Abrir contacto directo por WhatsApp"}
           className={`group flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 shadow-2xl transition-all duration-300 cursor-pointer select-none ${
             isOpen
               ? "bg-canvas border-brass text-brass rotate-90 scale-100"
