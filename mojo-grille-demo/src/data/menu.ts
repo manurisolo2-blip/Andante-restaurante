@@ -109,16 +109,18 @@ export const menu: MenuItem[] = [
   },
   {
     id: "rillette-pato",
-    name: "Rillette de Pato con Pickles de Pepino",
+    name: "Provoleta Dorada con Tomates Cherry & Albahaca",
     description:
-      "Confit de pato deshilachado a cocción lenta de 12 horas con hierbas de huerta, acompañado de pickles de pepino agridulces y mostaza a la antigua.",
+      "Queso parrillero argentino dorado a la plancha de hierro fundido con tomates cherry confitados al oliva virgen y albahaca fresca de huerta.",
     price: 12.0,
     image: ropaVieja,
     category: "entradas",
-    badge: "De Estación",
+    badge: "Vegetariano",
     sidesAllowed: true,
-    isGlutenFree: false,
-    isVegetarian: false,
+    isGlutenFree: true,
+    isVegetarian: true,
+    chefNotes: "Receta tradicional de Andante. 100% Sin TACC y apto vegetariano.",
+    pairing: "Maridaje sugerido: Vermouth Julep",
   },
   {
     id: "alitas-bbq-coreana",
@@ -136,16 +138,16 @@ export const menu: MenuItem[] = [
   },
   {
     id: "faina-portena",
-    name: "Fainá Porteña Reversionada con Morcilla & Peras",
+    name: "Fainá Porteña Reversionada con Peras & Queso Azul",
     description:
-      "Masa crocante de harina de garbanzos con morcilla desgranada a la plancha, cebollas de verdeo tiernas y peras doradas al vino blanco (Sin TACC).",
+      "Masa crocante de harina de garbanzos con cebollas de verdeo tiernas, peras doradas al vino blanco y queso azul curado de pasta noble.",
     price: 10.5,
     image: ropaVieja,
     category: "entradas",
     badge: "Sin TACC",
     sidesAllowed: true,
     isGlutenFree: true,
-    isVegetarian: false,
+    isVegetarian: true,
   },
 
   // ==========================================

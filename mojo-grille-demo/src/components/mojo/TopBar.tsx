@@ -187,10 +187,10 @@ export function TopBar({ onOpenCart, onOpenReservation }: TopBarProps) {
             {/* Centro: Enlaces de navegación limpios (Desktop) */}
             <div className="hidden lg:flex items-center gap-7">
               {[
-                { label: "Inicio", href: "#top" },
-                { label: "Menú", href: "#menu" },
-                { label: "Espacios", href: "#espacios" },
-                { label: "Eventos", href: "#agenda-cultural" },
+                { label: "Inicio", href: "/#top" },
+                { label: "Menú", href: "/menu" },
+                { label: "Espacios", href: "/#espacios" },
+                { label: "Eventos", href: "/#agenda-cultural" },
               ].map((link) => (
                 <a
                   key={link.href}
@@ -294,10 +294,10 @@ export function TopBar({ onOpenCart, onOpenReservation }: TopBarProps) {
                     NAVEGACIÓN
                   </span>
                   {[
-                    { href: "#top", label: "Inicio" },
-                    { href: "#menu", label: "Menú" },
-                    { href: "#espacios", label: "Espacios" },
-                    { href: "#agenda-cultural", label: "Eventos" },
+                    { href: "/", label: "Inicio" },
+                    { href: "/menu", label: "Menú Completo" },
+                    { href: "/#espacios", label: "Espacios" },
+                    { href: "/#agenda-cultural", label: "Eventos" },
                   ].map((item) => (
                     <a
                       key={item.href}

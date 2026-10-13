@@ -8,11 +8,11 @@ export interface EditorialFooterProps {
 }
 
 const FOOTER_LINKS = [
-  { href: "#top", label: "Inicio · Filosofía" },
-  { href: "#carta-digital", label: "Carta Digital Interactiva" },
-  { href: "#agenda-cultural", label: "Música en Vivo & Agenda Cultural" },
-  { href: "#espacios", label: "Espacios: Salón Azul & Patio" },
-  { href: "#contacto", label: "Ubicación, Mapa & Horarios" },
+  { href: "/", label: "Inicio · Filosofía" },
+  { href: "/menu", label: "Carta Completa Día & Noche" },
+  { href: "/#agenda-cultural", label: "Música en Vivo & Agenda Cultural" },
+  { href: "/#espacios", label: "Espacios: Salón Azul & Patio" },
+  { href: "/#contacto", label: "Ubicación, Mapa & Horarios" },
 ] as const;
 
 export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {

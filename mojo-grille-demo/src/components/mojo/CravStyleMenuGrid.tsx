@@ -1,5 +1,5 @@
-import React, { useRef, useState, type KeyboardEvent } from "react";
-import { Check, UtensilsCrossed, MessageSquare, Filter, Utensils } from "lucide-react";
+import React, { useRef, useState, useEffect, type KeyboardEvent } from "react";
+import { Check, UtensilsCrossed, MessageSquare, Filter, Utensils, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { menu, type MenuItem } from "@/data/menu";
 
 export interface CravStyleMenuGridProps {
@@ -189,6 +189,35 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
   const [dietaryFilter, setDietaryFilter] = useState<DietaryFilter>("all");
 
   const tablistRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const checkScrollState = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 6);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 6);
+  };
+
+  useEffect(() => {
+    checkScrollState();
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", checkScrollState, { passive: true });
+    window.addEventListener("resize", checkScrollState);
+    return () => {
+      el.removeEventListener("scroll", checkScrollState);
+      window.removeEventListener("resize", checkScrollState);
+    };
+  }, []);
+
+  const scrollTabs = (direction: "left" | "right") => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const offset = direction === "left" ? -240 : 240;
+    el.scrollBy({ left: offset, behavior: "smooth" });
+  };
 
   // Navegación accesible con flechas según WAI-ARIA Tabs pattern
   const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -212,6 +241,7 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
     const nextTab = tabs[nextIndex];
     if (nextTab) {
       nextTab.focus();
+      nextTab.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
       const catId = MENU_CATEGORIES[nextIndex]?.id;
       if (catId) {
         setSelectedCategory(catId);
@@ -294,35 +324,70 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
 
         {/* 1. Pestañas Dinámicas de Categoría Adhesivas (Sticky Tabs) */}
         <div className="sticky top-[var(--header-h)] z-30 mb-8 py-2.5 bg-canvas/95 backdrop-blur-md border-y border-brass/20 shadow-lg">
-          <div
-            ref={tablistRef}
-            role="tablist"
-            aria-label="Categorías de la Carta Gastronómica"
-            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto px-3 sm:px-1 max-w-6xl mx-auto"
-          >
-            {MENU_CATEGORIES.map((category, index) => {
-              const isSelected = selectedCategory === category.id;
-              return (
-                <button
-                  key={category.id}
-                  id={`tab-${category.id}`}
-                  role="tab"
-                  aria-selected={isSelected}
-                  aria-controls="menu-grid-panel"
-                  tabIndex={isSelected ? 0 : -1}
-                  type="button"
-                  onClick={() => setSelectedCategory(category.id)}
-                  onKeyDown={(event) => handleTabKeyDown(event, index)}
-                  className={`relative flex min-h-11 shrink-0 items-center rounded-none px-3.5 sm:px-5 py-2 sm:py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none cursor-pointer border ${
-                    isSelected
-                      ? "bg-brass text-canvas border-brass shadow-lg"
-                      : "bg-surface text-mist border-brass/20 hover:text-linen hover:border-brass/50"
-                  }`}
-                >
-                  {category.label}
-                </button>
-              );
-            })}
+          <div className="relative max-w-7xl mx-auto px-2 sm:px-4">
+            {/* Botón flecha izquierda para pantallas de escritorio */}
+            {canScrollLeft && (
+              <button
+                type="button"
+                onClick={() => scrollTabs("left")}
+                aria-label="Desplazar categorías hacia la izquierda"
+                className="hidden md:flex absolute left-1 top-1/2 -translate-y-1/2 z-20 h-8 w-8 items-center justify-center bg-canvas/95 border border-brass/40 text-brass hover:text-linen hover:border-brass shadow-md transition-colors cursor-pointer select-none"
+              >
+                <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+              </button>
+            )}
+
+            {/* Contenedor desplazable horizontal seguro (sin coordenadas negativas que corten ENTRADAS) */}
+            <div
+              ref={scrollContainerRef}
+              className="no-scrollbar overflow-x-auto scroll-smooth py-1 px-4 sm:px-8"
+            >
+              <div
+                ref={tablistRef}
+                role="tablist"
+                aria-label="Categorías de la Carta Gastronómica"
+                className="flex items-center gap-1.5 sm:gap-2 w-max min-w-full justify-start xl:justify-center"
+              >
+                {MENU_CATEGORIES.map((category, index) => {
+                  const isSelected = selectedCategory === category.id;
+                  return (
+                    <button
+                      key={category.id}
+                      id={`tab-${category.id}`}
+                      role="tab"
+                      aria-selected={isSelected}
+                      aria-controls="menu-grid-panel"
+                      tabIndex={isSelected ? 0 : -1}
+                      type="button"
+                      onClick={(e) => {
+                        setSelectedCategory(category.id);
+                        e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                      }}
+                      onKeyDown={(event) => handleTabKeyDown(event, index)}
+                      className={`relative flex min-h-11 shrink-0 items-center rounded-none px-4 sm:px-5 py-2 sm:py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none cursor-pointer border ${
+                        isSelected
+                          ? "bg-brass text-canvas border-brass shadow-lg"
+                          : "bg-surface text-mist border-brass/20 hover:text-linen hover:border-brass/50"
+                      }`}
+                    >
+                      {category.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Botón flecha derecha para pantallas de escritorio */}
+            {canScrollRight && (
+              <button
+                type="button"
+                onClick={() => scrollTabs("right")}
+                aria-label="Desplazar categorías hacia la derecha"
+                className="hidden md:flex absolute right-1 top-1/2 -translate-y-1/2 z-20 h-8 w-8 items-center justify-center bg-canvas/95 border border-brass/40 text-brass hover:text-linen hover:border-brass shadow-md transition-colors cursor-pointer select-none"
+              >
+                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              </button>
+            )}
           </div>
 
           {/* Filtros visuales rápidos: Sin TACC y Vegetarianos */}
@@ -358,8 +423,8 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
               onClick={() => setDietaryFilter("vegetarian")}
               className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-sans font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border ${
                 dietaryFilter === "vegetarian"
-                  ? "border-olive-green text-olive-green bg-olive-green/10"
-                  : "border-brass/20 text-mist hover:text-olive-green"
+                  ? "border-brass text-brass bg-brass/15"
+                  : "border-brass/20 text-mist hover:text-brass"
               }`}
             >
               Vegetarianos ({categoryItems.filter((i) => i.isVegetarian).length})
@@ -377,6 +442,28 @@ export function CravStyleMenuGrid({ onSelect }: CravStyleMenuGridProps) {
           {filteredItems.map((item) => (
             <DishCard key={item.id} item={item} onSelect={onSelect} />
           ))}
+        </div>
+
+        {/* Banner llamativo hacia la Carta Completa Oficial (/menu) */}
+        <div className="mt-14 border border-brass/35 bg-surface/85 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden">
+          <div className="space-y-1 text-center md:text-left">
+            <span className="font-sans text-[10px] font-black uppercase tracking-[0.22em] text-brass">
+              CARTA COMPLETA DÍA &amp; NOCHE
+            </span>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-linen">
+              ¿QUERÉS VER TODO EL REPERTORIO DE ANDANTE?
+            </h3>
+            <p className="font-sans text-xs sm:text-sm text-mist max-w-xl">
+              Descubrí desayunos, sandwiches, tostones, menú ejecutivo, principales al fuego, coctelería de autor, clásicos y opciones Sin TACC garantizadas.
+            </p>
+          </div>
+          <a
+            href="/menu"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 bg-brass px-7 py-3 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-canvas hover:bg-linen transition-colors shrink-0 shadow-lg cursor-pointer select-none"
+          >
+            <span>VER CARTA COMPLETA</span>
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </a>
         </div>
 
         {filteredItems.length === 0 && (
